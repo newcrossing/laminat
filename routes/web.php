@@ -1,6 +1,14 @@
 <?php
 
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\Backend\HomeController;
+use App\Http\Controllers\Backend\UserController;
+use Spatie\Permission\Models\Role;
+use \App\Http\Controllers\Auth\LoginRegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +23,35 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+})->name('home');;
+
+
+Route::get('/backend/user', [UserController::class, 'index'])->name('backend.user');
+
+Route::get('/add', function () {
+//    User::create([
+//        'login' =>'admin',
+//        'password' => Hash::make('111111')
+//    ]);
+    // $role = Role::create(['name' => 'user']);
+    //$role = Role::create(['name' => 'admin']);
+    $user = User::find(1);
+    $user->assignRole('user');
 });
+Route::controller(LoginRegisterController::class)->group(function () {
+
+    //   Route::get('/register', 'register')->name('register');
+    // Route::post('/store', 'store')->name('store');
+    Route::get('/backend', 'login')->name('login');
+    Route::get('/backend/login', 'login')->name('login');
+    Route::post('/authenticate', 'authenticate')->name('authenticate');
+    //   Route::get('/dashboard', 'dashboard')->name('dashboard');
+    Route::get('/logout', 'logout')->name('logout');
+});
+
+Route::middleware(['role:admin'])->prefix('backend')->group(
+    function () {
+        Route::get('/home', [HomeController::class, 'index'])->name('backend.home');
+    }
+);
+

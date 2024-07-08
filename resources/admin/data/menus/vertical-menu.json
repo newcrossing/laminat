@@ -1,0 +1,66 @@
+{
+    "menu": [
+        {
+            "url": "admin",
+            "name": "Администратор",
+            "i18n": "eCommerce",
+            "icon": "bx-desktop"
+        },
+        {
+            "url": "/",
+            "name": "На сайт",
+            "i18n": "Analytics",
+            "icon": "bxs-right-top-arrow-circle"
+        },
+        {
+            "navheader": "Пользователи"
+        },
+        {
+            "url": "admin/user",
+            "name": "Список",
+            "i18n": "Invoice",
+            "icon": "bxs-user"
+        },
+        {
+            "navheader": "Документы"
+        },
+        {
+            "url": "admin/doc",
+            "name": "Список",
+            "i18n": "Invoice",
+            "icon": "bxs-file"
+        },
+        {
+            "navheader": "Статьи / Новости"
+        },
+        {
+            "url": "admin/post",
+            "name": "Список",
+            "i18n": "Invoice",
+            "icon": "bxs-book-content"
+        },
+        {
+            "navheader": "Прочее"
+        },
+        {
+            "url": "#",
+            "name": "Контент",
+            "i18n": "Invoice",
+            "icon": "bxs-notepad",
+            "submenu": [
+                {
+                    "url": "admin/tag",
+                    "name": "Теги",
+                    "i18n": "Invoice List",
+                    "icon": "bx-purchase-tag-alt"
+                },
+                {
+                    "url": "admin/log",
+                    "name": "Лог",
+                    "i18n": "Invoice List",
+                    "icon": "bx-list-ol"
+                }
+            ]
+        }
+    ]
+}
