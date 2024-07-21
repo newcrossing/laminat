@@ -113,7 +113,7 @@
 
 .invoice-list-wrapper .dataTables_wrapper .invoice-data-table tr th:nth-child(2),
 .invoice-list-wrapper .dataTables_wrapper .invoice-data-table tr td:nth-child(2) {
-  padding-left: 10px;
+  /*padding-left: 10px;*/
 }
 
 .invoice-list-wrapper .dataTables_wrapper .invoice-data-table tr .invoice-action a {

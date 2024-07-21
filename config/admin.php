@@ -11,7 +11,7 @@ return [
     'navbarBgColor' => 'bg-white',
     'navbarType' => 'fixed',
     'navbarClass' => 'fixed',
-    'isMenuCollapsed' => true,
+    'isMenuCollapsed' => false,
     'footerType' => 'static',
     'templateTitle' => '',
     'isCustomizer' => false,

@@ -5,10 +5,8 @@
 <!-- BEGIN: Vendor CSS-->
 <link rel="stylesheet" type="text/css" href="/b/app-assets/vendors/css/vendors.min.css">
 <link rel="stylesheet" type="text/css" href="/b/app-assets/vendors/css/tables/datatable/datatables.min.css">
-<link rel="stylesheet" type="text/css"
-      href="/b/app-assets/vendors/css/tables/datatable/extensions/dataTables.checkboxes.css">
-<link rel="stylesheet" type="text/css"
-      href="/b/app-assets/vendors/css/tables/datatable/responsive.bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/b/app-assets/vendors/css/tables/datatable/extensions/dataTables.checkboxes.css">
+<link rel="stylesheet" type="text/css" href="/b/app-assets/vendors/css/tables/datatable/responsive.bootstrap.min.css">
 <!-- END: Vendor CSS-->
 
 @yield('vendor-styles')

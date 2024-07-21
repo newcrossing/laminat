@@ -1,0 +1,20 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 13.11.2015, 13.11.2015 19:44:14
+    Author     : Павел
+*/
+
+h2 {
+    font-size: 5px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-weight: normal;
+    text-align: center;
+    color: #2B6893;
+    line-height: 1.3;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
