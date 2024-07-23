@@ -255,13 +255,16 @@
     </script>
     {{--    <script src="{{asset("/b/app-assets/js/)}}"></script>--}}
     <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+{{--    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>--}}
+{{--    <script src="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone-min.js"></script>--}}
+
 
     <script>
         Dropzone.options.myGreatDropzone = {
 
             // camelized version of the `id`
             paramName: "file", // The name that will be used to transfer the file
-            maxFilesize: 2, // MB
+            maxFilesize: 20, // MB
             url: "/backend/upload/photo",
             addRemoveLinks: true,
             init: function() {
@@ -272,6 +275,16 @@
                 let mockFile = { name: "Filename 2", size: 12345 };
                 let resizeThumbnail = false;
                 myDropzone.displayExistingFile(mockFile, "http://laminat/public/56a01a1e-4181-44f1-9b38-9a95a65a03c9.jpg");
+                let mockFile2 = { name: "Filename 2", size: 12345 };
+                let resizeThumbnail2 = false;
+                myDropzone.displayExistingFile(mockFile2, "http://laminat/public/56a01a1e-4181-44f1-9b38-9a95a65a03c9.jpg");
+
+
+                this.on("removedfile", function(file) {
+                    console.log(file.dataURL)
+                    $.post("delete-file.php?id=" + file.serverId);
+
+                });
 
 
             }
