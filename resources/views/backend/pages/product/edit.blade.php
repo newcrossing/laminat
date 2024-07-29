@@ -287,9 +287,9 @@
             initialPreviewConfig: [
                     @foreach($product->fotos  as $img)
 {{--                    @php $size=Storage::size(Storage::disk('product')->path('/300/'). $img->full_name_file);  @endphp--}}
-                    @php $size=Storage::size('d:\OSPanel\domains\laminat\public\storage\images\product\100\a784704d-e4e9-4c30-b7ff-ac1c0a01ec14.jpg');  @endphp
+                    @php //$size=Storage::size('d:\OSPanel\domains\laminat\public\storage\images\product\100\a784704d-e4e9-4c30-b7ff-ac1c0a01ec14.jpg');  @endphp
                 {
-                  size:"{{$size}}",  width: "120px", url: "{{route('backend.photo.delete',[$img->id , '_token' => csrf_token()])}}"
+                  size:"0",  width: "120px", url: "{{route('backend.photo.delete',[$img->id , '_token' => csrf_token()])}}"
                 },
                 @endforeach
             ],

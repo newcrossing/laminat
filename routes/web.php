@@ -23,8 +23,10 @@ use \App\Http\Controllers\Auth\LoginRegisterController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.pages.product.index');
 })->name('home');;
+
+Route::get('/category',  [\App\Http\Controllers\ProductController::class, 'list'])->name('home233');;
 
 
 Route::get('/backend/user', [UserController::class, 'index'])->name('backend.user');

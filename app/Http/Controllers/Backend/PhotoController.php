@@ -77,7 +77,7 @@ class PhotoController extends Controller
 //        if (!File::exists('public/' . $img->filename.'.'.$img->extension)) {
 //            return response()->json(['error' => 'Sorry, the image is not in the file folder']);
 //        }
-        unlink('public/' . $img->filename . '.' . $img->extension);
+        //unlink('public/' . $img->filename . '.' . $img->extension);
         $img->delete();
         Log::info("Удалил " . $imgId);
 
