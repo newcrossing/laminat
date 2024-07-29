@@ -5,7 +5,9 @@
   border: 2px dashed #5A8DEE;
   background: #F2F4F4;
 }
-
+.dz-image img {
+  width: 100%;
+}
 .dropzone .dz-message {
   /* dropzone message customization */
   font-size: 1.5rem;

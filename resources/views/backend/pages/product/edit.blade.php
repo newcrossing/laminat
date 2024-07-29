@@ -6,14 +6,20 @@
     <link rel="stylesheet" type="text/css" href="/b/app-assets/vendors/css/forms/select/select2.min.css">
     <link rel="stylesheet" type="text/css" href="/b/app-assets/vendors/css/pickers/pickadate/pickadate.css">
     <link rel="stylesheet" type="text/css" href="/b/app-assets/vendors/css/extensions/toastr.css">
-    <link rel="stylesheet" type="text/css" href="{{asset('/b/app-assets/vendors/css/file-uploaders/dropzone.min.css')}}  ">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 {{-- page styles --}}
 @section('page-styles')
     <link rel="stylesheet" type="text/css" href="/b/app-assets/css/plugins/extensions/toastr.css">
     <link rel="stylesheet" type="text/css" href="/b/app-assets/css/pages/app-invoice.css">
-    <link rel="stylesheet" type="text/css" href="{{asset('/b/app-assets/css/plugins/file-uploaders/dropzone.css')}}  ">
-{{--    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />--}}
+
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.min.css" crossorigin="anonymous">
+    <link href="/b/fileuploader/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" crossorigin="anonymous">
+    <link href="/b/fileuploader/themes/explorer-fa5/theme.css" media="all" rel="stylesheet" type="text/css"/>
 
 @endsection
 
@@ -47,6 +53,8 @@
                 </div>
             </div>
         @endif
+
+
         <form action="{{ (isset($product->id))? route('product.update',$product->id):route('product.store')  }}" method="POST">
             @csrf
             @if(isset($product->id))
@@ -146,25 +154,23 @@
         </form>
     </section>
     <section>
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Изображения</h4>
+
+        <form enctype="multipart/form-data" method="post">
+            @csrf
+            <div class="file-loading">
+                <input id="kv-explorer" type="file" multiple>
             </div>
-            <div class="card-content">
-                <div class="card-body">
-
-
-                    <form action="/backend/upload/photo" class="dropzone dropzone-area" id="my_great_dropzone" method="post">
-                        <div class="dz-message">Drop Files Here To Upload</div>
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-                        <input type="hidden" name="id" value="{{$product->id}}" />
-
-                    </form>
-                </div>
+            <br>
+            <div class="file-loading">
+                <input name="images[]" id="file-up" class="file" type="file" multiple data-min-file-count="1" data-theme="fa5">
             </div>
-        </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="reset" class="btn btn-outline-secondary">Reset</button>
+        </form>
+
+
     </section>
-
 
 @endsection
 
@@ -178,8 +184,8 @@
     <script src="/b/app-assets/vendors/js/pickers/pickadate/legacy.js"></script>
     <script src="/b/app-assets/vendors/js/forms/repeater/jquery.repeater.min.js"></script>
     <script src="/b/app-assets/vendors/js/forms/select/select2.full.js"></script>
-{{--    <script src="/b/app-assets/vendors/js/extensions/dropzone.min.js"></script>--}}
-{{--    <script src="{{asset('/b/app-assets/vendors/js/ui/prism.min.js')}}"></script>--}}
+    {{--    <script src="/b/app-assets/vendors/js/extensions/dropzone.min.js"></script>--}}
+    {{--    <script src="{{asset('/b/app-assets/vendors/js/ui/prism.min.js')}}"></script>--}}
     <!-- END: Page Vendor JS-->
 @endsection
 
@@ -254,50 +260,62 @@
         }
     </script>
     {{--    <script src="{{asset("/b/app-assets/js/)}}"></script>--}}
-    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
-{{--    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>--}}
-{{--    <script src="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone-min.js"></script>--}}
 
+
+
+    <script src="/b/fileuploader/js/plugins/buffer.min.js" type="text/javascript"></script>
+    <script src="/b/fileuploader/js/plugins/filetype.min.js" type="text/javascript"></script>
+    <script src="/b/fileuploader/js/plugins/piexif.js" type="text/javascript"></script>
+    <script src="/b/fileuploader/js/plugins/sortable.js" type="text/javascript"></script>
+    <script src="/b/fileuploader/js/fileinput.js" type="text/javascript"></script>
+    <script src="/b/fileuploader/js/locales/ru.js" type="text/javascript"></script>
+
+    <script src="/b/fileuploader/themes/gly/theme.js" type="text/javascript"></script>
+    <script src="/b/fileuploader/themes/fa5/theme.js" type="text/javascript"></script>
+    <script src="/b/fileuploader/themes/explorer-fa5/theme.js" type="text/javascript"></script>
+    <script>$.fn.fileinput.defaults.theme = 'fa5';</script>
 
     <script>
-        Dropzone.options.myGreatDropzone = {
 
-            // camelized version of the `id`
-            paramName: "file", // The name that will be used to transfer the file
-            maxFilesize: 20, // MB
-            url: "/backend/upload/photo",
-            addRemoveLinks: true,
-            init: function() {
-                let myDropzone = this;
+        $('#file-up').fileinput({
+            initialPreview: [
+                @foreach($product->fotos as $img)
+                    "{{ asset(Storage::disk('product')->url('/300/'). $img->full_name_file)}}",
+                @endforeach
+            ],
+            initialPreviewAsData: true,
+            initialPreviewConfig: [
+                    @foreach($product->fotos  as $img)
+{{--                    @php $size=Storage::size(Storage::disk('product')->path('/300/'). $img->full_name_file);  @endphp--}}
+                    @php $size=Storage::size('d:\OSPanel\domains\laminat\public\storage\images\product\100\a784704d-e4e9-4c30-b7ff-ac1c0a01ec14.jpg');  @endphp
+                {
+                  size:"{{$size}}",  width: "120px", url: "{{route('backend.photo.delete',[$img->id , '_token' => csrf_token()])}}"
+                },
+                @endforeach
+            ],
+            deleteUrl: "/site/file-delete",
+            uploadUrl: '{!! route('backend.photo.upload', ['id' => $product->id,'model'=> 'product']) !!}',
+            overwriteInitial: false,
+            maxFileSize: 10000,
+            //showUpload: false,
+            maxFileCount: 3,
+            initialCaption: "The Moon and the Earth",
+            maxFilePreviewSize: 10240,
+            theme: 'bs5',
+            language: 'ru',
+            showCancel: false,
+            showRemove: false,
+            showUpload: true,
 
-                // If you only have access to the original image sizes on your server,
-                // and want to resize them in the browser:
-                let mockFile = { name: "Filename 2", size: 12345 };
-                let resizeThumbnail = false;
-                myDropzone.displayExistingFile(mockFile, "http://laminat/public/56a01a1e-4181-44f1-9b38-9a95a65a03c9.jpg");
-                let mockFile2 = { name: "Filename 2", size: 12345 };
-                let resizeThumbnail2 = false;
-                myDropzone.displayExistingFile(mockFile2, "http://laminat/public/56a01a1e-4181-44f1-9b38-9a95a65a03c9.jpg");
 
-
-                this.on("removedfile", function(file) {
-                    console.log(file.dataURL)
-                    $.post("delete-file.php?id=" + file.serverId);
-
-                });
-
-
+            allowedFileExtensions: ['jpg', 'png', 'gif']
+        });
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
-
-
-
-
-        };
-
-
-
+        });
 
     </script>
-
 
 @endsection

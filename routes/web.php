@@ -55,11 +55,12 @@ Route::middleware(['role:admin'])->prefix('backend')->group(
         Route::get('/home', [HomeController::class, 'index'])->name('backend.home');
         Route::resource('product', ProductController::class);
         Route::post('/upload/photo', [\App\Http\Controllers\Backend\PhotoController::class, 'upload'])->name('backend.photo.upload');
+        Route::post('/upload/delete/{id}', [\App\Http\Controllers\Backend\PhotoController::class, 'delete'])->name('backend.photo.delete');
 //        Route::get('/product/edit', [ProductController::class, 'edit'])->name('backend.product.edit');
 //        Route::get('/product/create', [ProductController::class, 'create'])->name('backend.product.edit');
 //        Route::post('/product/update', [ProductController::class, 'update'])->name('backend.product.update');
     }
 );
 
-Route::post('ckeditor/upload', [CKEditorController::class, 'upload'])->name('ckeditor.image-upload');
+//Route::post('ckeditor/upload', [CKEditorController::class, 'upload'])->name('ckeditor.image-upload');
 

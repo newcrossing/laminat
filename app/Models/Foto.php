@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 
 class Foto extends Model
 {
@@ -26,6 +27,8 @@ class Foto extends Model
     {
         return Storage::url("/images/{$size}/" . $this->full_name_file);
     }
+
+
 
     /**
      * Получить родительскую модель которой относится.

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -35,5 +36,11 @@ class AppServiceProvider extends ServiceProvider
         // share all menuData to all the views
         \View::share('menuData', [$verticalMenuData]);
         \View::share('Carbone', $Carbone);
+
+        Relation::enforceMorphMap([
+            'product' => 'App\Models\Product',
+            'user' => 'App\Models\User',
+           // 'posts' => 'App\Models\Post',
+        ]);
     }
 }
