@@ -36,10 +36,11 @@ Route::get('/add', function () {
 //        'login' =>'admin',
 //        'password' => Hash::make('111111')
 //    ]);
-    // $role = Role::create(['name' => 'user']);
-    //$role = Role::create(['name' => 'admin']);
+    $role = Role::create(['name' => 'user']);
+    $role = Role::create(['name' => 'admin']);
     $user = User::find(1);
     $user->assignRole('user');
+    $user->assignRole('admin');
 });
 Route::controller(LoginRegisterController::class)->group(function () {
 

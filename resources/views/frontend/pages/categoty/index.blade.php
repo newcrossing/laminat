@@ -47,6 +47,43 @@
                     <div class="shop-pro-content">
                         <div class="shop-pro-inner">
                             <div class="row">
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <!-- START single card -->
+                                    <div class="ec-product-fw">
+                                        <div class="ec-product-image">
+                                            <a href="#">
+                                                <img src="assets/images/product-image/1_1.jpg" class="img-center" alt="">
+                                            </a>
+                                            <span class="ec-product-ribbon">New</span>
+                                            <div class="ec-link-icon">
+                                                <a href="#" data-tip="Add to Wishlist"><img src="assets/images/icons/wishlist.svg"
+                                                                                            class="svg_img header_svg pro_svg" alt="wishlist" /></a>
+                                                <a href="#" data-tip="Compare"><img src="assets/images/icons/compare.svg"
+                                                                                    class="svg_img pro_svg" alt="compare" /></a>
+                                                <a href="#" data-tip="Quick View"><img src="assets/images/icons/quickview.svg"
+                                                                                       class="svg_img pro_svg" alt="quick view" /></a>
+                                            </div>
+                                        </div>
+                                        <div class="ec-product-body">
+                                            <h3 class="ec-title"><a href="#">Baby toy teddybear</a></h3>
+                                            <p class="ec-description">
+                                                Lorem Ipsum is simply dummy text.
+                                            </p>
+                                            <ul class="ec-rating">
+                                                <li class="ecicon eci-star fill"></li>
+                                                <li class="ecicon eci-star fill"></li>
+                                                <li class="ecicon eci-star fill"></li>
+                                                <li class="ecicon eci-star fill"></li>
+                                                <li class="ecicon eci-star"></li>
+                                            </ul>
+                                            <div class="ec-price"><span>$90.00</span> $66.00</div>
+                                            <div class="ec-link-btn">
+                                                <a class=" ec-add-to-cart" href="#">add to cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- START single card -->
+                                </div>
                                 @foreach($products as $product)
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-6 pro-gl-content">
                                         <div class="ec-product-inner">
