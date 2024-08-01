@@ -24,130 +24,82 @@
                                 <div class="single-pro-img">
                                     <div class="single-product-scroll">
                                         <div class="single-product-cover">
-                                            <div class="single-slide zoom-image-hover">
-                                                <img class="img-responsive" src="/assets/images/product-image/9_1.jpg"
-                                                     alt="">
-                                            </div>
-                                            <div class="single-slide zoom-image-hover">
-                                                <img class="img-responsive" src="/assets/images/product-image/9_2.jpg"
-                                                     alt="">
-                                            </div>
-                                            <div class="single-slide zoom-image-hover">
-                                                <img class="img-responsive" src="/assets/images/product-image/9_3.jpg"
-                                                     alt="">
-                                            </div>
-                                            <div class="single-slide zoom-image-hover">
-                                                <img class="img-responsive" src="/assets/images/product-image/9_4.jpg"
-                                                     alt="">
-                                            </div>
-                                            <div class="single-slide zoom-image-hover">
-                                                <img class="img-responsive" src="/assets/images/product-image/9_3.jpg"
-                                                     alt="">
-                                            </div>
+                                            @if($product->fotos()->count())
+                                                @foreach($product->fotos as $foto)
+                                                    <div class="single-slide zoom-image-hover">
+                                                        <img class="img-responsive" src="{{ asset(Storage::disk('product')->url('/800/'). $foto->full_name_file)}}"
+                                                             alt="">
+                                                    </div>
+                                                @endforeach
+                                            @else
+                                                <img class="main-image"
+                                                     src="{{ asset(Storage::disk('product')->url('/300/0cd62333-c91b-4860-ae5c-fc41f6d53487.jpg'))}}"/>
+                                            @endif
+
+
                                         </div>
                                         <div class="single-nav-thumb">
-                                            <div class="single-slide">
-                                                <img class="img-responsive" src="/assets/images/product-image/9_1.jpg"
-                                                     alt="">
-                                            </div>
-                                            <div class="single-slide">
-                                                <img class="img-responsive" src="/assets/images/product-image/9_2.jpg"
-                                                     alt="">
-                                            </div>
-                                            <div class="single-slide">
-                                                <img class="img-responsive" src="/assets/images/product-image/9_3.jpg"
-                                                     alt="">
-                                            </div>
-                                            <div class="single-slide">
-                                                <img class="img-responsive" src="/assets/images/product-image/9_4.jpg"
-                                                     alt="">
-                                            </div>
-                                            <div class="single-slide">
-                                                <img class="img-responsive" src="/assets/images/product-image/9_3.jpg"
-                                                     alt="">
-                                            </div>
+                                            @if($product->fotos()->count())
+                                                @foreach($product->fotos as $foto)
+                                                    <div class="single-slide zoom-image-hover">
+                                                        <img class="img-responsive" src="{{ asset(Storage::disk('product')->url('/100/'). $foto->full_name_file)}}"
+                                                             alt="">
+                                                    </div>
+                                                @endforeach
+                                            @else
+                                                <img class="main-image"
+                                                     src="{{ asset(Storage::disk('product')->url('/300/0cd62333-c91b-4860-ae5c-fc41f6d53487.jpg'))}}"/>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
                                 <div class="single-pro-desc">
                                     <div class="single-pro-content">
-                                        <h5 class="ec-single-title">Unisex Cotton Neck Hoodie</h5>
+                                        <h5 class="ec-single-title">{{ $product->name }}</h5>
                                         <div class="ec-single-rating-wrap">
-                                            <div class="ec-single-rating">
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star-o"></i>
-                                            </div>
-                                            <span class="ec-read-review"><a href="#ec-spt-nav-review">Be the first to
-                                                    review this product</a></span>
+
+                                            <span class="ec-read-review"><a href="#ec-spt-nav-review">Посмотреть отзывы на этот товар</a></span>
                                         </div>
-                                        <div class="ec-single-desc">Lorem Ipsum is simply dummy text of the printing and
-                                            typesetting industry. Lorem Ipsum has been the industry's standard dummy
-                                            text ever since the 1990
-                                        </div>
+                                        <div class="ec-single-desc">{{ $product->text }}                                        </div>
 
                                         <div class="ec-single-sales">
                                             <div class="ec-single-sales-inner">
                                                 <div class="ec-single-sales-title">sales accelerators</div>
-                                                <div class="ec-single-sales-visitor">real time <span>24</span> visitor
-                                                    right now!
+                                                <div class="ec-single-sales-visitor">Не упусти<span> скидку</span>
                                                 </div>
                                                 <div class="ec-single-sales-progress">
-                                                    <span class="ec-single-progress-desc">Hurry up!left 29 in
-                                                        stock</span>
+                                                    <span class="ec-single-progress-desc">Обрати внимание, осталось 198 упаковок</span>
                                                     <span class="ec-single-progressbar"></span>
                                                 </div>
                                                 <div class="ec-single-sales-countdown">
                                                     <div class="ec-single-countdown"><span
                                                                 id="ec-single-countdown"></span></div>
-                                                    <div class="ec-single-count-desc">Time is Running Out!</div>
+                                                    <div class="ec-single-count-desc">Успей</div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="ec-single-price-stoke">
+
                                             <div class="ec-single-price">
-                                                <span class="ec-single-ps-title">As low as</span>
-                                                <span class="new-price">$97.00</span>
+                                                <span class="ec-single-ps-title">Цена за м2</span>
+                                                <span class="new-price">{{ $product->price }}</span>
+                                            </div> <div class="ec-single-price">
+                                                <span class="ec-single-ps-title">Цена за упаковку </span>
+                                                <span class="new-price">{{ $product->price }}</span>
                                             </div>
                                             <div class="ec-single-stoke">
-                                                <span class="ec-single-ps-title">IN STOCK</span>
-                                                <span class="ec-single-sku">SKU#: WH12</span>
+                                                <span class="ec-single-ps-title">В НАЛИЧИИ</span>
+                                                <span class="ec-single-sku">АРТИКУЛ: {{ $product->article }} </span>
                                             </div>
                                         </div>
 
-                                        <div class="ec-pro-variation">
-                                            <div class="ec-pro-variation-inner ec-pro-variation-size">
-                                                <span>SIZE</span>
-                                                <div class="ec-pro-variation-content">
-                                                    <ul>
-                                                        <li class="active"><span>S</span></li>
-                                                        <li><span>M</span></li>
-                                                        <li><span>L</span></li>
-                                                        <li><span>XL</span></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="ec-pro-variation-inner ec-pro-variation-color">
-                                                <span>Color</span>
-                                                <div class="ec-pro-variation-content">
-                                                    <ul>
-                                                        <li class="active"><span
-                                                                    style="background-color:#1b4a87"></span></li>
-                                                        <li><span style="background-color:#5f94d6"></span></li>
-                                                        <li><span style="background-color:#72aea2"></span></li>
-                                                        <li><span style="background-color:#c79782"></span></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
+
                                         <div class="ec-single-qty">
                                             <div class="qty-plus-minus">
                                                 <input class="qty-input" type="text" name="ec_qtybtn" value="1"/>
                                             </div>
                                             <div class="ec-single-cart ">
-                                                <button class="btn btn-primary">Add To Cart</button>
+                                                <button class="btn btn-primary">В корзину</button>
                                             </div>
                                             <div class="ec-single-wishlist">
                                                 <a class="ec-btn-group wishlist" title="Wishlist"><img
@@ -193,33 +145,22 @@
                                 <ul class="nav nav-tabs">
                                     <li class="nav-item">
                                         <a class="nav-link active" data-bs-toggle="tab"
-                                           data-bs-target="#ec-spt-nav-details" role="tablist">Detail</a>
+                                           data-bs-target="#ec-spt-nav-details" role="tablist">Описание</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" data-bs-toggle="tab" data-bs-target="#ec-spt-nav-info"
-                                           role="tablist">More Information</a>
+                                           role="tablist">Информация</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" data-bs-toggle="tab" data-bs-target="#ec-spt-nav-review"
-                                           role="tablist">Reviews</a>
+                                           role="tablist">Отзывы</a>
                                     </li>
                                 </ul>
                             </div>
                             <div class="tab-content  ec-single-pro-tab-content">
                                 <div id="ec-spt-nav-details" class="tab-pane fade show active">
                                     <div class="ec-single-pro-tab-desc">
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                            Lorem Ipsum has been the industry's standard dummy text ever since the
-                                            1500s, when an unknown printer took a galley of type and scrambled it to
-                                            make a type specimen book. It has survived not only five centuries, but also
-                                            the leap into electronic typesetting, remaining essentially unchanged.
-                                        </p>
-                                        <ul>
-                                            <li>Any Product types that You want - Simple, Configurable</li>
-                                            <li>Downloadable/Digital Products, Virtual Products</li>
-                                            <li>Inventory Management with Backordered items</li>
-                                            <li>Flatlock seams throughout.</li>
-                                        </ul>
+                                        {!!  $product->text  !!}
                                     </div>
                                 </div>
                                 <div id="ec-spt-nav-info" class="tab-pane fade">

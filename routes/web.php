@@ -26,8 +26,8 @@ Route::get('/', function () {
     return view('frontend.pages.product.index');
 })->name('home');;
 
-Route::get('/category',  [\App\Http\Controllers\ProductController::class, 'list'])->name('home233');;
-
+Route::get('/category', [\App\Http\Controllers\ProductController::class, 'list'])->name('home233');;
+Route::get('/{slug}', [\App\Http\Controllers\ProductController::class, 'show'])->where('slug', '[A-Za-z0-9-]+')->name('product.show');
 
 Route::get('/backend/user', [UserController::class, 'index'])->name('backend.user');
 

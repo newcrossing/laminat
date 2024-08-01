@@ -82,7 +82,7 @@ class ProductController extends Controller
         //$tag->active = $request->boolean('active');
         // $tag->save();
         //dd($validated);
-        Debugbar::info($validated);
+
         //dd($request->tags);
         Log::info($validated);
        // app('debugbar')->error('Watch out..');

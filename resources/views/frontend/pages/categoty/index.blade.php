@@ -47,60 +47,30 @@
                     <div class="shop-pro-content">
                         <div class="shop-pro-inner">
                             <div class="row">
-                                <div class="col-lg-4 col-md-6 col-sm-6">
-                                    <!-- START single card -->
-                                    <div class="ec-product-fw">
-                                        <div class="ec-product-image">
-                                            <a href="#">
-                                                <img src="assets/images/product-image/1_1.jpg" class="img-center" alt="">
-                                            </a>
-                                            <span class="ec-product-ribbon">New</span>
-                                            <div class="ec-link-icon">
-                                                <a href="#" data-tip="Add to Wishlist"><img src="assets/images/icons/wishlist.svg"
-                                                                                            class="svg_img header_svg pro_svg" alt="wishlist" /></a>
-                                                <a href="#" data-tip="Compare"><img src="assets/images/icons/compare.svg"
-                                                                                    class="svg_img pro_svg" alt="compare" /></a>
-                                                <a href="#" data-tip="Quick View"><img src="assets/images/icons/quickview.svg"
-                                                                                       class="svg_img pro_svg" alt="quick view" /></a>
-                                            </div>
-                                        </div>
-                                        <div class="ec-product-body">
-                                            <h3 class="ec-title"><a href="#">Baby toy teddybear</a></h3>
-                                            <p class="ec-description">
-                                                Lorem Ipsum is simply dummy text.
-                                            </p>
-                                            <ul class="ec-rating">
-                                                <li class="ecicon eci-star fill"></li>
-                                                <li class="ecicon eci-star fill"></li>
-                                                <li class="ecicon eci-star fill"></li>
-                                                <li class="ecicon eci-star fill"></li>
-                                                <li class="ecicon eci-star"></li>
-                                            </ul>
-                                            <div class="ec-price"><span>$90.00</span> $66.00</div>
-                                            <div class="ec-link-btn">
-                                                <a class=" ec-add-to-cart" href="#">add to cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- START single card -->
-                                </div>
+
                                 @foreach($products as $product)
+
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-6 pro-gl-content">
                                         <div class="ec-product-inner">
                                             <div class="ec-pro-image-outer">
                                                 <div class="ec-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
 
+                                                        @if($product->fotos()->count())
+                                                            @foreach($product->fotos as $foto)
+                                                                @if ($loop->first)
+                                                                    <img class="main-image" src="{{ asset(Storage::disk('product')->url('/300/'). $foto->full_name_file)}}"/>
+                                                                @endif
+                                                                @if ($loop->iteration == 2)
+                                                                    <img class="hover-image" src="{{ asset(Storage::disk('product')->url('/300/'). $foto->full_name_file)}}"/>
+                                                                    @break
+                                                                @endif
+                                                            @endforeach
+                                                        @else
+                                                            <img class="main-image"
+                                                                 src="{{ asset(Storage::disk('product')->url('/300/0cd62333-c91b-4860-ae5c-fc41f6d53487.jpg'))}}"/>
+                                                        @endif
 
-                                                        @foreach($product->fotos as $foto)
-                                                            @if ($loop->first)
-                                                                <img class="main-image" src="{{ asset(Storage::disk('product')->url('/300/'). $foto->full_name_file)}}"/>
-                                                            @endif
-                                                            @if ($loop->iteration == 2)
-                                                                <img class="hover-image" src="{{ asset(Storage::disk('product')->url('/300/'). $foto->full_name_file)}}"/>
-                                                                @break
-                                                            @endif
-                                                        @endforeach
 
                                                     </a>
                                                     <span class="percentage">20%</span>
@@ -113,9 +83,9 @@
                                                                 src="assets/images/icons/quickview.svg" class="svg_img pro_svg"
                                                                 alt=""/></a>
                                                     <div class="ec-pro-actions">
-{{--                                                        <a href="compare.html" class="ec-btn-group compare"--}}
-{{--                                                           title="Compare"><img src="assets/images/icons/compare.svg"--}}
-{{--                                                                                class="svg_img pro_svg" alt=""/></a>--}}
+                                                        {{--                                                        <a href="compare.html" class="ec-btn-group compare"--}}
+                                                        {{--                                                           title="Compare"><img src="assets/images/icons/compare.svg"--}}
+                                                        {{--                                                                                class="svg_img pro_svg" alt=""/></a>--}}
                                                         <button title="Добавить в корзину" class=" add-to-cart">
                                                             <img src="assets/images/icons/cart.svg" class="svg_img pro_svg" alt=""/> В корзину
                                                         </button>
@@ -125,54 +95,18 @@
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="ec-pro-content">
-                                                <h5 class="ec-pro-title"><a href="product-left-sidebar.html">{{$product->name}}</a></h5>
-{{--                                                <div class="ec-pro-rating">--}}
-{{--                                                    <i class="ecicon eci-star fill"></i>--}}
-{{--                                                    <i class="ecicon eci-star fill"></i>--}}
-{{--                                                    <i class="ecicon eci-star fill"></i>--}}
-{{--                                                    <i class="ecicon eci-star fill"></i>--}}
-{{--                                                    <i class="ecicon eci-star"></i>--}}
-{{--                                                </div>--}}
+                                                <a class="fs-6 text-upper text-center">Паркетная доска</a>
+                                                <h5 class=" fs-5 text-center"><a href="product-left-sidebar.html">{{$product->name}}</a></h5>
+
                                                 <div class="ec-pro-list-desc">
                                                     {{$product->text}}
                                                 </div>
                                                 <span class="ec-price">
-{{--                                                <span class="old-price">{{ Number::format(9899,locale: 'ru')}}</span>--}}
-                                                     <span class="">Цена за 1 м</span>
-                                                <span class="new-price" style="font-size: 30px">{{ Number::format($product->price,locale: 'ru')}} руб.</span>
-                                            </span>
-                                                {{--                                                <div class="ec-pro-option">--}}
-                                                {{--                                                    <div class="ec-pro-color">--}}
-                                                {{--                                                        <span class="ec-pro-opt-label">Color</span>--}}
-                                                {{--                                                        <ul class="ec-opt-swatch ec-change-img">--}}
-                                                {{--                                                            <li class="active"><a href="#" class="ec-opt-clr-img"--}}
-                                                {{--                                                                                  data-src="assets/images/product-image/6_1.jpg"--}}
-                                                {{--                                                                                  data-src-hover="assets/images/product-image/6_1.jpg"--}}
-                                                {{--                                                                                  data-tooltip="Gray"><span--}}
-                                                {{--                                                                            style="background-color:#e8c2ff;"></span></a></li>--}}
-                                                {{--                                                            <li><a href="#" class="ec-opt-clr-img"--}}
-                                                {{--                                                                   data-src="assets/images/product-image/6_2.jpg"--}}
-                                                {{--                                                                   data-src-hover="assets/images/product-image/6_2.jpg"--}}
-                                                {{--                                                                   data-tooltip="Orange"><span--}}
-                                                {{--                                                                            style="background-color:#9cfdd5;"></span></a></li>--}}
-                                                {{--                                                        </ul>--}}
-                                                {{--                                                    </div>--}}
-                                                {{--                                                    <div class="ec-pro-size">--}}
-                                                {{--                                                        <span class="ec-pro-opt-label">Size</span>--}}
-                                                {{--                                                        <ul class="ec-opt-size">--}}
-                                                {{--                                                            <li class="active"><a href="#" class="ec-opt-sz"--}}
-                                                {{--                                                                                  data-old="$25.00" data-new="$20.00"--}}
-                                                {{--                                                                                  data-tooltip="Small">S</a></li>--}}
-                                                {{--                                                            <li><a href="#" class="ec-opt-sz" data-old="$27.00"--}}
-                                                {{--                                                                   data-new="$22.00" data-tooltip="Medium">M</a></li>--}}
-                                                {{--                                                            <li><a href="#" class="ec-opt-sz" data-old="$30.00"--}}
-                                                {{--                                                                   data-new="$25.00" data-tooltip="Large">X</a></li>--}}
-                                                {{--                                                            <li><a href="#" class="ec-opt-sz" data-old="$35.00"--}}
-                                                {{--                                                                   data-new="$30.00" data-tooltip="Extra Large">XL</a></li>--}}
-                                                {{--                                                        </ul>--}}
-                                                {{--                                                    </div>--}}
-                                                {{--                                                </div>--}}
+                                                    <span class="new-price" style="font-size: 30px"><sup class="mr-3 text-muted">Цена за 1 <sup> м</sup></sup>{{ Number::format($product->price,locale: 'ru')}} <sub>руб.</sub></span>
+                                            </span>\
+
                                             </div>
                                         </div>
                                     </div>

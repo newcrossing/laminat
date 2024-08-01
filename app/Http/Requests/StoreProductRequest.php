@@ -49,7 +49,7 @@ class StoreProductRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'slug' => $this->slug ?: Str::slug($this->name),
+            'slug' => $this->slug ?: 'p-'.Str::slug($this->name),
             'public' => $this->public ? true : false,
         ]);
     }
