@@ -25,11 +25,16 @@ class StoreProductRequest extends FormRequest
         return [
             'name' => 'required|max:255|min:3',
             'text' => 'nullable|string',
-            'price' => 'nullable',
+            'price_metr' => 'nullable',
+            'price_upak' => 'nullable',
             'square' => 'nullable',
             'article' => 'nullable',
             'slug' => 'nullable',
             'public' => 'boolean',
+            'have_sklad' => 'boolean',
+            'have_room' => 'boolean',
+            'attributes' => 'nullable',
+            'description' => 'nullable',
         ];
     }
 
@@ -49,8 +54,10 @@ class StoreProductRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'slug' => $this->slug ?: 'p-'.Str::slug($this->name),
+            'slug' => $this->slug ?: 'p-' . Str::slug($this->name),
             'public' => $this->public ? true : false,
+            'have_sklad' => $this->have_sklad ? true : false,
+            'have_room' => $this->have_room ? true : false,
         ]);
     }
 }

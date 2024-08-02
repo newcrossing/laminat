@@ -110,6 +110,14 @@
                                         <input type="text" class="form-control" name="slug" value="{{old('slug',$product->slug)}}">
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <fieldset class="form-group">
+                                            <label class="form-label">Короткое описание</label>
+                                            <textarea name="description" class="form-control" rows="8" placeholder="">{{old('description',$product->description)}}</textarea>
+                                        </fieldset>
+                                    </div>
+                                </div>
                                 <div class="row mb-1">
                                     <div class="col">
                                         <label class="form-label">Описание</label>
@@ -130,8 +138,12 @@
                         </div>
                         <div class="card-body pb-0 pt-0">
                             <div class="invoice-action-btn mb-1">
+                                <label class="form-label">Цена за м<sup>2</sup></label>
+                                <input type="text" class="form-control" name="price_metr" value="{{old('price_metr',$product->price_metr)}}" placeholder="руб.">
+                            </div>
+                            <div class="invoice-action-btn mb-1">
                                 <label class="form-label">Цена за упаковку</label>
-                                <input type="text" class="form-control" name="price" value="{{old('price',$product->price)}}" placeholder="руб.">
+                                <input type="text" class="form-control" name="price_upak" value="{{old('price_upak',$product->price_upak)}}" placeholder="руб.">
                             </div>
 
                             <div class="invoice-action-btn mb-1">
@@ -142,10 +154,41 @@
                             <div class="d-flex justify-content-between py-50">
                                 <span class="invoice-terms-title">Опубликовать</span>
                                 <div class="custom-control custom-switch custom-switch-glow">
-                                    <input type="checkbox" name="public" class="custom-control-input" id="paymentTerm" {{!empty($product->public)?'checked':''}}>
-                                    <label class="custom-control-label" for="paymentTerm"> </label>
+                                    <input type="checkbox" name="public" class="custom-control-input" id="public" {{!empty($product->public)?'checked':''}}>
+                                    <label class="custom-control-label" for="public"> </label>
                                 </div>
                             </div>
+                            <div class="d-flex justify-content-between py-50">
+                                <span class="invoice-terms-title">Наличие на складе</span>
+                                <div class="custom-control custom-switch custom-switch-glow">
+                                    <input type="checkbox" name="have_sklad" class="custom-control-input" id="have_sklad" {{!empty($product->have_sklad)?'checked':''}}>
+                                    <label class="custom-control-label" for="have_sklad"> </label>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between py-50">
+                                <span class="invoice-terms-title">Наличие на шоуруме</span>
+                                <div class="custom-control custom-switch custom-switch-glow">
+                                    <input type="checkbox" name="have_room" class="custom-control-input" id="have_room" {{!empty($product->have_room)?'checked':''}}>
+                                    <label class="custom-control-label" for="have_room"> </label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card invoice-action-wrapper shadow-none border">
+                        <div class="card-header">
+                            <h5 class="card-tile mb-1">Характеристики </h5>
+                            @foreach(App\Models\Attribute::all() as $atribute)
+                                <div class="invoice-action-btn mb-1">
+                                    <label class="form-label">{{$atribute->name}}</label>
+                                    <select class="custom-select" id="customSelect" name="attributes[]">
+                                        <option></option>
+                                        @foreach($atribute->attributeOptions as $options)
+                                            <option @if(in_array($options->id,$attributeOptions)) selected @endif  value="{{$options->id}}">{{$options->value}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -286,10 +329,10 @@
             initialPreviewAsData: true,
             initialPreviewConfig: [
                     @foreach($product->fotos  as $img)
-{{--                    @php $size=Storage::size(Storage::disk('product')->path('/300/'). $img->full_name_file);  @endphp--}}
+                    {{--                    @php $size=Storage::size(Storage::disk('product')->path('/300/'). $img->full_name_file);  @endphp--}}
                     @php //$size=Storage::size('d:\OSPanel\domains\laminat\public\storage\images\product\100\a784704d-e4e9-4c30-b7ff-ac1c0a01ec14.jpg');  @endphp
                 {
-                  size:"0",  width: "120px", url: "{{route('backend.photo.delete',[$img->id , '_token' => csrf_token()])}}"
+                    size: "0", width: "120px", url: "{{route('backend.photo.delete',[$img->id , '_token' => csrf_token()])}}"
                 },
                 @endforeach
             ],

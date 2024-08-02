@@ -22,11 +22,15 @@
                         <div class="single-pro-inner">
                             <div class="row">
                                 <div class="single-pro-img">
+
                                     <div class="single-product-scroll">
+
                                         <div class="single-product-cover">
+
                                             @if($product->fotos()->count())
                                                 @foreach($product->fotos as $foto)
                                                     <div class="single-slide zoom-image-hover">
+
                                                         <img class="img-responsive" src="{{ asset(Storage::disk('product')->url('/800/'). $foto->full_name_file)}}"
                                                              alt="">
                                                     </div>
@@ -55,12 +59,27 @@
                                 </div>
                                 <div class="single-pro-desc">
                                     <div class="single-pro-content">
+
                                         <h5 class="ec-single-title">{{ $product->name }}</h5>
                                         <div class="ec-single-rating-wrap">
 
                                             <span class="ec-read-review"><a href="#ec-spt-nav-review">Посмотреть отзывы на этот товар</a></span>
                                         </div>
-                                        <div class="ec-single-desc">{{ $product->text }}                                        </div>
+                                        <div class="ec-single-desc">{{ $product->description }}</div>
+                                        <div class="typography row">
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                                <ul class="ec-check-list">
+                                                    <li>В НАЛИЧИИ НА СКЛАДЕ</li>
+
+                                                </ul>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                                <ul class="ec-check-list">
+
+                                                    <li>ИМЕЕТСЯ В ШОУРУМЕ</li>
+                                                </ul>
+                                            </div>
+                                        </div>
 
                                         <div class="ec-single-sales">
                                             <div class="ec-single-sales-inner">
@@ -82,14 +101,15 @@
 
                                             <div class="ec-single-price">
                                                 <span class="ec-single-ps-title">Цена за м2</span>
-                                                <span class="new-price">{{ $product->price }}</span>
-                                            </div> <div class="ec-single-price">
+                                                <span class="new-price">{{ Number::format($product->price_metr,locale: 'ru')}} <sub>руб.</sub></span>
+                                            </div>
+                                            <div class="ec-single-price">
                                                 <span class="ec-single-ps-title">Цена за упаковку </span>
-                                                <span class="new-price">{{ $product->price }}</span>
+                                                <span class="new-price">{{ Number::format($product->price_upak,locale: 'ru')}} <sub>руб.</sub></span>
                                             </div>
                                             <div class="ec-single-stoke">
-                                                <span class="ec-single-ps-title">В НАЛИЧИИ</span>
-                                                <span class="ec-single-sku">АРТИКУЛ: {{ $product->article }} </span>
+                                                <span class="ec-single-ps-title text-light-success">АРТИКУЛ</span>
+                                                <span class="ec-single-sku"> {{ $product->article }} </span>
                                             </div>
                                         </div>
 
@@ -160,7 +180,7 @@
                             <div class="tab-content  ec-single-pro-tab-content">
                                 <div id="ec-spt-nav-details" class="tab-pane fade show active">
                                     <div class="ec-single-pro-tab-desc">
-                                        {!!  $product->text  !!}
+                                        {{  $product->description  }}
                                     </div>
                                 </div>
                                 <div id="ec-spt-nav-info" class="tab-pane fade">

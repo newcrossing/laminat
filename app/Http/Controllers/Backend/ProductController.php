@@ -8,6 +8,7 @@ use App\Models\Product;
 
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
@@ -61,10 +62,12 @@ class ProductController extends Controller
             ['link' => "/admin/tag", 'name' => "Теги"],
             ['name' => " Редактирование"]
         ];
+        $attributeOptions = $product->attributeOptions->pluck('id')->toArray();
 
         return view('backend.pages.product.edit', compact(
             'product',
             'breadcrumbs',
+            'attributeOptions',
         ));
     }
 
@@ -73,23 +76,16 @@ class ProductController extends Controller
      */
     public function update(StoreProductRequest $request, Product $product)
     {
+
         if ($request->redirect == 'delete') {
             $product->delete();
             return redirect()->route('product.index')->with('success', "Товар  {$product->name} удален");
         }
         $validated = $request->validated();
 
-        //$tag->active = $request->boolean('active');
-        // $tag->save();
-        //dd($validated);
+        $product->fill($validated)->save();
 
-        //dd($request->tags);
-        Log::info($validated);
-       // app('debugbar')->error('Watch out..');
-        $product->fill($validated);
-
-
-        $product->save();
+        $product->attributeOptions()->sync(Arr::whereNotNull($request['attributes']));
 
         return redirect()->back()->with('success', 'Сохранено.');
 

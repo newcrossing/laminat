@@ -74,38 +74,47 @@
 
                                                     </a>
                                                     <span class="percentage">20%</span>
-                                                    <span class="flags">
-                                                       <span class="new">В наличии</span>
+                                                    @isset($product->have_sklad)
+                                                        <span class="flags">
+                                                            <span class="new">В наличии</span>
+                                                        </span>
+                                                    @endisset
+
+                                                    @isset($product->have_room)
+                                                        <span class="flags">
+                                                       <span class="sale">В шоуруме</span>
                                                    </span>
-                                                    <a href="#" class="quickview" data-link-action="quickview"
-                                                       title="Quick view" data-bs-toggle="modal"
-                                                       data-bs-target="#ec_quickview_modal"><img
-                                                                src="assets/images/icons/quickview.svg" class="svg_img pro_svg"
-                                                                alt=""/></a>
-                                                    <div class="ec-pro-actions">
-                                                        {{--                                                        <a href="compare.html" class="ec-btn-group compare"--}}
-                                                        {{--                                                           title="Compare"><img src="assets/images/icons/compare.svg"--}}
-                                                        {{--                                                                                class="svg_img pro_svg" alt=""/></a>--}}
-                                                        <button title="Добавить в корзину" class=" add-to-cart">
-                                                            <img src="assets/images/icons/cart.svg" class="svg_img pro_svg" alt=""/> В корзину
-                                                        </button>
-                                                        <a class="ec-btn-group wishlist" title="Wishlist"><img
-                                                                    src="assets/images/icons/wishlist.svg"
-                                                                    class="svg_img pro_svg" alt=""/></a>
-                                                    </div>
+                                                    @endisset
+
+                                                    {{--                                                    <a href="#" class="quickview" data-link-action="quickview"--}}
+                                                    {{--                                                       title="Quick view" data-bs-toggle="modal"--}}
+                                                    {{--                                                       data-bs-target="#ec_quickview_modal"><img--}}
+                                                    {{--                                                                src="assets/images/icons/quickview.svg" class="svg_img pro_svg"--}}
+                                                    {{--                                                                alt=""/></a>--}}
+                                                    {{--                                                    <div class="ec-pro-actions">--}}
+                                                    {{--                                                        --}}{{--                                                        <a href="compare.html" class="ec-btn-group compare"--}}
+                                                    {{--                                                        --}}{{--                                                           title="Compare"><img src="assets/images/icons/compare.svg"--}}
+                                                    {{--                                                        --}}{{--                                                                                class="svg_img pro_svg" alt=""/></a>--}}
+                                                    {{--                                                        <button title="Добавить в корзину" class=" add-to-cart">--}}
+                                                    {{--                                                            <img src="assets/images/icons/cart.svg" class="svg_img pro_svg" alt=""/> В корзину--}}
+                                                    {{--                                                        </button>--}}
+                                                    {{--                                                        <a class="ec-btn-group wishlist" title="Wishlist"><img--}}
+                                                    {{--                                                                    src="assets/images/icons/wishlist.svg"--}}
+                                                    {{--                                                                    class="svg_img pro_svg" alt=""/></a>--}}
+                                                    {{--                                                    </div>--}}
                                                 </div>
                                             </div>
 
                                             <div class="ec-pro-content">
-                                                <a class="fs-6 text-upper text-center">Паркетная доска</a>
-                                                <h5 class=" fs-5 text-center"><a href="product-left-sidebar.html">{{$product->name}}</a></h5>
+                                                <a class="fs-6 text-upper text-center text-muted">Паркетная доска</a>
+                                                <h5 class=" fs-6 text-center"><a href="{{route('prod.show',$product->slug)}}">{{$product->name}}</a></h5>
 
                                                 <div class="ec-pro-list-desc">
                                                     {{$product->text}}
                                                 </div>
                                                 <span class="ec-price">
-                                                    <span class="new-price" style="font-size: 30px"><sup class="mr-3 text-muted">Цена за 1 <sup> м</sup></sup>{{ Number::format($product->price,locale: 'ru')}} <sub>руб.</sub></span>
-                                            </span>\
+                                                    <span class="new-price" style="font-size: 28px"><sup class="mr-3 text-muted">за 1 м<sup>2</sup></sup>{{ Number::format($product->price_metr,locale: 'ru')}} <sub>руб.</sub></span>
+                                            </span>
 
                                             </div>
                                         </div>

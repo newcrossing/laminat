@@ -27,7 +27,7 @@ Route::get('/', function () {
 })->name('home');;
 
 Route::get('/category', [\App\Http\Controllers\ProductController::class, 'list'])->name('home233');;
-Route::get('/{slug}', [\App\Http\Controllers\ProductController::class, 'show'])->where('slug', '[A-Za-z0-9-]+')->name('product.show');
+Route::get('/{slug}', [\App\Http\Controllers\ProductController::class, 'show'])->where('slug', 'p-[A-Za-z0-9-]+')->name('prod.show');
 
 Route::get('/backend/user', [UserController::class, 'index'])->name('backend.user');
 
@@ -36,11 +36,20 @@ Route::get('/add', function () {
 //        'login' =>'admin',
 //        'password' => Hash::make('111111')
 //    ]);
-    $role = Role::create(['name' => 'user']);
-    $role = Role::create(['name' => 'admin']);
-    $user = User::find(1);
-    $user->assignRole('user');
-    $user->assignRole('admin');
+
+   // $role = Role::create(['name' => 'user']);
+   // $role = Role::create(['name' => 'admin']);
+    //$user = User::find(1);
+    // $user->assignRole('user');
+    //$user->assignRole('admin');
+    $prod = \App\Models\Product::first();
+  foreach ($prod->attributeOptions as $attributeOption){
+      print $attributeOption->attribute->name;
+  }
+    //dd($prod->attributeOptions);
+  //  $Attr = \App\Models\Attribute::first()->attributeOptions;;
+   // dd($Attr);
+    //$prod->attributeOptions()->sync([1,2,3,4]);
 });
 Route::controller(LoginRegisterController::class)->group(function () {
 

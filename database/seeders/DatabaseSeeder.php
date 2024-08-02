@@ -14,11 +14,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Product::factory()
-            ->count(10)
-            ->create();
-        User::factory(1)->create();
-
+//        Product::factory()
+//            ->count(10)
+//            ->create();
+//        User::factory(1)->create();
+        $this->call(AttributeSeeder::class);
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
