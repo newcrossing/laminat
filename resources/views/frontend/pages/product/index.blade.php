@@ -75,7 +75,6 @@
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                                                 <ul class="ec-check-list">
-
                                                     <li>ИМЕЕТСЯ В ШОУРУМЕ</li>
                                                 </ul>
                                             </div>
@@ -134,24 +133,24 @@
                                                             alt=""/></a>
                                             </div>
                                         </div>
-                                        <div class="ec-single-social">
-                                            <ul class="mb-0">
-                                                <li class="list-inline-item facebook"><a href="#"><i
-                                                                class="ecicon eci-facebook"></i></a></li>
-                                                <li class="list-inline-item twitter"><a href="#"><i
-                                                                class="ecicon eci-twitter"></i></a></li>
-                                                <li class="list-inline-item instagram"><a href="#"><i
-                                                                class="ecicon eci-instagram"></i></a></li>
-                                                <li class="list-inline-item youtube-play"><a href="#"><i
-                                                                class="ecicon eci-youtube-play"></i></a></li>
-                                                <li class="list-inline-item behance"><a href="#"><i
-                                                                class="ecicon eci-behance"></i></a></li>
-                                                <li class="list-inline-item whatsapp"><a href="#"><i
-                                                                class="ecicon eci-whatsapp"></i></a></li>
-                                                <li class="list-inline-item plus"><a href="#"><i
-                                                                class="ecicon eci-plus"></i></a></li>
-                                            </ul>
-                                        </div>
+{{--                                        <div class="ec-single-social">--}}
+{{--                                            <ul class="mb-0">--}}
+{{--                                                <li class="list-inline-item facebook"><a href="#"><i--}}
+{{--                                                                class="ecicon eci-facebook"></i></a></li>--}}
+{{--                                                <li class="list-inline-item twitter"><a href="#"><i--}}
+{{--                                                                class="ecicon eci-twitter"></i></a></li>--}}
+{{--                                                <li class="list-inline-item instagram"><a href="#"><i--}}
+{{--                                                                class="ecicon eci-instagram"></i></a></li>--}}
+{{--                                                <li class="list-inline-item youtube-play"><a href="#"><i--}}
+{{--                                                                class="ecicon eci-youtube-play"></i></a></li>--}}
+{{--                                                <li class="list-inline-item behance"><a href="#"><i--}}
+{{--                                                                class="ecicon eci-behance"></i></a></li>--}}
+{{--                                                <li class="list-inline-item whatsapp"><a href="#"><i--}}
+{{--                                                                class="ecicon eci-whatsapp"></i></a></li>--}}
+{{--                                                <li class="list-inline-item plus"><a href="#"><i--}}
+{{--                                                                class="ecicon eci-plus"></i></a></li>--}}
+{{--                                            </ul>--}}
+{{--                                        </div>--}}
                                     </div>
                                 </div>
                             </div>
@@ -180,7 +179,7 @@
                             <div class="tab-content  ec-single-pro-tab-content">
                                 <div id="ec-spt-nav-details" class="tab-pane fade show active">
                                     <div class="ec-single-pro-tab-desc">
-                                        {{  $product->description  }}
+                                        {!!   $product->text  !!}
                                     </div>
                                 </div>
                                 <div id="ec-spt-nav-info" class="tab-pane fade">
@@ -291,7 +290,9 @@
                     <div class="ec-sidebar-wrap">
                         <!-- Sidebar Category Block -->
                         <div class="ec-sidebar-block">
-
+                            <div class="ec-sb-title">
+                                <h3 class="ec-sidebar-title">Category</h3>
+                            </div>
                             <div class="ec-sb-block-content">
                                 <ul>
                                     <li>

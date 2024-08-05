@@ -3,8 +3,11 @@
 namespace App\Models;
 
 use App\Traits\HasFotos;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -29,9 +32,30 @@ class Product extends Model
         'have_room',
     ];
 
+    protected $casts = [
+        'public' => 'boolean'
+    ];
+
+    public function scopePublic(Builder $query): void
+    {
+        $query->where('public', true);
+    }
+
+
+    public function collection(): BelongsTo
+    {
+        return $this->belongsTo(Collection::class);
+    }
+
+    public function type(): BelongsTo
+    {
+        return $this->belongsTo(Type::class);
+    }
+
     public function attributeOptions(): BelongsToMany
     {
         return $this->belongsToMany(AttributeOption::class);
     }
+
 
 }

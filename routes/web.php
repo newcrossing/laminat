@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Backend\FirmController;
+use App\Models\Firm;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -37,18 +39,18 @@ Route::get('/add', function () {
 //        'password' => Hash::make('111111')
 //    ]);
 
-   // $role = Role::create(['name' => 'user']);
-   // $role = Role::create(['name' => 'admin']);
+    // $role = Role::create(['name' => 'user']);
+    // $role = Role::create(['name' => 'admin']);
     //$user = User::find(1);
     // $user->assignRole('user');
     //$user->assignRole('admin');
     $prod = \App\Models\Product::first();
-  foreach ($prod->attributeOptions as $attributeOption){
-      print $attributeOption->attribute->name;
-  }
+    foreach ($prod->attributeOptions as $attributeOption) {
+        print $attributeOption->attribute->name;
+    }
     //dd($prod->attributeOptions);
-  //  $Attr = \App\Models\Attribute::first()->attributeOptions;;
-   // dd($Attr);
+    //  $Attr = \App\Models\Attribute::first()->attributeOptions;;
+    // dd($Attr);
     //$prod->attributeOptions()->sync([1,2,3,4]);
 });
 Route::controller(LoginRegisterController::class)->group(function () {
@@ -65,7 +67,8 @@ Route::controller(LoginRegisterController::class)->group(function () {
 Route::middleware(['role:admin'])->prefix('backend')->group(
     function () {
         Route::get('/home', [HomeController::class, 'index'])->name('backend.home');
-        Route::resource('product', ProductController::class);
+        Route::resource('product', ProductController::class)->names('backend.product');
+        Route::resource('firm', FirmController::class)->names('backend.firm');
         Route::post('/upload/photo', [\App\Http\Controllers\Backend\PhotoController::class, 'upload'])->name('backend.photo.upload');
         Route::post('/upload/delete/{id}', [\App\Http\Controllers\Backend\PhotoController::class, 'delete'])->name('backend.photo.delete');
 //        Route::get('/product/edit', [ProductController::class, 'edit'])->name('backend.product.edit');

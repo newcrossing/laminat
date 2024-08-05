@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('text')->nullable();
             $table->string('article')->nullable();;
             $table->string('slug')->unique();;
-            $table->integer('price_metr')->nullable()->comment('Цена');
+            $table->integer('price_metr')->nullable()->default('0')->comment('Цена');
             $table->decimal('square', $precision = 5, $scale = 2)->nullable()->comment('Площадь');
             $table->boolean('public')->default(false);
             $table->timestamps();

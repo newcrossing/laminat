@@ -27,35 +27,7 @@
 @section('content')
     <!-- app invoice View Page -->
     <section class="invoice-edit-wrapper">
-        @if(session('success'))
-            <div class="alert bg-rgba-success alert-dismissible mb-2" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-                <div class="d-flex align-items-center">
-                    <i class="bx bx-like"></i>
-                    <span>  {{session('success')}}  </span>
-                </div>
-            </div>
-        @endif
-        @if ($errors->any())
-            <div class="alert bg-rgba-danger alert-dismissible mb-2" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-                <div class="d-flex align-items-center">
-                    <i class="bx bx-error"></i>
-                    <span>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </span>
-                </div>
-            </div>
-        @endif
-
-
-        <form action="{{ (isset($product->id))? route('product.update',$product->id):route('product.store')  }}" method="POST">
+        <form action="{{ (isset($product->id))? route('backend.product.update',$product->id):route('backend.product.store')  }}" method="POST">
             @csrf
             @if(isset($product->id))
                 @method('PUT')
@@ -63,7 +35,7 @@
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-1">
                 <div class="d-flex flex-column justify-content-center">
                     <h4 class="mb-1 mt-3">{{($product->name)?:"Новый продукт"}}</h4>
-                    {{--                <p class="text-muted">Orders placed across your store</p>--}}
+                    <p class="text-muted">{{($product->article)?"Артикул: ".$product->article:""}}</p>
                 </div>
                 <div class="d-flex align-content-center flex-wrap gap-2">
                     <div class="px-0 mr-1">
@@ -71,6 +43,9 @@
                             <i class='bx bx-x-circle'></i> Удалить
                         </button>
                     </div>
+                    <a class="btn btn-primary mr-1" href="{{route('backend.product.index')}}">
+                        <i class='bx bx-arrow-back'></i> Отменить
+                    </a>
                     <button type="submit" class="btn btn-success ">
                         <i class='bx bx-save'></i> Сохранить
                     </button>
@@ -91,7 +66,7 @@
                                     <div class="col-sm-12 col-12 order-2 order-sm-1">
                                         <label>Название </label>
                                         <input type="text" name="name" class="form-control @error('name') is-invalid  @enderror" value="{{old('name',$product->name)}}"
-                                               placeholder="Название">
+                                               placeholder="Название" autofocus required>
                                         @error('name')
                                         <div class="invalid-feedback">
                                             {{$message}}
@@ -108,6 +83,40 @@
                                     <div class="col">
                                         <label class="form-label">Ссылка</label>
                                         <input type="text" class="form-control" name="slug" value="{{old('slug',$product->slug)}}">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <fieldset class="form-group">
+                                            <label class="form-label">Тип продукции</label>
+                                            <select class="custom-select @error('type_id') is-invalid  @enderror" name="type_id">
+                                                <option>Не выбрано</option>
+                                                @foreach(App\Models\Type::all() as $type)
+                                                    <option value="{{$type->id}}" @selected(@$product->type->id== $type->id)>{{$type->name}}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('type_id')
+                                            <div class="invalid-feedback">{{$message}}</div>
+                                            @enderror
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-6">
+                                        <fieldset class="form-group">
+                                            <label class="form-label">Фирма и коллекция</label>
+                                            <select class="custom-select @error('collection_id') is-invalid  @enderror" name="collection_id">
+                                                <option>Не выбрано</option>
+                                                @foreach(App\Models\Firm::with('collections')->get() as $firm)
+                                                    <optgroup label="{{$firm->name}}">
+                                                        @foreach($firm->collections as $collection)
+                                                            <option value="{{$collection->id}}" @selected(@$product->collection->id == $collection->id)>{{$collection->name}}</option>
+                                                        @endforeach
+                                                    </optgroup>
+                                                @endforeach
+                                            </select>
+                                            @error('collection_id')
+                                            <div class="invalid-feedback">{{$message}}</div>
+                                            @enderror
+                                        </fieldset>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -139,15 +148,15 @@
                         <div class="card-body pb-0 pt-0">
                             <div class="invoice-action-btn mb-1">
                                 <label class="form-label">Цена за м<sup>2</sup></label>
-                                <input type="text" class="form-control" name="price_metr" value="{{old('price_metr',$product->price_metr)}}" placeholder="руб.">
+                                <input type="text" class="form-control" name="price_metr" value="{{old('price_metr',$product->price_metr)}}" placeholder="руб." autocomplete="off>
                             </div>
-                            <div class="invoice-action-btn mb-1">
+                            <div class=" invoice-action-btn mb-1">
                                 <label class="form-label">Цена за упаковку</label>
                                 <input type="text" class="form-control" name="price_upak" value="{{old('price_upak',$product->price_upak)}}" placeholder="руб.">
                             </div>
 
                             <div class="invoice-action-btn mb-1">
-                                <label class="form-label">Площадь упаковки</label>
+                                <label class="form-label">Площадь упаковки м<sup>2</sup></label>
                                 <input type="text" class="form-control" name="square" value="{{old('square',$product->square)}}" placeholder="м. кв.">
                             </div>
 
@@ -178,7 +187,7 @@
                     <div class="card invoice-action-wrapper shadow-none border">
                         <div class="card-header">
                             <h5 class="card-tile mb-1">Характеристики </h5>
-                            @foreach(App\Models\Attribute::all() as $atribute)
+                            @foreach(App\Models\Attribute::with('attributeOptions')->get() as $atribute)
                                 <div class="invoice-action-btn mb-1">
                                     <label class="form-label">{{$atribute->name}}</label>
                                     <select class="custom-select" id="customSelect" name="attributes[]">

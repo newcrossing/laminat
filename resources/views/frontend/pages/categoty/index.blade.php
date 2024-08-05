@@ -106,8 +106,8 @@
                                             </div>
 
                                             <div class="ec-pro-content">
-                                                <a class="fs-6 text-upper text-center text-muted">Паркетная доска</a>
-                                                <h5 class=" fs-6 text-center"><a href="{{route('prod.show',$product->slug)}}">{{$product->name}}</a></h5>
+                                                <a class="fs-6 text-upper text-center text-muted">{{$product->type->name}}</a>
+                                                <h5 class=" fs-6 text-center"><a href="{{route('prod.show',$product->slug)}}">{{$product->collection->firm->name}} {{$product->name}}</a></h5>
 
                                                 <div class="ec-pro-list-desc">
                                                     {{$product->text}}

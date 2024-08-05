@@ -56,6 +56,9 @@ fixed static" data-open="click" data-menu="vertical-menu-modern" data-col="2-col
         {{-- others page structures --}}
         <div class="content-overlay"></div>
         <div class="content-wrapper">
+            @include('backend.panels.message')
+
+
             <div class="content-header row">
                 @if(config('admin.pageHeader')=== true && isset($breadcrumbs))
                     @include('backend.panels.breadcrumbs')
@@ -76,7 +79,6 @@ fixed static" data-open="click" data-menu="vertical-menu-modern" data-col="2-col
         @include('backend.pages.customizer-content')
     </div>
     <!-- End: Customizer-->
-
 
 @endif
 

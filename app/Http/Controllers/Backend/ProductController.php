@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
+use App\Models\Collection;
 use App\Models\Product;
 
+use App\Models\Type;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -21,7 +23,7 @@ class ProductController extends Controller
         $products = Product::all();
 
         $breadcrumbs = [
-            ['link' => "/backend/", 'name' => "Главная"],
+            ['link' => route('backend.home'), 'name' => "Главная"],
             ['name' => " Продукция "]
         ];
         return view('backend.pages.product.list', compact('products', 'breadcrumbs'));
@@ -33,15 +35,41 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $breadcrumbs = [
+            ['link' => "/backend/home", 'name' => "Главная"],
+            ['link' => "/backend/product", 'name' => "Продукция"],
+            ['name' => "Новое"]
+        ];
+        //создаем объект чтобы было что отправить в форму.
+        // Она же форма редактирования, надо что то отправить.
+        $product = new Product();
+
+        $attributeOptions = $product->attributeOptions->pluck('id')->toArray();
+
+        return view('backend.pages.product.edit', compact(
+            'product',
+            'breadcrumbs',
+            'attributeOptions',
+        ));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        $product = new Product();
+
+        $product->fill($validated)->save();
+
+        Type::find($validated['type_id'])->products()->save($product);
+        Collection::find($validated['collection_id'])->products()->save($product);
+
+        $product->attributeOptions()->sync(Arr::whereNotNull($request['attributes']));
+
+        return redirect()->route('product.edit', $product->id)->with('success', 'Сохранено.');
     }
 
     /**
@@ -58,8 +86,8 @@ class ProductController extends Controller
     public function edit(Product $product, Request $request)
     {
         $breadcrumbs = [
-            ['link' => "/admin/", 'name' => "Главная"],
-            ['link' => "/admin/tag", 'name' => "Теги"],
+            ['link' => "/backend/home", 'name' => "Главная"],
+            ['link' => "/backend/product", 'name' => "Продукция"],
             ['name' => " Редактирование"]
         ];
         $attributeOptions = $product->attributeOptions->pluck('id')->toArray();
@@ -84,6 +112,9 @@ class ProductController extends Controller
         $validated = $request->validated();
 
         $product->fill($validated)->save();
+
+        Type::find($validated['type_id'])->products()->save($product);
+        Collection::find($validated['collection_id'])->products()->save($product);
 
         $product->attributeOptions()->sync(Arr::whereNotNull($request['attributes']));
 

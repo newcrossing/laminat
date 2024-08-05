@@ -1,6 +1,6 @@
 @extends('backend.layouts.contentLayoutMaster')
 {{-- page title --}}
-@section('title','Продукция ')
+@section('title','Производители ')
 {{-- vendor style --}}
 @section('vendor-styles')
     <link rel="stylesheet" type="text/css"
@@ -18,22 +18,11 @@
 @section('content')
     <!-- invoice list -->
     <section class="invoice-list-wrapper">
-        @if(session('success'))
-            <div class="alert bg-rgba-success alert-dismissible mb-2" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-                <div class="d-flex align-items-center">
-                    <i class="bx bx-like"></i>
-                    <span>  {{session('success')}}  </span>
-                </div>
-            </div>
-        @endif
+
         <!-- create invoice button-->
         <div class="invoice-create-btn mb-1">
-            <a href="{{route('backend.product.create')}}" class="btn btn-primary glow invoice-create" role="button"
-               aria-pressed="true">
-                Создать</a>
+            <a href="{{route('backend.firm.create')}}" class="btn btn-primary glow invoice-create" role="button"
+               aria-pressed="true">Создать</a>
         </div>
         <!-- Options and filter dropdown button-->
         <div class="table-responsive">
@@ -45,31 +34,31 @@
                         <span class="align-middle">ID #</span>
                     </th>
                     <th>Название</th>
-                    <th>Тип продукции</th>
-                    <th>Цена за м.</th>
-
-
+                    <th>Коллекции</th>
                 </tr>
                 </thead>
                 <tbody>
 
-                @foreach ($products as $product)
+                @foreach ($items as $item)
                     <tr>
                         <td></td>
                         <td>
-                            {{ $product->id }}
+                            {{ $item->id }}
                         </td>
                         <td class="">
-                            <i class="bx bxs-circle {{($product->public)?'success':'danger'}}  font-small-1 mr-50"></i>
+                            <i class="bx bxs-circle {{($item->public)?'success':'danger'}}  font-small-1 mr-50"></i>
                             <a class="readable-mark-icon"
-                               href="{{route('backend.product.edit',$product->id)}}">{{ Str::limit($product->name, 40)  }}</a><br>
-                            <div class="small"> {{ Str::limit($product->slug , 40)  }}</div>
+                               href="{{route('backend.firm.edit',$item->id)}}">{{ Str::limit($item->name, 40)  }}</a><br>
+                            <div class="small"> {{ Str::limit($item->slug , 40)  }}</div>
                         </td>
                         <td class="">
-                            {{$product->type->name}}
-                            <div class="small text-muted">{{$product->collection->firm->name}}, {{$product->collection->name}} </div>
+                            @foreach($item->collections as $collection)
+                                <div class="small text-muted">{{$collection->name}}</div>
+                            @endforeach
+
+
                         </td>
-                        <td class="text-bold-600">{{ Number::format($product->price_metr,locale: 'ru')}} <sub>руб.</sub></td>
+
                     </tr>
                 @endforeach
                 </tbody>

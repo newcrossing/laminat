@@ -31,8 +31,34 @@
       "icon": "bxs-file"
     },
     {
+      "url": "#",
+      "name": "Фирмы и коллекции",
+      "i18n": "Invoice",
+      "icon": "bxs-notepad",
+      "submenu": [
+        {
+          "url": "backend/firm",
+          "name": "Производители",
+          "i18n": "Invoice",
+          "icon": "bx-folder"
+        },
+        {
+          "url": "backend/collection",
+          "name": "Коллекции",
+          "i18n": "Invoice",
+          "icon": "bx-folder"
+        }
+      ]
+    },
+    {
       "url": "backend/collection",
       "name": "Коллекции",
+      "i18n": "Invoice",
+      "icon": "bx-folder"
+    },
+    {
+      "url": "backend/type",
+      "name": "Типы продукции",
       "i18n": "Invoice",
       "icon": "bx-folder"
     },
