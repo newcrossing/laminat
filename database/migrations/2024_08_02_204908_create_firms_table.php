@@ -23,7 +23,8 @@ return new class extends Migration {
         });
         Schema::create('collections', function (Blueprint $table) {
             $table->id();
-            $table->integer('firm_id')->unsigned()->nullable()->comment('ид фирмы производителя');
+            // $table->integer('firm_id')->unsigned()->nullable()->comment('ид фирмы производителя');
+            $table->foreignId('firm_id')->constrained();
             $table->string('name')->nullable();
             $table->text('text')->nullable();
             $table->text('description')->nullable();
@@ -43,9 +44,10 @@ return new class extends Migration {
             $table->timestamps();
         });
         Schema::table('products', function (Blueprint $table) {
-            $table->integer('collection_id')->unsigned()->nullable()->after('id')->comment('ид коллекции');
-            $table->integer('type_id')->unsigned()->nullable()->after('id')->comment('ид тип');
-
+            // $table->integer('collection_id')->unsigned()->nullable()->after('id')->comment('ид коллекции');
+            //$table->integer('type_id')->unsigned()->nullable()->after('id')->comment('ид тип');
+            $table->foreignId('collection_id')->constrained()->after('id');
+            $table->foreignId('type_id')->constrained()->after('id');
         });
     }
 
@@ -54,11 +56,15 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('firms');
-        Schema::dropIfExists('collections');
-        Schema::dropIfExists('types');
         Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn(['collection_id', 'type_id']);
+          //  $table->dropColumn(['collection_id', 'type_id']);
+            $table->dropForeign(['collection_id']);
+            $table->dropForeign(['type_id']);
         });
+       // Schema::dropIfExists('products');
+        Schema::dropIfExists('collections');
+        Schema::dropIfExists('firms');
+        Schema::dropIfExists('types');
+
     }
 };

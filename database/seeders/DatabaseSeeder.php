@@ -18,7 +18,10 @@ class DatabaseSeeder extends Seeder
 //            ->count(10)
 //            ->create();
 //        User::factory(1)->create();
+        $this->call(UserSeeder::class);
         $this->call(AttributeSeeder::class);
+        $this->call(TypeSeeder::class);
+        $this->call(FirmSeeder::class);
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',

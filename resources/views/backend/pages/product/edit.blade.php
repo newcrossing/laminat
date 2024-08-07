@@ -47,7 +47,8 @@
                         <i class='bx bx-arrow-back'></i> Отменить
                     </a>
                     <button type="submit" class="btn btn-success ">
-                        <i class='bx bx-save'></i> <Сохранить></Сохранить>
+                        <i class='bx bx-save'></i>
+                        <Сохранить></Сохранить>
                     </button>
                 </div>
             </div>
@@ -187,7 +188,8 @@
                     <div class="card invoice-action-wrapper shadow-none border">
                         <div class="card-header">
                             <h5 class="card-tile mb-1">Характеристики </h5>
-                            @foreach(App\Models\Attribute::with('attributeOptions')->get() as $atribute)
+                            @foreach(App\Models\Attribute::all() as $atribute)
+
                                 <div class="invoice-action-btn mb-1">
                                     <label class="form-label">{{$atribute->name}}</label>
                                     <select class="custom-select" id="customSelect" name="attributes[]">

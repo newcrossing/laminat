@@ -23,6 +23,7 @@ class ProductController extends Controller
 
         $product = Product::where('slug', $slug)->firstOrFail();
 
+
         $breadcrumbs = [
             ['link' => "/backend/", 'name' => "Главная"],
             ['name' => " Продукция "]

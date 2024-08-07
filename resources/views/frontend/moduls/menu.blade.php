@@ -485,3 +485,17 @@
     </div>
 </div>
 <!-- ekka mobile Menu End -->
+<div class="row" style="    background-color: #5e6a5e33;
+    padding: 10px;">
+    <div class="ec-btn-bw">
+
+
+        @foreach(\App\Models\Type::all() as $type)
+
+            <a class="custom-btn " style="   text-align: center;  padding: 2px;background-color: #ffffe9;height: 42px">{{$type->name}}</a>
+
+        @endforeach
+
+    </div>
+</div>
+
