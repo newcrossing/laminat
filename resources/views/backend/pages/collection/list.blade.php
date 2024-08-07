@@ -1,6 +1,6 @@
 @extends('backend.layouts.contentLayoutMaster')
 {{-- page title --}}
-@section('title','Производители ')
+@section('title','Коллекции ')
 {{-- vendor style --}}
 @section('vendor-styles')
     <link rel="stylesheet" type="text/css"
@@ -21,8 +21,8 @@
 
         <!-- create invoice button-->
         <div class="invoice-create-btn mb-1">
-            <a href="{{route('backend.firm.create')}}" class="btn btn-primary glow invoice-create" role="button"
-               aria-pressed="true">Создать</a>
+            <a href="{{route('backend.collection.create')}}" class="btn btn-primary glow invoice-create" role="button"
+               aria-pressed="true"><i class='bx bx-plus'></i> Создать</a>
         </div>
         <!-- Options and filter dropdown button-->
         <div class="table-responsive">
@@ -30,11 +30,9 @@
                 <thead>
                 <tr>
                     <th></th>
-                    <th>
-                        <span class="align-middle">ID #</span>
-                    </th>
+                    <th><span class="align-middle">ID</span></th>
                     <th>Название</th>
-                    <th>Коллекции</th>
+                    <th>Производитель</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -42,19 +40,15 @@
                 @foreach ($items as $item)
                     <tr>
                         <td></td>
-                        <td>
-                            {{ $item->id }}
-                        </td>
+                        <td>{{ $item->id }}</td>
                         <td class="">
                             <i class="bx bxs-circle {{($item->public)?'success':'danger'}}  font-small-1 mr-50"></i>
                             <a class="readable-mark-icon"
-                               href="{{route('backend.firm.edit',$item->id)}}">{{ Str::limit($item->name, 40)  }}</a><br>
+                               href="{{route('backend.collection.edit',$item->id)}}">{{ Str::limit($item->name, 40)  }}</a><br>
                             <div class="small"> {{ Str::limit($item->slug , 40)  }}</div>
                         </td>
                         <td class="">
-                            @foreach($item->collections as $collection)
-                                <div><a href="{{route('backend.collection.edit',$collection->id)}}" class="small ">{{$collection->name}}</a></div>
-                            @endforeach
+                            {{$item->firm->name}}
 
 
                         </td>

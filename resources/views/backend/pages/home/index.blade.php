@@ -18,12 +18,12 @@
         <div class="row">
 
 
-            <div class="col-xl-6 col-12 dashboard-users">
+            <div class="col-12 dashboard-users">
                 <div class="row  ">
                     <!-- Statistics Cards Starts -->
                     <div class="col-12">
                         <div class="row">
-                            <div class="col-sm-6 col-12 dashboard-users-success">
+                            <div class="col-sm-3 col-12 dashboard-users-success">
                                 <div class="card text-center">
                                     <div class="card-content">
                                         <div class="card-body py-1">
@@ -36,15 +36,28 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-6 col-12 dashboard-users-danger">
+                            <div class="col-sm-3 col-12 dashboard-users-danger">
                                 <div class="card text-center">
                                     <div class="card-content">
                                         <div class="card-body py-1">
                                             <div class="badge-circle badge-circle-lg badge-circle-light-danger mx-auto mb-50">
                                                 <i class="bx bx-user font-medium-5"></i>
                                             </div>
-                                            <div class="text-muted line-ellipsis">Фирмы</div>
+                                            <a class="line-ellipsis" href="{{route('backend.firm.index')}}">Производители</a>
                                             <h3 class="mb-0">{{\App\Models\Firm::public()->count()}}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3 col-12 dashboard-users-danger">
+                                <div class="card text-center">
+                                    <div class="card-content">
+                                        <div class="card-body py-1">
+                                            <div class="badge-circle badge-circle-lg badge-circle-light-danger mx-auto mb-50">
+                                                <i class="bx bx-user font-medium-5"></i>
+                                            </div>
+                                            <a class="line-ellipsis" href="{{route('backend.collection.index')}}">Коллекции</a>
+                                            <h3 class="mb-0">{{\App\Models\Collection::public()->count()}}</h3>
                                         </div>
                                     </div>
                                 </div>

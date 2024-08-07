@@ -47,7 +47,7 @@
                         <i class='bx bx-arrow-back'></i> Отменить
                     </a>
                     <button type="submit" class="btn btn-success ">
-                        <i class='bx bx-save'></i> Сохранить
+                        <i class='bx bx-save'></i> <Сохранить></Сохранить>
                     </button>
                 </div>
             </div>

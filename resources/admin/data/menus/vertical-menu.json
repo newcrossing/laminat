@@ -26,7 +26,7 @@
     },
     {
       "url": "backend/product",
-      "name": "Ламинат",
+      "name": "Продукция",
       "i18n": "Invoice",
       "icon": "bxs-file"
     },
@@ -50,12 +50,7 @@
         }
       ]
     },
-    {
-      "url": "backend/collection",
-      "name": "Коллекции",
-      "i18n": "Invoice",
-      "icon": "bx-folder"
-    },
+
     {
       "url": "backend/type",
       "name": "Типы продукции",
@@ -87,7 +82,7 @@
           "icon": "bx-purchase-tag-alt"
         },
         {
-          "url": "admin/log",
+          "url": "/log-viewer",
           "name": "Лог",
           "i18n": "Invoice List",
           "icon": "bx-list-ol"

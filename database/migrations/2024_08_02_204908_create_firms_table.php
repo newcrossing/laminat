@@ -23,7 +23,7 @@ return new class extends Migration {
         });
         Schema::create('collections', function (Blueprint $table) {
             $table->id();
-            $table->integer('firm_id')->unsigned()->comment('ид фирмы производителя');
+            $table->integer('firm_id')->unsigned()->nullable()->comment('ид фирмы производителя');
             $table->string('name')->nullable();
             $table->text('text')->nullable();
             $table->text('description')->nullable();

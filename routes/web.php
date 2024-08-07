@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\CollectionController;
 use App\Http\Controllers\Backend\FirmController;
 use App\Models\Firm;
 use App\Models\User;
@@ -67,8 +68,11 @@ Route::controller(LoginRegisterController::class)->group(function () {
 Route::middleware(['role:admin'])->prefix('backend')->group(
     function () {
         Route::get('/home', [HomeController::class, 'index'])->name('backend.home');
+
         Route::resource('product', ProductController::class)->names('backend.product');
         Route::resource('firm', FirmController::class)->names('backend.firm');
+        Route::resource('collection', CollectionController::class)->names('backend.collection');
+
         Route::post('/upload/photo', [\App\Http\Controllers\Backend\PhotoController::class, 'upload'])->name('backend.photo.upload');
         Route::post('/upload/delete/{id}', [\App\Http\Controllers\Backend\PhotoController::class, 'delete'])->name('backend.photo.delete');
 //        Route::get('/product/edit', [ProductController::class, 'edit'])->name('backend.product.edit');
