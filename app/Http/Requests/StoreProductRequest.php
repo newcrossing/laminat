@@ -63,6 +63,8 @@ class StoreProductRequest extends FormRequest
             'public' => $this->public ? true : false,
             'have_sklad' => $this->have_sklad ? true : false,
             'have_room' => $this->have_room ? true : false,
+            'price_metr' => $this->price_metr ?: 0,
+            'price_upak' => $this->price_upak ?: 0,
         ]);
     }
 }
