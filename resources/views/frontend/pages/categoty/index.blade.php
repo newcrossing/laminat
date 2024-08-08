@@ -59,10 +59,10 @@
                                                         @if($product->fotos()->count())
                                                             @foreach($product->fotos as $foto)
                                                                 @if ($loop->first)
-                                                                    <img class="main-image" src="{{ asset(Storage::disk('product')->url('/300/'). $foto->full_name_file)}}"/>
+                                                                    <img class="main-image" src="{{ asset(Storage::disk('product')->url('/cr_400/'). $foto->full_name_file)}}"/>
                                                                 @endif
                                                                 @if ($loop->iteration == 2)
-                                                                    <img class="hover-image" src="{{ asset(Storage::disk('product')->url('/300/'). $foto->full_name_file)}}"/>
+                                                                    <img class="hover-image" src="{{ asset(Storage::disk('product')->url('/cr_400/'). $foto->full_name_file)}}"/>
                                                                     @break
                                                                 @endif
                                                             @endforeach

@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\HomeController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\UserController;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManager;
 use Spatie\Permission\Models\Role;
 use \App\Http\Controllers\Auth\LoginRegisterController;
 
@@ -25,10 +27,11 @@ use \App\Http\Controllers\Auth\LoginRegisterController;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.pages.product.index');
-})->name('home');;
+//Route::get('/', function () {
+//    return view('frontend.pages.product.index');
+//})->name('home');;
 
+Route::get('/', [\App\Http\Controllers\ProductController::class, 'list'])->name('home');;
 Route::get('/category', [\App\Http\Controllers\ProductController::class, 'list'])->name('home233');;
 Route::get('/{slug}', [\App\Http\Controllers\ProductController::class, 'show'])->where('slug', 'p-[A-Za-z0-9-]+')->name('prod.show');
 
@@ -40,15 +43,20 @@ Route::get('/add', function () {
 //        'password' => Hash::make('111111')
 //    ]);
 
+
+    $image = ImageManager::imagick()->read(Storage::disk('public')->get('111.jpg'));
+    $image->width();
+    $image->scale(height: 400)->crop(400   , 400, 0 , 0, position: 'bottom-center')->save(Storage::disk('public')->path('/33.jpg') ,progressive: true, quality: 90);
+
     // $role = Role::create(['name' => 'user']);
     // $role = Role::create(['name' => 'admin']);
     //$user = User::find(1);
     // $user->assignRole('user');
     //$user->assignRole('admin');
-    $prod = \App\Models\Product::first();
-    foreach ($prod->attributeOptions as $attributeOption) {
-        print $attributeOption->attribute->name;
-    }
+//    $prod = \App\Models\Product::first();
+//    foreach ($prod->attributeOptions as $attributeOption) {
+//        print $attributeOption->attribute->name;
+//    }
     //dd($prod->attributeOptions);
     //  $Attr = \App\Models\Attribute::first()->attributeOptions;;
     // dd($Attr);

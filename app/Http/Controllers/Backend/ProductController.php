@@ -61,7 +61,7 @@ class ProductController extends Controller
         $validated = $request->validated();
 
         $product = new Product();
-
+//dd($validated);
         $product->fill($validated)->save();
 
         Type::find($validated['type_id'])->products()->save($product);
@@ -69,7 +69,7 @@ class ProductController extends Controller
 
         $product->attributeOptions()->sync(Arr::whereNotNull($request['attributes']));
 
-        return redirect()->route('product.edit', $product->id)->with('success', 'Сохранено.');
+        return redirect()->route('backend.product.edit', $product->id)->with('success', 'Сохранено.');
     }
 
     /**

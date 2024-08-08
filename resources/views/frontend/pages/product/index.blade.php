@@ -3,7 +3,7 @@
 @section('title','Изменение объявления')
 
 @section('vendor-styles')
-
+    <link rel="stylesheet" href="/assets/css/plugins/magnific-popup.css" />
 @endsection
 
 
@@ -21,6 +21,9 @@
                     <div class="single-pro-block">
                         <div class="single-pro-inner">
                             <div class="row">
+
+
+
                                 <div class="single-pro-img">
 
                                     <div class="single-product-scroll">
@@ -29,11 +32,16 @@
 
                                             @if($product->fotos()->count())
                                                 @foreach($product->fotos as $foto)
-                                                    <div class="single-slide zoom-image-hover">
+                                                    <div class="single-slide ">
+                                                        <a class="popup-gallery" href="{{ asset(Storage::disk('product')->url('/800/'). $foto->full_name_file)}}"
+                                                           >
+                                                            <img class=" img-responsive"
+                                                                 src="{{ asset(Storage::disk('product')->url('/cr_400/'). $foto->full_name_file)}}" alt="portfolio img">
+                                                        </a>
 
-                                                        <img class="img-responsive" src="{{ asset(Storage::disk('product')->url('/800/'). $foto->full_name_file)}}"
-                                                             alt="">
                                                     </div>
+
+
                                                 @endforeach
                                             @else
                                                 <img class="main-image"
@@ -46,7 +54,7 @@
                                             @if($product->fotos()->count())
                                                 @foreach($product->fotos as $foto)
                                                     <div class="single-slide zoom-image-hover">
-                                                        <img class="img-responsive" src="{{ asset(Storage::disk('product')->url('/100/'). $foto->full_name_file)}}"
+                                                        <img class="img-responsive" src="{{ asset(Storage::disk('product')->url('/cr_100/'). $foto->full_name_file)}}"
                                                              alt="">
                                                     </div>
                                                 @endforeach
