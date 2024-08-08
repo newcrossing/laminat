@@ -30,6 +30,7 @@ class Product extends Model
         'description',
         'have_sklad',
         'have_room',
+        'param_sdt',
     ];
 
     protected $casts = [

@@ -29,6 +29,7 @@ class StoreProductRequest extends FormRequest
             'price_metr' => 'nullable',
             'price_upak' => 'nullable',
             'square' => 'nullable',
+            'param_sdt' => 'nullable',
             'type_id' => 'exists:App\Models\Type,id',
             'collection_id' => 'exists:App\Models\Collection,id',
             'article' => 'nullable',

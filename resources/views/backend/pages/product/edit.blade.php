@@ -149,7 +149,7 @@
                         <div class="card-body pb-0 pt-0">
                             <div class="invoice-action-btn mb-1">
                                 <label class="form-label">Цена за м<sup>2</sup></label>
-                                <input type="text" class="form-control" name="price_metr" value="{{old('price_metr',$product->price_metr)}}" placeholder="руб." autocomplete="off>
+                                <input type="text" class="form-control" name="price_metr" value="{{old('price_metr',$product->price_metr)}}" placeholder="руб." autocomplete="off">
                             </div>
                             <div class=" invoice-action-btn mb-1">
                                 <label class="form-label">Цена за упаковку</label>
@@ -187,7 +187,13 @@
                     </div>
                     <div class="card invoice-action-wrapper shadow-none border">
                         <div class="card-header">
-                            <h5 class="card-tile mb-1">Характеристики </h5>
+
+                            <h5 class="card-tile mb-1">Дополнительно </h5>
+                            <div class=" invoice-action-btn mb-1">
+                                <label class="form-label">Размеры (ШхДхТ) мм.</label>
+                                <input type="text" class="form-control" name="param_sdt" value="{{old('param_sdt',$product->param_sdt)}}" placeholder="ШхДхТ">
+                            </div>
+                            <h5 class="card-tile mb-1 mt-2">Характеристики </h5>
                             @foreach(App\Models\Attribute::all() as $atribute)
 
                                 <div class="invoice-action-btn mb-1">
