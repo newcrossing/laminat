@@ -46,8 +46,8 @@ return new class extends Migration {
         Schema::table('products', function (Blueprint $table) {
             // $table->integer('collection_id')->unsigned()->nullable()->after('id')->comment('ид коллекции');
             //$table->integer('type_id')->unsigned()->nullable()->after('id')->comment('ид тип');
-            $table->foreignId('collection_id')->constrained()->after('id');
-            $table->foreignId('type_id')->constrained()->after('id');
+            $table->foreignId('collection_id')->nullable()->constrained()->after('id');
+            $table->foreignId('type_id')->nullable()->constrained()->after('id');
         });
     }
 
