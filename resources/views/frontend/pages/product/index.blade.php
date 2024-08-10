@@ -71,7 +71,7 @@
                                         <h5 class="ec-single-title">{{ $product->name }}</h5>
                                         <div class="ec-single-rating-wrap">
 
-                                            <span class="ec-read-review"><a href="#ec-spt-nav-review">Посмотреть отзывы на этот товар</a></span>
+                                            <span class="ec-read-review"><a href="#ec-spt-nav-review">Посмотреть похожие товары</a></span>
                                         </div>
                                         <div class="ec-single-desc">{{ $product->description }}</div>
                                         <div class="typography row">
@@ -107,17 +107,20 @@
                                         <div class="ec-single-price-stoke">
 
                                             <div class="ec-single-price">
-                                                <span class="ec-single-ps-title">Цена за м2</span>
+                                                <span class="ec-single-ps-title">Цена за м<sup>2</sup></span>
                                                 <span class="new-price">{{ Number::format($product->price_metr,locale: 'ru')}} <sub>руб.</sub></span>
                                             </div>
                                             <div class="ec-single-price">
                                                 <span class="ec-single-ps-title">Цена за упаковку </span>
                                                 <span class="new-price">{{ Number::format($product->price_upak,locale: 'ru')}} <sub>руб.</sub></span>
                                             </div>
-                                            <div class="ec-single-stoke">
-                                                <span class="ec-single-ps-title text-light-success">АРТИКУЛ</span>
-                                                <span class="ec-single-sku"> {{ $product->article }} </span>
-                                            </div>
+                                            @isset($product->square)
+                                                <div class="ec-single-stoke">
+                                                    <span class="ec-single-ps-title text-light-success">Площадь упаковки</span>
+                                                    <span class="ec-single-sku"> {{ $product->square }} м<sup>2</sup></span>
+                                                </div>
+                                            @endisset
+
                                         </div>
 
 
