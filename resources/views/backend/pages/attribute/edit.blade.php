@@ -108,7 +108,7 @@
 
                             <div class="d py-50">
                                 @foreach($attribute->attributeOptions as $attributeOption)
-                                    <div class="">{{$attributeOption->value}}</div>
+                                    <div class=""><a href="{{route('backend.attribute-option.edit',$attributeOption->id)}}">{{$attributeOption->value}}</a></div>
                                 @endforeach
 
 
