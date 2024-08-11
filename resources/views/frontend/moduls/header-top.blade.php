@@ -31,8 +31,8 @@
                         <button class="dropdown-toggle" data-bs-toggle="dropdown"><img
                                     src="assets/images/icons/user.svg" class="svg_img header_svg" alt=""/></button>
                         <ul class="dropdown-menu dropdown-menu-right">
-                            <li><a class="dropdown-item" href="checkout.html">Войти</a></li>
-                            <li><a class="dropdown-item" href="login.html">Выйти</a></li>
+                            <li><a class="dropdown-item" href="{{route('backend.login')}}">Войти</a></li>
+                            <li><a class="dropdown-item" href="/log-viewer">Логи</a></li>
                         </ul>
                     </div>
                     <!-- Header User End -->

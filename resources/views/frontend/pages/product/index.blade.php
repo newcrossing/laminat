@@ -3,7 +3,7 @@
 @section('title','Изменение объявления')
 
 @section('vendor-styles')
-    <link rel="stylesheet" href="/assets/css/plugins/magnific-popup.css" />
+    <link rel="stylesheet" href="/assets/css/plugins/magnific-popup.css"/>
 @endsection
 
 
@@ -23,7 +23,6 @@
                             <div class="row">
 
 
-
                                 <div class="single-pro-img">
 
                                     <div class="single-product-scroll">
@@ -34,13 +33,12 @@
                                                 @foreach($product->fotos as $foto)
                                                     <div class="single-slide ">
                                                         <a class="popup-gallery" href="{{ asset(Storage::disk('product')->url('/800/'). $foto->full_name_file)}}"
-                                                           >
+                                                        >
                                                             <img class=" img-responsive"
                                                                  src="{{ asset(Storage::disk('product')->url('/cr_400/'). $foto->full_name_file)}}" alt="portfolio img">
                                                         </a>
 
                                                     </div>
-
 
                                                 @endforeach
                                             @else
@@ -88,31 +86,37 @@
                                             </div>
                                         </div>
 
-                                        <div class="ec-single-sales">
-                                            <div class="ec-single-sales-inner">
-                                                <div class="ec-single-sales-title">sales accelerators</div>
-                                                <div class="ec-single-sales-visitor">Не упусти<span> скидку</span>
-                                                </div>
-                                                <div class="ec-single-sales-progress">
-                                                    <span class="ec-single-progress-desc">Обрати внимание, осталось 198 упаковок</span>
-                                                    <span class="ec-single-progressbar"></span>
-                                                </div>
-                                                <div class="ec-single-sales-countdown">
-                                                    <div class="ec-single-countdown"><span
-                                                                id="ec-single-countdown"></span></div>
-                                                    <div class="ec-single-count-desc">Успей</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="ec-single-price-stoke">
+                                        {{--                                        <div class="ec-single-sales">--}}
+                                        {{--                                            <div class="ec-single-sales-inner">--}}
+                                        {{--                                                <div class="ec-single-sales-title">sales accelerators</div>--}}
+                                        {{--                                                <div class="ec-single-sales-visitor">Не упусти<span> скидку</span>--}}
+                                        {{--                                                </div>--}}
+                                        {{--                                                <div class="ec-single-sales-progress">--}}
+                                        {{--                                                    <span class="ec-single-progress-desc">Обрати внимание, осталось 198 упаковок</span>--}}
+                                        {{--                                                    <span class="ec-single-progressbar"></span>--}}
+                                        {{--                                                </div>--}}
+                                        {{--                                                <div class="ec-single-sales-countdown">--}}
+                                        {{--                                                    <div class="ec-single-countdown"><span--}}
+                                        {{--                                                                id="ec-single-countdown"></span></div>--}}
+                                        {{--                                                    <div class="ec-single-count-desc">Успей</div>--}}
+                                        {{--                                                </div>--}}
+                                        {{--                                            </div>--}}
+                                        {{--                                        </div>--}}
+                                        <div class="ec-single-price-stoke mt-3">
 
                                             <div class="ec-single-price">
                                                 <span class="ec-single-ps-title">Цена за м<sup>2</sup></span>
-                                                <span class="new-price">{{ Number::format($product->price_metr,locale: 'ru')}} <sub>руб.</sub></span>
+                                                <span class="new-price">{{ Number::format($product->actualPriceMetr(),locale: 'ru')}} <sub>руб.</sub></span>
+                                                @if($product->oldPriceMetr())
+                                                    <span class="old-price" style="font-size: 20px"><del> {{ Number::format($product->oldPriceMetr(),locale: 'ru')}}</del> <sub>руб.</sub></span>
+                                                @endif
                                             </div>
                                             <div class="ec-single-price">
                                                 <span class="ec-single-ps-title">Цена за упаковку </span>
-                                                <span class="new-price">{{ Number::format($product->price_upak,locale: 'ru')}} <sub>руб.</sub></span>
+                                                <span class="new-price">{{ Number::format($product->actualPriceUpak(),locale: 'ru')}} <sub>руб.</sub></span>
+                                                @if($product->oldPriceUpak())
+                                                    <span class="old-price" style="font-size: 20px"><del> {{ Number::format($product->oldPriceUpak(),locale: 'ru')}}</del> <sub>руб.</sub></span>
+                                                @endif
                                             </div>
                                             @isset($product->square)
                                                 <div class="ec-single-stoke">
@@ -144,24 +148,24 @@
                                                             alt=""/></a>
                                             </div>
                                         </div>
-{{--                                        <div class="ec-single-social">--}}
-{{--                                            <ul class="mb-0">--}}
-{{--                                                <li class="list-inline-item facebook"><a href="#"><i--}}
-{{--                                                                class="ecicon eci-facebook"></i></a></li>--}}
-{{--                                                <li class="list-inline-item twitter"><a href="#"><i--}}
-{{--                                                                class="ecicon eci-twitter"></i></a></li>--}}
-{{--                                                <li class="list-inline-item instagram"><a href="#"><i--}}
-{{--                                                                class="ecicon eci-instagram"></i></a></li>--}}
-{{--                                                <li class="list-inline-item youtube-play"><a href="#"><i--}}
-{{--                                                                class="ecicon eci-youtube-play"></i></a></li>--}}
-{{--                                                <li class="list-inline-item behance"><a href="#"><i--}}
-{{--                                                                class="ecicon eci-behance"></i></a></li>--}}
-{{--                                                <li class="list-inline-item whatsapp"><a href="#"><i--}}
-{{--                                                                class="ecicon eci-whatsapp"></i></a></li>--}}
-{{--                                                <li class="list-inline-item plus"><a href="#"><i--}}
-{{--                                                                class="ecicon eci-plus"></i></a></li>--}}
-{{--                                            </ul>--}}
-{{--                                        </div>--}}
+                                        {{--                                        <div class="ec-single-social">--}}
+                                        {{--                                            <ul class="mb-0">--}}
+                                        {{--                                                <li class="list-inline-item facebook"><a href="#"><i--}}
+                                        {{--                                                                class="ecicon eci-facebook"></i></a></li>--}}
+                                        {{--                                                <li class="list-inline-item twitter"><a href="#"><i--}}
+                                        {{--                                                                class="ecicon eci-twitter"></i></a></li>--}}
+                                        {{--                                                <li class="list-inline-item instagram"><a href="#"><i--}}
+                                        {{--                                                                class="ecicon eci-instagram"></i></a></li>--}}
+                                        {{--                                                <li class="list-inline-item youtube-play"><a href="#"><i--}}
+                                        {{--                                                                class="ecicon eci-youtube-play"></i></a></li>--}}
+                                        {{--                                                <li class="list-inline-item behance"><a href="#"><i--}}
+                                        {{--                                                                class="ecicon eci-behance"></i></a></li>--}}
+                                        {{--                                                <li class="list-inline-item whatsapp"><a href="#"><i--}}
+                                        {{--                                                                class="ecicon eci-whatsapp"></i></a></li>--}}
+                                        {{--                                                <li class="list-inline-item plus"><a href="#"><i--}}
+                                        {{--                                                                class="ecicon eci-plus"></i></a></li>--}}
+                                        {{--                                            </ul>--}}
+                                        {{--                                        </div>--}}
                                     </div>
                                 </div>
                             </div>

@@ -28,6 +28,8 @@ class StoreProductRequest extends FormRequest
             'text' => 'nullable|string',
             'price_metr' => 'nullable',
             'price_upak' => 'nullable',
+            'price_metr_sale' => 'nullable',
+            'price_upak_sale' => 'nullable',
             'square' => 'nullable',
             'param_sdt' => 'nullable',
             'type_id' => 'exists:App\Models\Type,id',
@@ -66,6 +68,8 @@ class StoreProductRequest extends FormRequest
             'have_room' => $this->have_room ? true : false,
             'price_metr' => $this->price_metr ?: 0,
             'price_upak' => $this->price_upak ?: 0,
+            'price_upak_sale' => $this->price_upak_sale ?: 0,
+            'price_metr_sale' => $this->price_metr_sale ?: 0,
             'square' => Str::replace(',', '.', $this->square),
         ]);
     }

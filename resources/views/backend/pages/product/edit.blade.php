@@ -47,8 +47,7 @@
                         <i class='bx bx-arrow-back'></i> Отменить
                     </a>
                     <button type="submit" class="btn btn-success ">
-                        <i class='bx bx-save'></i>
-                        <Сохранить></Сохранить>
+                        <i class='bx bx-save'></i> Сохранить
                     </button>
                 </div>
             </div>
@@ -115,7 +114,7 @@
                                                 @endforeach
                                             </select>
                                             @error('collection_id')
-                                            <div class="invalid-feedback">{{$message}}</div>
+                                            {{--                                            <div class="invalid-feedback">{{$message}}</div>--}}
                                             @enderror
                                         </fieldset>
                                     </div>
@@ -124,7 +123,7 @@
                                     <div class="col-12">
                                         <fieldset class="form-group">
                                             <label class="form-label">Короткое описание</label>
-                                            <textarea name="description" class="form-control" rows="8" placeholder="">{{old('description',$product->description)}}</textarea>
+                                            {{--                                            <textarea name="description" class="form-control" rows="8" placeholder="">{{old('description',$product->description)}}</textarea>--}}
                                         </fieldset>
                                     </div>
                                 </div>
@@ -146,15 +145,36 @@
                         <div class="card-header">
                             <h5 class="card-tile mb-0">Цены</h5>
                         </div>
+
                         <div class="card-body pb-0 pt-0">
-                            <div class="invoice-action-btn mb-1">
-                                <label class="form-label">Цена за м<sup>2</sup></label>
-                                <input type="text" class="form-control" name="price_metr" value="{{old('price_metr',$product->price_metr)}}" placeholder="руб." autocomplete="off">
+                            <div class="invoice-action-btn mb-1 d-flex">
+                                <div class="preview w-50 mr-50">
+                                    <label class="form-label">Цена за м<sup>2</sup></label>
+                                    <input type="text" class="form-control @if($product->isPriceMetr()) border-success @endif" name="price_metr" value="{{old('price_metr',$product->price_metr)}}" placeholder="руб."
+                                           autocomplete="off">
+
+                                </div>
+                                <div class="save w-50">
+                                    <label class="form-label">Скидка</label>
+                                    <input type="text" class="form-control @if(!$product->isPriceMetr()) border-success @endif" name="price_metr_sale" value="{{old('price_metr_sale',$product->price_metr_sale)}}" placeholder="руб."
+                                           autocomplete="off">
+                                </div>
                             </div>
-                            <div class=" invoice-action-btn mb-1">
-                                <label class="form-label">Цена за упаковку</label>
-                                <input type="text" class="form-control" name="price_upak" value="{{old('price_upak',$product->price_upak)}}" placeholder="руб.">
+                            <hr>
+                            <div class="invoice-action-btn mb-1 d-flex">
+                                <div class="preview w-50 mr-50">
+                                    <label class="form-label">За упаковку</label>
+                                    <input type="text" class="form-control @if($product->isPriceUpak()) border-success @endif" name="price_upak" value="{{old('price_upak',$product->price_upak)}}" placeholder="руб.">
+
+                                </div>
+                                <div class="save w-50">
+                                    <label class="form-label">Скидка</label>
+                                    <input type="text" class="form-control @if(!$product->isPriceUpak()) border-success @endif " name="price_upak_sale" value="{{old('price_upak_sale',$product->price_upak_sale)}}" placeholder="руб."
+                                           autocomplete="off">
+                                </div>
                             </div>
+                            <hr>
+                            <hr>
 
                             <div class="invoice-action-btn mb-1">
                                 <label class="form-label">Площадь упаковки м<sup>2</sup></label>
@@ -346,10 +366,10 @@
             initialPreviewAsData: true,
             initialPreviewConfig: [
                     @foreach($product->fotos  as $img)
-                    {{--                    @php $size=Storage::size(Storage::disk('product')->path('/300/'). $img->full_name_file);  @endphp--}}
+                    {{--                    @php $size=Storage::size(Storage::disk('local')->path('.gitignore'));  @endphp--}}
                     @php //$size=Storage::size('d:\OSPanel\domains\laminat\public\storage\images\product\100\a784704d-e4e9-4c30-b7ff-ac1c0a01ec14.jpg');  @endphp
                 {
-                    size: "0", width: "120px", url: "{{route('backend.photo.delete',[$img->id , '_token' => csrf_token()])}}"
+                    size: "", width: "120px", url: "{{route('backend.photo.delete',[$img->id , '_token' => csrf_token()])}}"
                 },
                 @endforeach
             ],

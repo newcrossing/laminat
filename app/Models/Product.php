@@ -23,6 +23,8 @@ class Product extends Model
         'text',
         'price_upak',
         'price_metr',
+        'price_upak_sale',
+        'price_metr_sale',
         'square',
         'public',
         'article',
@@ -30,12 +32,51 @@ class Product extends Model
         'description',
         'have_sklad',
         'have_room',
+        'have_room',
         'param_sdt',
     ];
 
     protected $casts = [
         'public' => 'boolean'
     ];
+
+    public function isPriceMetr(): bool
+    {
+        return (!empty($this->price_metr_sale)) ? false : true;
+    }
+
+    public function isPriceUpak(): bool
+    {
+        return (!empty($this->price_upak_sale)) ? false : true;
+    }
+
+    /**
+     * выводит действующую цену. Если есть скидка то это будет действующая
+     * @return int
+     */
+    public function actualPriceMetr(): int
+    {
+        return (!empty($this->price_metr_sale)) ? $this->price_metr_sale : $this->price_metr;
+    }
+
+    public function actualPriceUpak(): int
+    {
+        return (!empty($this->price_upak_sale)) ? $this->price_upak_sale : $this->price_upak;
+    }
+
+    /**
+     * Возвращает струю цену при условии что есть скидка. Иначе null
+     * @return mixed
+     */
+    public function oldPriceMetr(): mixed
+    {
+        return (!empty($this->price_metr_sale)) ? $this->price_metr : null;
+    }
+
+    public function oldPriceUpak(): mixed
+    {
+        return (!empty($this->price_upak_sale)) ? $this->price_upak : null;
+    }
 
     public function scopePublic(Builder $query): void
     {
