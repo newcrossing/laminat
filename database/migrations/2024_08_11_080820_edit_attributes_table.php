@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::table('attributes', function (Blueprint $table) {
             $table->string('slug')->after('name')->unique();
-            $table->text('text')->after('name')->default('');
+            $table->text('text')->after('name')->nullable()->default('');
 
         });
     }
