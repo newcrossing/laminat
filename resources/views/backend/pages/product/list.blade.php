@@ -71,7 +71,12 @@
                         </td>
                         <td class="text-bold-600">
                             <div class="text-success"> {{ Number::format($product->actualPriceMetr(),locale: 'ru')}} <sub>руб.</sub></div>
-                            <div><del> {{ Number::format($product->oldPriceMetr(),locale: 'ru')}}</del> <sub>руб.</sub></div>
+                            @if($product->oldPriceMetr())
+                                <div>
+                                    <del> {{ Number::format($product->oldPriceMetr(),locale: 'ru')}}</del>
+                                    <sub>руб.</sub>
+                                </div>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
