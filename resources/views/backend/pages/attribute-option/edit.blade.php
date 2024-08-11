@@ -97,10 +97,13 @@
                 <div class="col-xl-3 col-md-4 col-12">
                     <div class="card invoice-action-wrapper shadow-none border">
                         <div class="card-header">
-                            <h5 class="card-tile mb-0">Параметры</h5>
+                            <h5 class="card-tile mb-0">Параметр</h5>
                         </div>
                         <div class="card-body pb-0 pt-0">
 
+                            <a href="{{route('backend.attribute.edit',$attribute_option->attribute->id)}}" class="display-5">
+                                {{$attribute_option->attribute->name}}
+                            </a>
 
                         </div>
                     </div>
