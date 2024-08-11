@@ -11,6 +11,11 @@
       "name": "На сайт",
       "i18n": "Analytics",
       "icon": "bxs-right-top-arrow-circle"
+    },{
+      "url": "/log-viewer",
+      "name": "Логи",
+      "i18n": "Analytics",
+      "icon": "bxs-right-top-arrow-circle"
     },
     {
       "navheader": "Пользователи"
