@@ -66,6 +66,7 @@ class StoreProductRequest extends FormRequest
             'have_room' => $this->have_room ? true : false,
             'price_metr' => $this->price_metr ?: 0,
             'price_upak' => $this->price_upak ?: 0,
+            'square' => Str::replace(',', '.', $this->square),
         ]);
     }
 }

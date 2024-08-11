@@ -52,9 +52,10 @@
 
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-6 pro-gl-content">
                                         <div class="ec-product-inner">
+                                            <a href="{{route('prod.show',$product->slug)}}">
                                             <div class="ec-pro-image-outer">
                                                 <div class="ec-pro-image">
-                                                    <a href="product-left-sidebar.html" class="image">
+                                                    <span href="/product-left-sidebar.html" class="image">
 
                                                         @if($product->fotos()->count())
                                                             @foreach($product->fotos as $foto)
@@ -72,7 +73,7 @@
                                                         @endif
 
 
-                                                    </a>
+                                                    </span>
                                                     <span class="percentage">20%</span>
                                                     @isset($product->have_sklad)
                                                         <span class="flags">
@@ -104,10 +105,14 @@
                                                     {{--                                                    </div>--}}
                                                 </div>
                                             </div>
-
+                                            </a>
                                             <div class="ec-pro-content">
                                                 <a class="fs-6 text-upper text-center text-muted">{{$product->type->name}}</a>
-                                                <h5 class=" fs-6 text-center"><a href="{{route('prod.show',$product->slug)}}">{{$product->collection->firm->name}} {{$product->name}}</a></h5>
+                                                <h5 class=" fs-6 text-center">
+                                                    <a href="{{route('prod.show',$product->slug)}}">
+                                                        {{$product->collection->firm->name}}   {{$product->collection->name}} {{$product->name}}
+                                                    </a>
+                                                </h5>
 
                                                 <div class="ec-pro-list-desc">
                                                     {{$product->text}}

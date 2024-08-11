@@ -12,6 +12,8 @@ class Attribute extends Model
 
     protected $fillable = [
         'name',
+        'slug',
+        'text',
     ];
 
     public function attributeOptions(): HasMany

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Backend\AttributeController;
+use App\Http\Controllers\Backend\AttributeOptionController;
 use App\Http\Controllers\Backend\CollectionController;
 use App\Http\Controllers\Backend\FirmController;
 use App\Http\Controllers\Backend\TypeController;
@@ -47,7 +49,7 @@ Route::get('/add', function () {
 
     $image = ImageManager::imagick()->read(Storage::disk('public')->get('111.jpg'));
     $image->width();
-    $image->scale(height: 400)->crop(400   , 400, 0 , 0, position: 'bottom-center')->save(Storage::disk('public')->path('/33.jpg') ,progressive: true, quality: 90);
+    $image->scale(height: 400)->crop(400, 400, 0, 0, position: 'bottom-center')->save(Storage::disk('public')->path('/33.jpg'), progressive: true, quality: 90);
 
     // $role = Role::create(['name' => 'user']);
     // $role = Role::create(['name' => 'admin']);
@@ -82,6 +84,8 @@ Route::middleware(['role:admin'])->prefix('backend')->group(
         Route::resource('firm', FirmController::class)->names('backend.firm');
         Route::resource('collection', CollectionController::class)->names('backend.collection');
         Route::resource('type', TypeController::class)->names('backend.type');
+        Route::resource('attribute', AttributeController::class)->names('backend.attribute');
+        Route::resource('attribute-option', AttributeOptionController::class)->names('backend.attribute-option');
 
         Route::post('/upload/photo', [\App\Http\Controllers\Backend\PhotoController::class, 'upload'])->name('backend.photo.upload');
         Route::post('/upload/delete/{id}', [\App\Http\Controllers\Backend\PhotoController::class, 'delete'])->name('backend.photo.delete');

@@ -50,13 +50,33 @@
         }
       ]
     },
-
     {
       "url": "backend/type",
       "name": "Типы продукции",
       "i18n": "Invoice",
       "icon": "bx-folder"
     },
+    {
+      "url": "#",
+      "name": "Параметры и опции",
+      "i18n": "Invoice",
+      "icon": "bxs-notepad",
+      "submenu": [
+        {
+          "url": "backend/attribute",
+          "name": "Параметры",
+          "i18n": "Invoice",
+          "icon": "bx-folder"
+        },
+        {
+          "url": "backend/attribute-option",
+          "name": "Опции",
+          "i18n": "Invoice",
+          "icon": "bx-folder"
+        }
+      ]
+    },
+
     {
       "navheader": "Статьи / Новости"
     },
