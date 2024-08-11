@@ -68,7 +68,7 @@
                                 <div class="single-pro-desc">
                                     <div class="single-pro-content">
 
-                                        <h5 class="ec-single-title">{{ $product->name }}</h5>
+                                        <h5 class="ec-single-title">   {{$product->collection->firm->name}}   {{$product->collection->name}} {{ $product->name }}</h5>
                                         <div class="ec-single-rating-wrap">
 
                                             <span class="ec-read-review"><a href="#ec-spt-nav-review">Посмотреть похожие товары</a></span>
