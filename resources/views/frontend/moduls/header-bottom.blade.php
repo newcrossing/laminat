@@ -37,9 +37,9 @@
                                 <img src="/assets/images/icons/user.svg" class="svg_img header_svg" alt=""/>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-right">
-                                <li><a class="dropdown-item" href="register.html">Register</a></li>
-                                <li><a class="dropdown-item" href="checkout.html">Checkout</a></li>
-                                <li><a class="dropdown-item" href="login.html">Login</a></li>
+{{--                                <li><a class="dropdown-item" href="register.html">Register</a></li>--}}
+{{--                                <li><a class="dropdown-item" href="checkout.html">Checkout</a></li>--}}
+                                <li><a class="dropdown-item" href="{{route('backend.login')}}">Войти</a></li>
                             </ul>
                         </div>
                         <!-- Header User End -->
