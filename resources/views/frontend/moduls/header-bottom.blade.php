@@ -38,7 +38,7 @@
                             </button>
                             <ul class="dropdown-menu dropdown-menu-right">
 {{--                                <li><a class="dropdown-item" href="register.html">Register</a></li>--}}
-{{--                                <li><a class="dropdown-item" href="checkout.html">Checkout</a></li>--}}
+                                <li><a class="dropdown-item" href="/log-viewer">Логи </a></li>
                                 <li><a class="dropdown-item" href="{{route('backend.login')}}">Войти</a></li>
                             </ul>
                         </div>
