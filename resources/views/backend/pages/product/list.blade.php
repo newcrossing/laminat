@@ -69,7 +69,10 @@
                             {{$product->type->name}}
                             <div class="small text-muted">{{$product->collection->firm->name}}, {{$product->collection->name}} </div>
                         </td>
-                        <td class="text-bold-600">{{ Number::format($product->price_metr,locale: 'ru')}} <sub>руб.</sub></td>
+                        <td class="text-bold-600">
+                            <div class="text-success"> {{ Number::format($product->actualPriceMetr(),locale: 'ru')}} <sub>руб.</sub></div>
+                            <div><del> {{ Number::format($product->oldPriceMetr(),locale: 'ru')}}</del> <sub>руб.</sub></div>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
