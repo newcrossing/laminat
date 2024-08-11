@@ -80,9 +80,11 @@ class AttributeOptionController extends Controller
             ['link' => route('backend.attribute-option.index'), 'name' => "Опции"],
             ['name' => " Редактирование"]
         ];
+        $attributeRoot = $attribute_option->attribute;
 
         return view('backend.pages.attribute-option.edit', compact(
             'attribute_option',
+            'attributeRoot',
             'breadcrumbs',
         ));
     }

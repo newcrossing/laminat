@@ -101,10 +101,14 @@
                         </div>
                         <div class="card-body pb-0 pt-0">
 
-                            <a href="{{route('backend.attribute.edit',$attribute_option->attribute->id)}}" class="display-5">
-                                {{$attribute_option->attribute->name}}
+                            <a href="{{route('backend.attribute.edit',$attribute_option->attribute->id)}}" class="text-bold-600">
+                                {{$attributeRoot->name}}
                             </a>
-
+                            <ul>
+                                @foreach($attributeRoot->attributeOptions as  $atr)
+                                    <li><a href="{{route('backend.attribute-option.edit',$atr->id)}}">{{$atr->value}}</a></li>
+                                @endforeach
+                            </ul>
                         </div>
                     </div>
 
