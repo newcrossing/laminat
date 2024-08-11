@@ -106,7 +106,7 @@
                                     {{$attributeRoot->name}}
                                 </a>
                                 <ul>
-                                    @foreach($attributeRoot->attributeOptions as  $atr)
+                                    @foreach($attributeRoot->attributeOptions()->orderBy('value')->get() as  $atr)
                                         <li><a href="{{route('backend.attribute-option.edit',$atr->id)}}">{{$atr->value}}</a></li>
                                     @endforeach
                                 </ul>
