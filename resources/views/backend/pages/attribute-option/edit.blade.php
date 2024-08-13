@@ -71,8 +71,6 @@
                                     </div>
                                 </div>
                                 <div class="row mb-1">
-
-
                                     <div class="col-12">
                                         <label class="form-label">Параметр</label>
                                         <select class="custom-select @error('attribute_id') is-invalid  @enderror" name="attribute_id">
@@ -121,73 +119,73 @@
         </form>
     </section>
 
-<hr>
-<hr>
-    <section class="invoice-edit-wrapper">
-        <form action="{{ route('backend.attribute-option.store')  }}" method="POST">
-            @csrf
+    <hr>
+    <hr>
+    @if(!empty($attributeRoot->id))
 
+        <section class="invoice-edit-wrapper">
+            <form action="{{ route('backend.attribute-option.store')  }}" method="POST">
+                @csrf
+                <div class="row">
+                    <!-- invoice view page -->
+                    <div class="col-xl-9 col-md-8 col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-tile mb-0">Добавить новую опцию в параметр: <span class="text-primary">{{$attributeRoot->name}} </span></h5>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body pb-0 mx-25">
 
-            <div class="row">
-                <!-- invoice view page -->
-                <div class="col-xl-9 col-md-8 col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="card-tile mb-0">Информация </h5>
-                        </div>
-                        <div class="card-content">
-                            <div class="card-body pb-0 mx-25">
+                                    <!-- logo and title -->
+                                    <div class="row mb-1">
+                                        <div class="col-sm-12 col-12 order-2 order-sm-1">
+                                            <label>Название </label>
+                                            <input type="text" name="value" class="form-control @error('value') is-invalid  @enderror" value=""
+                                                   placeholder="Название" autocomplete="off" autofocus required>
+                                            @error('value')
+                                            <div class="invalid-feedback">{{$message}}</div>
+                                            @enderror
 
-                                <!-- logo and title -->
-                                <div class="row mb-1">
-                                    <div class="col-sm-12 col-12 order-2 order-sm-1">
-                                        <label>Название </label>
-                                        <input type="text" name="value" class="form-control @error('value') is-invalid  @enderror" value=""
-                                               placeholder="Название" autocomplete="off" autofocus required>
-                                        @error('value')
-                                        <div class="invalid-feedback">{{$message}}</div>
-                                        @enderror
-
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row mb-1">
+                                    <div class="row mb-1">
 
 
-                                    <div class="col-12">
-                                        <label class="form-label">Параметр</label>
-                                        <select class="custom-select @error('attribute_id') is-invalid  @enderror" name="attribute_id">
-                                            @foreach(\App\Models\Attribute::all() as $attribute)
-                                                <option value="{{$attribute->id}}" @selected(@$attribute_option->attribute->id == $attribute->id)>{{$attribute->name}}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('attribute_id')
-                                        <div class="invalid-feedback">{{$message}}</div>
-                                        @enderror
+                                        <div class="col-12">
+                                            <label class="form-label">Параметр</label>
+                                            <select class="custom-select @error('attribute_id') is-invalid  @enderror" name="attribute_id">
+                                                @foreach(\App\Models\Attribute::all() as $attribute)
+                                                    <option value="{{$attribute->id}}" @selected(@$attribute_option->attribute->id == $attribute->id)>{{$attribute->name}}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('attribute_id')
+                                            <div class="invalid-feedback">{{$message}}</div>
+                                            @enderror
+                                        </div>
                                     </div>
+
+
                                 </div>
-
-
                             </div>
                         </div>
-                    </div>
 
-
-                </div>
-                <!-- invoice action  -->
-                <div class="col-xl-3 col-md-4 col-12">
-                    <div class="card invoice-action-wrapper shadow-none border">
-                        <button type="submit" class="btn btn-success ">
-                            <i class='bx bx-save'></i> Добавить
-                        </button>
 
                     </div>
+                    <!-- invoice action  -->
+                    <div class="col-xl-3 col-md-4 col-12">
+                        <div class="card invoice-action-wrapper shadow-none border">
+                            <button type="submit" class="btn btn-success ">
+                                <i class='bx bx-save'></i> Добавить
+                            </button>
+
+                        </div>
+
+                    </div>
 
                 </div>
-
-            </div>
-        </form>
-    </section>
-
+            </form>
+        </section>
+    @endif
 @endsection
 
 

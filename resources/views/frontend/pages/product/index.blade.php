@@ -177,13 +177,16 @@
                         <div class="ec-single-pro-tab-wrapper">
                             <div class="ec-single-pro-tab-nav">
                                 <ul class="nav nav-tabs">
+                                    @if($product->text)
+                                        <li class="nav-item">
+                                            <a class="nav-link active" data-bs-toggle="tab"
+                                               data-bs-target="#ec-spt-nav-details" role="tablist">Описание</a>
+                                        </li>
+                                    @endif
+
                                     <li class="nav-item">
-                                        <a class="nav-link active" data-bs-toggle="tab"
-                                           data-bs-target="#ec-spt-nav-details" role="tablist">Описание</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#ec-spt-nav-info"
-                                           role="tablist">Информация</a>
+                                        <a class="nav-link @empty($product->text) active  @endempty" data-bs-toggle="tab" data-bs-target="#ec-spt-nav-info"
+                                           role="tablist">Характеристики </a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" data-bs-toggle="tab" data-bs-target="#ec-spt-nav-review"
@@ -192,17 +195,19 @@
                                 </ul>
                             </div>
                             <div class="tab-content  ec-single-pro-tab-content">
-                                <div id="ec-spt-nav-details" class="tab-pane fade show active">
-                                    <div class="ec-single-pro-tab-desc">
-                                        {!!   $product->text  !!}
+                                @if($product->text)
+                                    <div id="ec-spt-nav-details" class="tab-pane fade show active">
+                                        <div class="ec-single-pro-tab-desc">
+                                            {!!   $product->text  !!}
+                                        </div>
                                     </div>
-                                </div>
-                                <div id="ec-spt-nav-info" class="tab-pane fade">
+                                @endif
+                                <div id="ec-spt-nav-info" class="tab-pane fade @empty($product->text) active  @endempty">
                                     <div class="ec-single-pro-tab-moreinfo">
                                         <ul>
-                                            <li><span>Weight</span> 1000 g</li>
-                                            <li><span>Dimensions</span> 35 × 30 × 7 cm</li>
-                                            <li><span>Color</span> Black, Pink, Red, White</li>
+                                            @foreach($product->attributeOptions as $attributeOption)
+                                                <li><span>{{$attributeOption->attribute->name}}</span> {{$attributeOption->value}}</li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>
