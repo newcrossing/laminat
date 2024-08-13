@@ -19,10 +19,10 @@
             <div class="col-xl-4 col-md-6 col-12 dashboard-latest-update">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center pb-50">
-                        <h4 class="card-title">Продукция</h4>
+                        <h4 class="card-title">Продукция (последние 5)</h4>
                         <div class="dropdown">
-                            <a class="btn btn-sm btn-success " href="{{route('backend.product.create')}}">
-                                Добавить продукцию
+                            <a class="btn btn-sm btn-success btn-outline-info" href="{{route('backend.product.create')}}">
+                                Добавить
                             </a>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                                                 </div>
                                             </div>
                                             <div class="list-content">
-                                                <a href="{{route('prod.show',$product->slug)}}">
+                                                <a href="{{route('backend.product.edit',$product->id)}}">
                                                     <span class="list-title text-bold-600">{{$product->name}}</span>
                                                     <small class="text-muted d-block">{{$product->collection->firm->name}}, {{$product->collection->name}}</small>
                                                 </a>
@@ -61,9 +61,66 @@
                         </div>
                     </div>
                     <div class="card-header d-flex justify-content-between align-items-center pb-50">
-                        <div class="">Всего опубликовано: {{\App\Models\Product::public()->count()}} карточек </div>
+                        <div class="">Всего опубликовано: {{\App\Models\Product::public()->count()}} карточек</div>
                         <div class="dropdown">
                             <a class="btn btn-sm btn-outline-info " href="{{route('backend.product.index')}}">
+                                Посмотреть все
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-6 col-12 dashboard-latest-update">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center pb-50">
+                        <h4 class="card-title">Производители (последние 5)</h4>
+                        <div class="dropdown">
+                            <a class="btn btn-sm btn-success btn-outline-info" href="{{route('backend.firm.create')}}">
+                                Добавить
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body p-0 pb-1 ps">
+                            <ul class="list-group list-group-flush">
+                                @foreach($firms as  $firm)
+                                    <li class="list-group-item list-group-item-action border-0 d-flex align-items-center justify-content-between">
+                                        <div class="list-left d-flex w-75">
+                                            <div class="list-icon mr-1">
+                                                <div class="avatar bg-rgba-primary m-0">
+                                                    <div class="avatar-content">
+                                                        <i class="bx @if($firm->public)  bxs-show text-success @else  bxs-hide text-danger  @endif                 font-size-base"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="list-content">
+
+                                                <a href="{{route('backend.firm.edit',$firm->id)}}"> <span class="list-title text-bold-600">{{$firm->name}}</span> </a>
+                                                <small class="text-muted d-block">
+                                                    @foreach($firm->collections as $collection)
+                                                        <a href="{{route('backend.collection.edit',$collection->id)}}" class="text-muted">   {{$collection->name}} </a>,
+                                                    @endforeach
+                                                </small>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <small> Добавлено</small>
+                                            <div class="font-size-small text-primary">
+                                                {{$firm->created_at->format('H:m d.m.Y')}}
+                                            </div>
+                                        </div>
+
+                                    </li>
+                                @endforeach
+
+                            </ul>
+
+                        </div>
+                    </div>
+                    <div class="card-header d-flex justify-content-between align-items-center pb-50">
+                        <div class="">Всего опубликовано: {{\App\Models\Firm::public()->count()}} производителей</div>
+                        <div class="dropdown">
+                            <a class="btn btn-sm btn-outline-info " href="{{route('backend.firm.index')}}">
                                 Посмотреть все
                             </a>
                         </div>
