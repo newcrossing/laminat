@@ -61,13 +61,15 @@ class ProductController extends Controller
         $validated = $request->validated();
 
         $product = new Product();
-//dd($validated);
+        //dd($validated);
         $product->fill($validated)->save();
 
         Type::find($validated['type_id'])->products()->save($product);
         Collection::find($validated['collection_id'])->products()->save($product);
 
         $product->attributeOptions()->sync(Arr::whereNotNull($request['attributes']));
+
+        Log:info("Добавлен товар: {$product->name}");
 
         return redirect()->route('backend.product.edit', $product->id)->with('success', 'Сохранено.');
     }

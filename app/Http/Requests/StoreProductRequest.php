@@ -70,7 +70,7 @@ class StoreProductRequest extends FormRequest
             'price_upak' => $this->price_upak ?: 0,
             'price_upak_sale' => $this->price_upak_sale ?: 0,
             'price_metr_sale' => $this->price_metr_sale ?: 0,
-            'square' => Str::replace(',', '.', $this->square),
+            'square' => ($this->square) ? Str::replace(',', '.', $this->square) : null,
         ]);
     }
 }
