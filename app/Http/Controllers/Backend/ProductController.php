@@ -69,7 +69,8 @@ class ProductController extends Controller
 
         $product->attributeOptions()->sync(Arr::whereNotNull($request['attributes']));
 
-        Log:info("Добавлен товар: {$product->name}");
+        Log:
+        info("Добавлен товар: {$product->name}");
 
         return redirect()->route('backend.product.edit', $product->id)->with('success', 'Сохранено.');
     }
@@ -109,7 +110,7 @@ class ProductController extends Controller
 
         if ($request->redirect == 'delete') {
             $product->delete();
-            return redirect()->route('product.index')->with('success', "Товар  {$product->name} удален");
+            return redirect()->route('backend.product.index')->with('success', "Товар  {$product->name} удален");
         }
         $validated = $request->validated();
 
