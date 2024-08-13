@@ -15,7 +15,7 @@
     <section class="ec-page-content section-space-p">
         <div class="container">
             <div class="row">
-                <div class="ec-pro-rightside ec-common-rightside col-lg-9 order-lg-last col-md-12 order-md-first">
+                <div class="ec-pro-rightside ec-common-rightside col-lg-7 order-lg-last col-md-12 order-md-first">
 
                     <!-- Single product content Start -->
                     <div class="single-pro-block">
