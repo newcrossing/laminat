@@ -14,7 +14,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
-        Log::warning('Бекап сайта начинается');
+       // Log::info('Бекап сайта начинается');
         $schedule->command('backup:clean --disable-notifications')->daily()->at('01:00');
         $schedule->command('backup:run  --disable-notifications')->daily()->at('01:30')
             ->onFailure(function () {
