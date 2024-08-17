@@ -20,13 +20,15 @@ class ProductController extends Controller
 
     public function show($slug)
     {
-
         $product = Product::where('slug', $slug)->firstOrFail();
 
 
         $breadcrumbs = [
-            ['link' => "/backend/", 'name' => "Главная"],
-            ['name' => " Продукция "]
+            ['link' => route('home'), 'name' => "Главная"],
+            ['link' => $product->type->slug, 'name' => $product->type->name],
+            ['link' => $product->type->slug.'/'.$product->collection->firm->slug, 'name' => $product->collection->firm->name],
+            ['link' => $product->type->slug.'/'.$product->collection->firm->slug.'/'.$product->collection->slug, 'name' => $product->collection->name],
+            ['name' => $product->name]
         ];
         return view('frontend.pages.product.index', compact('product', 'breadcrumbs'));
     }

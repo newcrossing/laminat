@@ -6,10 +6,10 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
-    <title>Ekka - Ecommerce HTML Template.</title>
+    <title>ПолРоссии - наполные покрытия</title>
     <meta name="keywords"
-          content="apparel, catalog, clean, ecommerce, ecommerce HTML, electronics, fashion, html eCommerce, html store, minimal, multipurpose, multipurpose ecommerce, online store, responsive ecommerce template, shops"/>
-    <meta name="description" content="Best ecommerce html template for single and multi vendor store.">
+          content=""/>
+    <meta name="description" content="">
     <meta name="author" content="">
 
     @include('frontend.moduls.favicon')
@@ -19,7 +19,8 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+          rel="stylesheet">
 
     <!-- css All Plugins Files -->
     <link rel="stylesheet" href="/assets/css/plugins/animate.css"/>
@@ -33,6 +34,7 @@
 
     <!-- Main Style -->
     <link rel="stylesheet" href="/assets/css/style.css"/>
+    {{--        <link rel="stylesheet" href="{{asset('/assets/css/demo7.css')}}"/>--}}
     <link rel="stylesheet" href="/assets/css/responsive.css"/>
 
 
@@ -132,6 +134,29 @@
 <!-- ekka Cart End -->
 
 @include('frontend.moduls.breadcrumb')
+{{--<div class="container">--}}
+{{--    <div class="row">--}}
+
+{{--        @foreach(\App\Models\Type::all() as $type)--}}
+{{--            <div class="col-sm-12 col-md-6 col-lg-2 zoomIn" data-animation="zoomIn" data-animated="true"--}}
+{{--            style="margin-top: 10px; line-height: 1; margin-left: 1px">--}}
+
+
+{{--                <div class="ec_ser_inner" style="height: 50px">--}}
+{{--                    <div class="ec-service-image">--}}
+{{--                    </div>--}}
+{{--                    <div class="ec-service-desc">--}}
+{{--                        <span class="fs-6 ">{{$type->name}}</span>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        @endforeach--}}
+
+
+{{--    </div>--}}
+{{--</div>--}}
+
+
 
 <!-- Sart Single product -->
 @yield('content')
@@ -155,9 +180,6 @@
     </a>
 </div>
 <!-- Cart Floating Button end -->
-
-
-
 
 
 <!-- Vendor JS -->
