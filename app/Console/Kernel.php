@@ -17,8 +17,8 @@ class Kernel extends ConsoleKernel
         // Log::info('Бекап сайта начинается');
 
         // бекап системы
-        $schedule->command('backup:clean --disable-notifications')->dailyAt('20:03');
-        $schedule->command('backup:run  --disable-notifications')->dailyAt('20:04');
+        $schedule->exec('/opt/php81/bin/php artisan backup:clean --disable-notifications')->dailyAt('20:03');
+        $schedule->exec('/opt/php81/bin/php artisan backup:run  --disable-notifications')->dailyAt('20:15');
 
     }
 
