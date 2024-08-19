@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class Foto extends Model
@@ -23,11 +25,17 @@ class Foto extends Model
         return "{$this->filename}.{$this->extension}";
     }
 
-    public function href($size = 200)
+    public function getUrlCr($size = 400)
     {
-        return Storage::url("/images/{$size}/" . $this->full_name_file);
-    }
+        if (Storage::disk('product')->exists('/cr_400/' . $this->getFullNameFileAttribute()))
+            // Storage::disk('product')->url('/cr_400/'). $foto->full_name_file)
+            return Storage::disk('product')->url('/cr_400/') . $this->getFullNameFileAttribute();
+        else {
+            Log::channel('daily-images')->warning('Нет изображения '.$this->getFullNameFileAttribute());
+            return Storage::disk('product')->url("/cr_{$size}/null.jpg") ;
 
+        }
+    }
 
 
     /**
