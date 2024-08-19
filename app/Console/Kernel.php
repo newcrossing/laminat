@@ -5,6 +5,7 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Stringable;
 
 class Kernel extends ConsoleKernel
 {
@@ -19,11 +20,12 @@ class Kernel extends ConsoleKernel
         // бекап системы
         // $schedule->exec('/opt/php81/bin/php artisan backup:clean --disable-notifications')->dailyAt('21:03');
         $schedule->exec('cd /var/www/localadmin/data/www/polrossii.ru/ && /opt/php81/bin/php artisan backup:run --disable-notifications')
-            ->onFailure(function () {
-                Log::warning('Бекап сайта завершился с ошибкой');
+            ->everyMinute()
+            ->onFailure(function (Stringable $output) {
+                Log::warning('Бекап сайта завершился с ошибкой'.$output);
             })
-            ->onSuccess(function () {
-                Log::info('Бекап сайта завершился');
+            ->onSuccess(function (Stringable $output) {
+                Log::info('Бекап сайта завершился'.$output);
             });;
 
     }
