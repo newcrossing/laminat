@@ -18,7 +18,7 @@ class Kernel extends ConsoleKernel
 
         // бекап системы
        // $schedule->exec('/opt/php81/bin/php artisan backup:clean --disable-notifications')->dailyAt('21:03');
-        $schedule->exec('cd /var/www/localadmin/data/www/polrossii.ru/ && /opt/php81/bin/php artisan backup:run  --disable-notifications')->dailyAt('20:46');
+        $schedule->exec('cd /var/www/localadmin/data/www/polrossii.ru/ && /opt/php81/bin/php artisan backup:run')->dailyAt('20:49');
 
     }
 
