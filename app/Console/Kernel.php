@@ -14,11 +14,11 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
-        // Log::info('Бекап сайта начинается');
+         Log::info('Бекап сайта начинается');
 
         // бекап системы
-        $schedule->exec('/opt/php81/bin/php artisan backup:clean --disable-notifications')->dailyAt('20:03');
-        $schedule->exec('/opt/php81/bin/php artisan backup:run  --disable-notifications')->dailyAt('20:15');
+       // $schedule->exec('/opt/php81/bin/php artisan backup:clean --disable-notifications')->dailyAt('21:03');
+        $schedule->exec('/opt/php81/bin/php artisan backup:run  --disable-notifications')->dailyAt('20:43');
 
     }
 
