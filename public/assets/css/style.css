@@ -22811,6 +22811,24 @@ h4.ec-faq-title::after, .ec-faq-title.h4::after {
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
+.product_page .ec-sidebar-wrap .ec-sidebar-block .ec-sb-block-content li .ec-sidebar-sub-item div {
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: #777777;
+  font-size: 14px;
+  margin-top: 0;
+  line-height: 20px;
+  font-weight: 400;
+  text-transform: capitalize;
+  letter-spacing: 0;
+  cursor: pointer;
+  position: relative;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
 .product_page .ec-sidebar-wrap .ec-sidebar-block .ec-sb-block-content li .ec-sidebar-block-item {
   padding: 10px 0;
   position: relative;
@@ -31746,7 +31764,8 @@ input[type=email]:focus::-webkit-input-placeholder {
   padding: 15px 0;
 }
 .ec-catalog-multi-vendor .ec-vendor-card .ec-vendor-card-info .info .ec-catalog-ratings h6, .ec-catalog-multi-vendor .ec-vendor-card .ec-vendor-card-info .info .ec-catalog-ratings .h6, .ec-catalog-multi-vendor .ec-vendor-card .ec-vendor-card-info .info .ec-catalog-pro-count h6, .ec-catalog-multi-vendor .ec-vendor-card .ec-vendor-card-info .info .ec-catalog-pro-count .h6 {
-  font-family: "Poppins, sans-serif";
+  /*font-family: "Poppins, sans-serif";*/
+  font-family: "Roboto Condensed";
   color: #777;
   font-size: 14px;
 }

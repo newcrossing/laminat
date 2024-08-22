@@ -33,33 +33,26 @@
                                             @if($product->fotos()->count())
                                                 @foreach($product->fotos as $foto)
                                                     <div class="single-slide ">
-                                                        <a class="popup-gallery" href="{{ asset(Storage::disk('product')->url('/800/'). $foto->full_name_file)}}"
-                                                        >
-                                                            <img class=" img-responsive"
-                                                                 src="{{ asset(Storage::disk('product')->url('/cr_400/'). $foto->full_name_file)}}" alt="portfolio img">
+                                                        <a class="popup-gallery" href="{{ asset(Storage::disk('product')->url('/800/'). $foto->full_name_file)}}">
+                                                            <img class=" img-responsive" src="{{ $foto->getUrlCr()}}">
                                                         </a>
-
                                                     </div>
-
                                                 @endforeach
                                             @else
-                                                <img class="main-image"
-                                                     src="{{ asset(Storage::disk('product')->url('/300/0cd62333-c91b-4860-ae5c-fc41f6d53487.jpg'))}}"/>
+                                                <img class="main-image" src="{{ asset(Storage::disk('product')->url('/cr_400/null.jpg'))}}"/>
                                             @endif
-
-
                                         </div>
                                         <div class="single-nav-thumb">
                                             @if($product->fotos()->count())
                                                 @foreach($product->fotos as $foto)
                                                     <div class="single-slide zoom-image-hover">
-                                                        <img class="img-responsive" src="{{ asset(Storage::disk('product')->url('/cr_100/'). $foto->full_name_file)}}"
-                                                             alt="">
+                                                        <img class="img-responsive" src="{{ $foto->getUrlCr(100)}}">
                                                     </div>
                                                 @endforeach
                                             @else
-                                                <img class="main-image"
-                                                     src="{{ asset(Storage::disk('product')->url('/300/0cd62333-c91b-4860-ae5c-fc41f6d53487.jpg'))}}"/>
+                                                <div class="single-slide zoom-image-hover">
+                                                    <img class="img-responsive" src="{{ asset(Storage::disk('product')->url('/cr_100/null.jpg'))}}">
+                                                </div>
                                             @endif
                                         </div>
                                     </div>
@@ -319,6 +312,13 @@
                                     <li>
                                         <div class="ec-sidebar-block-item">clothes</div>
                                         <ul style="display: block;">
+                                            @foreach($product->attributeOptions as $attributeOption)
+                                                <li>
+                                                    <div class="ec-sidebar-sub-item"><div href="#">{{$attributeOption->attribute->name}} <span><a href="as">{{$attributeOption->value}}</a></span></div>
+                                                    </div>
+                                                </li>
+
+                                            @endforeach
                                             <li>
                                                 <div class="ec-sidebar-sub-item"><a href="#">Men <span>-25</span></a>
                                                 </div>

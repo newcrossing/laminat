@@ -122,14 +122,31 @@
 
                         </div>
                     </div>
+                    <div class="card invoice-action-wrapper shadow-none border">
+                        <div class="card-header">
+                            <h5 class="card-tile mb-0">Файлы сертификатов и пр.</h5>
+                        </div>
+                        <div class="card-body pb-0 pt-0">
 
+                            <fieldset class="form-group">
+                                <label for="basicInputFile">Выберите файлы</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="inputGroupFile01" multiple>
+                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                </div>
+                            </fieldset>
+
+
+                        </div>
+                    </div>
                 </div>
 
             </div>
+            </div>
         </form>
     </section>
-    <section>
 
+    <section>
         <form enctype="multipart/form-data" method="post">
             @csrf
             <div class="file-loading">
@@ -140,11 +157,9 @@
                 <input name="images[]" id="file-up" class="file" type="file" multiple data-min-file-count="1" data-theme="fa5">
             </div>
             <br>
-            <button type="submit" class="btn btn-primary">Submit</button>
-            <button type="reset" class="btn btn-outline-secondary">Reset</button>
+            <button type="submit" class="btn btn-primary">Отправить</button>
+            <button type="reset" class="btn btn-outline-secondary">Сбросить</button>
         </form>
-
-
     </section>
 
 @endsection
@@ -180,17 +195,11 @@
 
     <script type="text/javascript" src="/b/CKE/ckeditor/ckeditor.js"></script>
     <script type="text/javascript" src="/b/CKE/ckfinder.js"></script>
-
     <script type="text/javascript">
         if (typeof CKEDITOR == 'undefined') {
             document.write('Error');
         } else {
-            var editor = CKEDITOR.replace('editor1',
-                {
-                    toolbar: [
-                        ['Source', '-', 'NewPage', 'Preview'], ['PasteText', 'PasteFromWord', '-', 'SpellChecker', 'Scayt'], ['Undo', 'Redo', '-', 'Find', 'Replace', '-', 'SelectAll', 'RemoveFormat'], '/', ['Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript'], ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'], ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'], ['Link', 'Unlink', 'Anchor'], ['Image', 'Table', 'HorizontalRule', 'SpecialChar'], '/', [, 'Format', 'Font', 'FontSize'], ['TextColor', 'BGColor'], ['Maximize', 'ShowBlocks', '-', 'About']
-                    ]
-                });
+            var editor = CKEDITOR.replace('editor1');
             CKFinder.setupCKEditor(editor, '/CKE/');
         }
     </script>
@@ -209,5 +218,47 @@
     <script src="/b/fileuploader/themes/fa5/theme.js" type="text/javascript"></script>
     <script src="/b/fileuploader/themes/explorer-fa5/theme.js" type="text/javascript"></script>
     <script>$.fn.fileinput.defaults.theme = 'fa5';</script>
+
+    <script>
+        $('#file-up').fileinput({
+            initialPreview: [
+                @foreach($firm->fotos as $img)
+                    "{{ asset(Storage::disk('product')->url('/300/'). $img->full_name_file)}}",
+                @endforeach
+            ],
+            initialPreviewAsData: true,
+            initialPreviewConfig: [
+                    @foreach($firm->fotos  as $img)
+                    {{--                    @php $size=Storage::size(Storage::disk('local')->path('.gitignore'));  @endphp--}}
+                    @php //$size=Storage::size('d:\OSPanel\domains\laminat\public\storage\images\product\100\a784704d-e4e9-4c30-b7ff-ac1c0a01ec14.jpg');  @endphp
+                {
+                    size: "", width: "120px", url: "{{route('backend.photo.delete',[$img->id , '_token' => csrf_token()])}}"
+                },
+                @endforeach
+            ],
+            deleteUrl: "/site/file-delete",
+            uploadUrl: '{!! route('backend.photo.upload', ['id' => $firm->id,'model'=> 'firm']) !!}',
+            overwriteInitial: false,
+            maxFileSize: 1000000,
+            //showUpload: false,
+            maxFileCount: 20,
+            initialCaption: "The Moon and the Earth",
+            maxFilePreviewSize: 10240,
+            theme: 'bs5',
+            language: 'ru',
+            showCancel: false,
+            showRemove: false,
+            showUpload: true,
+
+
+            allowedFileExtensions: ['jpg', 'png', 'gif']
+        });
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+    </script>
 
 @endsection

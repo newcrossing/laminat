@@ -132,7 +132,38 @@
     </div>
 </div>
 <!-- ekka Cart End -->
+<div class="ec-page-content ec-vendor-dashboard section-space-p" style="padding-bottom: 2px">
+    <div class="container">
+        <div class="ec-shop-rightside col-lg-12 col-md-12">
+            <div class="row" >
+                @foreach(\App\Models\Type::all() as $type)
+                    <div class="col-lg-3 col-md-6" >
+                        <a href="{{$type->slug}}">
+                            <div class="ec-vendor-dashboard-sort-card color-blue" style="padding: 10px; text-align: center; margin-bottom: 3px">
+                                <b class="font-size-small" >{{$type->name}}</b>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
+                <div class="col-lg-3 col-md-6">
+                    <a href="{{route('manufacture.list')}}">
+                        <div class="ec-vendor-dashboard-sort-card color-blue" style="padding: 10px; text-align: center; margin-bottom: 3px">
+                            <b class="fs-6">Производители</b>
+                        </div>
+                    </a>
+                </div>
+                    <div class="col-lg-3 col-md-6">
+                    <a href="{{$type->slug}}">
+                        <div class="ec-vendor-dashboard-sort-card color-blue" style="padding: 10px; text-align: center; margin-bottom: 3px">
+                            <b class="fs-6">Скидки</b>
+                        </div>
+                    </a>
+                </div>
+            </div>
 
+        </div>
+    </div>
+</div>
 @include('frontend.moduls.breadcrumb')
 {{--<div class="container">--}}
 {{--    <div class="row">--}}
@@ -159,6 +190,7 @@
 
 
 <!-- Sart Single product -->
+
 @yield('content')
 <!-- End Single product -->
 

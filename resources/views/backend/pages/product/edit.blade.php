@@ -234,7 +234,6 @@
         </form>
     </section>
     <section>
-
         <form enctype="multipart/form-data" method="post">
             @csrf
             <div class="file-loading">
@@ -245,11 +244,9 @@
                 <input name="images[]" id="file-up" class="file" type="file" multiple data-min-file-count="1" data-theme="fa5">
             </div>
             <br>
-            <button type="submit" class="btn btn-primary">Submit</button>
-            <button type="reset" class="btn btn-outline-secondary">Reset</button>
+            <button type="submit" class="btn btn-primary">Отправить</button>
+            <button type="reset" class="btn btn-outline-secondary">Сбросить</button>
         </form>
-
-
     </section>
 
 @endsection
@@ -281,51 +278,10 @@
 
     <!-- END: Page JS-->
 
-    <script type="text/javascript">
-        $(document).ready(function () {
 
-            $('button#save').bind('click', function () {
-
-
-                $('button#save').html('<span class="spinner-border spinner-border-sm" ></span> Сохранение...')
-                $('button#save').attr('disabled', 'disabled');
-                let id = $('#id').val()
-                let name = $('#name').val()
-                console.log('id=' + id)
-                var arr = {id: id, name: name, _token: '{{ csrf_token() }}'};
-
-                $.ajax({
-                    {{--url: '{{route('backend.product.update')}}',--}}
-                    method: 'post',
-                    dataType: 'json',
-                    data: arr,
-                    async: false,
-                    success: function (data) {
-                        console.log(data);
-                        obj = JSON.parse(data);
-                        toastr.success('Данные сохранены на сервере. ' + obj, 'Сохранено');
-                        $('button#save').html(" <i class='bx bx-save'></i><span>Сохранить</span>")
-                        $('button#save').removeAttr('disabled');
-
-
-                    },
-                    error: function (jqXHR, ee, tt) {
-
-                        $('button#save').html(" <i class='bx bx-save'></i><span>Сохранить</span>")
-                        toastr.error(jqXHR.responseJSON, 'Ошибка сохранения');
-                        //  $('button#save').removeAttr('disabled');
-                        console.log(jqXHR.responseJSON);
-                    }
-
-
-                });
-            });
-        });
-    </script>
 
     <script type="text/javascript" src="/b/CKE/ckeditor/ckeditor.js"></script>
     <script type="text/javascript" src="/b/CKE/ckfinder.js"></script>
-
     <script type="text/javascript">
         if (typeof CKEDITOR == 'undefined') {
             document.write('Error');
@@ -353,10 +309,9 @@
     <script src="/b/fileuploader/themes/gly/theme.js" type="text/javascript"></script>
     <script src="/b/fileuploader/themes/fa5/theme.js" type="text/javascript"></script>
     <script src="/b/fileuploader/themes/explorer-fa5/theme.js" type="text/javascript"></script>
-    <script>$.fn.fileinput.defaults.theme = 'fa5';</script>
+
 
     <script>
-
         $('#file-up').fileinput({
             initialPreview: [
                 @foreach($product->fotos as $img)

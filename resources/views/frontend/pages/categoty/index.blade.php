@@ -60,16 +60,15 @@
                                                         @if($product->fotos()->count())
                                                             @foreach($product->fotos as $foto)
                                                                 @if ($loop->first)
-                                                                    <img class="main-image" src="{{ asset(Storage::disk('product')->url('/cr_400/'). $foto->full_name_file)}}"/>
+                                                                    <img class="main-image" src="{{ $foto->getUrlCr()}}"/>
                                                                 @endif
                                                                 @if ($loop->iteration == 2)
-                                                                    <img class="hover-image" src="{{ asset(Storage::disk('product')->url('/cr_400/'). $foto->full_name_file)}}"/>
+                                                                    <img class="hover-image" src="{{ $foto->getUrlCr()}}"/>
                                                                     @break
                                                                 @endif
                                                             @endforeach
                                                         @else
-                                                            <img class="main-image"
-                                                                 src="{{ asset(Storage::disk('product')->url('/300/0cd62333-c91b-4860-ae5c-fc41f6d53487.jpg'))}}"/>
+                                                            <img class="main-image" src="{{ asset(Storage::disk('product')->url('/cr_400/null.jpg'))}}"/>
                                                         @endif
 
 
@@ -124,9 +123,10 @@
 
                                                 </div>
                                                 @if($product->oldPriceMetr())
-                                                <div class="ec-price" style="justify-content: center;">
-                                                    <span class="old-price " style="font-size: 28px">{{Number::format($product->oldPriceMetr(),locale: 'ru')}} </span><sub>руб.</sub>
-                                                </div>
+                                                    <div class="ec-price" style="justify-content: center;">
+                                                        <span class="old-price "
+                                                              style="font-size: 28px">{{Number::format($product->oldPriceMetr(),locale: 'ru')}} </span><sub>руб.</sub>
+                                                    </div>
                                                 @endif
                                             </div>
                                         </div>

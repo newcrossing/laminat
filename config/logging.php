@@ -73,6 +73,14 @@ return [
             'permission' => 0777,
             'replace_placeholders' => true,
         ],
+        'daily-images' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/images/laravel.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'days' => 14,
+            'permission' => 0777,
+            'replace_placeholders' => true,
+        ],
 
         'slack' => [
             'driver' => 'slack',

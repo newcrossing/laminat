@@ -19,7 +19,7 @@
             <div class="col-xl-4 col-md-6 col-12 dashboard-latest-update">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center pb-50">
-                        <h4 class="card-title">Продукция <small>  (последние 5)</small></h4>
+                        <h4 class="card-title">Продукция <small>  (последние 5)</small> {{disk_total_space('/')/ 1073741824}}</h4>
                         <div class="dropdown">
                             <a class="btn btn-sm btn-success btn-outline-info" href="{{route('backend.product.create')}}">
                                 Добавить
@@ -125,6 +125,7 @@
                             </a>
                         </div>
                     </div>
+
                 </div>
             </div>
 
@@ -169,6 +170,19 @@
                                             </div>
                                             <a class="line-ellipsis" href="{{route('backend.collection.index')}}">Коллекции</a>
                                             <h3 class="mb-0">{{\App\Models\Collection::public()->count()}}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3 col-12 dashboard-users-danger">
+                                <div class="card text-center">
+                                    <div class="card-content">
+                                        <div class="card-body py-1">
+                                            <div class="badge-circle badge-circle-lg badge-circle-light-danger mx-auto mb-50">
+                                                <i class="bx bx-user font-medium-5"></i>
+                                            </div>
+                                            Свободное место:
+                                            <h3 class="mb-0">  {{round(disk_free_space('/')/ 1073741824,2)}} Гб</h3>
                                         </div>
                                     </div>
                                 </div>

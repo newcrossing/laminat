@@ -20,13 +20,7 @@ class Kernel extends ConsoleKernel
         // бекап системы
         // $schedule->exec('/opt/php81/bin/php artisan backup:clean --disable-notifications')->dailyAt('21:03');
         $schedule->exec("cd  /var/www/localadmin/data/www/polrossii.ru/ && /opt/php81/bin/php artisan backup:run --only-files --disable-notifications")
-            ->everyMinute()
-            ->onFailure(function (Stringable $output) {
-                Log::warning('Бекап сайта завершился с ошибкой'.$output);
-            })
-            ->onSuccess(function (Stringable $output) {
-                Log::info('Бекап сайта завершился'.$output);
-            });;
+            ->everyMinute();
 
     }
 

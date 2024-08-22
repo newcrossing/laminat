@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\AttributeOptionController;
 use App\Http\Controllers\Backend\CollectionController;
 use App\Http\Controllers\Backend\FirmController;
 use App\Http\Controllers\Backend\TypeController;
+use App\Http\Controllers\ManufactureController;
 use App\Models\Firm;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -37,6 +38,9 @@ use \App\Http\Controllers\Auth\LoginRegisterController;
 Route::get('/', [\App\Http\Controllers\ProductController::class, 'list'])->name('home');;
 Route::get('/category', [\App\Http\Controllers\ProductController::class, 'list'])->name('home233');;
 Route::get('/{slug}', [\App\Http\Controllers\ProductController::class, 'show'])->where('slug', 'p-[A-Za-z0-9-]+')->name('prod.show');
+
+Route::get('/manufactures/', [ManufactureController::class, 'list'])->name('manufacture.list');
+Route::get('/manufacture-{slug}', [ManufactureController::class, 'show'])->where('slug', '[A-Za-z0-9-]+')->name('manufacture.show');
 
 Route::get('/backend/user', [UserController::class, 'index'])->name('backend.user');
 
