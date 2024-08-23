@@ -19,7 +19,7 @@
             <div class="col-xl-4 col-md-6 col-12 dashboard-latest-update">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center pb-50">
-                        <h4 class="card-title">Продукция <small>  (последние 5)</small> {{disk_total_space('/')/ 1073741824}}</h4>
+                        <h4 class="card-title">Продукция <small>  (последние 5)</small> </h4>
                         <div class="dropdown">
                             <a class="btn btn-sm btn-success btn-outline-info" href="{{route('backend.product.create')}}">
                                 Добавить
