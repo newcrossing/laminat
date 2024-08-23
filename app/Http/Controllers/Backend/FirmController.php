@@ -5,12 +5,16 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreFirmRequest;
 use App\Models\Collection;
+use App\Models\File;
 use App\Models\Firm;
 
+use App\Models\Foto;
 use App\Models\Product;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class FirmController extends Controller
 {
@@ -99,6 +103,22 @@ class FirmController extends Controller
         $validated = $request->validated();
 
         $firm->fill($validated)->save();
+
+        $files = $request->file('files');
+
+
+        if ($request->hasFile('files')) {
+            foreach ($files as $file) {
+                $f = new File([
+                    'filename' => Str::uuid(),
+                    'extension' => $file->extension(),
+                    'name' => pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME),
+                ]);
+                $firm->files()->save($f);
+
+                $file->storeAs('/', $f->full_name_file, 'files');
+            }
+        }
 
         return redirect()->back()->with('success', 'Сохранено.');
     }

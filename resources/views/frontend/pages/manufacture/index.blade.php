@@ -23,19 +23,25 @@
                             <div class="ec-vendor-card">
 
 
-                                <div class="ec-vendor-card-img mt-3 mb-5" style="text-align: center">
-                                    <img src="/storage/manufacture/Alpine_Floor_logo.png" alt="vendor img">
+                                <div class="ec-vendor-card-img mt-3 mb-5 ml-3 mr-3" style="text-align: center">
+
+
+                                    @if($img =  $firm->fotos()->first())
+                                        <img src="{{ $img->getUrl('300')}}" alt="{{$firm->name}}">
+                                    @endif
+
+
                                 </div>
 
                                 <div class="ec-vendor-card-info">
-                                    <a href="catalog-single-vendor.html">
+                                    <a href="{{route('manufacture.show',$firm->slug)}}">
                                         <h6 class="name">{{$firm->name}}</h6>
                                     </a>
                                     <p class="des">( Россия )</p>
                                     <div class="" style="height: 150px">
-{{--                                        @foreach($firm->collections as $collections)--}}
-{{--                                            <div>{{$collections->products->count()}}</div>--}}
-{{--                                        @endforeach--}}
+                                        {{--                                        @foreach($firm->collections as $collections)--}}
+                                        {{--                                            <div>{{$collections->products->count()}}</div>--}}
+                                        {{--                                        @endforeach--}}
 
                                     </div>
                                     <a href="{{route('manufacture.show',$firm->slug)}}" class="btn btn-primary w-100">Вся продукция </a>

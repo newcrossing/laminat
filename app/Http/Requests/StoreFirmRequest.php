@@ -31,6 +31,7 @@ class StoreFirmRequest extends FormRequest
             'slug' => ['required', Rule::unique('firms', 'slug')->ignore($this->firm)],
             'public' => 'boolean',
             'description' => 'nullable',
+            'files' => 'nullable',
         ];
 
 

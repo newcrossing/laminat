@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Number;
 use Illuminate\Support\Str;
 
-class Foto extends Model
+class File extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -18,6 +19,7 @@ class Foto extends Model
         'filename',
         'extension',
         'description',
+        'name',
     ];
 
     public function getFullNameFileAttribute()
@@ -25,13 +27,13 @@ class Foto extends Model
         return "{$this->filename}.{$this->extension}";
     }
 
-    public function getUrlCr($size = 400)
+    public function getSize()
     {
-        if (Storage::disk('product')->exists("/cr_{$size}/" . $this->getFullNameFileAttribute()))
-            return Storage::disk('product')->url("/cr_{$size}/") . $this->getFullNameFileAttribute();
+        if (Storage::disk('files')->exists($this->getFullNameFileAttribute()))
+            return Number::fileSize(Storage::disk('files')->size($this->getFullNameFileAttribute()));
         else {
-            Log::channel('daily-images')->warning('Нет изображения кроп ' . $this->getFullNameFileAttribute());
-            return Storage::disk('product')->url("/cr_{$size}/null.jpg");
+            Log::channel('daily-images')->warning('Нет файла  ' . $this->getFullNameFileAttribute());
+            return Number::fileSize(0);
         }
     }
 
@@ -49,7 +51,7 @@ class Foto extends Model
     /**
      * Получить родительскую модель которой относится.
      */
-    public function fotoable()
+    public function fileable()
     {
         return $this->morphTo();
     }

@@ -24,7 +24,7 @@
 @section('content')
     <!-- app invoice View Page -->
     <section class="invoice-edit-wrapper">
-        <form action="{{ (isset($firm->id))? route('backend.firm.update',$firm->id):route('backend.firm.store')  }}" method="POST">
+        <form action="{{ (isset($firm->id))? route('backend.firm.update',$firm->id):route('backend.firm.store')  }}" method="POST" enctype="multipart/form-data" >
             @csrf
             @if(isset($firm->id))
                 @method('PUT')
@@ -122,23 +122,51 @@
 
                         </div>
                     </div>
-                    <div class="card invoice-action-wrapper shadow-none border">
-                        <div class="card-header">
-                            <h5 class="card-tile mb-0">Файлы сертификатов и пр.</h5>
-                        </div>
-                        <div class="card-body pb-0 pt-0">
+                    @if($firm->id)
+                        <div class="card invoice-action-wrapper shadow-none border">
+                            <div class="card-header">
+                                <h5 class="card-tile mb-0">Файлы сертификатов и пр.</h5>
+                            </div>
+                            <div class="card-body pb-0 pt-0">
 
-                            <fieldset class="form-group">
-                                <label for="basicInputFile">Выберите файлы</label>
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="inputGroupFile01" multiple>
-                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                <fieldset class="form-group">
+                                    <label for="basicInputFile">Выберите файлы</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="inputGroupFile01" name="files[]" multiple >
+                                        <label class="custom-file-label" for="inputGroupFile01">Выберите файлы</label>
+                                    </div>
+                                </fieldset>
+                                <div class="row app-file-recent-access">
+                                    @foreach($firm->files as $file)
+{{--                                        "{{ asset(Storage::disk('product')->url('/300/'). $img->full_name_file)}}",--}}
+                                        <div class="col-md-6 col-6">
+                                            <div class="card border shadow-none mb-1 app-file-info">
+                                                <div class="card-content">
+                                                    <div class="app-file-content-logo card-img-top mt-1">
+
+                                                        <img class="d-block mx-auto" src="/b/app-assets/images/icon/pdf.png" height="38" width="30" alt="Card image cap">
+                                                    </div>
+                                                    <div class="card-body p-50">
+                                                        <div class="app-file-recent-details">
+                                                            <div class="app-file-name font-size-small font-weight-bold">
+                                                                <a target="_blank" href="{{Storage::disk('files')->url($file->full_name_file)}}"> {{$file->name.".".$file->extension}}</a>
+                                                            </div>
+                                                            @if(!Storage::disk('files')->exists($file->full_name_file))
+                                                                <div class="app-file-size font-size-small text-danger mb-25"> Нет на сервере</div>
+                                                            @endif
+                                                            <div class="app-file-size font-size-small text-muted mb-25"> {{$file->getSize()}} </div>
+                                                            <div class="app-file-last-access font-size-small text-muted">{{$file->created_at->diffForHumans()}}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
                                 </div>
-                            </fieldset>
-
-
+                            </div>
                         </div>
-                    </div>
+                    @endif
+
                 </div>
 
             </div>

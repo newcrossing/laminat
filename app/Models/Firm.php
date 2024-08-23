@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasFiles;
 use App\Traits\HasFotos;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,6 +14,7 @@ class Firm extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use HasFiles;
     use HasFotos;
 
     protected $fillable = [
