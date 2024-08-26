@@ -39,6 +39,9 @@
                                     </a>
                                     <p class="des">( Россия )</p>
                                     <div class="" style="height: 150px">
+
+
+
                                         {{--                                        @foreach($firm->collections as $collections)--}}
                                         {{--                                            <div>{{$collections->products->count()}}</div>--}}
                                         {{--                                        @endforeach--}}

@@ -11,6 +11,7 @@ use App\Models\Firm;
 use App\Models\Foto;
 use App\Models\Product;
 use App\Models\Type;
+use App\Services\FileUploadService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
@@ -94,7 +95,7 @@ class FirmController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreFirmRequest $request, Firm $firm)
+    public function update(StoreFirmRequest $request, Firm $firm, FileUploadService $fileUploadService)
     {
         if ($request->redirect == 'delete') {
             $firm->delete();
@@ -104,21 +105,7 @@ class FirmController extends Controller
 
         $firm->fill($validated)->save();
 
-        $files = $request->file('files');
-
-
-        if ($request->hasFile('files')) {
-            foreach ($files as $file) {
-                $f = new File([
-                    'filename' => Str::uuid(),
-                    'extension' => $file->extension(),
-                    'name' => pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME),
-                ]);
-                $firm->files()->save($f);
-
-                $file->storeAs('/', $f->full_name_file, 'files');
-            }
-        }
+        $fileUploadService->uploadFile($firm, $request);
 
         return redirect()->back()->with('success', 'Сохранено.');
     }

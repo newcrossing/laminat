@@ -18,39 +18,11 @@ p {
 }
 
 
-h2 {
-    font-size: 20px;
-    font-family: Arial, "Times New Roman", Times, serif;
-    font-weight: bold;
-    text-align: left;
-    color: #1f1f1f;
-    line-height: 1.3;
-    margin-top: 40px;
-}
 
 ol {
     text-align: justify;
 }
 
-h3 {
-    font-size: 18px;
-    font-family: Arial, "Times New Roman", Times, serif;
-    font-weight: bold;
-    text-align: left;
-    color: #1f1f1f;
-    line-height: 1.3;
-    margin-top: 30px;
-
-}
-
-h4 {
-    font-size: 14px;
-    font-family: Georgia, "Times New Roman", Times, serif;
-    font-weight: bold;
-    text-align: center;
-    color: #000000;
-    margin: 0px;
-}
 
 html {
     /* #3658: [IE6] Editor document has horizontal scrollbar on long lines

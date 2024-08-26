@@ -23,8 +23,14 @@ class Type extends Model
     protected $casts = [
         'public' => 'boolean',
     ];
+
     public function products(): HasMany
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function productsPublic()
+    {
+        return $this->products()->where('public', '=', '1');
     }
 }

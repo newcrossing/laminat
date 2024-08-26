@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -83,10 +85,20 @@ class Product extends Model
         $query->where('public', true);
     }
 
+    public function getFullName (){
+        return "{$this->collection->firm->name}   {$this->collection->name} {$this->name}";
+
+    }
+
 
     public function collection(): BelongsTo
     {
         return $this->belongsTo(Collection::class);
+    }
+
+    public function collectionPublic(): BelongsTo
+    {
+        return $this->collection()->where('public', '=', true);
     }
 
     public function type(): BelongsTo
@@ -98,6 +110,11 @@ class Product extends Model
     {
         return $this->belongsToMany(AttributeOption::class);
     }
+
+//    public function firm(): HasOneThrough
+//    {
+//        return $this->through('collection')->has('firm');
+//    }
 
 
 }

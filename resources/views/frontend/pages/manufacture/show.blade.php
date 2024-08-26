@@ -8,7 +8,6 @@
 
 
 @section('page-styles')
-
 @endsection
 
 @section('content')
@@ -24,12 +23,16 @@
 
                                 <div class="ec-vendor-block-detail">
                                     @php
-                                       $img =  $firm->fotos()->first();
+                                        $img =  $firm->fotos()->first();
                                     @endphp
+                                    @if($img)
+                                        <img src="{{ asset($img->getUrl())}}" alt="{{$firm->name}}">
+                                    @endif
 
-                                    <img  src="{{ asset(Storage::disk('product')->url('/300/'). $img->full_name_file)}}" alt="{{$firm->name}}">
+
                                     <h5 class="mt-4">{{$firm->name}}</h5>
                                 </div>
+
 
                             </div>
                         </div>
@@ -41,117 +44,50 @@
                             <div class="ec-vendor-block-profile">
 
                                 <div class="ec-vendor-block-about space-bottom-30">
-                                   {!! $firm->text !!}
-                                </div>
-                                <h5>Account Information</h5>
 
+                                    {!! $firm->text !!}
+
+
+                                </div>
                                 <div class="row">
-                                    <div class="col-md-6 col-sm-12">
-                                        <div class="ec-vendor-detail-block ec-vendor-block-email space-bottom-30">
-                                            <h6>E-mail address</h6>
-                                            <ul>
-                                                <li><strong>Email 1 : </strong>support1@exapmle.com</li>
-                                                <li><strong>Email 2 : </strong>support2@exapmle.com</li>
-                                            </ul>
+                                    @foreach($firm->files as $file)
+                                        <div class="ec_ser_content ec_ser_content_1 col-sm-12 col-md-6 col-lg-4">
+                                            <a href="{{Storage::disk('files')->url($file->full_name_file)}}" target="_blank">
+                                                <div class="ec_ser_inner">
+                                                    <div class="" style="width: 50px; height: 50px; color:darkred">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+                                                            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+                                                            <path d="M4.603 14.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.697 19.697 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.188-.012.396-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.066.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.712 5.712 0 0 1-.911-.95 11.651 11.651 0 0 0-1.997.406 11.307 11.307 0 0 1-1.02 1.51c-.292.35-.609.656-.927.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.266.266 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.71 12.71 0 0 1 1.01-.193 11.744 11.744 0 0 1-.51-.858 20.801 20.801 0 0 1-.5 1.05zm2.446.45c.15.163.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.876 3.876 0 0 0-.612-.053zM8.078 7.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"/>
+                                                        </svg>
+                                                    </div>
+                                                    <div class="ec-service-desc mt-1">
+                                                        <h5>{{$file->name}}</h5>
+                                                        <p>{{$file->getSize()}}</p>
+                                                    </div>
+                                                </div>
+                                            </a>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-12">
-                                        <div class="ec-vendor-detail-block ec-vendor-block-contact space-bottom-30">
-                                            <h6>Contact nubmer</h6>
-                                            <ul>
-                                                <li><strong>Phone Nubmer 1 : </strong>(123) 123 456 7890</li>
-                                                <li><strong>Phone Nubmer 2 : </strong>(123) 123 456 7890</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-12">
-                                        <div class="ec-vendor-detail-block ec-vendor-block-address mar-b-30">
-                                            <h6>Address</h6>
-                                            <ul>
-                                                <li><strong>Home : </strong>123, 2150 Sycamore Street, dummy text of
-                                                    the, San Jose, California - 95131.</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-12">
-                                        <div class="ec-vendor-detail-block ec-vendor-block-address">
-                                            <h6>Shipping Address</h6>
-                                            <ul>
-                                                <li><strong>Office : </strong>123, 2150 Sycamore Street, dummy text of
-                                                    the, San Jose, California - 95131.</li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                                    @endforeach
+
+
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="ec-vendor-dashboard-card space-bottom-30">
-                        <div class="ec-vendor-card-header">
-                            <h5>Latest Order</h5>
-                            <div class="ec-header-btn">
-                                <a class="btn btn-lg btn-primary" href="#">View All</a>
-                            </div>
-                        </div>
-                        <div class="ec-vendor-card-body">
-                            <div class="ec-vendor-card-table">
-                                <table class="table ec-table">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Image</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Method</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col">Total</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <th scope="row"><span>225</span></th>
-                                        <td><img class="prod-img" src="assets/images/product-image/1.jpg"
-                                                 alt="product image"></td>
-                                        <td><span>Stylish baby shoes</span></td>
-                                        <td><span>COD</span></td>
-                                        <td><span>Pending</span></td>
-                                        <td><span>$320</span></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"><span>548</span></th>
-                                        <td><img class="prod-img" src="assets/images/product-image/2.jpg"
-                                                 alt="product image"></td>
-                                        <td><span>Sweat Pullover Hoodie</span></td>
-                                        <td><span>Cash</span></td>
-                                        <td><span>Pending</span></td>
-                                        <td><span>$214</span></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"><span>684</span></th>
-                                        <td><img class="prod-img" src="assets/images/product-image/3.jpg"
-                                                 alt="product image"></td>
-                                        <td><span>T-shirt for girl</span></td>
-                                        <td><span>Ewallets</span></td>
-                                        <td><span>On Way</span></td>
-                                        <td><span>$548</span></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"><span>987</span></th>
-                                        <td><img class="prod-img" src="assets/images/product-image/4.jpg"
-                                                 alt="product image"></td>
-                                        <td><span>Wool hat for men</span></td>
-                                        <td><span>Bank Transfers</span></td>
-                                        <td><span>Delivered</span></td>
-                                        <td><span>$200</span></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                    <x-products.table_type :types="$types"/>
 
                 </div>
             </div>
+
         </div>
+
     </section>
+
+
+
+    <x-products :products="$firm->products"/>
+@endsection
+
+@section('page-scripts')
 @endsection
