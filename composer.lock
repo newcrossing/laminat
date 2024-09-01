@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e52f25be2fdd3a22e07f31ad11970437",
+    "content-hash": "ed71c52643dfe0e176a788f6d30fbf73",
     "packages": [
         {
             "name": "barryvdh/elfinder-flysystem-driver",
@@ -139,82 +139,6 @@
                 "source": "https://github.com/barryvdh/laravel-elfinder/tree/v0.5.3"
             },
             "time": "2024-03-09T08:05:19+00:00"
-        },
-        {
-            "name": "bkwld/croppa",
-            "version": "7.0.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/BKWLD/croppa.git",
-                "reference": "09dc88f7a3bfc1f979dc8aba8afd76cec097225c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/BKWLD/croppa/zipball/09dc88f7a3bfc1f979dc8aba8afd76cec097225c",
-                "reference": "09dc88f7a3bfc1f979dc8aba8afd76cec097225c",
-                "shasum": ""
-            },
-            "require": {
-                "ext-gd": "*",
-                "illuminate/console": "^9.0|^10.0|^11.0",
-                "illuminate/routing": "^9.0|^10.0|^11.0",
-                "illuminate/support": "^9.0|^10.0|^11.0",
-                "intervention/image": "^3.6",
-                "league/flysystem": "^3.0",
-                "php": "^8.1",
-                "symfony/http-foundation": "^6.0|^7.0",
-                "symfony/http-kernel": "^6.0|^7.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.4.4",
-                "nunomaduro/larastan": "^2.0",
-                "orchestra/testbench": "^7.5",
-                "phpunit/phpunit": "^9.5.10"
-            },
-            "suggest": {
-                "ext-exif": "Required if you want to have Croppa auto-rotate images from devices like mobile phones based on exif meta data."
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Bkwld\\Croppa\\CroppaServiceProvider"
-                    ],
-                    "aliases": {
-                        "Croppa": "Bkwld\\Croppa\\Facades\\Croppa"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Bkwld\\Croppa\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Robert Reinhard"
-                },
-                {
-                    "name": "Samuel De Backer"
-                }
-            ],
-            "description": "Image thumbnail creation through specially formatted URLs for Laravel",
-            "homepage": "https://github.com/bkwld/croppa",
-            "keywords": [
-                "image",
-                "laravel",
-                "resize",
-                "thumb"
-            ],
-            "support": {
-                "issues": "https://github.com/BKWLD/croppa/issues",
-                "source": "https://github.com/BKWLD/croppa/tree/7.0.4"
-            },
-            "time": "2024-06-11T15:55:12+00:00"
         },
         {
             "name": "brick/math",

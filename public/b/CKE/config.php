@@ -157,7 +157,8 @@ $config['cache'] = array(
 /*============================ Temp Directory settings ================================*/
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_tempDirectory
 
-$config['tempDirectory'] = sys_get_temp_dir();
+//$config['tempDirectory'] = sys_get_temp_dir();
+$config['tempDirectory'] =__DIR__ . '/tmp';
 
 /*============================ Session Cause Performance Issues =======================*/
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_sessionWriteClose

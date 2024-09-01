@@ -16,7 +16,7 @@
 
     <section id="dashboard-ecommerce">
         <div class="row">
-            <div class="col-xl-4 col-md-6 col-12 dashboard-latest-update">
+            <div class="col-xl-6 col-md-6 col-12 dashboard-latest-update">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center pb-50">
                         <h4 class="card-title">Продукция <small>  (последние 5)</small> </h4>
@@ -70,7 +70,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-md-6 col-12 dashboard-latest-update">
+            <div class="col-xl-6 col-md-6 col-12 dashboard-latest-update">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center pb-50">
                         <h4 class="card-title">Производители <small>  (последние 5)</small></h4>
