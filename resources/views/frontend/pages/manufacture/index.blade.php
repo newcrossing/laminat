@@ -23,28 +23,28 @@
                             <div class="ec-vendor-card">
 
 
-                                <div class="ec-vendor-card-img mt-3 mb-5 ml-3 mr-3" style="text-align: center">
-
-
+                                <div class="ec-vendor-card-img mt-3 mb-5 ml-3 mr-3 pt-2 pr-4 pl-4" style="text-align: center; height: 90px">
                                     @if($img =  $firm->fotos()->first())
                                         <img src="{{ $img->getUrl('300')}}" alt="{{$firm->name}}">
                                     @endif
-
-
                                 </div>
+
 
                                 <div class="ec-vendor-card-info">
                                     <a href="{{route('manufacture.show',$firm->slug)}}">
                                         <h6 class="name">{{$firm->name}}</h6>
                                     </a>
-                                    <p class="des">( Россия )</p>
-                                    <div class="" style="height: 150px">
+                                    <p class="des"></p>
+                                    <div class="typography" style="height: 150px; font-size: 16px">
 
+                                        @foreach( \App\Models\Type::withWhereHas('productsPublic.collection.firm', fn($query) => $query->where('id', '=', $firm->id))->withCount('productsPublic')->get() as $type)
+                                            <div class="text-center text-bold ">
+                                                <a href="sd">
+                                                    <span style="text-decoration: underline">{{$type->name}}</span> ({{ $type->products_public_count}})
+                                                </a>
+                                            </div>
 
-
-                                        {{--                                        @foreach($firm->collections as $collections)--}}
-                                        {{--                                            <div>{{$collections->products->count()}}</div>--}}
-                                        {{--                                        @endforeach--}}
+                                        @endforeach
 
                                     </div>
                                     <a href="{{route('manufacture.show',$firm->slug)}}" class="btn btn-primary w-100">Вся продукция </a>

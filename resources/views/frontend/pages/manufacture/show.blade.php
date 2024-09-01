@@ -25,8 +25,8 @@
                                     @php
                                         $img =  $firm->fotos()->first();
                                     @endphp
-                                    @if($img)
-                                        <img src="{{ asset($img->getUrl())}}" alt="{{$firm->name}}">
+                                    @if($img =  $firm->fotos()->first())
+                                        <img src="{{ $img->getUrl('300')}}" alt="{{$firm->name}}">
                                     @endif
 
 
@@ -39,17 +39,17 @@
                     </div>
                 </div>
                 <div class="ec-shop-rightside col-lg-9 col-md-12">
-                    <div class="row">
+                    <div class="row mb-5">
                         <div class="col-md-12">
                             <div class="ec-vendor-block-profile">
 
-                                <div class="ec-vendor-block-about space-bottom-30">
+                                <div class="ec-vendor-block-about space-bottom-30 ">
 
                                     {!! $firm->text !!}
 
 
                                 </div>
-                                <div class="row">
+                                <div class="row ">
                                     @foreach($firm->files as $file)
                                         <div class="ec_ser_content ec_ser_content_1 col-sm-12 col-md-6 col-lg-4">
                                             <a href="{{Storage::disk('files')->url($file->full_name_file)}}" target="_blank">
@@ -86,7 +86,7 @@
 
 
 
-    <x-products :products="$firm->products"/>
+
 @endsection
 
 @section('page-scripts')

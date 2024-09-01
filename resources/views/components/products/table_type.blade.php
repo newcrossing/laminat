@@ -19,12 +19,12 @@
                                     $img = $product->fotos()->first();
                                 @endphp
                                 @if($img)
-                                    <img src="{{ asset($img->getUrl(100))}}" alt="{{$product->name}}" width="50">
+                                    <img src="{{ asset($img->getUrlCr(100))}}" alt="{{$product->name}}" width="50">
                                 @endif
 
 
                             </td>
-                            <td><span> <a href="{{route('prod.show',$product->slug)}}">{{$product->getFullName()}} </a></span></td>
+                            <td><span class="font-weight-normal"> <a href="{{route('prod.show',$product->slug)}}">{{$product->getFullName()}} </a></span></td>
 
                             <td><span class="text-bold">{{$product->actualPriceMetr()}} руб. м <sup>2</sup></span></td>
 

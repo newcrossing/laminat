@@ -50,6 +50,7 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+
         'files' => [
             'driver' => 'local',
             'root' => storage_path('app/public/files'),

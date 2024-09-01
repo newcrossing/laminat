@@ -16,6 +16,8 @@ return [
                  */
                 'include' => [
                     base_path('storage/app/public/'),
+                    base_path('public/storage/files/'),
+                    base_path('public/storage/userfiles/'),
                 ],
 
                 /*

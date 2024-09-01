@@ -178,11 +178,11 @@
                                 <div class="card text-center">
                                     <div class="card-content">
                                         <div class="card-body py-1">
-                                            <div class="badge-circle badge-circle-lg badge-circle-light-danger mx-auto mb-50">
-                                                <i class="bx bx-user font-medium-5"></i>
+                                            <div class="badge-circle badge-circle-lg badge-circle-light-info mx-auto mb-50">
+                                                <i class="bx bx-hdd font-medium-5"></i>
                                             </div>
                                             Свободное место:
-{{--                                            <h3 class="mb-0">  {{round(disk_free_space('/')/ 1073741824,2)}} Гб</h3>--}}
+                                            <h3 class="mb-0">  {{round(disk_free_space('./')/ 1073741824,2)}} Гб</h3>
                                         </div>
                                     </div>
                                 </div>

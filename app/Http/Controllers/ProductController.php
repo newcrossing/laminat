@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Bkwld\Croppa\Facades\Croppa;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -10,7 +11,7 @@ class ProductController extends Controller
     public function list()
     {
         $products = Product::where('public', '1')->get();
-
+        // dd(Croppa::url('storage/11.jpg',220,300));
         $breadcrumbs = [
             ['link' => "/backend/", 'name' => "Главная"],
             ['name' => " Продукция "]

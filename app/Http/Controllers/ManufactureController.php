@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Firm;
 use App\Models\Product;
 use App\Models\Type;
+
+use Bkwld\Croppa\Facades\Croppa;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
@@ -23,18 +25,13 @@ class ManufactureController extends Controller
 
     public function show($slug)
     {
+
         $firm = Firm::where('slug', $slug)->firstOrFail();
 
-
-        // получаю все Типы выполнял
-        $types = Type::withWhereHas('productsPublic.collectionPublic.firm', fn($query) => $query->where('id', '=', $firm->id))->get();
-//        foreach ($Type as $t) {
-//            print "{$t->name} <br>";
-//            foreach ($t->productsPublic as $product) {
-//                print "-{$product->name} - {$product->collection->name} - {$product->collection->firm->name}  <br>";
-//
-//            }
-//        }
+        $types = Type::withWhereHas('productsPublic.collection.firm', fn($query) => $query->where('id', '=', $firm->id))->get();
+       // $types2 = Type::withCount('products.collection')->get();
+      //  $types2 = Type::withCount('products.collection')->get();
+        $types2 = Type::withWhereHas('productsPublic.collection.firm', fn($query) => $query->where('id', '=', $firm->id))->withCount('productsPublic')->get();
 
 
         $breadcrumbs = [

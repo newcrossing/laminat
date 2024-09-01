@@ -45,19 +45,19 @@ class PhotoController extends Controller
             if ($image->width() > $image->height()) {
                 $image->scale(height: 500)
                     ->crop(400, 500, 0, 0, position: 'center-center')
-                    ->save(Storage::disk('product')->path('/cr_400/') . $foto->full_name_file, progressive: true, quality: 90);
+                    ->save(Storage::disk('product')->path('/cr_400/') . $foto->full_name_file);
                 $image = ImageManager::imagick()->read($file);
                 $image->scale(height: 125)
                     ->crop(100, 125, 0, 0, position: 'center-center')
-                    ->save(Storage::disk('product')->path('/cr_100/') . $foto->full_name_file, progressive: true, quality: 90);
+                    ->save(Storage::disk('product')->path('/cr_100/') . $foto->full_name_file);
             } else {
                 $image->scale(width: 400)
                     ->crop(400, 500, 0, 0, position: 'center-center')
-                    ->save(Storage::disk('product')->path('/cr_400/') . $foto->full_name_file, progressive: true, quality: 90);
+                    ->save(Storage::disk('product')->path('/cr_400/') . $foto->full_name_file);
                 $image = ImageManager::imagick()->read($file);
                 $image->scale(width: 100)
                     ->crop(100, 125, 0, 0, position: 'center-center')
-                    ->save(Storage::disk('product')->path('/cr_100/') . $foto->full_name_file, progressive: true, quality: 90);
+                    ->save(Storage::disk('product')->path('/cr_100/') . $foto->full_name_file);
             }
 
 
