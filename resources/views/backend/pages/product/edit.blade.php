@@ -123,7 +123,7 @@
                                     <div class="col-12">
                                         <fieldset class="form-group">
                                             <label class="form-label">Короткое описание</label>
-                                            {{--                                            <textarea name="description" class="form-control" rows="8" placeholder="">{{old('description',$product->description)}}</textarea>--}}
+                                            <textarea name="description" class="form-control" rows="8" placeholder="">{{old('description',$product->description)}}</textarea>
                                         </fieldset>
                                     </div>
                                 </div>
@@ -150,13 +150,15 @@
                             <div class="invoice-action-btn mb-1 d-flex">
                                 <div class="preview w-50 mr-50">
                                     <label class="form-label">Цена за м<sup>2</sup></label>
-                                    <input type="text" class="form-control @if($product->isPriceMetr()) border-success @endif" name="price_metr" value="{{old('price_metr',$product->price_metr)}}" placeholder="руб."
+                                    <input type="text" class="form-control @if($product->isPriceMetr()) border-success @endif" name="price_metr"
+                                           value="{{old('price_metr',$product->price_metr)}}" placeholder="руб."
                                            autocomplete="off">
 
                                 </div>
                                 <div class="save w-50">
                                     <label class="form-label">Скидка</label>
-                                    <input type="text" class="form-control @if(!$product->isPriceMetr()) border-success @endif" name="price_metr_sale" value="{{old('price_metr_sale',$product->price_metr_sale)}}" placeholder="руб."
+                                    <input type="text" class="form-control @if(!$product->isPriceMetr()) border-success @endif" name="price_metr_sale"
+                                           value="{{old('price_metr_sale',$product->price_metr_sale)}}" placeholder="руб."
                                            autocomplete="off">
                                 </div>
                             </div>
@@ -164,12 +166,14 @@
                             <div class="invoice-action-btn mb-1 d-flex">
                                 <div class="preview w-50 mr-50">
                                     <label class="form-label">За упаковку</label>
-                                    <input type="text" class="form-control @if($product->isPriceUpak()) border-success @endif" name="price_upak" value="{{old('price_upak',$product->price_upak)}}" placeholder="руб.">
+                                    <input type="text" class="form-control @if($product->isPriceUpak()) border-success @endif" name="price_upak"
+                                           value="{{old('price_upak',$product->price_upak)}}" placeholder="руб.">
 
                                 </div>
                                 <div class="save w-50">
                                     <label class="form-label">Скидка</label>
-                                    <input type="text" class="form-control @if(!$product->isPriceUpak()) border-success @endif " name="price_upak_sale" value="{{old('price_upak_sale',$product->price_upak_sale)}}" placeholder="руб."
+                                    <input type="text" class="form-control @if(!$product->isPriceUpak()) border-success @endif " name="price_upak_sale"
+                                           value="{{old('price_upak_sale',$product->price_upak_sale)}}" placeholder="руб."
                                            autocomplete="off">
                                 </div>
                             </div>
@@ -288,8 +292,11 @@
         } else {
             var editor = CKEDITOR.replace('editor1',
                 {
-                    toolbar: [
-                        ['Source', '-', 'NewPage', 'Preview'], ['PasteText', 'PasteFromWord', '-', 'SpellChecker', 'Scayt'], ['Undo', 'Redo', '-', 'Find', 'Replace', '-', 'SelectAll', 'RemoveFormat'], '/', ['Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript'], ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'], ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'], ['Link', 'Unlink', 'Anchor'], ['Image', 'Table', 'HorizontalRule', 'SpecialChar'], '/', [, 'Format', 'Font', 'FontSize'], ['TextColor', 'BGColor'], ['Maximize', 'ShowBlocks', '-', 'About']
+                    toolbar : [
+                        ['Source', '-', 'NewPage', 'Preview'], ['PasteText', 'PasteFromWord', '-', 'SpellChecker', 'Scayt'],
+                        ['Undo', 'Redo', '-', 'Find', 'Replace', '-', 'SelectAll', 'RemoveFormat'], '/', ['Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript'],
+                        ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'], ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+                        ['Link', 'Unlink', 'Anchor'], ['Image', 'Table', 'HorizontalRule', 'SpecialChar'], '/', [, 'Format', 'Font', 'FontSize'], ['TextColor', 'BGColor'], ['Maximize', 'ShowBlocks', '-', 'About']
                     ]
                 });
             CKFinder.setupCKEditor(editor, '/CKE/');
