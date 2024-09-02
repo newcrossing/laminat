@@ -35,6 +35,13 @@ return [
             'root' => storage_path('app'),
             'throw' => false,
         ],
+        'thumbnails' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/thumbnails'),
+            'url' => env('APP_URL').'/storage/thumbnails',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
 
         'public' => [
             'driver' => 'local',
@@ -47,6 +54,13 @@ return [
             'driver' => 'local',
             'root' => storage_path('app/public/images/product'),
             'url' => env('APP_URL') . '/storage/images/product',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+        'product_1500' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/images/product/1500'),
+            'url' => env('APP_URL') . '/storage/images/product/1500',
             'visibility' => 'public',
             'throw' => false,
         ],

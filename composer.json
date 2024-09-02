@@ -7,6 +7,7 @@
     "require": {
         "php": "^8.1",
         "barryvdh/laravel-elfinder": "^0.5.3",
+        "bkwld/croppa": "^7.0",
         "guzzlehttp/guzzle": "^7.2",
         "intervention/image": "^3.7",
         "intervention/image-laravel": "^1.3",

@@ -19,7 +19,8 @@
                                     $img = $product->fotos()->first();
                                 @endphp
                                 @if($img)
-                                    <img src="{{ asset($img->getUrlCr(100))}}" alt="{{$product->name}}" width="50">
+                                    {{--                                    <img src="{{ asset($img->getUrlCr(100))}}" alt="{{$product->name}}" width="50">--}}
+                                    <img src="{{ Croppa::url('storage/thumbnails/' . $img->full_name_file,50,50,['quadrant']) }}">
                                 @endif
 
 

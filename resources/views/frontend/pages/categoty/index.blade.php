@@ -13,6 +13,7 @@
 
 @section('content')
     <!-- Ec Shop page -->
+
     <section class="ec-page-content section-space-p">
         <div class="container">
             <div class="row">

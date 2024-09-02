@@ -171,6 +171,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Barryvdh\Elfinder\ElfinderServiceProvider::class,
+        Bkwld\Croppa\CroppaServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -186,6 +187,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        'Croppa' => Bkwld\Croppa\Facades\Croppa::class,
     ])->toArray(),
 
 ];

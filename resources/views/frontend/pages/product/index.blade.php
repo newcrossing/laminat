@@ -34,7 +34,8 @@
                                                 @foreach($product->fotos as $foto)
                                                     <div class="single-slide ">
                                                         <a class="popup-gallery" href="{{ asset(Storage::disk('product')->url('/800/'). $foto->full_name_file)}}">
-                                                            <img class=" img-responsive" src="{{ $foto->getUrlCr()}}">
+{{--                                                            <img class=" img-responsive" src="{{ $foto->getUrlCr()}}">--}}
+                                                            <img class=" img-responsive" src="{{ Croppa::url('storage/thumbnails/' . $foto->full_name_file,400,500,['quadrant']) }}">
                                                         </a>
                                                     </div>
                                                 @endforeach
@@ -46,7 +47,8 @@
                                             @if($product->fotos()->count())
                                                 @foreach($product->fotos as $foto)
                                                     <div class="single-slide zoom-image-hover">
-                                                        <img class="img-responsive" src="{{ $foto->getUrlCr(100)}}">
+{{--                                                        <img class="img-responsive" src="{{ $foto->getUrlCr(100)}}">--}}
+                                                        <img class="img-responsive" src="{{ Croppa::url('storage/thumbnails/' . $foto->full_name_file,100,100,['quadrant']) }}">
                                                     </div>
                                                 @endforeach
                                             @else
