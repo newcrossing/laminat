@@ -11,12 +11,12 @@ return [
      * The disk where source images are found. This is generally where your
      * admin stores uploaded files.
      */
-    'src_dir' => 'storage',
+    'src_disk' => 'product_1500',
 
     /*
      * The disk where cropped images will be saved.
      */
-    'crops_dir' => 'storage',
+    'crops_disk' => 'thumbnails',
 
     /*
      * Maximum number of sizes to allow for a particular source file. This is to
@@ -44,7 +44,7 @@ return [
      *
      * @var string
      */
-    'path' => '/(.*)$',
+    'path' => 'storage/thumbnails/(.*)$',
 
     /*
      * A regex pattern that works like `path` except it is only used by the
@@ -69,7 +69,7 @@ return [
      *
      * @var string | boolean
      */
-    'signing_key' => false,
+    'signing_key' => 'app.key',
 
     /*
      * The PHP memory limit used by the script to generate thumbnails. Some
