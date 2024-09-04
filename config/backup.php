@@ -48,6 +48,7 @@ return [
                 'relative_path' => null,
             ],
 
+
             /*
              * The names of the connections to the databases that should be backed up
              * MySQL, PostgreSQL, SQLite and Mongo databases are supported.
@@ -57,7 +58,7 @@ return [
              * E.g.
              * 'mysql' => [
              *       ...
-             *      'dump' => [
+             *      'dump' =    > [
              *           'excludeTables' => [
              *                'table_to_exclude_from_backup',
              *                'another_table_to_exclude'
