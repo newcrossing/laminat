@@ -20,20 +20,12 @@
                         <!-- Sidebar Category Block -->
                         <div class="ec-sidebar-block">
                             <div class="ec-vendor-block">
-
                                 <div class="ec-vendor-block-detail">
-                                    @php
-                                        $img =  $firm->fotos()->first();
-                                    @endphp
                                     @if($img =  $firm->fotos()->first())
-                                        <img src="{{ $img->getUrl('300')}}" alt="{{$firm->name}}">
+                                        <img src="{{  Croppa::url($img->getUrlForCroppa(),300)}}" alt="{{$firm->name}}">
                                     @endif
-
-
                                     <h5 class="mt-4">{{$firm->name}}</h5>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
@@ -44,10 +36,7 @@
                             <div class="ec-vendor-block-profile">
 
                                 <div class="ec-vendor-block-about space-bottom-30 ">
-
                                     {!! $firm->text !!}
-
-
                                 </div>
                                 <div class="row ">
                                     @foreach($firm->files as $file)
@@ -83,9 +72,6 @@
         </div>
 
     </section>
-
-
-
 
 @endsection
 

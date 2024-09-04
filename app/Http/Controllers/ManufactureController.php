@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Firm;
+use App\Models\Foto;
 use App\Models\Product;
 use App\Models\Type;
 
@@ -15,6 +16,7 @@ class ManufactureController extends Controller
     public function list()
     {
         $firms = Firm::with('collections')->where('public', '1')->get();
+
 
         $breadcrumbs = [
             ['link' => route('home'), 'name' => "Главная"],

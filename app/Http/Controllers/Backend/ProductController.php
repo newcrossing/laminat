@@ -69,8 +69,7 @@ class ProductController extends Controller
 
         $product->attributeOptions()->sync(Arr::whereNotNull($request['attributes']));
 
-        Log:
-        info("Добавлен товар: {$product->name}");
+        Log::info("Добавлен товар: {$product->name}");
 
         return redirect()->route('backend.product.edit', $product->id)->with('success', 'Сохранено.');
     }

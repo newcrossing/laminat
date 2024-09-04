@@ -13,17 +13,10 @@
                     <tbody>
                     @foreach($type->productsPublic as $product)
                         <tr>
-
                             <td>
-                                @php
-                                    $img = $product->fotos()->first();
-                                @endphp
-                                @if($img)
-                                    {{--                                    <img src="{{ asset($img->getUrlCr(100))}}" alt="{{$product->name}}" width="50">--}}
-                                    <img src="{{ Croppa::url('storage/thumbnails/' . $img->full_name_file,50,50,['quadrant']) }}">
+                                @if($img = $product->fotos()->first())
+                                    <img src="{{ Croppa::url($img->getUrlForCroppa(),50,50,['quadrant']) }}">
                                 @endif
-
-
                             </td>
                             <td><span class="font-weight-normal"> <a href="{{route('prod.show',$product->slug)}}">{{$product->getFullName()}} </a></span></td>
 

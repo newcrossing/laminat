@@ -83,10 +83,10 @@
     },
 
     {
-      "navheader": "Статьи / Новости"
+      "navheader": "Инф. страницы"
     },
     {
-      "url": "admin/post",
+      "url": "backend/info",
       "name": "Список",
       "i18n": "Invoice",
       "icon": "bxs-book-content"

@@ -12,24 +12,20 @@
 @endsection
 
 @section('content')
+
     <div class="section-space-p">
         <!-- Vendor list Section Start -->
         <section class="section ec-catalog-multi-vendor">
             <div class="container">
                 <div class="row">
                     @foreach($firms as $firm)
-
                         <div class="col-lg-4 col-md-4 col-sm-6">
                             <div class="ec-vendor-card">
-
-
                                 <div class="ec-vendor-card-img mt-3 mb-5 ml-3 mr-3 pt-2 pr-4 pl-4" style="text-align: center; height: 90px">
                                     @if($img =  $firm->fotos()->first())
-                                        <img src="{{ $img->getUrl('300')}}" alt="{{$firm->name}}">
+                                        <img src="{{  Croppa::url($img->getUrlForCroppa(),300)}}" alt="{{$firm->name}}">
                                     @endif
                                 </div>
-
-
                                 <div class="ec-vendor-card-info">
                                     <a href="{{route('manufacture.show',$firm->slug)}}">
                                         <h6 class="name">{{$firm->name}}</h6>

@@ -25,6 +25,12 @@ class Foto extends Model
         return "{$this->filename}.{$this->extension}";
     }
 
+    public function getUrlForCroppa()
+    {
+        return "storage/" . config('croppa.crops_disk') . "/" . $this->getFullNameFileAttribute();;
+    }
+
+
     public function getUrlCr($size = 400)
     {
         if (Storage::disk('product')->exists("/cr_{$size}/" . $this->getFullNameFileAttribute()))

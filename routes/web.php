@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\AttributeController;
 use App\Http\Controllers\Backend\AttributeOptionController;
 use App\Http\Controllers\Backend\CollectionController;
 use App\Http\Controllers\Backend\FirmController;
+use App\Http\Controllers\Backend\InfoController;
 use App\Http\Controllers\Backend\TypeController;
 use App\Http\Controllers\ManufactureController;
 use App\Models\Firm;
@@ -90,6 +91,7 @@ Route::middleware(['role:admin'])->prefix('backend')->group(
         Route::resource('type', TypeController::class)->names('backend.type');
         Route::resource('attribute', AttributeController::class)->names('backend.attribute');
         Route::resource('attribute-option', AttributeOptionController::class)->names('backend.attribute-option');
+        Route::resource('info', InfoController::class)->names('backend.info');
 
         Route::post('/upload/photo', [\App\Http\Controllers\Backend\PhotoController::class, 'upload'])->name('backend.photo.upload');
         Route::post('/upload/delete/{id}', [\App\Http\Controllers\Backend\PhotoController::class, 'delete'])->name('backend.photo.delete');
