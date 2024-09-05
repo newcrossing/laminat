@@ -57,90 +57,19 @@
 </header>
 <!-- Header End  -->
 
-<!-- ekka Cart Start -->
-<div class="ec-side-cart-overlay"></div>
-<div id="ec-side-cart" class="ec-side-cart">
-    <div class="ec-cart-inner">
-        <div class="ec-cart-top">
-            <div class="ec-cart-title">
-                <span class="cart_title">My Cart</span>
-                <button class="ec-close">×</button>
-            </div>
-            <ul class="eccart-pro-items">
-                <li>
-                    <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                src="/assets/images/product-image/6_1.jpg" alt="product"></a>
-                    <div class="ec-pro-content">
-                        <a href="product-left-sidebar.html" class="cart_pro_title">T-shirt For Women</a>
-                        <span class="cart-price"><span>$76.00</span> x 1</span>
-                        <div class="qty-plus-minus">
-                            <input class="qty-input" type="text" name="ec_qtybtn" value="1"/>
-                        </div>
-                        <a href="javascript:void(0)" class="remove">×</a>
-                    </div>
-                </li>
-                <li>
-                    <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                src="/assets/images/product-image/12_1.jpg" alt="product"></a>
-                    <div class="ec-pro-content">
-                        <a href="product-left-sidebar.html" class="cart_pro_title">Women Leather Shoes</a>
-                        <span class="cart-price"><span>$64.00</span> x 1</span>
-                        <div class="qty-plus-minus">
-                            <input class="qty-input" type="text" name="ec_qtybtn" value="1"/>
-                        </div>
-                        <a href="javascript:void(0)" class="remove">×</a>
-                    </div>
-                </li>
-                <li>
-                    <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                src="/assets/images/product-image/3_1.jpg" alt="product"></a>
-                    <div class="ec-pro-content">
-                        <a href="product-left-sidebar.html" class="cart_pro_title">Girls Nylon Purse</a>
-                        <span class="cart-price"><span>$59.00</span> x 1</span>
-                        <div class="qty-plus-minus">
-                            <input class="qty-input" type="text" name="ec_qtybtn" value="1"/>
-                        </div>
-                        <a href="javascript:void(0)" class="remove">×</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="ec-cart-bottom">
-            <div class="cart-sub-total">
-                <table class="table cart-table">
-                    <tbody>
-                    <tr>
-                        <td class="text-left">Sub-Total :</td>
-                        <td class="text-right">$300.00</td>
-                    </tr>
-                    <tr>
-                        <td class="text-left">VAT (20%) :</td>
-                        <td class="text-right">$60.00</td>
-                    </tr>
-                    <tr>
-                        <td class="text-left">Total :</td>
-                        <td class="text-right primary-color">$360.00</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="cart_btn">
-                <a href="cart.html" class="btn btn-primary">View Cart</a>
-                <a href="checkout.html" class="btn btn-secondary">Checkout</a>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- ekka Cart End -->
+{{-- Молуль корзины. Всплывает справа --}}
+@include('frontend.moduls.cart')
+
+
 <div class="ec-page-content ec-vendor-dashboard section-space-p" style="padding-bottom: 2px">
     <div class="container">
         <div class="ec-shop-rightside col-lg-12 col-md-12">
-            <div class="row" >
+            <div class="row">
                 @foreach(\App\Models\Type::all() as $type)
-                    <div class="col-lg-3 col-md-6" >
+                    <div class="col-lg-3 col-md-6">
                         <a href="{{$type->slug}}">
                             <div class="ec-vendor-dashboard-sort-card color-blue" style="padding: 10px; text-align: center; margin-bottom: 3px">
-                                <b class="font-size-small" >{{$type->name}}</b>
+                                <b class="font-size-small">{{$type->name}}</b>
                             </div>
                         </a>
                     </div>
@@ -152,7 +81,7 @@
                         </div>
                     </a>
                 </div>
-                    <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6">
                     <a href="{{$type->slug}}">
                         <div class="ec-vendor-dashboard-sort-card color-blue" style="padding: 10px; text-align: center; margin-bottom: 3px">
                             <b class="fs-6">Скидки</b>
@@ -204,14 +133,9 @@
 
 {{--@include('frontend.moduls.recent-purchase')--}}
 
-<!-- Cart Floating Button -->
-<div class="ec-cart-float">
-    <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
-        <div class="header-icon"><img src="/assets/images/icons/cart.svg" class="svg_img header_svg" alt=""/></div>
-        <span class="ec-cart-count cart-count-lable">3</span>
-    </a>
-</div>
-<!-- Cart Floating Button end -->
+
+@include('frontend.moduls.cart-float')
+
 
 
 <!-- Vendor JS -->

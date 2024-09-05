@@ -17,12 +17,13 @@
                 <!-- Ec Header Search Start -->
                 <div class="align-self-center">
                     <div class="header-search">
-                        <form class="ec-btn-group-form" action="#">
-                            <input class="form-control" placeholder="Введите название товара..." type="text">
-                            <button class="submit" type="submit">
-                                <img src="/assets/images/icons/search.svg" class="svg_img header_svg" alt=""/>
-                            </button>
-                        </form>
+                        <div class="display-5">sfdfsdf</div>
+{{--                        <form class="ec-btn-group-form" action="#">--}}
+{{--                            <input class="form-control" placeholder="Введите название товара..." type="text">--}}
+{{--                            <button class="submit" type="submit">--}}
+{{--                                <img src="/assets/images/icons/search.svg" class="svg_img header_svg" alt=""/>--}}
+{{--                            </button>--}}
+{{--                        </form>--}}
                     </div>
                 </div>
                 <!-- Ec Header Search End -->
