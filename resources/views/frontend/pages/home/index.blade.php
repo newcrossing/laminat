@@ -89,67 +89,7 @@
                         <div class="tab-pane fade show active" id="tab-pro-for-all">
                             <div class="row">
                                 <!-- Product Content -->
-                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 pro-gl-content"  data-animation="fadeIn"  >
-                                    <div class="ec-product-inner">
-                                        <a href="http://laminat/p-dub-toskania-220mm-selekt">
-                                            <div class="ec-pro-image-outer">
-                                                <div class="ec-pro-image">
-                                                    <span href="/product-left-sidebar.html" class="image">
 
-                                                                                                                                                                                                                                                        <img class="main-image" src="http://laminat/storage/images/product/cr_400/9d03e68e-791b-4517-ad58-d3758948fe2b.jpg">
-                                                                                                                                                                                                                                                                                                                                                                                                <img class="hover-image" src="http://laminat/storage/images/product/cr_400/3d9b2e19-8a1c-4fdb-96dc-e5e023c84835.jpg">
-
-
-                                                    </span>
-                                                    <span class="percentage">20%</span>
-                                                    <span class="flags">
-                                                            <span class="new">В наличии</span>
-                                                        </span>
-
-                                                    <span class="flags">
-                                                       <span class="sale">В шоуруме</span>
-                                                   </span>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                                    <div class="ec-pro-loader"></div></div>
-                                            </div>
-                                        </a>
-                                        <div class="ec-pro-content">
-                                            <a class="fs-6 text-upper text-center text-muted">Паркетная доска</a>
-                                            <h5 class=" fs-6 text-center">
-                                                <a href="http://laminat/p-dub-toskania-220mm-selekt">
-                                                    Alpine Floor   Milango ДУБ TOSKANIA 220ММ СЕЛЕКТ
-                                                </a>
-                                            </h5>
-
-                                            <div class="ec-pro-list-desc">
-                                                &lt;p&gt;
-                                                Hajnowka (Хайновка) &amp;mdash; на сегодняшней день является самой большой фабрикой по производству деревянных напольных покрытий в Польше. Главными продуктами в последние годы стала массивная и инженерная доска дуба и ясеня толщиной 15 и 20 мм. Особое внимание уделено сушке древесины и хранению заготовки и готовой продукции в специальных помещениях. Купить паркет Hajnowka - значит приобрести идеальную геометрию, подчеркнутую микрофасками по периметру каждой детали.&lt;/p&gt;
-                                            </div>
-                                            <div class="ec-price" style="justify-content: center;">
-                                                <div>
-                                                    <span class="new-price" style="font-size: 28px"><sup class="mr-3 text-muted">за 1 м<sup>2</sup></sup>0 <sub>руб.</sub></span>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6  ec-product-content" data-animation="fadeIn">
                                     <div class="ec-product-inner">
                                         <div class="ec-pro-image-outer">
