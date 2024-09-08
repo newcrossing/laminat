@@ -1,7 +1,9 @@
 <!-- Ec Header Bottom  Start -->
 <div class="ec-header-bottom d-none d-lg-block">
     <div class="container position-relative">
+
         <div class="row">
+
             <div class="ec-flex">
                 <!-- Ec Header Logo Start -->
                 <div class="align-self-center">
@@ -16,18 +18,23 @@
 
                 <!-- Ec Header Search Start -->
                 <div class="align-self-center">
-                    <div class="header-search">
-                        <div class="display-5">sfdfsdf</div>
-{{--                        <form class="ec-btn-group-form" action="#">--}}
-{{--                            <input class="form-control" placeholder="Введите название товара..." type="text">--}}
-{{--                            <button class="submit" type="submit">--}}
-{{--                                <img src="/assets/images/icons/search.svg" class="svg_img header_svg" alt=""/>--}}
-{{--                            </button>--}}
-{{--                        </form>--}}
+                    <div class="" style="width: 280px">
+                        <div class="fs-3 fw-bold">8 (499) 340-09-09</div>
+                        <div class="fs-6">График работы: Пн-Вс с 10:00 до 21:00</div>
+                        {{--                        <form class="ec-btn-group-form" action="#">--}}
+                        {{--                            <input class="form-control" placeholder="Введите название товара..." type="text">--}}
+                        {{--                            <button class="submit" type="submit">--}}
+                        {{--                                <img src="/assets/images/icons/search.svg" class="svg_img header_svg" alt=""/>--}}
+                        {{--                            </button>--}}
+                        {{--                        </form>--}}
                     </div>
                 </div>
                 <!-- Ec Header Search End -->
-
+                <div class="align-self-center">
+                    <div class="" style="width: 300px">
+                        141100, Московская область, г. Щёлково, Пролетарский пр-т, д.10, ТД «Щелково», 5 этаж
+                    </div>
+                    </div>
                 <!-- Ec Header Button Start -->
                 <div class="align-self-center">
                     <div class="ec-header-bottons">
@@ -38,7 +45,7 @@
                                 <img src="/assets/images/icons/user.svg" class="svg_img header_svg" alt=""/>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-right">
-{{--                                <li><a class="dropdown-item" href="register.html">Register</a></li>--}}
+                                {{--                                <li><a class="dropdown-item" href="register.html">Register</a></li>--}}
                                 <li><a class="dropdown-item" href="/log-viewer">Логи </a></li>
                                 <li><a class="dropdown-item" href="{{route('backend.login')}}">Войти</a></li>
                             </ul>

@@ -1,28 +1,27 @@
 {{--Карточка товара--}}
 
-
 @foreach($products as $product)
     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-6 pro-gl-content">
         <div class="ec-product-inner">
             <a href="{{route('prod.show',$product->slug)}}">
                 <div class="ec-pro-image-outer">
                     <div class="ec-pro-image">
-                        <span href="/product-left-sidebar.html" class="image">
+                        <span class="image">
                             @if($product->fotos()->count())
                                 @foreach($product->fotos as $foto)
                                     @if ($loop->first)
                                         <img class="main-image" src="{{ Croppa::url($foto->getUrlForCroppa(),400,500,['quadrant']) }}"/>
                                     @endif
                                     @if ($loop->iteration == 2)
-                                        <img class="hover-image" src="{{ Croppa::url($foto->getUrlForCroppa(),400,500,['quadrant']) }}}"/>
+                                        <img class="hover-image" src="{{ Croppa::url($foto->getUrlForCroppa(),400,500,['quadrant']) }}"/>
                                         @break
                                     @endif
                                 @endforeach
                             @else
-                                <img class="main-image" src="{{ asset(Storage::disk('product')->url('/cr_400/null.jpg'))}}"/>
+                                <img class="main-image" src="{{ Croppa::url( \App\Models\Foto::getUrlForCroppaNull(),400,500,['quadrant']) }}"/>
                             @endif
                         </span>
-                        <span class="percentage">20%</span>
+                        <span class="percentage">Скидка</span>
                         @isset($product->have_sklad)
                             <span class="flags">
                                                             <span class="new">В наличии</span>

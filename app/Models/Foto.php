@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Number;
 use Illuminate\Support\Str;
 
 class Foto extends Model
@@ -28,6 +29,26 @@ class Foto extends Model
     public function getUrlForCroppa()
     {
         return "storage/" . config('croppa.crops_disk') . "/" . $this->getFullNameFileAttribute();;
+    }
+
+    public static function getUrlForCroppaNull()
+    {
+        return "storage/" . config('croppa.crops_disk') . "/null2.jpg";;
+    }
+
+    public function getSize()
+    {
+        if (Storage::disk('product_1500')->exists($this->getFullNameFileAttribute()))
+            return (Storage::disk('product_1500')->size($this->getFullNameFileAttribute()));
+        else {
+            Log::channel('daily-images')->warning('Нет изображения   ' . $this->getFullNameFileAttribute());
+            return 0;
+        }
+    }
+
+    public function getSizeFormat()
+    {
+        return Number::fileSize($this->getSize());
     }
 
 

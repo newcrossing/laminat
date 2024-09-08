@@ -22,16 +22,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
         setlocale(LC_ALL, 'ru_RU.UTF-8');
 
         Carbon::setLocale('ru');
         $Carbone = Carbon::now()->locale('ru_RU');
 
-
         $verticalMenuJson = file_get_contents(base_path('resources/admin/data/menus/vertical-menu.json'));
         $verticalMenuData = json_decode($verticalMenuJson);
-
 
         // share all menuData to all the views
         \View::share('menuData', [$verticalMenuData]);
@@ -40,8 +37,8 @@ class AppServiceProvider extends ServiceProvider
         Relation::enforceMorphMap([
             'product' => 'App\Models\Product',
             'firm' => 'App\Models\Firm',
+            'slider' => 'App\Models\Slider',
             'user' => 'App\Models\User',
-           // 'posts' => 'App\Models\Post',
         ]);
     }
 }

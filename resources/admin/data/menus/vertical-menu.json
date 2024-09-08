@@ -11,7 +11,8 @@
       "name": "На сайт",
       "i18n": "Analytics",
       "icon": "bxs-right-top-arrow-circle"
-    },{
+    },
+    {
       "url": "/log-viewer",
       "name": "Логи",
       "i18n": "Analytics",
@@ -81,13 +82,18 @@
         }
       ]
     },
-
     {
       "navheader": "Инф. страницы"
     },
     {
       "url": "backend/info",
       "name": "Список",
+      "i18n": "Invoice",
+      "icon": "bxs-book-content"
+    },
+    {
+      "url": "backend/slider",
+      "name": "Слайдер",
       "i18n": "Invoice",
       "icon": "bxs-book-content"
     },

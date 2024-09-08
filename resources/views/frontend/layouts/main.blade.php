@@ -57,6 +57,9 @@
 </header>
 <!-- Header End  -->
 
+{{-- Молуль меню категрий. Всплывает слева --}}
+@include('frontend.moduls.sidebar-category')
+
 {{-- Молуль корзины. Всплывает справа --}}
 @include('frontend.moduls.cart')
 

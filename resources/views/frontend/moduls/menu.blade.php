@@ -4,6 +4,7 @@
         <div class="row">
             <div class="col-md-12 align-self-center">
                 <div class="ec-main-menu">
+
                     <ul>
 
                         <li class="dropdown"><a href="javascript:void(0)">Компания</a>
@@ -38,6 +39,20 @@
 
                         </li>
                         <li><a href="offer.html">Контакты</a></li>
+                        <li class="dropdown scroll-to"><a href="javascript:void(0)"><img
+                                        src="assets/images/icons/scroll.svg" class="svg_img header_svg scroll" alt=""/></a>
+                            <ul class="sub-menu">
+                                <li class="menu_title">Лучшие коллекции</li>
+                                <li><a href="javascript:void(0)" data-scroll="collection" class="nav-scroll">Лучшие коллекции</a></li>
+                                <li><a href="javascript:void(0)" data-scroll="categories" class="nav-scroll">Categories</a></li>
+                                <li><a href="javascript:void(0)" data-scroll="offers" class="nav-scroll">Offers</a></li>
+                                <li><a href="javascript:void(0)" data-scroll="vendors" class="nav-scroll">Top Vendors</a></li>
+                                <li><a href="javascript:void(0)" data-scroll="services" class="nav-scroll">Services</a></li>
+                                <li><a href="javascript:void(0)" data-scroll="arrivals" class="nav-scroll">New Arrivals</a></li>
+                                <li><a href="javascript:void(0)" data-scroll="reviews" class="nav-scroll">Client Review</a></li>
+                                <li><a href="javascript:void(0)" data-scroll="insta" class="nav-scroll">Instagram Feed</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -281,17 +296,5 @@
     </div>
 </div>
 {{--<!-- ekka mobile Menu End -->--}}
-{{--<div class="row" style="    background-color: #5e6a5e33;--}}
-{{--    padding: 10px;">--}}
-{{--    <div class="ec-btn-bw">--}}
 
-
-{{--        @foreach(\App\Models\Type::all() as $type)--}}
-
-{{--            <a class="custom-btn " style="   text-align: center;  padding: 2px;background-color: #ffffe9;height: 42px">{{$type->name}}</a>--}}
-
-{{--        @endforeach--}}
-
-{{--    </div>--}}
-{{--</div>--}}
 

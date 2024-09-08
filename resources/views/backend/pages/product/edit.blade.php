@@ -13,14 +13,7 @@
     <link rel="stylesheet" type="text/css" href="/b/app-assets/css/plugins/extensions/toastr.css">
     <link rel="stylesheet" type="text/css" href="/b/app-assets/css/pages/app-invoice.css">
 
-
-
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.min.css" crossorigin="anonymous">
-    <link href="/b/fileuploader/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" crossorigin="anonymous">
-    <link href="/b/fileuploader/themes/explorer-fa5/theme.css" media="all" rel="stylesheet" type="text/css"/>
-
+    @include('backend.panels.library.fileuploader.css')
 @endsection
 
 
@@ -237,21 +230,29 @@
             </div>
         </form>
     </section>
-    <section>
-        <form enctype="multipart/form-data" method="post">
-            @csrf
-            <div class="file-loading">
-                <input id="kv-explorer" type="file" multiple>
+    @if($product->id)
+        <section class="invoice-edit-wrapper">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+
+                        <div class="card-content" style="margin: 20px">
+                            <form enctype="multipart/form-data" method="post">
+                                @csrf
+
+                                <div class="file-loading">
+                                    <input name="images[]" id="file-up" class="file" type="file" multiple data-min-file-count="1" data-theme="fa5">
+                                </div>
+                                <br>
+                                <button type="submit" class="btn btn-primary">Отправить</button>
+                                <button type="reset" class="btn btn-outline-secondary">Сбросить</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <br>
-            <div class="file-loading">
-                <input name="images[]" id="file-up" class="file" type="file" multiple data-min-file-count="1" data-theme="fa5">
-            </div>
-            <br>
-            <button type="submit" class="btn btn-primary">Отправить</button>
-            <button type="reset" class="btn btn-outline-secondary">Сбросить</button>
-        </form>
-    </section>
+        </section>
+    @endif
 
 @endsection
 
@@ -265,8 +266,6 @@
     <script src="/b/app-assets/vendors/js/pickers/pickadate/legacy.js"></script>
     <script src="/b/app-assets/vendors/js/forms/repeater/jquery.repeater.min.js"></script>
     <script src="/b/app-assets/vendors/js/forms/select/select2.full.js"></script>
-    {{--    <script src="/b/app-assets/vendors/js/extensions/dropzone.min.js"></script>--}}
-    {{--    <script src="{{asset('/b/app-assets/vendors/js/ui/prism.min.js')}}"></script>--}}
     <!-- END: Page Vendor JS-->
 @endsection
 
@@ -292,46 +291,31 @@
         } else {
             var editor = CKEDITOR.replace('editor1',
                 {
-                    toolbar : [
+                    toolbar: [
                         ['Source', '-', 'NewPage', 'Preview'], ['PasteText', 'PasteFromWord', '-', 'SpellChecker', 'Scayt'],
                         ['Undo', 'Redo', '-', 'Find', 'Replace', '-', 'SelectAll', 'RemoveFormat'], '/', ['Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript'],
                         ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'], ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-                        ['Link', 'Unlink', 'Anchor'], ['Image', 'Table', 'HorizontalRule', 'SpecialChar'], '/', [, 'Format', 'Font', 'FontSize'], ['TextColor', 'BGColor'], ['Maximize', 'ShowBlocks', '-', 'About']
+                        ['Link', 'Unlink', 'Anchor'], ['Image', 'Table', 'HorizontalRule', 'SpecialChar'], '/', [ 'Format', 'Font', 'FontSize'], ['TextColor', 'BGColor'], ['Maximize', 'ShowBlocks', '-', 'About']
                     ]
                 });
             CKFinder.setupCKEditor(editor, '/CKE/');
         }
     </script>
-    {{--    <script src="{{asset("/b/app-assets/js/)}}"></script>--}}
-
-
-
-    <script src="/b/fileuploader/js/plugins/buffer.min.js" type="text/javascript"></script>
-    <script src="/b/fileuploader/js/plugins/filetype.min.js" type="text/javascript"></script>
-    <script src="/b/fileuploader/js/plugins/piexif.js" type="text/javascript"></script>
-    <script src="/b/fileuploader/js/plugins/sortable.js" type="text/javascript"></script>
-    <script src="/b/fileuploader/js/fileinput.js" type="text/javascript"></script>
-    <script src="/b/fileuploader/js/locales/ru.js" type="text/javascript"></script>
-
-    <script src="/b/fileuploader/themes/gly/theme.js" type="text/javascript"></script>
-    <script src="/b/fileuploader/themes/fa5/theme.js" type="text/javascript"></script>
-    <script src="/b/fileuploader/themes/explorer-fa5/theme.js" type="text/javascript"></script>
+    @include('backend.panels.library.fileuploader.js')
 
 
     <script>
         $('#file-up').fileinput({
             initialPreview: [
                 @foreach($product->fotos as $img)
-                    "{{ asset(Storage::disk('product')->url('/300/'). $img->full_name_file)}}",
+                    "{{  Croppa::url($img->getUrlForCroppa(),800)}}",
                 @endforeach
             ],
             initialPreviewAsData: true,
             initialPreviewConfig: [
                     @foreach($product->fotos  as $img)
-                    {{--                    @php $size=Storage::size(Storage::disk('local')->path('.gitignore'));  @endphp--}}
-                    @php //$size=Storage::size('d:\OSPanel\domains\laminat\public\storage\images\product\100\a784704d-e4e9-4c30-b7ff-ac1c0a01ec14.jpg');  @endphp
                 {
-                    size: "", width: "120px", url: "{{route('backend.photo.delete',[$img->id , '_token' => csrf_token()])}}"
+                    size: "{{$img->getSize()}}", width: "120px", url: "{{route('backend.photo.delete',[$img->id , '_token' => csrf_token()])}}"
                 },
                 @endforeach
             ],
