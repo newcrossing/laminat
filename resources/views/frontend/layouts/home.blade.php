@@ -35,6 +35,7 @@
     <!-- Main Style -->
     <link rel="stylesheet" href="assets/css/demo1.css"/>
     <link rel="stylesheet" href="assets/css/responsive.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <!-- Background css -->
     <link rel="stylesheet" id="bg-switcher-css" href="/assets/css/backgrounds/bg-2.css">

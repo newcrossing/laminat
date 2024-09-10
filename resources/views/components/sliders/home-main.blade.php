@@ -21,7 +21,10 @@
                                             <h2 class="ec-slide-stitle">{{$slider->h2}}</h2>
                                         @endisset
                                         @isset($slider->text)
-                                            <p style="  text-stroke: 2px #FFFFFF;">{{$slider->text}}</p>
+                                            <p style="  text-stroke: 2px #FFFFFF; font-size: 26px; font-weight: bolder;   text-shadow: 1px 0 1px #ffffff,
+    0 1px 1px #ffffff,
+    -1px 0 1px #ffffff,
+    0 -1px 1px #ffffff;">{{$slider->text}}</p>
                                         @endisset
                                         @isset($slider->link)
                                             <a href="{{$slider->link}}" class="btn btn-lg btn-secondary">Перейти</a>

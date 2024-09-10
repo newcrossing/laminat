@@ -18,23 +18,33 @@
 
                 <!-- Ec Header Search Start -->
                 <div class="align-self-center">
-                    <div class="" style="width: 280px">
-                        <div class="fs-3 fw-bold">8 (499) 340-09-09</div>
+                    <div class="" style="width: 300px">
+                        <div class="fs-3 fw-bold">8 (499) 340-09-09
+                            <a href="//">
+                                <i class="bi bi-telegram" style="color: #0a90eb"></i>
+                            </a>
+                            <a href="//">
+                                <i class="bi bi-whatsapp" style="color: #26de3e"></i>
+                            </a>
+
+                        </div>
                         <div class="fs-6">График работы: Пн-Вс с 10:00 до 21:00</div>
-                        {{--                        <form class="ec-btn-group-form" action="#">--}}
-                        {{--                            <input class="form-control" placeholder="Введите название товара..." type="text">--}}
-                        {{--                            <button class="submit" type="submit">--}}
-                        {{--                                <img src="/assets/images/icons/search.svg" class="svg_img header_svg" alt=""/>--}}
-                        {{--                            </button>--}}
-                        {{--                        </form>--}}
+
                     </div>
                 </div>
                 <!-- Ec Header Search End -->
                 <div class="align-self-center">
                     <div class="" style="width: 300px">
-                        141100, Московская область, г. Щёлково, Пролетарский пр-т, д.10, ТД «Щелково», 5 этаж
+{{--                        <form class="ec-btn-group-form" action="#">--}}
+{{--                            <input class="form-control" placeholder="Введите название товара..." type="text">--}}
+{{--                            <button class="submit" type="submit">--}}
+{{--                                <img src="/assets/images/icons/search.svg" class="svg_img header_svg" alt=""/>--}}
+{{--                            </button>--}}
+{{--                        </form>--}}
+                        <i class="bi bi-geo-alt"></i>
+                        141100, Московская область, г.Щёлково, Пролетарский пр-т, д.10, ТД «Щелково», 5 этаж
                     </div>
-                    </div>
+                </div>
                 <!-- Ec Header Button Start -->
                 <div class="align-self-center">
                     <div class="ec-header-bottons">

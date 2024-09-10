@@ -44,9 +44,9 @@
                     </a>
                 </h5>
 
-                <div class="ec-pro-list-desc">
-                    {{$product->text}}
-                </div>
+{{--                <div class="ec-pro-list-desc">--}}
+{{--                    {{$product->text}}--}}
+{{--                </div>--}}
                 <div class="ec-price" style="justify-content: center;">
                     <div>
                         <span class="new-price" style="font-size: 28px">
