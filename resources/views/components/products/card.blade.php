@@ -23,15 +23,11 @@
                         </span>
                         <span class="percentage">Скидка</span>
                         @isset($product->have_sklad)
-                            <span class="flags">
-                                                            <span class="new">В наличии</span>
-                                                        </span>
+                            <span class="flags"><span class="new">В наличии</span></span>
                         @endisset
 
                         @isset($product->have_room)
-                            <span class="flags">
-                                                       <span class="sale">В шоуруме</span>
-                                                   </span>
+                            <span class="flags"><span class="sale">В шоуруме</span></span>
                         @endisset
                     </div>
                 </div>
@@ -44,9 +40,9 @@
                     </a>
                 </h5>
 
-{{--                <div class="ec-pro-list-desc">--}}
-{{--                    {{$product->text}}--}}
-{{--                </div>--}}
+                {{--                <div class="ec-pro-list-desc">--}}
+                {{--                    {{$product->text}}--}}
+                {{--                </div>--}}
                 <div class="ec-price" style="justify-content: center;">
                     <div>
                         <span class="new-price" style="font-size: 28px">

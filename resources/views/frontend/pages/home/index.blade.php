@@ -14,94 +14,12 @@
 @section('content')
     <x-sliders.home-main :sliders="\App\Models\Slider::where('public',true)->get()"/>
 
+    <x-home.top-type :types="$types"/>
 
-    <!-- Product tab Area Start -->
-    <section class="section ec-product-tab section-space-p" id="collection">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <div class="section-title">
-                        <h2 class="ec-bg-title">Напольное покрытие</h2>
-                        <h2 class="ec-title">Напольное покрытие</h2>
-                        {{--                        <p class="sub-title">Browse The Collection of Top Products</p>--}}
-                    </div>
-                </div>
-
-                <!-- Tab Start -->
-                <div class="col-md-12 text-center">
-                    <ul class="ec-pro-tab-nav nav justify-content-center">
-                        @foreach($types as $type)
-                            <li class="nav-item"><a class="nav-link   @if ($loop->first) active @endif" data-bs-toggle="tab" href="#tab-pro-{{$type->slug}}">{{$type->name}}</a>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-                <!-- Tab End -->
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="tab-content">
-                        @foreach($types as $type)
-                            <div class="tab-pane fade @if ($loop->first) show active @endif " id="tab-pro-{{$type->slug}}">
-                                <div class="row">
-                                    <!-- Product Content -->
-                                    <x-products.card :products="$type->products"/>
+    <x-home.top-products />
 
 
-                                    <div class="col-sm-12 shop-all-btn"><a href="shop-left-sidebar-col-3.html">Смотреть все</a></div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ec Product tab Area End -->
 
-    <!-- ec Banner Section Start -->
-    <section class="ec-banner section section-space-p">
-        <h2 class="d-none">Banner</h2>
-        <div class="container">
-            <!-- ec Banners Start -->
-            <div class="ec-banner-inner">
-                <!--ec Banner Start -->
-                <div class="ec-banner-block ec-banner-block-2">
-                    <div class="row">
-                        <div class="banner-block col-lg-6 col-md-12 margin-b-30" data-animation="slideInRight">
-                            <div class="bnr-overlay">
-                                <img src="assets/images/banner/2.jpg" alt=""/>
-                                <div class="banner-text">
-                                    <span class="ec-banner-stitle">New Arrivals</span>
-                                    <span class="ec-banner-title">mens<br> Sport shoes</span>
-                                    <span class="ec-banner-discount">30% Discount</span>
-                                </div>
-                                <div class="banner-content">
-                                    <span class="ec-banner-btn"><a href="#">Order Now</a></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="banner-block col-lg-6 col-md-12" data-animation="slideInLeft">
-                            <div class="bnr-overlay">
-                                <img src="assets/images/banner/3.jpg" alt=""/>
-                                <div class="banner-text">
-                                    <span class="ec-banner-stitle">New Trending</span>
-                                    <span class="ec-banner-title">Smart<br> watches</span>
-                                    <span class="ec-banner-discount">Buy any 3 Items & get <br>20% Discount</span>
-                                </div>
-                                <div class="banner-content">
-                                    <span class="ec-banner-btn"><a href="#">Order Now</a></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ec Banner End -->
-                </div>
-                <!-- ec Banners End -->
-            </div>
-        </div>
-    </section>
-    <!-- ec Banner Section End -->
 
     <!--  Category Section Start -->
     <section class="section ec-category-section section-space-p" id="categories">

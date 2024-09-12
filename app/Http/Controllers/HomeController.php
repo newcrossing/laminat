@@ -25,14 +25,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $types = Type::with('productsPublic')->has('productsPublic')->get();
+         //$types = Type::with('productsPublic')->has('productsPublic')->get();
+         $types = Type::with('productsPublic')->has('productsPublic')->get();
         //   $types = Type::with('products', fn(   $query) => $query->take(3))->get();
-        $types = Type::query()
-            ->with([
-                'products' => fn(Builder $query): Builder => $query->limit(7),
-            ])
-            ->has('productsPublic')
-            ->get();
+//        $types = Type::query()
+//            ->with([
+//                'products' => fn(Builder $query): Builder => $query->limit(7),
+//            ])
+//            ->has('productsPublic')
+//            ->get();
 //dd($types);
 
         return view('frontend.pages.home.index', compact('types'));
