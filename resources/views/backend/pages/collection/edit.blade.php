@@ -140,24 +140,29 @@
             </div>
         </form>
     </section>
-    <section>
+    @if($collection->id)
+        <section class="invoice-edit-wrapper">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
 
-        <form enctype="multipart/form-data" method="post">
-            @csrf
-            <div class="file-loading">
-                <input id="kv-explorer" type="file" multiple>
+                        <div class="card-content" style="margin: 20px">
+                            <p class="text-warning">Рекомендованный размер квадрат </p>
+                            <form enctype="multipart/form-data" method="post">
+                                @csrf
+                                <div class="file-loading">
+                                    <input name="images[]" id="file-up" class="file" type="file" multiple data-min-file-count="1" data-theme="fa5">
+                                </div>
+                                <br>
+                                <button type="submit" class="btn btn-primary">Отправить</button>
+                                <button type="reset" class="btn btn-outline-secondary">Сбросить</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <br>
-            <div class="file-loading">
-                <input name="images[]" id="file-up" class="file" type="file" multiple data-min-file-count="1" data-theme="fa5">
-            </div>
-            <br>
-            <button type="submit" class="btn btn-primary">Submit</button>
-            <button type="reset" class="btn btn-outline-secondary">Reset</button>
-        </form>
-
-
-    </section>
+        </section>
+    @endif
 
 @endsection
 
@@ -208,18 +213,43 @@
     </script>
     {{--    <script src="{{asset("/b/app-assets/js/)}}"></script>--}}
 
+    @include('backend.panels.library.fileuploader.js')
+    <script>
+        $('#file-up').fileinput({
+            initialPreview: [
+                @foreach($collection->fotos as $img)
+                    "{{  Croppa::url($img->getUrlForCroppa(),800)}}",
+                @endforeach
+            ],
+            initialPreviewAsData: true,
+            initialPreviewConfig: [
+                    @foreach($collection->fotos  as $img)
+                {
+                    size: "{{$img->getSize()}}", width: "120px", url: "{{route('backend.photo.delete',[$img->id , '_token' => csrf_token()])}}"
+                },
+                @endforeach
+            ],
+            deleteUrl: "/site/file-delete",
+            uploadUrl: '{!! route('backend.photo.upload', ['id' => $collection->id,'model'=> 'collection']) !!}',
+            overwriteInitial: false,
+            maxFileSize: 1000000,
+            //showUpload: false,
+            maxFileCount: 1,
+            initialCaption: "Жду изображения",
+            maxFilePreviewSize: 10240,
+            theme: 'bs5',
+            language: 'ru',
+            showCancel: false,
+            showRemove: false,
+            showUpload: true,
+            allowedFileExtensions: ['jpg', 'png', 'gif']
+        });
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
-
-    <script src="/b/fileuploader/js/plugins/buffer.min.js" type="text/javascript"></script>
-    <script src="/b/fileuploader/js/plugins/filetype.min.js" type="text/javascript"></script>
-    <script src="/b/fileuploader/js/plugins/piexif.js" type="text/javascript"></script>
-    <script src="/b/fileuploader/js/plugins/sortable.js" type="text/javascript"></script>
-    <script src="/b/fileuploader/js/fileinput.js" type="text/javascript"></script>
-    <script src="/b/fileuploader/js/locales/ru.js" type="text/javascript"></script>
-
-    <script src="/b/fileuploader/themes/gly/theme.js" type="text/javascript"></script>
-    <script src="/b/fileuploader/themes/fa5/theme.js" type="text/javascript"></script>
-    <script src="/b/fileuploader/themes/explorer-fa5/theme.js" type="text/javascript"></script>
-    <script>$.fn.fileinput.defaults.theme = 'fa5';</script>
+    </script>
 
 @endsection

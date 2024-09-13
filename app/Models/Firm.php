@@ -46,4 +46,9 @@ class Firm extends Model
     {
         return $this->hasManyThrough(Product::class, Collection::class);
     }
+
+    public function productsPublic()
+    {
+        return $this->products()->where('public', '=', '1');
+    }
 }

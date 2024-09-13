@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasFotos;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -13,6 +14,7 @@ class Collection extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use HasFotos;
 
     protected $fillable = [
         'name',

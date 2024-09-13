@@ -21,7 +21,9 @@
                                 <img class="main-image" src="{{ Croppa::url( \App\Models\Foto::getUrlForCroppaNull(),400,500,['quadrant']) }}"/>
                             @endif
                         </span>
-                        <span class="percentage">Скидка</span>
+                        @if(!$product->isPriceMetr())
+                            <span class="percentage">Акция</span>
+                        @endif
                         @isset($product->have_sklad)
                             <span class="flags"><span class="new">В наличии</span></span>
                         @endisset
