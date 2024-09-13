@@ -6,9 +6,9 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
-    <title>Ekka - Ecommerce HTML Template.</title>
-    <meta name="keywords" content="c"/>
-    <meta name="description" content="Best ecommerce html template for single and multi vendor store.">
+    <title>ПолРоссии - интернет-магазин наполных покрытий</title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=".">
     <meta name="author" content="">
 
     <!-- site Favicon -->

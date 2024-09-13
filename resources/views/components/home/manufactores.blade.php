@@ -21,19 +21,24 @@
                                 @else
                                     <img class="main-image" src="{{ Croppa::url( \App\Models\Foto::getUrlForCroppaNull(),200,200,['quadrant']) }}"/>
                                 @endif
-
                             </div>
                             <div class="ec-vendor-info">
                                 <a href="{{route('manufacture.show',$firm->slug)}}" class="name">{{$firm->name}}</a>
-                                <p class="prod-count mt-1 mb-0">
-                                    {{trans_choice(':val товар|:val товара|:val товаров',$firm->products_count,['val' => $firm->products_count])}}
-                                </p>
-                                <p class="prod-count mt-0">
-                                    {{trans_choice(':val по акции|:val по акции|:val по акции',$firm->sale_products_count,['val' => $firm->sale_products_count])}}</p>
-                                </p>
+                                @if($firm->products_count)
+                                    <p class="prod-count mt-1 mb-0">
+{{--                                        {{trans_choice(':val товар|:val товара|:val товаров',$firm->products_count,['val' => $firm->products_count])}}--}}
+                                        {{trans_choice('messages.product',$firm->products_count,['val' => $firm->products_count])}}
+                                    </p>
+                                @endif
+
+                                @if($firm->sale_products_count)
+                                    <p class="prod-count mt-0">
+                                        {{trans_choice('messages.sale',$firm->sale_products_count,['val' => $firm->sale_products_count])}}</p>
+                                    </p>
+                                @endif
+
                             </div>
                         </div>
-
                         <div class="">
                             @foreach( \App\Models\Type::withWhereHas('productsPublic.collection.firm', fn($query) => $query->where('id', '=', $firm->id))->withCount('productsPublic')->get() as $type)
                                 <div class="text-center text-bold ">
@@ -41,10 +46,7 @@
                                         <span style="text-decoration: underline">{{$type->name}}</span> ({{ $type->products_public_count}})
                                     </a>
                                 </div>
-
                             @endforeach
-
-
                         </div>
                     </div>
                 </div>
