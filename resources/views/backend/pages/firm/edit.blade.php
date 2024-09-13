@@ -24,7 +24,7 @@
 @section('content')
     <!-- app invoice View Page -->
     <section class="invoice-edit-wrapper">
-        <form action="{{ (isset($firm->id))? route('backend.firm.update',$firm->id):route('backend.firm.store')  }}" method="POST" enctype="multipart/form-data" >
+        <form action="{{ (isset($firm->id))? route('backend.firm.update',$firm->id):route('backend.firm.store')  }}" method="POST" enctype="multipart/form-data">
             @csrf
             @if(isset($firm->id))
                 @method('PUT')
@@ -132,13 +132,13 @@
                                 <fieldset class="form-group">
                                     <label for="basicInputFile">Выберите файлы</label>
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="inputGroupFile01" name="files[]" multiple >
+                                        <input type="file" class="custom-file-input" id="inputGroupFile01" name="files[]" multiple>
                                         <label class="custom-file-label" for="inputGroupFile01">Выберите файлы</label>
                                     </div>
                                 </fieldset>
                                 <div class="row app-file-recent-access">
                                     @foreach($firm->files as $file)
-{{--                                        "{{ asset(Storage::disk('product')->url('/300/'). $img->full_name_file)}}",--}}
+                                        {{--                                        "{{ asset(Storage::disk('product')->url('/300/'). $img->full_name_file)}}",--}}
                                         <div class="col-md-6 col-6">
                                             <div class="card border shadow-none mb-1 app-file-info">
                                                 <div class="card-content">
@@ -149,7 +149,8 @@
                                                     <div class="card-body p-50">
                                                         <div class="app-file-recent-details">
                                                             <div class="app-file-name font-size-small font-weight-bold">
-                                                                <a target="_blank" href="{{Storage::disk('files')->url($file->full_name_file)}}"> {{$file->name.".".$file->extension}}</a>
+                                                                <a target="_blank"
+                                                                   href="{{Storage::disk('files')->url($file->full_name_file)}}"> {{$file->name.".".$file->extension}}</a>
                                                             </div>
                                                             @if(!Storage::disk('files')->exists($file->full_name_file))
                                                                 <div class="app-file-size font-size-small text-danger mb-25"> Нет на сервере</div>
@@ -218,34 +219,8 @@
     <script src="/b/app-assets/js/scripts/forms/select/form-select2.js"></script>
 
     <!-- END: Page JS-->
-
-
-
-    <script type="text/javascript" src="/b/CKE/ckeditor/ckeditor.js"></script>
-    <script type="text/javascript" src="/b/CKE/ckfinder.js"></script>
-    <script type="text/javascript">
-        if (typeof CKEDITOR == 'undefined') {
-            document.write('Error');
-        } else {
-            var editor = CKEDITOR.replace('editor1');
-            CKFinder.setupCKEditor(editor, '/CKE/');
-        }
-    </script>
-    {{--    <script src="{{asset("/b/app-assets/js/)}}"></script>--}}
-
-
-
-    <script src="/b/fileuploader/js/plugins/buffer.min.js" type="text/javascript"></script>
-    <script src="/b/fileuploader/js/plugins/filetype.min.js" type="text/javascript"></script>
-    <script src="/b/fileuploader/js/plugins/piexif.js" type="text/javascript"></script>
-    <script src="/b/fileuploader/js/plugins/sortable.js" type="text/javascript"></script>
-    <script src="/b/fileuploader/js/fileinput.js" type="text/javascript"></script>
-    <script src="/b/fileuploader/js/locales/ru.js" type="text/javascript"></script>
-
-    <script src="/b/fileuploader/themes/gly/theme.js" type="text/javascript"></script>
-    <script src="/b/fileuploader/themes/fa5/theme.js" type="text/javascript"></script>
-    <script src="/b/fileuploader/themes/explorer-fa5/theme.js" type="text/javascript"></script>
-    <script>$.fn.fileinput.defaults.theme = 'fa5';</script>
+    @include('backend.panels.library.ckeditor.js')
+    @include('backend.panels.library.fileuploader.js')
 
     <script>
         $('#file-up').fileinput({

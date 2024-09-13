@@ -217,23 +217,7 @@
 
 
 
-    <script type="text/javascript" src="/b/CKE/ckeditor/ckeditor.js"></script>
-    <script type="text/javascript" src="/b/CKE/ckfinder.js"></script>
-
-    <script type="text/javascript">
-        if (typeof CKEDITOR == 'undefined') {
-            document.write('Error');
-        } else {
-            var editor = CKEDITOR.replace('editor1',
-                {
-                    toolbar: [
-                        ['Source', '-', 'NewPage', 'Preview'], ['PasteText', 'PasteFromWord', '-', 'SpellChecker', 'Scayt'], ['Undo', 'Redo', '-', 'Find', 'Replace', '-', 'SelectAll', 'RemoveFormat'], '/', ['Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript'], ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'], ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'], ['Link', 'Unlink', 'Anchor'], ['Image', 'Table', 'HorizontalRule', 'SpecialChar'], '/', [, 'Format', 'Font', 'FontSize'], ['TextColor', 'BGColor'], ['Maximize', 'ShowBlocks', '-', 'About']
-                    ]
-                });
-            CKFinder.setupCKEditor(editor, '/CKE/');
-        }
-    </script>
-    {{--    <script src="{{asset("/b/app-assets/js/)}}"></script>--}}
+    @include('backend.panels.library.ckeditor.js')
 
 
 

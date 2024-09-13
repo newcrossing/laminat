@@ -26,7 +26,6 @@
                                 <a href="{{route('manufacture.show',$firm->slug)}}" class="name">{{$firm->name}}</a>
                                 @if($firm->products_count)
                                     <p class="prod-count mt-1 mb-0">
-{{--                                        {{trans_choice(':val товар|:val товара|:val товаров',$firm->products_count,['val' => $firm->products_count])}}--}}
                                         {{trans_choice('messages.product',$firm->products_count,['val' => $firm->products_count])}}
                                     </p>
                                 @endif
