@@ -70,13 +70,9 @@ class PhotoController extends Controller
             $image = ImageManager::imagick()->read($file);
             $image->scale(width: 1500)->save(Storage::disk('product')->path('/1500/') . $foto->full_name_file);
 
-
-            Log::info("Сохранено изображение " . $foto->full_name_file);
-
-
             $product = $model->find($request->id);
             $product->fotos()->save($foto);
-
+            Log::info("Сохранено изображение " . $foto->full_name_file, [$product]);
 
         }
 
