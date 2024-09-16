@@ -50,14 +50,13 @@
             </div>
             <div class="row">
                 <!-- invoice view page -->
-                <div class="col-xl-9 col-md-8 col-12">
+                <div class="col-xl-8 col-md-8 col-12">
                     <div class="card">
                         <div class="card-header">
                             <h5 class="card-tile mb-0">Информация </h5>
                         </div>
                         <div class="card-content">
                             <div class="card-body pb-0 mx-25">
-
                                 <!-- logo and title -->
                                 <div class="row mb-1">
                                     <div class="col-sm-12 col-12 order-2 order-sm-1">
@@ -83,28 +82,23 @@
                                         @enderror
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
-
-
                 </div>
                 <!-- invoice action  -->
-                <div class="col-xl-3 col-md-4 col-12">
+                <div class="col-xl-4 col-md-4 col-12">
                     <div class="card invoice-action-wrapper shadow-none border">
                         <div class="card-header">
                             <h5 class="card-tile mb-0">Параметр</h5>
                         </div>
                         @if(isset($attribute_option->id))
                             <div class="card-body pb-0 pt-0">
-
                                 <a href="{{route('backend.attribute.edit',$attribute_option->attribute->id)}}" class="text-bold-600">
                                     {{$attributeRoot->name}}
                                 </a>
                                 <ul>
-                                    @foreach($attributeRoot->attributeOptions()->orderBy('value')->get() as  $atr)
+                                    @foreach($attributeRoot->attributeOptions()->orderByRaw('CAST(value as UNSIGNED) ASC')->orderBy('value')->get() as  $atr)
                                         <li><a href="{{route('backend.attribute-option.edit',$atr->id)}}">{{$atr->value}}</a></li>
                                     @endforeach
                                 </ul>
@@ -149,8 +143,6 @@
                                         </div>
                                     </div>
                                     <div class="row mb-1">
-
-
                                         <div class="col-12">
                                             <label class="form-label">Параметр</label>
                                             <select class="custom-select @error('attribute_id') is-invalid  @enderror" name="attribute_id">
