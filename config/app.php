@@ -169,6 +169,7 @@ return [
         App\Providers\EventServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\TelescopeServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Barryvdh\Elfinder\ElfinderServiceProvider::class,
         Bkwld\Croppa\CroppaServiceProvider::class,

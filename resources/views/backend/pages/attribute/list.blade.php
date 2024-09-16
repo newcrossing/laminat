@@ -51,7 +51,7 @@
                             <div class="small"> {{ Str::limit($item->slug , 40)  }}</div>
                         </td>
                         <td class="">
-                            @foreach($item->attributeOptions as $attributeOption)
+                            @foreach($item->attributeOptions()->orderByRaw('CAST(value as UNSIGNED) ASC')->orderBy('value')->get() as $attributeOption)
                                 <div class="small">{{$attributeOption->value}}</div>
                             @endforeach
                         </td>

@@ -15,7 +15,7 @@
                         <tr>
                             <td>
                                 @if($img = $product->fotos()->first())
-                                    <img src="{{ Croppa::url($img->getUrlForCroppa(),50,50,['quadrant']) }}">
+                                    <img class="prod-img" src="{{ Croppa::url($img->getUrlForCroppa(),300,300,['quadrant']) }}">
                                 @endif
                             </td>
                             <td><span class="font-weight-normal"> <a href="{{route('prod.show',$product->slug)}}">{{$product->getFullName()}} </a></span></td>

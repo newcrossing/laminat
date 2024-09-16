@@ -107,7 +107,7 @@
                         <div class="card-body pb-0 pt-0">
 
                             <div class="d py-50">
-                                @foreach($attribute->attributeOptions()->orderBy('value')->get() as $attributeOption)
+                                @foreach($attribute->attributeOptions()->orderByRaw('CAST(value as UNSIGNED) ASC')->orderBy('value')->get() as $attributeOption)
                                     <div class=""><a href="{{route('backend.attribute-option.edit',$attributeOption->id)}}">{{$attributeOption->value}}</a></div>
                                 @endforeach
 

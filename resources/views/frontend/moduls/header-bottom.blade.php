@@ -3,15 +3,13 @@
     <div class="container position-relative">
 
         <div class="row">
-
             <div class="ec-flex">
                 <!-- Ec Header Logo Start -->
                 <div class="align-self-center">
                     <div class="header-logo">
-                        <a href="index.html">
-                            <img src="/assets/images/logo/logo.png" alt="Site Logo"/>
-                            <img class="dark-logo" src="/assets/images/logo/dark-logo.png" alt="Site Logo"
-                                 style="display: none;"/></a>
+                        <a href="{{route('home')}}">
+                            <img src="/assets/images/logo/logo.png" alt="Лого"/>
+                        </a>
                     </div>
                 </div>
                 <!-- Ec Header Logo End -->
@@ -19,7 +17,7 @@
                 <!-- Ec Header Search Start -->
                 <div class="align-self-center">
                     <div class="" style="width: 300px">
-                        <div class="fs-3 fw-bold">8 (499) 340-09-09
+                        <div class="fs-3 fw-bold">{{config('contact.phone')}}
                             <a href="//">
                                 <i class="bi bi-telegram" style="color: #0a90eb"></i>
                             </a>
@@ -35,14 +33,14 @@
                 <!-- Ec Header Search End -->
                 <div class="align-self-center">
                     <div class="" style="width: 300px">
-{{--                        <form class="ec-btn-group-form" action="#">--}}
-{{--                            <input class="form-control" placeholder="Введите название товара..." type="text">--}}
-{{--                            <button class="submit" type="submit">--}}
-{{--                                <img src="/assets/images/icons/search.svg" class="svg_img header_svg" alt=""/>--}}
-{{--                            </button>--}}
-{{--                        </form>--}}
+                        {{--                        <form class="ec-btn-group-form" action="#">--}}
+                        {{--                            <input class="form-control" placeholder="Введите название товара..." type="text">--}}
+                        {{--                            <button class="submit" type="submit">--}}
+                        {{--                                <img src="/assets/images/icons/search.svg" class="svg_img header_svg" alt=""/>--}}
+                        {{--                            </button>--}}
+                        {{--                        </form>--}}
                         <i class="bi bi-geo-alt"></i>
-                        141100, Московская область, г.Щёлково, Пролетарский пр-т, д.10, ТД «Щелково», 5 этаж
+                        {{config('contact.adress')}}
                     </div>
                 </div>
                 <!-- Ec Header Button Start -->
@@ -88,28 +86,34 @@
 <div class="ec-header-bottom d-lg-none">
     <div class="container position-relative">
         <div class="row ">
-
             <!-- Ec Header Logo Start -->
             <div class="col">
                 <div class="header-logo">
                     <a href="index.html">
-                        <img src="/assets/images/logo/logo.png" alt="Site Logo"/>
-                        <img class="dark-logo" src="/assets/images/logo/dark-logo.png" alt="Site Logo"
-                             style="display: none;"/>
+                        <img src="/assets/images/logo/logo.png" alt="Лого"/>
                     </a>
                 </div>
             </div>
             <!-- Ec Header Logo End -->
             <!-- Ec Header Search Start -->
             <div class="col">
-                <div class="header-search">
-                    <form class="ec-btn-group-form" action="#">
-                        <input class="form-control" placeholder="Enter Your Product Name..." type="text">
-                        <button class="submit" type="submit">
-                            <img src="/assets/images/icons/search.svg" class="svg_img header_svg" alt="icon"/>
-                        </button>
-                    </form>
+                <div class="text-center fs-4 fw-bold">
+                    {{config('contact.phone')}}
+                    <a href="//">
+                        <i class="bi bi-telegram" style="color: #0a90eb"></i>
+                    </a>
+                    <a href="//">
+                        <i class="bi bi-whatsapp" style="color: #26de3e"></i>
+                    </a>
                 </div>
+{{--                <div class="header-search">--}}
+{{--                    <form class="ec-btn-group-form" action="#">--}}
+{{--                        <input class="form-control" placeholder="Enter Your Product Name..." type="text">--}}
+{{--                        <button class="submit" type="submit">--}}
+{{--                            <img src="/assets/images/icons/search.svg" class="svg_img header_svg" alt="icon"/>--}}
+{{--                        </button>--}}
+{{--                    </form>--}}
+{{--                </div>--}}
             </div>
             <!-- Ec Header Search End -->
         </div>
