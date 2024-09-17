@@ -219,7 +219,8 @@
                                                 <div class="col-4">
                                                     <label class="form-label">Досок в упаковке</label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" name="number_of_boards" value="{{old('number_of_boards',$product->number_of_boards)}}">
+                                                        <input type="text" class="form-control" name="number_of_boards"
+                                                               value="{{old('number_of_boards',$product->number_of_boards)}}">
                                                         <div class="input-group-append">
                                                             <span class="input-group-text">шт.</span>
                                                         </div>
@@ -233,11 +234,12 @@
                                                 @foreach(App\Models\Attribute::all() as $atribute)
                                                     <div class="col-4 mb-1">
                                                         <label class="form-label">{{$atribute->name}}</label>
-                                                        <select class="custom-select" name="attributes[]">
+                                                        <select class="select2 form-control" name="attributes[]">
                                                             <option></option>
                                                             @foreach($atribute->attributeOptions as $options)
-                                                                <option @if(in_array($options->id,$attributeOptions)) selected
-                                                                        @endif  value="{{$options->id}}">{{$options->value}}</option>
+                                                                <option @if(in_array($options->id,$attributeOptions)) selected @endif
+                                                                value="{{$options->id}}">{{$options->value}}
+                                                                </option>
                                                             @endforeach
                                                         </select>
                                                     </div>
