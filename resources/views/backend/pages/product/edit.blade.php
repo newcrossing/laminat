@@ -18,8 +18,7 @@
 
 
 @section('content')
-    <!-- app invoice View Page -->
-    <section class="invoice-edit-wrapper">
+    <section class="page-user-profile">
         <form action="{{ (isset($product->id))? route('backend.product.update',$product->id):route('backend.product.store')  }}" method="POST">
             @csrf
             @if(isset($product->id))
@@ -45,191 +44,319 @@
                 </div>
             </div>
             <div class="row">
-                <!-- invoice view page -->
-                <div class="col-xl-9 col-md-8 col-12">
+                <div class="col-12">
+                    <!-- user profile heading section start -->
                     <div class="card">
-                        <div class="card-header">
-                            <h5 class="card-tile mb-0">Информация о продукте</h5>
-                        </div>
                         <div class="card-content">
-                            <div class="card-body pb-0 mx-25">
-                                <input type="hidden" id="id" name="id" value="1">
-                                <!-- logo and title -->
-                                <div class="row mb-1">
-                                    <div class="col-sm-12 col-12 order-2 order-sm-1">
-                                        <label>Название </label>
-                                        <input type="text" name="name" class="form-control @error('name') is-invalid  @enderror" value="{{old('name',$product->name)}}"
-                                               placeholder="Название" autofocus required>
-                                        @error('name')
-                                        <div class="invalid-feedback">
-                                            {{$message}}
+
+                            <!-- user profile nav tabs start -->
+                            <div class="card-body px-0 ml-3">
+                                <ul class="nav user-profile-nav justify-content-center justify-content-md-start nav-tabs border-bottom-0 mb-0" role="tablist">
+                                    <li class="nav-item pb-0">
+                                        <a class=" nav-link d-flex px-1 active" id="feed-tab" data-toggle="tab" href="#feed" aria-controls="feed" role="tab" aria-selected="true"><i
+                                                    class="bx bx-home"></i><span class="d-none d-md-block">Основное</span></a>
+                                    </li>
+                                    <li class="nav-item pb-0">
+                                        <a class="nav-link d-flex px-1" id="activity-tab" data-toggle="tab" href="#activity" aria-controls="activity" role="tab"
+                                           aria-selected="false"><i class="bx bx-user"></i><span class="d-none d-md-block">Параметры</span></a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <!-- user profile nav tabs ends -->
+                        </div>
+                    </div>
+                    <!-- user profile heading section ends -->
+
+                    <!-- user profile content section start -->
+                    <div class="row">
+                        <!-- user profile nav tabs content start -->
+                        <div class="col-lg-9">
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="feed" aria-labelledby="feed-tab" role="tabpanel">
+                                    <!-- user profile nav tabs feed start -->
+                                    <div class="row">
+                                        <!-- invoice view page -->
+                                        <div class=" col-12">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h5 class="card-tile mb-0">Информация о продукте</h5>
+                                                </div>
+                                                <div class="card-content">
+                                                    <div class="card-body pb-0 mx-25">
+                                                        <input type="hidden" id="id" name="id" value="1">
+                                                        <!-- logo and title -->
+                                                        <div class="row mb-1">
+                                                            <div class="col-sm-12 col-12 order-2 order-sm-1">
+                                                                <label>Название </label>
+                                                                <input type="text" name="name" class="form-control @error('name') is-invalid  @enderror"
+                                                                       value="{{old('name',$product->name)}}"
+                                                                       placeholder="Название" autofocus required>
+                                                                @error('name')
+                                                                <div class="invalid-feedback">
+                                                                    {{$message}}
+                                                                </div>
+                                                                @enderror
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-1">
+                                                            <div class="col">
+                                                                <label class="form-label">Артикул</label>
+                                                                <input type="text" class="form-control" name="article" value="{{old('article',$product->article)}}">
+                                                            </div>
+                                                            <div class="col">
+                                                                <label class="form-label">Ссылка</label>
+                                                                <input type="text" class="form-control" name="slug" value="{{old('slug',$product->slug)}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                                <fieldset class="form-group">
+                                                                    <label class="form-label">Тип продукции</label>
+                                                                    <select class="custom-select @error('type_id') is-invalid  @enderror" name="type_id">
+                                                                        <option>Не выбрано</option>
+                                                                        @foreach(App\Models\Type::all() as $type)
+                                                                            <option value="{{$type->id}}" @selected(@$product->type->id== $type->id)>{{$type->name}}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                    @error('type_id')
+                                                                    <div class="invalid-feedback">{{$message}}</div>
+                                                                    @enderror
+                                                                </fieldset>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <fieldset class="form-group">
+                                                                    <label class="form-label">Фирма и коллекция</label>
+                                                                    <select class="custom-select @error('collection_id') is-invalid  @enderror" name="collection_id">
+                                                                        <option>Не выбрано</option>
+                                                                        @foreach(App\Models\Firm::with('collections')->get() as $firm)
+                                                                            <optgroup label="{{$firm->name}}">
+                                                                                @foreach($firm->collections as $collection)
+                                                                                    <option value="{{$collection->id}}" @selected(@$product->collection->id == $collection->id)>{{$collection->name}}</option>
+                                                                                @endforeach
+                                                                            </optgroup>
+                                                                        @endforeach
+                                                                    </select>
+                                                                    @error('collection_id')
+                                                                    {{--                                            <div class="invalid-feedback">{{$message}}</div>--}}
+                                                                    @enderror
+                                                                </fieldset>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <fieldset class="form-group">
+                                                                    <label class="form-label">Короткое описание</label>
+                                                                    <textarea name="description" class="form-control" rows="8"
+                                                                              placeholder="">{{old('description',$product->description)}}</textarea>
+                                                                </fieldset>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-1">
+                                                            <div class="col">
+                                                                <label class="form-label">Описание</label>
+                                                                <textarea id="editor1" name="text">{{old('text',$product->text)}}</textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
                                         </div>
-                                        @enderror
+                                        <!-- invoice action  -->
+
 
                                     </div>
+                                    <!-- user profile nav tabs feed ends -->
                                 </div>
-                                <div class="row mb-1">
-                                    <div class="col">
-                                        <label class="form-label">Артикул</label>
-                                        <input type="text" class="form-control" name="article" value="{{old('article',$product->article)}}">
-                                    </div>
-                                    <div class="col">
-                                        <label class="form-label">Ссылка</label>
-                                        <input type="text" class="form-control" name="slug" value="{{old('slug',$product->slug)}}">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <fieldset class="form-group">
-                                            <label class="form-label">Тип продукции</label>
-                                            <select class="custom-select @error('type_id') is-invalid  @enderror" name="type_id">
-                                                <option>Не выбрано</option>
-                                                @foreach(App\Models\Type::all() as $type)
-                                                    <option value="{{$type->id}}" @selected(@$product->type->id== $type->id)>{{$type->name}}</option>
+                                <div class="tab-pane " id="activity" aria-labelledby="activity-tab" role="tabpanel">
+                                    <!-- user profile nav tabs activity start -->
+                                    <div class="card invoice-action-wrapper shadow-none border">
+                                        <div class="card-header">
+
+                                            <h5 class="card-tile mb-1">Дополнительно </h5>
+
+                                            <div class="row mb-1">
+                                                <div class="col-4">
+                                                    <label class="form-label">Размеры </label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" name="param_sdt" value="{{old('param_sdt',$product->param_sdt)}}"
+                                                               placeholder="ШхДхТ">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">мм.</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4 mb-1">
+                                                    <label class="form-label">Площадь упаковки </label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" name="square" value="{{old('square',$product->square)}}">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">м<sup>2</sup></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <label class="form-label">Объем упаковки</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" name="packing_volume" value="{{old('packing_volume',$product->packing_volume)}}">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">м<sup>3</sup></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <label class="form-label">Вес упаковки</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" name="packing_weight" value="{{old('packing_weight',$product->packing_weight)}}">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">кг.</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <label class="form-label">Досок в упаковке</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" name="number_of_boards" value="{{old('number_of_boards',$product->number_of_boards)}}">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">шт.</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <h5 class="card-tile mb-1 mt-2">Параметры </h5>
+                                            <div class="row mb-1">
+                                                @foreach(App\Models\Attribute::all() as $atribute)
+                                                    <div class="col-4 mb-1">
+                                                        <label class="form-label">{{$atribute->name}}</label>
+                                                        <select class="custom-select" name="attributes[]">
+                                                            <option></option>
+                                                            @foreach($atribute->attributeOptions as $options)
+                                                                <option @if(in_array($options->id,$attributeOptions)) selected
+                                                                        @endif  value="{{$options->id}}">{{$options->value}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
                                                 @endforeach
-                                            </select>
-                                            @error('type_id')
-                                            <div class="invalid-feedback">{{$message}}</div>
-                                            @enderror
-                                        </fieldset>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-6">
-                                        <fieldset class="form-group">
-                                            <label class="form-label">Фирма и коллекция</label>
-                                            <select class="custom-select @error('collection_id') is-invalid  @enderror" name="collection_id">
-                                                <option>Не выбрано</option>
-                                                @foreach(App\Models\Firm::with('collections')->get() as $firm)
-                                                    <optgroup label="{{$firm->name}}">
-                                                        @foreach($firm->collections as $collection)
-                                                            <option value="{{$collection->id}}" @selected(@$product->collection->id == $collection->id)>{{$collection->name}}</option>
-                                                        @endforeach
-                                                    </optgroup>
-                                                @endforeach
-                                            </select>
-                                            @error('collection_id')
-                                            {{--                                            <div class="invalid-feedback">{{$message}}</div>--}}
-                                            @enderror
-                                        </fieldset>
-                                    </div>
+                                    <!-- user profile nav tabs activity start -->
                                 </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <fieldset class="form-group">
-                                            <label class="form-label">Короткое описание</label>
-                                            <textarea name="description" class="form-control" rows="8" placeholder="">{{old('description',$product->description)}}</textarea>
-                                        </fieldset>
+                                <div class="tab-pane" id="friends" aria-labelledby="friends-tab" role="tabpanel">
+                                    <!-- user profile nav tabs friends start -->
+                                    <div class="card">
+
                                     </div>
+                                    <!-- user profile nav tabs friends ends -->
                                 </div>
-                                <div class="row mb-1">
-                                    <div class="col">
-                                        <label class="form-label">Описание</label>
-                                        <textarea id="editor1" name="text">{{old('text',$product->text)}}</textarea>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
+                        <!-- user profile nav tabs content ends -->
+                        <!-- user profile right side content start -->
+                        <div class="col-xl-3 col-md-4 col-12">
+                            <div class="card invoice-action-wrapper shadow-none border">
+                                <div class="card-header">
+                                    <h5 class="card-tile mb-0">Цены</h5>
+                                </div>
+
+                                <div class="card-body pb-0 pt-0">
+                                    <div class="invoice-action-btn mb-1 d-flex">
+                                        <div class="row mb-1">
+                                            <div class="col-12">
+                                                <label class="form-label">Цена за м<sup>2</sup></label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control @if($product->isPriceMetr()) border-success @endif" name="price_metr"
+                                                           value="{{old('price_metr',$product->price_metr)}}" placeholder="руб." autocomplete="off">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">руб.</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 mt-1">
+                                                <label class="form-label">Скидка </label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control @if(!$product->isPriceMetr()) border-success @endif" name="price_metr_sale"
+                                                           value="{{old('price_metr_sale',$product->price_metr_sale)}}" placeholder="руб." autocomplete="off">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">руб.</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="invoice-action-btn mb-1 d-flex">
+                                        <div class="row mb-1">
+                                            <div class="col-12">
+                                                <label class="form-label">Цена за упаковку</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control @if($product->isPriceUpak()) border-success @endif" name="price_upak"
+                                                           value="{{old('price_upak',$product->price_upak)}}" placeholder="руб." autocomplete="off">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">руб.</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 mt-1">
+                                                <label class="form-label">Скидка </label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control @if(!$product->isPriceUpak()) border-success @endif " name="price_upak_sale"
+                                                           value="{{old('price_upak_sale',$product->price_upak_sale)}}" placeholder="руб." autocomplete="off">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">руб.</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <hr class="">
+                                    <div class="d-flex justify-content-between py-50">
+                                        <span class="invoice-terms-title">Опубликовать</span>
+                                        <div class="custom-control custom-switch custom-switch-glow">
+                                            <input type="checkbox" name="public" class="custom-control-input" id="public" {{!empty($product->public)?'checked':''}}>
+                                            <label class="custom-control-label" for="public"> </label>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between py-50">
+                                        <span class="invoice-terms-title">Наличие на складе</span>
+                                        <div class="custom-control custom-switch custom-switch-glow">
+                                            <input type="checkbox" name="have_sklad" class="custom-control-input" id="have_sklad" {{!empty($product->have_sklad)?'checked':''}}>
+                                            <label class="custom-control-label" for="have_sklad"> </label>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between py-50">
+                                        <span class="invoice-terms-title">Наличие на шоуруме</span>
+                                        <div class="custom-control custom-switch custom-switch-glow">
+                                            <input type="checkbox" name="have_room" class="custom-control-input" id="have_room" {{!empty($product->have_room)?'checked':''}}>
+                                            <label class="custom-control-label" for="have_room"> </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- user profile right side content ends -->
                     </div>
-
-
+                    <!-- user profile content section start -->
                 </div>
-                <!-- invoice action  -->
-                <div class="col-xl-3 col-md-4 col-12">
-                    <div class="card invoice-action-wrapper shadow-none border">
-                        <div class="card-header">
-                            <h5 class="card-tile mb-0">Цены</h5>
-                        </div>
-
-                        <div class="card-body pb-0 pt-0">
-                            <div class="invoice-action-btn mb-1 d-flex">
-                                <div class="preview w-50 mr-50">
-                                    <label class="form-label">Цена за м<sup>2</sup></label>
-                                    <input type="text" class="form-control @if($product->isPriceMetr()) border-success @endif" name="price_metr"
-                                           value="{{old('price_metr',$product->price_metr)}}" placeholder="руб."
-                                           autocomplete="off">
-
-                                </div>
-                                <div class="save w-50">
-                                    <label class="form-label">Скидка</label>
-                                    <input type="text" class="form-control @if(!$product->isPriceMetr()) border-success @endif" name="price_metr_sale"
-                                           value="{{old('price_metr_sale',$product->price_metr_sale)}}" placeholder="руб."
-                                           autocomplete="off">
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="invoice-action-btn mb-1 d-flex">
-                                <div class="preview w-50 mr-50">
-                                    <label class="form-label">За упаковку</label>
-                                    <input type="text" class="form-control @if($product->isPriceUpak()) border-success @endif" name="price_upak"
-                                           value="{{old('price_upak',$product->price_upak)}}" placeholder="руб.">
-
-                                </div>
-                                <div class="save w-50">
-                                    <label class="form-label">Скидка</label>
-                                    <input type="text" class="form-control @if(!$product->isPriceUpak()) border-success @endif " name="price_upak_sale"
-                                           value="{{old('price_upak_sale',$product->price_upak_sale)}}" placeholder="руб."
-                                           autocomplete="off">
-                                </div>
-                            </div>
-                            <hr>
-                            <hr>
-
-                            <div class="invoice-action-btn mb-1">
-                                <label class="form-label">Площадь упаковки м<sup>2</sup></label>
-                                <input type="text" class="form-control" name="square" value="{{old('square',$product->square)}}" placeholder="м. кв.">
-                            </div>
-
-                            <div class="d-flex justify-content-between py-50">
-                                <span class="invoice-terms-title">Опубликовать</span>
-                                <div class="custom-control custom-switch custom-switch-glow">
-                                    <input type="checkbox" name="public" class="custom-control-input" id="public" {{!empty($product->public)?'checked':''}}>
-                                    <label class="custom-control-label" for="public"> </label>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between py-50">
-                                <span class="invoice-terms-title">Наличие на складе</span>
-                                <div class="custom-control custom-switch custom-switch-glow">
-                                    <input type="checkbox" name="have_sklad" class="custom-control-input" id="have_sklad" {{!empty($product->have_sklad)?'checked':''}}>
-                                    <label class="custom-control-label" for="have_sklad"> </label>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between py-50">
-                                <span class="invoice-terms-title">Наличие на шоуруме</span>
-                                <div class="custom-control custom-switch custom-switch-glow">
-                                    <input type="checkbox" name="have_room" class="custom-control-input" id="have_room" {{!empty($product->have_room)?'checked':''}}>
-                                    <label class="custom-control-label" for="have_room"> </label>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="card invoice-action-wrapper shadow-none border">
-                        <div class="card-header">
-
-                            <h5 class="card-tile mb-1">Дополнительно </h5>
-                            <div class=" invoice-action-btn mb-1">
-                                <label class="form-label">Размеры (ШхДхТ) мм.</label>
-                                <input type="text" class="form-control" name="param_sdt" value="{{old('param_sdt',$product->param_sdt)}}" placeholder="ШхДхТ">
-                            </div>
-                            <h5 class="card-tile mb-1 mt-2">Характеристики </h5>
-                            @foreach(App\Models\Attribute::all() as $atribute)
-
-                                <div class="invoice-action-btn mb-1">
-                                    <label class="form-label">{{$atribute->name}}</label>
-                                    <select class="custom-select" id="customSelect" name="attributes[]">
-                                        <option></option>
-                                        @foreach($atribute->attributeOptions as $options)
-                                            <option @if(in_array($options->id,$attributeOptions)) selected @endif  value="{{$options->id}}">{{$options->value}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </form>
     </section>
+
+
+
+    <!-- app invoice View Page -->
+
     @if($product->id)
         <section class="invoice-edit-wrapper">
             <div class="row">

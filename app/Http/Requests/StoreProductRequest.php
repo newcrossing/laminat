@@ -41,6 +41,9 @@ class StoreProductRequest extends FormRequest
             'have_room' => 'boolean',
             'attributes' => 'nullable',
             'description' => 'nullable',
+            'packing_volume' => 'nullable',
+            'packing_weight' => 'nullable',
+            'number_of_boards' => 'nullable',
         ];
     }
 
@@ -71,6 +74,9 @@ class StoreProductRequest extends FormRequest
             'price_upak_sale' => $this->price_upak_sale ?: 0,
             'price_metr_sale' => $this->price_metr_sale ?: 0,
             'square' => ($this->square) ? Str::replace(',', '.', $this->square) : null,
+            'packing_volume' => ($this->packing_volume) ? Str::replace(',', '.', $this->packing_volume) : null,
+            'packing_weight' => ($this->packing_weight) ? Str::replace(',', '.', $this->packing_weight) : null,
+            'number_of_boards' => ($this->number_of_boards) ? Str::replace(',', '.', $this->number_of_boards) : null,
         ]);
     }
 }

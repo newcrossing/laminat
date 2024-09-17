@@ -36,6 +36,9 @@ class Product extends Model
         'have_room',
         'have_room',
         'param_sdt',
+        'packing_volume',
+        'packing_weight',
+        'number_of_boards',
     ];
 
     protected $casts = [
