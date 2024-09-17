@@ -236,7 +236,7 @@
                                                         <label class="form-label">{{$atribute->name}}</label>
                                                         <select class="select2 form-control" name="attributes[]">
                                                             <option></option>
-                                                            @foreach($atribute->attributeOptions as $options)
+                                                            @foreach($atribute->attributeOptions()->orderByRaw('CAST(value as UNSIGNED) ASC')->orderBy('value')->get() as $options)
                                                                 <option @if(in_array($options->id,$attributeOptions)) selected @endif
                                                                 value="{{$options->id}}">{{$options->value}}
                                                                 </option>
