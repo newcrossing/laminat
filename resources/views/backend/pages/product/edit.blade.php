@@ -107,7 +107,9 @@
                                                             </div>
                                                             <div class="col">
                                                                 <label class="form-label">Ссылка
-                                                                    <small><a href="{{route('prod.show',$product->slug)}}" target="_blank">посмотреть продукт</a></small>
+                                                                    @if($product->slug)
+                                                                        <small><a href="{{route('prod.show',$product->slug)}}" target="_blank">посмотреть продукт</a></small>
+                                                                    @endif
                                                                 </label>
                                                                 <input type="text" class="form-control" name="slug" value="{{old('slug',$product->slug)}}">
                                                             </div>
