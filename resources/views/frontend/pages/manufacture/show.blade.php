@@ -34,10 +34,18 @@
                     <div class="row mb-5">
                         <div class="col-md-12">
                             <div class="ec-vendor-block-profile">
-
                                 <div class="ec-vendor-block-about space-bottom-30 ">
                                     {!! $firm->text !!}
                                 </div>
+                                @if($firm->collections)
+                                    <div class="ec-blog-tags p-2" style="background-color: #d3e4ff;">
+                                        <span class="fw-bold">Коллекции:</span>
+                                        @foreach($firm->collections as $collection)
+                                            <a href="blog-left-sidebar.html">{{$collection->name}}  @if(!$loop->last),@endif</a>
+                                        @endforeach
+                                    </div>
+                                @endif
+
                                 <div class="row ">
                                     @foreach($firm->files as $file)
                                         <div class="ec_ser_content ec_ser_content_1 col-sm-12 col-md-6 col-lg-4">

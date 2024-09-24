@@ -49,8 +49,6 @@
                         <div class="shop-pro-inner">
                             <div class="row">
                                 <x-products.card :products="$products" />
-
-
                             </div>
                         </div>
                         <!-- Ec Pagination Start -->

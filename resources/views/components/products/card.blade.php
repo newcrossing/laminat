@@ -24,13 +24,13 @@
                         @if(!$product->isPriceMetr())
                             <span class="percentage">Акция</span>
                         @endif
-                        @isset($product->have_sklad)
+                        @if($product->have_sklad)
                             <span class="flags"><span class="new">В наличии</span></span>
-                        @endisset
+                        @endif
 
-                        @isset($product->have_room)
+                        @if($product->have_room)
                             <span class="flags"><span class="sale">В шоуруме</span></span>
-                        @endisset
+                        @endif
                     </div>
                 </div>
             </a>
@@ -41,10 +41,12 @@
                         {{$product->collection->firm->name}}   {{$product->collection->name}} {{$product->name}}
                     </a>
                 </h5>
+                @if(isset($desc))
+                    <div class="ec-pro-list-desc">
+                        {{$product->description}}
+                    </div>
+                @endif
 
-                {{--                <div class="ec-pro-list-desc">--}}
-                {{--                    {{$product->text}}--}}
-                {{--                </div>--}}
                 <div class="ec-price" style="justify-content: center;">
                     <div>
                         <span class="new-price" style="font-size: 28px">

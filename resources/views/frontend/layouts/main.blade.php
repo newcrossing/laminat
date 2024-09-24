@@ -34,7 +34,7 @@
 
     <!-- Main Style -->
     <link rel="stylesheet" href="/assets/css/style.css"/>
-    {{--        <link rel="stylesheet" href="{{asset('/assets/css/demo7.css')}}"/>--}}
+{{--            <link rel="stylesheet" href="{{asset('/assets/css/demo7.css')}}"/>--}}
     <link rel="stylesheet" href="/assets/css/responsive.css"/>
 
 
@@ -44,8 +44,9 @@
     <link rel="stylesheet" id="bg-switcher-css" href="/assets/css/backgrounds/bg-4.css">
 
 </head>
-<body class="product_page">
-<div id="ec-overlay"><span class="loader_img"></span></div>
+<body class=" @if(Route::currentRouteName()=='prod.show') product_page @endif ">
+
+{{--<div id="ec-overlay"><span class="loader_img"></span></div>--}}
 
 <!-- Header start  -->
 <header class="ec-header">

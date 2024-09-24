@@ -42,36 +42,13 @@ Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('h
 Route::get('/category', [\App\Http\Controllers\ProductController::class, 'list'])->name('home233');;
 Route::get('/{slug}', [\App\Http\Controllers\ProductController::class, 'show'])->where('slug', 'p-[A-Za-z0-9-]+')->name('prod.show');
 
+
 Route::get('/manufactures/', [ManufactureController::class, 'list'])->name('manufacture.list');
 Route::get('/manufacture-{slug}', [ManufactureController::class, 'show'])->where('slug', '[A-Za-z0-9-]+')->name('manufacture.show');
 
 Route::get('/backend/user', [UserController::class, 'index'])->name('backend.user');
 
-Route::get('/add', function () {
-//    User::create([
-//        'login' =>'admin',
-//        'password' => Hash::make('111111')
-//    ]);
 
-
-    $image = ImageManager::imagick()->read(Storage::disk('public')->get('111.jpg'));
-    $image->width();
-    $image->scale(height: 400)->crop(400, 400, 0, 0, position: 'bottom-center')->save(Storage::disk('public')->path('/33.jpg'), progressive: true, quality: 90);
-
-    // $role = Role::create(['name' => 'user']);
-    // $role = Role::create(['name' => 'admin']);
-    //$user = User::find(1);
-    // $user->assignRole('user');
-    //$user->assignRole('admin');
-//    $prod = \App\Models\Product::first();
-//    foreach ($prod->attributeOptions as $attributeOption) {
-//        print $attributeOption->attribute->name;
-//    }
-    //dd($prod->attributeOptions);
-    //  $Attr = \App\Models\Attribute::first()->attributeOptions;;
-    // dd($Attr);
-    //$prod->attributeOptions()->sync([1,2,3,4]);
-});
 Route::controller(LoginRegisterController::class)->group(function () {
 
     //   Route::get('/register', 'register')->name('register');
@@ -101,6 +78,6 @@ Route::middleware(['role:admin'])->prefix('backend')->group(
 
     }
 );
-
+Route::any('/{slug_type}', [\App\Http\Controllers\TypeController::class, 'index'])->name('type.index');
 //Route::post('ckeditor/upload', [CKEditorController::class, 'upload'])->name('ckeditor.image-upload');
 

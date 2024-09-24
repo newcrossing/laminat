@@ -11,5 +11,17 @@
 - Добавлен Telescop
 - Добавлен объем упаковки, вес упаковки, досок в упаковке
 
+### Структура сайта
 
+- Типы продукции 
+  - Типы продукции `/<type-slug>`
+  - Тип продукции производителя `/<type-slug>/<firm-slug>`
+  - Тип продукции производителя `/<type-slug>/<firm-slug>/<collection-slug>`
+- Производители
+  - Список `/manufactures`  
+  - Производитель `/manufacture-<firm-slug>`
+  - Тип продукции производителя `/<type-slug>/<firm-slug>`
+  - Коллекция производителя `/<type-slug>/<firm-slug>/<collection-slug>/`
+- Фильтры 
+  - Поиск по атрибутам `/<type-slug>/variant/<attributeOption-slug>/`
 

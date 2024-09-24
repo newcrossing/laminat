@@ -19,6 +19,7 @@ class Product extends Model
     use SoftDeletes;
     use HasFotos;
 
+    const COUNT_OF_PAGINATION = 5;
 
     protected $fillable = [
         'name',
@@ -88,7 +89,8 @@ class Product extends Model
         $query->where('public', true);
     }
 
-    public function getFullName (){
+    public function getFullName()
+    {
         return "{$this->collection->firm->name}   {$this->collection->name} {$this->name}";
 
     }

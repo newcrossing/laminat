@@ -22094,10 +22094,10 @@ select::-ms-expand {
   margin-right: 4px;
 }
 .filter__label:nth-child(1):before {
-  content: "$";
+  /*content: "$";*/
 }
 .filter__label:nth-child(3):before {
-  content: "$";
+  /*content: "$";*/
 }
 
 .filter__input {

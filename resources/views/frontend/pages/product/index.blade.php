@@ -34,8 +34,9 @@
                                                 @foreach($product->fotos as $foto)
                                                     <div class="single-slide ">
                                                         <a class="popup-gallery" href="{{ asset(Storage::disk('product')->url('/800/'). $foto->full_name_file)}}">
-{{--                                                            <img class=" img-responsive" src="{{ $foto->getUrlCr()}}">--}}
-                                                            <img class=" img-responsive" src="{{ Croppa::url('storage/thumbnails/' . $foto->full_name_file,400,500,['quadrant']) }}">
+                                                            {{--                                                            <img class=" img-responsive" src="{{ $foto->getUrlCr()}}">--}}
+                                                            <img class=" img-responsive"
+                                                                 src="{{ Croppa::url('storage/thumbnails/' . $foto->full_name_file,400,500,['quadrant']) }}">
                                                         </a>
                                                     </div>
                                                 @endforeach
@@ -47,7 +48,7 @@
                                             @if($product->fotos()->count())
                                                 @foreach($product->fotos as $foto)
                                                     <div class="single-slide zoom-image-hover">
-{{--                                                        <img class="img-responsive" src="{{ $foto->getUrlCr(100)}}">--}}
+                                                        {{--                                                        <img class="img-responsive" src="{{ $foto->getUrlCr(100)}}">--}}
                                                         <img class="img-responsive" src="{{ Croppa::url('storage/thumbnails/' . $foto->full_name_file,100,100,['quadrant']) }}">
                                                     </div>
                                                 @endforeach
@@ -307,190 +308,65 @@
                         <!-- Sidebar Category Block -->
                         <div class="ec-sidebar-block">
                             <div class="ec-sb-title">
-                                <h3 class="ec-sidebar-title">Category</h3>
+                                <h3 class="ec-sidebar-title">Параметры</h3>
                             </div>
                             <div class="ec-sb-block-content">
                                 <ul>
                                     <li>
-                                        <div class="ec-sidebar-block-item">clothes</div>
                                         <ul style="display: block;">
+                                            <li>
+                                                <div class="ec-sidebar-sub-item">
+                                                    <div style="font-weight: normal; text-transform: none;cursor: default;">
+                                                        Тип
+                                                        <span>
+                                                            <a href="{{$product->type->slug}}"
+                                                               style="font-weight: normal; text-transform: none;color: #0d6efd;  text-decoration: underline;">
+                                                                {{$product->type->name}}
+                                                            </a>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="ec-sidebar-sub-item">
+                                                    <div style="font-weight: normal; text-transform: none;cursor: default;">
+                                                        Производитель
+                                                        <span>
+                                                            <a href="{{route('manufacture.show',$product->collection->firm->slug)}}"
+                                                               style="font-weight: normal; text-transform: none;color: #0d6efd;  text-decoration: underline; ">
+                                                                {{$product->collection->firm->name}}
+                                                            </a>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="ec-sidebar-sub-item">
+                                                    <div style="font-weight: normal; text-transform: none; cursor: default;">
+                                                        Коллекция <span><a href="as"
+                                                                           style="font-weight: normal; text-transform: none ;color: #0d6efd;  text-decoration: underline;">{{$product->collection->name}}</a>                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </li>
                                             @foreach($product->attributeOptions as $attributeOption)
                                                 <li>
-                                                    <div class="ec-sidebar-sub-item"><div href="#">{{$attributeOption->attribute->name}} <span><a href="as">{{$attributeOption->value}}</a></span></div>
+                                                    <div class="ec-sidebar-sub-item">
+                                                        <div style="font-weight: normal; text-transform: none;cursor: default;">
+                                                            {{$attributeOption->attribute->name}}
+                                                            <span>
+                                                                <a href="as" style="font-weight: normal; text-transform: none ">{{$attributeOption->value}}</a>
+                                                            </span>
+                                                        </div>
                                                     </div>
                                                 </li>
 
                                             @endforeach
-                                            <li>
-                                                <div class="ec-sidebar-sub-item"><a href="#">Men <span>-25</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item"><a href="#">Women <span>-52</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item"><a href="#">Boy <span>-40</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item"><a href="#">Girl <span>-35</span></a>
-                                                </div>
-                                            </li>
+
                                         </ul>
                                     </li>
                                 </ul>
                             </div>
-                            <div class="ec-sb-block-content">
-                                <ul>
-                                    <li>
-                                        <div class="ec-sidebar-block-item">shoes</div>
-                                        <ul>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item"><a href="#">Men <span>-25</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item"><a href="#">Women <span>-52</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item"><a href="#">Boy <span>-40</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item"><a href="#">Girl <span>-35</span></a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="ec-sb-block-content">
-                                <ul>
-                                    <li>
-                                        <div class="ec-sidebar-block-item">bag</div>
-                                        <ul>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item"><a href="#">Men <span>-25</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item"><a href="#">Women <span>-52</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item"><a href="#">Boy <span>-40</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item"><a href="#">Girl <span>-35</span></a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="ec-sb-block-content">
-                                <ul>
-                                    <li>
-                                        <div class="ec-sidebar-block-item">cosmetics</div>
-                                        <ul>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item"><a href="#">Men <span>-25</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item"><a href="#">Women <span>-52</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item"><a href="#">Boy <span>-40</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item"><a href="#">Girl <span>-35</span></a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="ec-sb-block-content">
-                                <ul>
-                                    <li>
-                                        <div class="ec-sidebar-block-item">electronics</div>
-                                        <ul>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item"><a href="#">Men <span>-25</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item"><a href="#">Women <span>-52</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item"><a href="#">Boy <span>-40</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item"><a href="#">Girl <span>-35</span></a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="ec-sb-block-content">
-                                <ul>
-                                    <li>
-                                        <div class="ec-sidebar-block-item">phone</div>
-                                        <ul>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item"><a href="#">Men <span>-25</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item"><a href="#">Women <span>-52</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item"><a href="#">Boy <span>-40</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item"><a href="#">Girl <span>-35</span></a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="ec-sb-block-content">
-                                <ul>
-                                    <li>
-                                        <div class="ec-sidebar-block-item">accessories</div>
-                                        <ul>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item"><a href="#">Men <span>-25</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item"><a href="#">Women <span>-52</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item"><a href="#">Boy <span>-40</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item"><a href="#">Girl <span>-35</span></a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
+
                         </div>
                         <!-- Sidebar Category Block -->
                     </div>
