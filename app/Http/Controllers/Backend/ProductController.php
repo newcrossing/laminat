@@ -61,7 +61,7 @@ class ProductController extends Controller
         $validated = $request->validated();
 
         $product = new Product();
-        //dd($validated);
+
         $product->fill($validated)->save();
 
         Type::find($validated['type_id'])->products()->save($product);

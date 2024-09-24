@@ -1,5 +1,4 @@
 @foreach($types as $type)
-
     <div class="ec-vendor-dashboard-card space-bottom-30">
         <div class="ec-vendor-card-header">
             <h5>{{$type->name}}</h5>
@@ -20,7 +19,7 @@
                             </td>
                             <td><span class="font-weight-normal"> <a href="{{route('prod.show',$product->slug)}}">{{$product->getFullName()}} </a></span></td>
 
-                            <td><span class="text-bold">{{$product->actualPriceMetr()}} руб. м <sup>2</sup></span></td>
+                            <td><span class="font-weight-bolder">{{ Number::format($product->price_metr,locale: 'ru')}} руб. м <sup>2</sup></span></td>
 
                         </tr>
                     @endforeach

@@ -27,7 +27,6 @@
                         @if($product->have_sklad)
                             <span class="flags"><span class="new">В наличии</span></span>
                         @endif
-
                         @if($product->have_room)
                             <span class="flags"><span class="sale">В шоуруме</span></span>
                         @endif
@@ -50,14 +49,14 @@
                 <div class="ec-price" style="justify-content: center;">
                     <div>
                         <span class="new-price" style="font-size: 28px">
-                            <sup class="mr-3 text-muted">за 1 м<sup>2</sup></sup>{{ Number::format($product->actualPriceMetr(),locale: 'ru')}} <sub>руб.</sub>
+                            <sup class="mr-3 text-muted">за 1 м<sup>2</sup></sup>{{ Number::format($product->price_metr,locale: 'ru')}} <sub>руб.</sub>
                         </span>
                     </div>
 
                 </div>
                 @if($product->oldPriceMetr())
                     <div class="ec-price" style="justify-content: center;">
-                        <span class="old-price " style="font-size: 28px">{{Number::format($product->oldPriceMetr(),locale: 'ru')}} </span><sub>руб.</sub>
+                        <span class="old-price " style="font-size: 28px">{{Number::format($product->price_metr_sale,locale: 'ru')}} </span><sub>руб.</sub>
                     </div>
                 @endif
             </div>

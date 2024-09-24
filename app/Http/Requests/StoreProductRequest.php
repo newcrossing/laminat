@@ -64,15 +64,32 @@ class StoreProductRequest extends FormRequest
 
     protected function prepareForValidation(): void
     {
+        // переставляю значения цен. Если есть скидка то это значение записывается в текущую цену
+        if (empty($this->price_metr_sale)) {
+            $price_metr_actual = $this->price_metr ?: 0;
+            $price_metr_old = 0;
+        } else {
+            $price_metr_actual = $this->price_metr_sale;
+            $price_metr_old = $this->price_metr ?: 0;
+        }
+
+        if (empty($this->price_upak_sale)) {
+            $price_upak_actual = $this->price_upak ?: 0;
+            $price_upak_old = 0;
+        } else {
+            $price_upak_actual = $this->price_upak_sale;
+            $price_upak_old = $this->price_upak ?: 0;
+        }
+
         $this->merge([
             'slug' => $this->slug ?: 'p-' . Str::slug($this->name),
             'public' => $this->public ? true : false,
             'have_sklad' => $this->have_sklad ? true : false,
             'have_room' => $this->have_room ? true : false,
-            'price_metr' => $this->price_metr ?: 0,
-            'price_upak' => $this->price_upak ?: 0,
-            'price_upak_sale' => $this->price_upak_sale ?: 0,
-            'price_metr_sale' => $this->price_metr_sale ?: 0,
+            'price_metr' => $price_metr_actual,
+            'price_upak' => $price_upak_actual,
+            'price_upak_sale' => $price_upak_old,
+            'price_metr_sale' => $price_metr_old,
             'square' => ($this->square) ? Str::replace(',', '.', $this->square) : null,
             'packing_volume' => ($this->packing_volume) ? Str::replace(',', '.', $this->packing_volume) : null,
             'packing_weight' => ($this->packing_weight) ? Str::replace(',', '.', $this->packing_weight) : null,
