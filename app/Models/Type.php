@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -23,6 +24,11 @@ class Type extends Model
     protected $casts = [
         'public' => 'boolean',
     ];
+
+    public function scopePublic(Builder $query): void
+    {
+        $query->where('public', true);
+    }
 
     public function products(): HasMany
     {

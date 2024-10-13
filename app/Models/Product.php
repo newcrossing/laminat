@@ -16,7 +16,7 @@ class Product extends Model
     use SoftDeletes;
     use HasFotos;
 
-    const COUNT_OF_PAGINATION = 5;
+    const COUNT_OF_PAGINATION = 15;
 
     protected $fillable = [
         'name',
@@ -71,6 +71,7 @@ class Product extends Model
     {
         return $this->price_metr;
     }
+
     public function priceMetrOld()
     {
         return $this->price_metr_sale;
@@ -98,8 +99,7 @@ class Product extends Model
 
     public function getFullName()
     {
-        return "{$this->collection->firm->name}   {$this->collection->name} {$this->name}";
-
+        return "{$this->firm->name} {$this->collection->name} {$this->name}";
     }
 
 
@@ -123,10 +123,17 @@ class Product extends Model
         return $this->belongsToMany(AttributeOption::class);
     }
 
-//    public function firm(): HasOneThrough
-//    {
-//        return $this->through('collection')->has('firm');
-//    }
+    public function firm()
+    {
+        return $this->hasOneThrough(
+            Firm::class,
+            Collection::class,
+            'id', # foreign key on intermediary -- categories
+            'id', # foreign key on target -- projects
+            'collection_id', # local key on this -- properties
+            'firm_id' # local key on intermediary -- categories
+        );
+    }
 
 
 }

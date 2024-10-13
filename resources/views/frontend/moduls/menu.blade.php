@@ -28,19 +28,18 @@
 
                             <a href="">Оплата и доставка</a>
                             <ul class="sub-menu">
-                                <li class="dropdown position-static"><a href="">Оплата </a></li>
-                                <li class="dropdown position-static"><a href="">Доставка</a></li>
+                                <li class="dropdown position-static"><a href="{{route('info','oplata')}}">Оплата </a></li>
+                                <li class="dropdown position-static"><a href="{{route('info','dostavka')}}">Доставка</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown"><a href="javascript:void(0)">Возврат</a>
 
-                        </li>
                         <li class="dropdown"><a href="javascript:void(0)">Услуги</a>
 
                         </li>
-                        <li><a href="offer.html">Контакты</a></li>
+                        <li><a href="{{route('info','contact')}}">Контакты</a></li>
+
                         <li class="dropdown scroll-to"><a href="javascript:void(0)"><img
-                                        src="assets/images/icons/scroll.svg" class="svg_img header_svg scroll" alt=""/></a>
+                                        src="/assets/images/icons/scroll.svg" class="svg_img header_svg scroll" alt=""/></a>
                             <ul class="sub-menu">
                                 <li class="menu_title">Лучшие коллекции</li>
                                 <li><a href="javascript:void(0)" data-scroll="collection" class="nav-scroll">Лучшие коллекции</a></li>

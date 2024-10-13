@@ -8,7 +8,10 @@
                 <div class="align-self-center">
                     <div class="header-logo">
                         <a href="{{route('home')}}">
-                            <img src="/assets/images/logo/logo.png" alt="Лого"/>
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                              src="/assets/images/logo/logo.svg" class="svg_img header_svg" alt="">
+</svg>
+                                                        <img src="/assets/images/logo/logo3.svg" alt="Лого"/>
                         </a>
                     </div>
                 </div>
@@ -106,14 +109,14 @@
                         <i class="bi bi-whatsapp" style="color: #26de3e"></i>
                     </a>
                 </div>
-{{--                <div class="header-search">--}}
-{{--                    <form class="ec-btn-group-form" action="#">--}}
-{{--                        <input class="form-control" placeholder="Enter Your Product Name..." type="text">--}}
-{{--                        <button class="submit" type="submit">--}}
-{{--                            <img src="/assets/images/icons/search.svg" class="svg_img header_svg" alt="icon"/>--}}
-{{--                        </button>--}}
-{{--                    </form>--}}
-{{--                </div>--}}
+                {{--                <div class="header-search">--}}
+                {{--                    <form class="ec-btn-group-form" action="#">--}}
+                {{--                        <input class="form-control" placeholder="Enter Your Product Name..." type="text">--}}
+                {{--                        <button class="submit" type="submit">--}}
+                {{--                            <img src="/assets/images/icons/search.svg" class="svg_img header_svg" alt="icon"/>--}}
+                {{--                        </button>--}}
+                {{--                    </form>--}}
+                {{--                </div>--}}
             </div>
             <!-- Ec Header Search End -->
         </div>

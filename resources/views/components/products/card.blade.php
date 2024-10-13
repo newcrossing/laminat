@@ -1,7 +1,15 @@
 {{--Карточка товара--}}
+@php
+    if (empty($col)){
+        $col_lg ='col-lg-4';
+    }
+    else {
+        $col_lg ='col-lg-'.$col;
+    }
+@endphp
 
 @foreach($products as $product)
-    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-6 pro-gl-content">
+    <div class="{{$col_lg}} col-md-6 col-sm-6 col-xs-6 mb-6 pro-gl-content">
         <div class="ec-product-inner">
             <a href="{{route('prod.show',$product->slug)}}">
                 <div class="ec-pro-image-outer">
@@ -25,16 +33,16 @@
                             <span class="percentage">Акция</span>
                         @endif
                         @if($product->have_sklad)
-                            <span class="flags"><span class="new">В наличии</span></span>
+                            <span class="percentage_have"><span class="new">В наличии</span></span>
                         @endif
                         @if($product->have_room)
-                            <span class="flags"><span class="sale">В шоуруме</span></span>
+                            <span class="percentage_room"><span class="sale">В шоуруме</span></span>
                         @endif
                     </div>
                 </div>
             </a>
             <div class="ec-pro-content">
-                <a class="fs-6 text-upper text-center text-muted">{{$product->type->name}}</a>
+                <a class="fs-6 text-upper text-center text-muted" >{{$product->type->name}}</a>
                 <h5 class=" fs-6 text-center">
                     <a href="{{route('prod.show',$product->slug)}}">
                         {{$product->collection->firm->name}}   {{$product->collection->name}} {{$product->name}}

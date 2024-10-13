@@ -46,6 +46,9 @@ Route::get('/{slug}', [\App\Http\Controllers\ProductController::class, 'show'])-
 Route::get('/manufactures/', [ManufactureController::class, 'list'])->name('manufacture.list');
 Route::get('/manufacture-{slug}', [ManufactureController::class, 'show'])->where('slug', '[A-Za-z0-9-]+')->name('manufacture.show');
 
+Route::get('/info/{s}', [\App\Http\Controllers\InfoController::class, 'show'])->where('s', '[a-z-]+')->name('info');
+Route::post('/info/contact', [\App\Http\Controllers\InfoController::class, 'send_mail'])->name('info.send_mail');
+
 Route::get('/backend/user', [UserController::class, 'index'])->name('backend.user');
 
 

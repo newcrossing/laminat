@@ -30,11 +30,15 @@
     <link rel="stylesheet" href="/assets/css/plugins/slick.min.css"/>
     <link rel="stylesheet" href="/assets/css/plugins/nouislider.css"/>
     <link rel="stylesheet" href="/assets/css/plugins/bootstrap.css"/>
+
+    <link rel="stylesheet" href="/assets/css/plugins/owl.carousel.min.css"/>
+    <link rel="stylesheet" href="/assets/css/plugins/owl.theme.default.min.css"/>
+
     @yield('vendor-styles')
 
     <!-- Main Style -->
     <link rel="stylesheet" href="/assets/css/style.css"/>
-{{--            <link rel="stylesheet" href="{{asset('/assets/css/demo7.css')}}"/>--}}
+    {{--            <link rel="stylesheet" href="{{asset('/assets/css/demo7.css')}}"/>--}}
     <link rel="stylesheet" href="/assets/css/responsive.css"/>
 
 
@@ -64,39 +68,9 @@
 {{-- Молуль корзины. Всплывает справа --}}
 @include('frontend.moduls.cart')
 
+<x-menu.type />
 
-<div class="ec-page-content ec-vendor-dashboard section-space-p" style="padding-bottom: 2px">
-    <div class="container">
-        <div class="ec-shop-rightside col-lg-12 col-md-12">
-            <div class="row">
-                @foreach(\App\Models\Type::all() as $type)
-                    <div class="col-lg-3 col-md-6">
-                        <a href="{{$type->slug}}">
-                            <div class="ec-vendor-dashboard-sort-card color-blue" style="padding: 10px; text-align: center; margin-bottom: 3px">
-                                <b class="font-size-small">{{$type->name}}</b>
-                            </div>
-                        </a>
-                    </div>
-                @endforeach
-                <div class="col-lg-3 col-md-6">
-                    <a href="{{route('manufacture.list')}}">
-                        <div class="ec-vendor-dashboard-sort-card color-blue" style="padding: 10px; text-align: center; margin-bottom: 3px">
-                            <b class="fs-6">Производители</b>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <a href="{{$type->slug}}">
-                        <div class="ec-vendor-dashboard-sort-card color-blue" style="padding: 10px; text-align: center; margin-bottom: 3px">
-                            <b class="fs-6">Скидки</b>
-                        </div>
-                    </a>
-                </div>
-            </div>
 
-        </div>
-    </div>
-</div>
 @include('frontend.moduls.breadcrumb')
 {{--<div class="container">--}}
 {{--    <div class="row">--}}
@@ -127,7 +101,7 @@
 @yield('content')
 <!-- End Single product -->
 
-@include('frontend.moduls.releted-product')
+{{--@include('frontend.moduls.releted-product')--}}
 
 @include('frontend.moduls.footer')
 
@@ -160,6 +134,9 @@
 <script src="/assets/js/plugins/infiniteslidev2.js"></script>
 <script src="/assets/js/vendor/jquery.magnific-popup.min.js"></script>
 <script src="/assets/js/plugins/jquery.sticky-sidebar.js"></script>
+
+<script src="/assets/js/plugins/owl.carousel.min.js"></script>
+<script src="/assets/js/plugins/click-to-call.js"></script>
 
 <!-- Main Js -->
 <script src="/assets/js/vendor/index.js"></script>

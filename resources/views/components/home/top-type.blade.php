@@ -28,8 +28,7 @@
                         <div class="tab-pane fade @if ($loop->first) show active @endif " id="tab-pro-{{$type->slug}}">
                             <div class="row">
                                 <!-- Product Content -->
-                                <x-products.card :products="$type->products()->limit(3)->get()"/>
-
+                                <x-products.card :products="$type->products()->limit(4)->get()" col="3"/>
 
                                 <div class="col-sm-12 shop-all-btn"><a href="shop-left-sidebar-col-3.html">Смотреть все</a></div>
                             </div>

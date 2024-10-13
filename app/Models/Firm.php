@@ -51,4 +51,6 @@ class Firm extends Model
     {
         return $this->products()->where('public', '=', '1');
     }
+
+
 }

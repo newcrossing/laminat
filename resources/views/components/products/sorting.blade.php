@@ -14,13 +14,13 @@
         </div>
         <div class="col-md-9 ec-sort-select">
 
-            <span class="sort-by">Наличие</span>
-            <div class="ec-select-inner" >
-                <select name="have" onchange="$('#form-sorting').submit();">
-                    <option value="null" @selected(Request::get("have") =='null' )>Все</option>
-                    <option value="1" @selected(Request::get("have")  =='pricey' )>В наличии</option>
-                </select>
-            </div>
+{{--            <span class="sort-by">Наличие</span>--}}
+{{--            <div class="ec-select-inner" >--}}
+{{--                <select name="have" onchange="$('#form-sorting').submit();">--}}
+{{--                    <option value="null" @selected(Request::get("have") =='null' )>Все</option>--}}
+{{--                    <option value="1" @selected(Request::get("have")  =='pricey' )>В наличии</option>--}}
+{{--                </select>--}}
+{{--            </div>--}}
             <span class="sort-by ml-3 pr-0">Сортировать</span>
             <div class="ec-select-inner">
                 <select name="sorting" onchange="$('#form-sorting').submit();">

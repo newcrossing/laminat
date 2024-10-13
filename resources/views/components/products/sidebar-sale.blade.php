@@ -1,9 +1,8 @@
-@php use App\Models\Product; @endphp
-@if($products_sale  = Product::where('price_metr_sale','>',0)->public()->limit(16)->get())
+@if($products)
     <div class="ec-sidebar-slider">
         <div class="ec-sb-slider-title">По акции</div>
         <div class="ec-sb-pro-sl">
-            @foreach($products_sale as $product)
+            @foreach($products as $product)
                 <div>
                     <div class="ec-sb-pro-sl-item">
                         <a href="{{route('prod.show',$product->slug)}}" class="sidekka_pro_img">

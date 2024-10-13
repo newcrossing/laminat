@@ -65,12 +65,11 @@
                                             </a>
                                         </div>
                                     @endforeach
-
-
                                 </div>
                             </div>
                         </div>
                     </div>
+
 
                     <x-products.table_type :types="$types"/>
 

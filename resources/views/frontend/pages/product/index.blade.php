@@ -22,14 +22,9 @@
                     <div class="single-pro-block">
                         <div class="single-pro-inner">
                             <div class="row">
-
-
                                 <div class="single-pro-img">
-
                                     <div class="single-product-scroll">
-
                                         <div class="single-product-cover">
-
                                             @if($product->fotos()->count())
                                                 @foreach($product->fotos as $foto)
                                                     <div class="single-slide ">
@@ -317,7 +312,7 @@
                                                         <span>
                                                             <a href="{{route('manufacture.show',$product->collection->firm->slug)}}"
                                                                style="font-weight: normal; text-transform: none;color: #0d6efd;  text-decoration: underline; ">
-                                                                {{$product->collection->firm->name}}
+                                                                {{$product->firm->name}}
                                                             </a>
                                                         </span>
                                                     </div>
@@ -362,4 +357,6 @@
             </div>
         </div>
     </section>
+
+    <x-products.related :idproduct="$product->id" />
 @endsection

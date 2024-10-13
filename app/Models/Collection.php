@@ -26,6 +26,7 @@ class Collection extends Model
     protected $casts = [
         'public' => 'boolean',
     ];
+
     public function scopePublic(Builder $query): void
     {
         $query->where('public', true);
@@ -39,5 +40,10 @@ class Collection extends Model
     public function products(): HasMany
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function productsPublic(): HasMany
+    {
+        return $this->products()->where('public', '=', '1');
     }
 }

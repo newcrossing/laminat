@@ -52,7 +52,7 @@
                                         <div id="ec-sliderPrice" class="filter__slider-price" data-min="0" data-max="23000" data-step="10"></div>
                                         <div class="ec-price-input">
                                             <label class="filter__label">
-                                                 от <input type="text" class="filter__input ml-1 mr-1">
+                                                от <input type="text" class="filter__input ml-1 mr-1">
                                             </label>
 
                                             <label class="filter__label">
@@ -68,58 +68,41 @@
                                 </div>
                                 <div class="ec-sb-block-content">
                                     <ul>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <a href="#" class="ml-0" style="margin-left: 0px">clothes</a>
-                                            </div>
-                                        </li>
-                                       
-
-
-
+                                        @foreach($firms as $firm)
+                                            <li>
+                                                <div class="ec-sidebar-block-item">
+                                                    <input type="checkbox" value="" checked/>
+                                                    <a href="#">{{$firm->name}} ({{$firm->products_count}})</a>
+                                                    <span class="checked"></span>
+                                                </div>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
                             <!-- Sidebar Size Block -->
-                            <div class="ec-sidebar-block">
-                                <div class="ec-sb-title">
-                                    <h3 class="ec-sidebar-title">Size</h3>
+                            @foreach($attributes as $attribute)
+                                <div class="ec-sidebar-block">
+                                    <div class="ec-sb-title">
+                                        <h3 class="ec-sidebar-title">{{$attribute->name}}</h3>
+                                    </div>
+                                    <div class="ec-sb-block-content">
+                                        <ul>
+                                            @foreach($attribute->attributeOptions as $attributeOption)
+                                                <li>
+                                                    <div class="ec-sidebar-block-item">
+                                                        <input type="checkbox" value="" checked/><a href="#">{{$attributeOption->value}}</a><span
+                                                                class="checked"></span>
+                                                    </div>
+                                                </li>
+                                            @endforeach
+
+
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="ec-sb-block-content">
-                                    <ul>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" value="" checked/><a href="#">S</a><span
-                                                        class="checked"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" value=""/><a href="#">M</a><span
-                                                        class="checked"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" value=""/> <a href="#">L</a><span
-                                                        class="checked"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" value=""/><a href="#">XL</a><span
-                                                        class="checked"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" value=""/><a href="#">XXL</a><span
-                                                        class="checked"></span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                            @endforeach
+
                             <!-- Sidebar Color item -->
                             <div class="ec-sidebar-block ec-sidebar-block-clr">
                                 <div class="ec-sb-title">

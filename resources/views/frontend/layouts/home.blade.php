@@ -51,6 +51,10 @@
 {{-- Молуль меню категрий. Всплывает слева --}}
 @include('frontend.moduls.sidebar-category')
 
+<x-menu.type/>
+
+
+
 @yield('content')
 
 {{-- Молуль меню категрий. Всплывает слева --}}
