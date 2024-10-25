@@ -17,6 +17,7 @@ class Product extends Model
     use HasFotos;
 
     const COUNT_OF_PAGINATION = 15;
+    protected $perPage = 15;
 
     protected $fillable = [
         'name',

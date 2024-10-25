@@ -38,6 +38,8 @@
 
     <!-- Main Style -->
     <link rel="stylesheet" href="/assets/css/style.css"/>
+    <link rel="stylesheet" href="/assets/css/backgrounds/bg-3.css"/>
+
     {{--            <link rel="stylesheet" href="{{asset('/assets/css/demo7.css')}}"/>--}}
     <link rel="stylesheet" href="/assets/css/responsive.css"/>
 

@@ -24940,6 +24940,12 @@ h4.ec-faq-title::after, .ec-faq-title.h4::after {
     justify-content: space-between;
     padding: 10px 0;
 }
+ .qty-plus-minus2 {
+    border: 1px solid #454545;
+     height: 40px;
+     width: 80px;
+
+}
 
 .single-pro-content .ec-single-qty .qty-plus-minus .ec_qtybtn {
     width: 40px;

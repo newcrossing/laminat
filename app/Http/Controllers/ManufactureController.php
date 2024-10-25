@@ -16,12 +16,11 @@ class ManufactureController extends Controller
         ];
 
         $firms = Firm::whereHas('collections.productsPublic')
-            ->withCount(['collections','products' => function (Builder $query) {
+            ->withCount(['collections', 'products' => function (Builder $query) {
                 $query->where('products.public', '=', 1);
             }])
             ->public()
             ->get();
-
         return view('frontend.pages.manufacture.index', compact('firms', 'breadcrumbs'));
     }
 
@@ -29,10 +28,9 @@ class ManufactureController extends Controller
     {
         $firm = Firm::where('slug', $slug)->firstOrFail();
 
-        $types = Type::whereHas('productsPublic.collection.firm',
-            function ($query) use ($firm) {
-                $query->where('id', $firm->id);
-            })
+        $types = Type::whereHas('productsPublic.collection.firm', function ($query) use ($firm) {
+            $query->where('id', $firm->id);
+        })
             ->with(['productsPublic' => function ($query) use ($firm) {
                 $query->whereHas('collection.firm', function ($query) use ($firm) {
                     $query->where('id', $firm->id);

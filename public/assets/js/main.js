@@ -449,18 +449,23 @@ function ecCheckCookie() {
         }, 5000);
 
         // get an image url
-        var img_url = $(this).parents().parents().children(".image").find(".main-image").attr("src");
-        var p_name = $(this).parents().parents().parents().children(".ec-pro-content").children("h5").children("a").html();
-        var p_price = $(this).parents().parents().parents().children(".ec-pro-content").children(".ec-price").children(".new-price").html();
-
+        // var img_url = $(this).parents().parents().children(".image").find(".main-image").attr("src");
+        var img_url = $(this).parents(".cart-dom:first").find(".cart-img").attr("src");
+        // var p_name = $(this).parents().parents().parents().children(".ec-pro-content").children("h5").children("a").html();
+        var p_name = $(this).parents(".cart-dom:first").find(".cart-name").html();
+        var p_count = $(this).parents(".cart-dom:first").find(".cart-count").val();
+        //alert(img_url)
+        // var p_price = $(this).parents().parents().parents().children(".ec-pro-content").children(".ec-price").children(".new-price").html();
+        var p_price = $(this).parents(".cart-dom:first").find(".cart-price-one").attr('price_upak');
+        alert(p_price)
         var p_html = '<li>' +
             '<a href="product-left-sidebar.html" class="sidekka_pro_img"><img src="' + img_url + '" alt="product"></a>' +
             '<div class="ec-pro-content">' +
             '<a href="product-left-sidebar.html" class="cart_pro_title">' + p_name + '</a>' +
-            '<span class="cart-price"><span>' + p_price + '</span> x 1</span>' +
-            '<div class="qty-plus-minus"><div class="dec ec_qtybtn">-</div>' +
-            '<input class="qty-input" type="text" name="ec_qtybtn" value="1">' +
-            '<div class="inc ec_qtybtn">+</div></div>' +
+            '<span class="cart-price"><span>' + parseInt(p_price).toLocaleString('ru') + '</span> x ' + p_count + ' =' + ' <span>  ' + (p_count * p_price).toLocaleString('ru') + '</span>' +
+            //'<div class="qty-plus-minus"><div class="dec ec_qtybtn">-</div>' +
+            //'<input class="qty-input" type="text" name="ec_qtybtn" value="' + p_count + '">' +
+            //'<div class="inc ec_qtybtn">+</div></div>' +
             '<a href="javascript:void(0)" class="remove">×</a>' +
             '</div>' +
             '</li>';
@@ -508,7 +513,7 @@ function ecCheckCookie() {
 
             $(this).closest("li").remove();
             if (cart_product_count == 1) {
-                $('.eccart-pro-items').html('<li><p class="emp-cart-msg">Your cart is empty!</p></li>');
+                $('.eccart-pro-items').html('<li><p class="emp-cart-msg">Корзина пуста.</p></li>');
             }
 
             var count = $(".cart-count-lable").html();
@@ -618,6 +623,11 @@ function ecCheckCookie() {
             }
         }
         $qtybutton.parent().find("input").val(QtynewVal);
+        if (typeof calculateSummPrice !== "undefined") {
+            calculateSummPrice();
+        }
+
+
     });
 
     /*----------------------------- Single Product Slider ---------------------------------*/
@@ -1037,7 +1047,7 @@ function ecCheckCookie() {
         zoom: {
             enabled: true,
             duration: 300,
-          //  easing: 'ease-in-out',
+            //  easing: 'ease-in-out',
             opener: function (openerElement) {
                 return openerElement.is('img') ? openerElement : openerElement.find('img');
             }
@@ -1700,7 +1710,6 @@ function ecCheckCookie() {
             }
         ]
     });
-
 
 
 })(jQuery);

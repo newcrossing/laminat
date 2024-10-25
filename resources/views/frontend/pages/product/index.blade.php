@@ -21,30 +21,28 @@
                     <!-- Single product content Start -->
                     <div class="single-pro-block">
                         <div class="single-pro-inner">
-                            <div class="row">
-                                <div class="single-pro-img">
+                            <div class="row cart-dom">
+                                <div class="single-pro-img ">
                                     <div class="single-product-scroll">
                                         <div class="single-product-cover">
                                             @if($product->fotos()->count())
                                                 @foreach($product->fotos as $foto)
                                                     <div class="single-slide ">
                                                         <a class="popup-gallery" href="{{ asset(Storage::disk('product')->url('/800/'). $foto->full_name_file)}}">
-                                                            {{--                                                            <img class=" img-responsive" src="{{ $foto->getUrlCr()}}">--}}
-                                                            <img class=" img-responsive"
-                                                                 src="{{ Croppa::url('storage/thumbnails/' . $foto->full_name_file,400,500,['quadrant']) }}">
+                                                            <img class=" img-responsive @if ($loop->first) cart-img @endif"
+                                                                 src="{{ Croppa::url($foto->getUrlForCroppa(),400,500,['quadrant']) }}">
                                                         </a>
                                                     </div>
                                                 @endforeach
                                             @else
-                                                <img class="main-image" src="{{ asset(Storage::disk('product')->url('/cr_400/null.jpg'))}}"/>
+                                                <img class="main-image cart-img" src="{{ asset(Storage::disk('product')->url('/cr_400/null.jpg'))}}"/>
                                             @endif
                                         </div>
                                         <div class="single-nav-thumb">
                                             @if($product->fotos()->count())
                                                 @foreach($product->fotos as $foto)
                                                     <div class="single-slide zoom-image-hover">
-                                                        {{--                                                        <img class="img-responsive" src="{{ $foto->getUrlCr(100)}}">--}}
-                                                        <img class="img-responsive" src="{{ Croppa::url('storage/thumbnails/' . $foto->full_name_file,100,100,['quadrant']) }}">
+                                                        <img class="img-responsive" src="{{ Croppa::url($foto->getUrlForCroppa(),100,100,['quadrant']) }}">
                                                     </div>
                                                 @endforeach
                                             @else
@@ -56,11 +54,9 @@
                                     </div>
                                 </div>
                                 <div class="single-pro-desc">
-                                    <div class="single-pro-content">
-
-                                        <h5 class="ec-single-title">   {{$product->collection->firm->name}}   {{$product->collection->name}} {{ $product->name }}</h5>
+                                    <div class="single-pro-content ">
+                                        <h5 class="ec-single-title cart-name">  {{$product->collection->firm->name}}   {{$product->collection->name}} {{ $product->name }}</h5>
                                         <div class="ec-single-rating-wrap">
-
                                             <span class="ec-read-review"><a href="#ec-spt-nav-review">Посмотреть похожие товары</a></span>
                                         </div>
                                         <div class="ec-single-desc">{{ $product->description }}</div>
@@ -68,7 +64,6 @@
                                             <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                                                 <ul class="ec-check-list">
                                                     <li>В НАЛИЧИИ НА СКЛАДЕ</li>
-
                                                 </ul>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12 col-12">
@@ -78,24 +73,7 @@
                                             </div>
                                         </div>
 
-                                        {{--                                        <div class="ec-single-sales">--}}
-                                        {{--                                            <div class="ec-single-sales-inner">--}}
-                                        {{--                                                <div class="ec-single-sales-title">sales accelerators</div>--}}
-                                        {{--                                                <div class="ec-single-sales-visitor">Не упусти<span> скидку</span>--}}
-                                        {{--                                                </div>--}}
-                                        {{--                                                <div class="ec-single-sales-progress">--}}
-                                        {{--                                                    <span class="ec-single-progress-desc">Обрати внимание, осталось 198 упаковок</span>--}}
-                                        {{--                                                    <span class="ec-single-progressbar"></span>--}}
-                                        {{--                                                </div>--}}
-                                        {{--                                                <div class="ec-single-sales-countdown">--}}
-                                        {{--                                                    <div class="ec-single-countdown"><span--}}
-                                        {{--                                                                id="ec-single-countdown"></span></div>--}}
-                                        {{--                                                    <div class="ec-single-count-desc">Успей</div>--}}
-                                        {{--                                                </div>--}}
-                                        {{--                                            </div>--}}
-                                        {{--                                        </div>--}}
                                         <div class="ec-single-price-stoke mt-3">
-
                                             <div class="ec-single-price">
                                                 <span class="ec-single-ps-title">Цена за м<sup>2</sup></span>
                                                 <span class="new-price">{{ Number::format($product->price_metr,locale: 'ru')}} <sub>руб.</sub></span>
@@ -105,39 +83,62 @@
                                             </div>
                                             <div class="ec-single-price">
                                                 <span class="ec-single-ps-title">Цена за упаковку </span>
-                                                <span class="new-price">{{ Number::format($product->price_upak,locale: 'ru')}} <sub>руб.</sub></span>
+                                                <span class="new-price cart-price-one" id="price_upak" price_upak="{{$product->price_upak}}">{{ Number::format($product->price_upak,locale: 'ru')}} <sub>руб.</sub></span>
                                                 @if($product->oldPriceUpak())
                                                     <span class="old-price" style="font-size: 20px"><del> {{ Number::format($product->price_upak_sale,locale: 'ru')}}</del> <sub>руб.</sub></span>
                                                 @endif
                                             </div>
-                                            @isset($product->square)
-                                                <div class="ec-single-stoke">
-                                                    <span class="ec-single-ps-title text-light-success">Площадь упаковки</span>
-                                                    <span class="ec-single-sku"> {{ $product->square }} м<sup>2</sup></span>
-                                                </div>
-                                            @endisset
 
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-6 ">
+                                                <div class="fs-6">Укажите площадь</div>
+                                            </div>
+                                            <div class="col-6 ">
+                                                <input class="qty-plus-minus2" type="text" name="ec_qtybtn" id="square_user" value="1" style=""/> м
+                                            </div>
+                                        </div>
+
+                                        {{--                                        <div class="ec-single-price-stoke pl-3 pr-3 pt-3" style="background-color: #d2e4fc;border: thick double #98e0fd;">--}}
+                                        {{--                                            <div class="ec-single-price">--}}
+                                        {{--                                                <span class="ec-single-ps-title">Площадь, м<sup>2</sup></span>--}}
+                                        {{--                                                <input class="qty-plus-minus2" type="text" name="ec_qtybtn" id="square_user" value="1" style=""/>--}}
+                                        {{--                                                <div class="mute" id="square_up" square_up="{{$product->square}}">В упаковке {{$product->square}} м<sup>2</sup></div>--}}
+                                        {{--                                            </div>--}}
+                                        {{--                                        </div>--}}
+
+                                        <div class="row">
+                                            <div class="col-6 ">
+                                                <div class="fs-6">Общая цена</div>
+                                            </div>
+                                            <div class="col-6 ">
+                                                <div>
+                                                    <span class="ec-single-sku fs-2 font-weight-bold" id="price_summ">
+                                                        {{ Number::format($product->price_upak,locale: 'ru')}}
+                                                    </span>
+                                                    руб.
+                                                </div>
+                                            </div>
                                         </div>
 
 
                                         <div class="ec-single-qty">
                                             <div class="qty-plus-minus">
-                                                <input class="qty-input" type="text" name="ec_qtybtn" value="1"/>
+                                                <input class="qty-input cart-count" type="text" name="ec_qtybtn" id="count_up" value="1"/>
                                             </div>
                                             <div class="ec-single-cart ">
-                                                <button class="btn btn-primary">В корзину</button>
+                                                <button class="btn btn-primary add-to-cart">В корзину</button>
                                             </div>
                                             <div class="ec-single-wishlist">
-                                                <a class="ec-btn-group wishlist" title="Wishlist"><img
-                                                            src="/assets/images/icons/wishlist.svg" class="svg_img pro_svg"
-                                                            alt=""/></a>
+                                                <a class="ec-btn-group wishlist" title="Wishlist">
+                                                    <img src="/assets/images/icons/wishlist.svg" class="svg_img pro_svg" alt=""/></a>
                                             </div>
                                             <div class="ec-single-quickview">
-                                                <a href="#" class="ec-btn-group quickview" data-link-action="quickview"
-                                                   title="Quick view" data-bs-toggle="modal"
-                                                   data-bs-target="#ec_quickview_modal"><img
-                                                            src="/assets/images/icons/quickview.svg" class="svg_img pro_svg"
-                                                            alt=""/></a>
+                                                <a href="#" class="ec-btn-group quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal"
+                                                   data-bs-target="#ec_quickview_modal">
+                                                    <img src="/assets/images/icons/quickview.svg" class="svg_img pro_svg" alt=""/></a>
                                             </div>
                                         </div>
 
@@ -349,7 +350,7 @@
                         <!-- Sidebar Category Block -->
                     </div>
 
-                    <x-products.sidebar-sale />
+                    <x-products.sidebar-sale/>
 
 
                 </div>
@@ -358,5 +359,17 @@
         </div>
     </section>
 
-    <x-products.related :idproduct="$product->id" />
+    <x-products.related :idproduct="$product->id"/>
+@endsection
+
+@section('page-scripts')
+    <script>
+        function calculateSummPrice() {
+            let price_upak = $('#price_upak').attr('price_upak');
+            let count_up = $('#count_up').val();
+            $('#price_summ').text((price_upak * count_up).toLocaleString('ru'));
+
+        }
+    </script>
+
 @endsection

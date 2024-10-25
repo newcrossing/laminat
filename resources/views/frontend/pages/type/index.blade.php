@@ -71,7 +71,7 @@
                                         @foreach($firms as $firm)
                                             <li>
                                                 <div class="ec-sidebar-block-item">
-                                                    <input type="checkbox" value="" checked/>
+                                                    <input type="checkbox" value="" />
                                                     <a href="#">{{$firm->name}} ({{$firm->products_count}})</a>
                                                     <span class="checked"></span>
                                                 </div>
@@ -89,15 +89,17 @@
                                     <div class="ec-sb-block-content">
                                         <ul>
                                             @foreach($attribute->attributeOptions as $attributeOption)
-                                                <li>
+                                                <li style="display: flex;    justify-content: space-between;">
                                                     <div class="ec-sidebar-block-item">
-                                                        <input type="checkbox" value="" checked/><a href="#">{{$attributeOption->value}}</a><span
-                                                                class="checked"></span>
+                                                        <input type="checkbox" value=""/>
+                                                        <a href="#" style="text-transform: none;">{{$attributeOption->value}} </a>
+                                                        <span class="checked"></span>
+                                                    </div>
+                                                    <div>
+                                                        ({{$attributeOption->products_count}})
                                                     </div>
                                                 </li>
                                             @endforeach
-
-
                                         </ul>
                                     </div>
                                 </div>
@@ -108,7 +110,7 @@
                                 <div class="ec-sb-title">
                                     <h3 class="ec-sidebar-title">Color</h3>
                                 </div>
-                                <div class="ec-sb-block-content">
+                                <div class="ec-sb-block-content" >
                                     <ul>
                                         <li>
                                             <div class="ec-sidebar-block-item"><span

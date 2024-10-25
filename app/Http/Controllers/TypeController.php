@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Attribute;
-use App\Models\AttributeOption;
 use App\Models\Firm;
 use App\Models\Product;
 use App\Models\Type;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class TypeController extends Controller
@@ -15,30 +15,44 @@ class TypeController extends Controller
     {
         $type = Type::where('slug', $slug_type)->withCount('productsPublic')->firstOrFail();
 
+        // запрос на выбранные продукты
+        $products = Product::query()
+            ->withWhereHas('type', fn($query) => $query->where('slug', '=', $slug_type))
+            ->with('collection.firm')
+            ->public()
+            ->when((request('have') == '1'), function ($q) {
+                return $q->where('have_sklad', 1);
+            })
+            ->when(request('sorting') == 'pricey', function ($q) {
+                return $q->orderByDesc('price_metr');
+            })
+            ->when(request('sorting') == 'cheaply', function ($q) {
+                return $q->orderBy('price_metr');
+            })
+            ->paginate(Product::COUNT_OF_PAGINATION)
+            ->withQueryString();
 
-        $query = Product::query();
-        $query->withWhereHas('type', fn($query) => $query->where('slug', '=', $slug_type))->with('collection.firm')->public();
 
-        $query->when((request('have') == '1'), function ($q) {
-            return $q->where('have_sklad', 1);
-        });
+        // производители в выбранном типе
+        $firms = Firm::whereHas('products', fn($query) => $query->where('type_id', '=', $type->id))
+            ->withCount(['products' => function (Builder $query) use ($type) {
+                $query->whereHas('type', fn($query) => $query->where('id', '=', $type->id));
+            }])
+            ->orderBy('name')
+            ->get();
 
-        $query->when(request('sorting') == 'pricey', function ($q) {
-            return $q->orderByDesc('price_metr');
-        });
+        // производители в выбранном типе
+        $attributes = Attribute::whereHas('attributeOptions.products.type', fn($query) => $query->where('id', '=', $type->id))
+            ->with(['attributeOptions' => function ($query) use ($type) {
+                $query->whereHas('products.type', function ($query) use ($type) {
+                    $query->where('id', '=', $type->id);
+                })->withCount(['products' => function (Builder $query) use ($type) {
+                    $query->whereHas('type', fn($query) => $query->where('id', '=', $type->id));
+                }]);
+            }])
+            ->get();
 
-        $query->when(request('sorting') == 'cheaply', function ($q) {
-            return $q->orderBy('price_metr');
-        });
 
-        $products = $query->paginate(Product::COUNT_OF_PAGINATION)->withQueryString();
-
-        $firms = Firm::withWhereHas('products', fn($query) => $query->where('type_id', '=', $type->id))->withCount('products')->orderBy('name')->get();
-
-        $attributes = Attribute::withWhereHas('attributeOptions.products',fn($query) => $query->where('id', '=', 14))->get();
-     //   $attributesO = AttributeOption::withWhereHas('products')->get();
-
-        //dd($attributes);
         $breadcrumbs = [
             ['link' => route('home'), 'name' => "Главная"],
             ['name' => $type->name]
