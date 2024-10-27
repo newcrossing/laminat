@@ -6,7 +6,7 @@
         <div class="ec-vendor-card-header">
             <h5>{{$type->name}} ({{count($type->productsPublic)}})</h5>
             <div class="ec-header-btn">
-                <a class="btn btn-lg btn-primary" href="#">Посмотреть все </a>
+                <a class="btn btn-lg btn-primary" href="{{route('type.index',['slug_type'=> $type->slug,'slug_firm'=>$firm->slug])}}">Посмотреть все </a>
             </div>
         </div>
         <div class="ec-vendor-card-body">

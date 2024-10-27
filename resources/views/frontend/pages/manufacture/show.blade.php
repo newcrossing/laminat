@@ -41,7 +41,7 @@
                                     <div class="ec-blog-tags p-2" style="background-color: #d3e4ff;">
                                         <span class="fw-bold">Коллекции:</span>
                                         @foreach($firm->collections as $collection)
-                                            <a href="blog-left-sidebar.html">{{$collection->name}}  @if(!$loop->last),@endif</a>
+                                            <span style="font-size: 15px">{{$collection->name}}  @if(!$loop->last),@endif</span>
                                         @endforeach
                                     </div>
                                 @endif
@@ -71,7 +71,7 @@
                     </div>
 
 
-                    <x-products.table_type :types="$types"/>
+                    <x-products.table_type :types="$types" :firm="$firm"/>
 
                 </div>
             </div>

@@ -43,7 +43,7 @@
                     <!--Shop content End -->
                 </div>
 
-                
+
                 <!-- Sidebar Area Start -->
                 <div class="ec-shop-leftside col-lg-3 order-lg-first col-md-12 order-md-last">
                     <form>

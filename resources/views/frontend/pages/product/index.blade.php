@@ -298,7 +298,7 @@
                                                     <div style="font-weight: normal; text-transform: none;cursor: default;">
                                                         Тип
                                                         <span>
-                                                            <a href="{{$product->type->slug}}"
+                                                            <a href="{{ route('type.index',$product->type->slug)  }}"
                                                                style="font-weight: normal; text-transform: none;color: #0d6efd;  text-decoration: underline;">
                                                                 {{$product->type->name}}
                                                             </a>
@@ -311,8 +311,9 @@
                                                     <div style="font-weight: normal; text-transform: none;cursor: default;">
                                                         Производитель
                                                         <span>
-                                                            <a href="{{route('manufacture.show',$product->collection->firm->slug)}}"
-                                                               style="font-weight: normal; text-transform: none;color: #0d6efd;  text-decoration: underline; ">
+                                                            <a href="{{route('type.index',['slug_type'=> $product->type->slug,'slug_firm'=>$product->collection->firm->slug])}}"
+                                                               class="active-link"
+                                                               style="font-weight: normal; text-transform: none;  text-decoration: underline; ">
                                                                 {{$product->firm->name}}
                                                             </a>
                                                         </span>
@@ -322,8 +323,13 @@
                                             <li>
                                                 <div class="ec-sidebar-sub-item">
                                                     <div style="font-weight: normal; text-transform: none; cursor: default;">
-                                                        Коллекция <span><a href="as"
-                                                                           style="font-weight: normal; text-transform: none ;color: #0d6efd;  text-decoration: underline;">{{$product->collection->name}}</a>                                                        </span>
+                                                        Коллекция
+                                                        <span>
+                                                            <a href="{{route('type.index',['slug_type'=> $product->type->slug,'slug_firm'=>$product->collection->firm->slug,'slug_collection'=>$product->collection->slug])}}"
+                                                               style="font-weight: normal; text-transform: none ;color: #0d6efd;  text-decoration: underline;">
+                                                                {{$product->collection->name}}
+                                                            </a>
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </li>

@@ -37034,6 +37034,6 @@ input[type=email]:focus::-webkit-input-placeholder {
     z-index: 16;
 }
 a.active-link {
-    color: #0d6efd;
+    color: #0d6efd !important;
 
 }
