@@ -5,10 +5,10 @@
         <div class="col-md-3 ec-grid-list">
             <div class="ec-gl-btn">
                 <button class="btn btn-grid active">
-                    <img src="assets/images/icons/grid.svg" class="svg_img gl_svg" alt=""/>
+                    <img src="/assets/images/icons/grid.svg" class="svg_img gl_svg" alt=""/>
                 </button>
                 <button class="btn btn-list">
-                    <img src="assets/images/icons/list.svg" class="svg_img gl_svg" alt=""/>
+                    <img src="/assets/images/icons/list.svg" class="svg_img gl_svg" alt=""/>
                 </button>
             </div>
         </div>

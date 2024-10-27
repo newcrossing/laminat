@@ -81,6 +81,6 @@ Route::middleware(['role:admin'])->prefix('backend')->group(
 
     }
 );
-Route::any('/{slug_type}', [\App\Http\Controllers\TypeController::class, 'index'])->name('type.index');
+Route::any('/{slug_type}/{slug_firm?}/{slug_collection?}', [\App\Http\Controllers\TypeController::class, 'index'])->name('type.index');
 //Route::post('ckeditor/upload', [CKEditorController::class, 'upload'])->name('ckeditor.image-upload');
 

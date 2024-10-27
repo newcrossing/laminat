@@ -12,7 +12,7 @@
 
                 <li>
                     <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                src="assets/images/product-image/3_1.jpg" alt="product"></a>
+                                src="/assets/images/product-image/3_1.jpg" alt="product"></a>
                     <div class="ec-pro-content">
                         <a href="product-left-sidebar.html" class="cart_pro_title">Girls Nylon Purse</a>
                         <span class="cart-price"><span>1 233</span> x 3 = <span>3 333 руб.</span></span>

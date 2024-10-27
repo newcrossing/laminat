@@ -14,7 +14,7 @@
                     <div class="ec-sb-block-content">
                         <ul>
                             <li>
-                                <div class="ec-sidebar-block-item"><img src="assets/images/icons/dress-8.svg" class="svg_img" alt="drink"/>Cothes</div>
+                                <div class="ec-sidebar-block-item"><img src="/assets/images/icons/dress-8.svg" class="svg_img" alt="drink"/>Cothes</div>
                                 <ul style="display: block;">
                                     <li>
                                         <div class="ec-sidebar-sub-item"><a href="shop-left-sidebar-col-3.html">Shirt <span title="Available Stock">- 25</span></a>
@@ -39,7 +39,7 @@
                     <div class="ec-sb-block-content">
                         <ul>
                             <li>
-                                <div class="ec-sidebar-block-item"><img src="assets/images/icons/shoes-8.svg" class="svg_img" alt="drink"/>Footwear</div>
+                                <div class="ec-sidebar-block-item"><img src="/assets/images/icons/shoes-8.svg" class="svg_img" alt="drink"/>Footwear</div>
                                 <ul>
                                     <li>
                                         <div class="ec-sidebar-sub-item"><a href="shop-left-sidebar-col-3.html">Sports <span title="Available Stock">- 25</span></a>
@@ -64,7 +64,7 @@
                     <div class="ec-sb-block-content">
                         <ul>
                             <li>
-                                <div class="ec-sidebar-block-item"><img src="assets/images/icons/jewelry-8.svg" class="svg_img" alt="drink"/>jewelry</div>
+                                <div class="ec-sidebar-block-item"><img src="/assets/images/icons/jewelry-8.svg" class="svg_img" alt="drink"/>jewelry</div>
                                 <ul>
                                     <li>
                                         <div class="ec-sidebar-sub-item"><a href="shop-left-sidebar-col-3.html">Earrings <span title="Available Stock">- 50</span></a>
@@ -85,7 +85,7 @@
                     <div class="ec-sb-block-content">
                         <ul>
                             <li>
-                                <div class="ec-sidebar-block-item"><img src="assets/images/icons/perfume-8.svg" class="svg_img" alt="drink"/>perfume</div>
+                                <div class="ec-sidebar-block-item"><img src="/assets/images/icons/perfume-8.svg" class="svg_img" alt="drink"/>perfume</div>
                                 <ul>
                                     <li>
                                         <div class="ec-sidebar-sub-item"><a href="shop-left-sidebar-col-3.html">Clothes perfume<span title="Available Stock">- 4 pcs</span></a>
@@ -110,7 +110,7 @@
                     <div class="ec-sb-block-content">
                         <ul>
                             <li>
-                                <div class="ec-sidebar-block-item"><img src="assets/images/icons/cosmetics-8.svg" class="svg_img" alt="drink"/>cosmetics</div>
+                                <div class="ec-sidebar-block-item"><img src="/assets/images/icons/cosmetics-8.svg" class="svg_img" alt="drink"/>cosmetics</div>
                                 <ul>
                                     <li>
                                         <div class="ec-sidebar-sub-item"><a href="shop-left-sidebar-col-3.html">shampoo<span title="Available Stock"></span></a>
@@ -135,7 +135,7 @@
                     <div class="ec-sb-block-content">
                         <ul>
                             <li>
-                                <div class="ec-sidebar-block-item"><img src="assets/images/icons/glasses-8.svg" class="svg_img" alt="drink"/>glasses</div>
+                                <div class="ec-sidebar-block-item"><img src="/assets/images/icons/glasses-8.svg" class="svg_img" alt="drink"/>glasses</div>
                                 <ul>
                                     <li>
                                         <div class="ec-sidebar-sub-item"><a href="shop-left-sidebar-col-3.html">Sunglasses <span title="Available Stock">- 20</span></a>
@@ -152,7 +152,7 @@
                     <div class="ec-sb-block-content">
                         <ul>
                             <li>
-                                <div class="ec-sidebar-block-item"><img src="assets/images/icons/bag-8.svg" class="svg_img" alt="drink"/>bags</div>
+                                <div class="ec-sidebar-block-item"><img src="/assets/images/icons/bag-8.svg" class="svg_img" alt="drink"/>bags</div>
                                 <ul>
                                     <li>
                                         <div class="ec-sidebar-sub-item"><a href="shop-left-sidebar-col-3.html">shopping bag <span title="Available Stock">- 25</span></a>
@@ -184,7 +184,7 @@
                 <div>
                     <div class="ec-sb-pro-sl-item">
                         <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                    src="assets/images/product-image/1.jpg" alt="product"/></a>
+                                    src="/assets/images/product-image/1.jpg" alt="product"/></a>
                         <div class="ec-pro-content">
                             <h5 class="ec-pro-title"><a href="product-left-sidebar.html">baby fabric shoes</a></h5>
                             <div class="ec-pro-rating">
@@ -204,7 +204,7 @@
                 <div>
                     <div class="ec-sb-pro-sl-item">
                         <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                    src="assets/images/product-image/2.jpg" alt="product"/></a>
+                                    src="/assets/images/product-image/2.jpg" alt="product"/></a>
                         <div class="ec-pro-content">
                             <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Men's hoodies t-shirt</a></h5>
                             <div class="ec-pro-rating">
@@ -224,7 +224,7 @@
                 <div>
                     <div class="ec-sb-pro-sl-item">
                         <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                    src="assets/images/product-image/3.jpg" alt="product"/></a>
+                                    src="/assets/images/product-image/3.jpg" alt="product"/></a>
                         <div class="ec-pro-content">
                             <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Girls t-shirt</a></h5>
                             <div class="ec-pro-rating">
@@ -244,7 +244,7 @@
                 <div>
                     <div class="ec-sb-pro-sl-item">
                         <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                    src="assets/images/product-image/4.jpg" alt="product"/></a>
+                                    src="/assets/images/product-image/4.jpg" alt="product"/></a>
                         <div class="ec-pro-content">
                             <h5 class="ec-pro-title"><a href="product-left-sidebar.html">woolen hat for men</a></h5>
                             <div class="ec-pro-rating">
@@ -264,7 +264,7 @@
                 <div>
                     <div class="ec-sb-pro-sl-item">
                         <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                    src="assets/images/product-image/5.jpg" alt="product"/></a>
+                                    src="/assets/images/product-image/5.jpg" alt="product"/></a>
                         <div class="ec-pro-content">
                             <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Womens purse</a></h5>
                             <div class="ec-pro-rating">
@@ -284,7 +284,7 @@
                 <div>
                     <div class="ec-sb-pro-sl-item">
                         <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                    src="assets/images/product-image/6.jpg" alt="product"/></a>
+                                    src="/assets/images/product-image/6.jpg" alt="product"/></a>
                         <div class="ec-pro-content">
                             <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Baby toy doctor kit</a></h5>
                             <div class="ec-pro-rating">
@@ -304,7 +304,7 @@
                 <div>
                     <div class="ec-sb-pro-sl-item">
                         <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                    src="assets/images/product-image/7.jpg" alt="product"/></a>
+                                    src="/assets/images/product-image/7.jpg" alt="product"/></a>
                         <div class="ec-pro-content">
                             <h5 class="ec-pro-title"><a href="product-left-sidebar.html">teddy bear baby toy</a></h5>
                             <div class="ec-pro-rating">
@@ -324,7 +324,7 @@
                 <div>
                     <div class="ec-sb-pro-sl-item">
                         <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                    src="assets/images/product-image/2.jpg" alt="product"/></a>
+                                    src="/assets/images/product-image/2.jpg" alt="product"/></a>
                         <div class="ec-pro-content">
                             <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Mens hoodies blue</a></h5>
                             <div class="ec-pro-rating">
