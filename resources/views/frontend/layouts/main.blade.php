@@ -6,7 +6,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
-    <title>ПолРоссии - наполные покрытия</title>
+    <title>@yield('title','ПолРоссии - наполные покрытия') </title>
     <meta name="keywords"
           content=""/>
     <meta name="description" content="">

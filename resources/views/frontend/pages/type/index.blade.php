@@ -1,6 +1,6 @@
 @extends('frontend.layouts.main')
 
-@section('title','Изменение объявления')
+@section('title',"$type->name - цены, каталог | Купить $type->name в интернет-магазине «Пол России» , недорого")
 
 @section('vendor-styles')
 
@@ -23,7 +23,7 @@
                         <x-type.description-firm :select-firm="$selectFirm" :type="$type"/>
                     @endif
                     @if( !empty($selectCollection))
-                        <x-type.description-collection :select-firm="$selectFirm" :type="$type" :select-collection="$selectCollection" />
+                        <x-type.description-collection :select-firm="$selectFirm" :type="$type" :select-collection="$selectCollection"/>
                     @endif
 
 
@@ -51,32 +51,26 @@
                             <div class="ec-sidebar-heading">
                                 <h1>{{$type->name}} ({{$type->products_public_count}})</h1>
                             </div>
-                            <div class="ec-sidebar-wrap">
+                            <div class="ec-sidebar-wrap" style="">
                                 <!-- Sidebar Category Block -->
                                 <div class="ec-sidebar-block mb-4">
                                     <div class="ec-sb-title">
                                         <h3 class="ec-sidebar-title">Вы выбрали</h3>
                                     </div>
                                     <div class="ec-sb-block-content es-price-slider">
-                                        <div class="ec-price-filter">
-                                            <ul>
-                                                <li>
-                                                    <div class="ec-sidebar-block-item fs-6 font-weight-bold">
-                                                        {{$type->name}}
-                                                    </div>
+                                        <div class="ec-price-filter  ">
+                                            <ul class="ec-check-list">
+                                                <li style="padding-left: 20px; padding-bottom: 0px">
+                                                    {{$type->name}}
                                                 </li>
                                                 @if(!empty($selectFirm))
-                                                    <li>
-                                                        <div class="ec-sidebar-block-item fs-6 font-weight-bold">
-                                                            {{$selectFirm->name}}
-                                                        </div>
+                                                    <li style="padding-left: 20px; padding-bottom: 0px">
+                                                        {{$selectFirm->name}}
                                                     </li>
                                                 @endif
                                                 @if(!empty($selectCollection))
-                                                    <li>
-                                                        <div class="ec-sidebar-block-item fs-6 font-weight-bold">
-                                                            {{$selectCollection->name}}
-                                                        </div>
+                                                    <li style="padding-left: 20px; padding-bottom: 0px">
+                                                        {{$selectCollection->name}}
                                                     </li>
                                                 @endif
 
@@ -85,9 +79,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="ec-sidebar-wrap">
+                            <div class="ec-sidebar-wrap" >
                                 <!-- Sidebar Category Block -->
-                                <div class="ec-sidebar-block mb-4">
+                                <div class="ec-sidebar-block mb-4" >
                                     <div class="ec-sb-title">
                                         <h3 class="ec-sidebar-title">Цена</h3>
                                     </div>
@@ -113,11 +107,12 @@
                                     <div class="ec-sb-block-content">
                                         <ul>
                                             @foreach($firms as $firm)
-                                                <li>
-                                                    <div class="ec-sidebar-block-item p-1" style="@if(Route::current()->parameter('slug_firm')==$firm->slug) background-color: #73a5ff45;
+                                                <li class="p-0">
+                                                    <div class="ec-sidebar-block-item p-1" style="display: flex;    justify-content: space-between; @if(Route::current()->parameter('slug_firm')==$firm->slug) background-color: #73a5ff45;
                                                          border: 2px solid #5bb1ff; @endif">
-                                                        <a href="{{route('type.index',['slug_type'=> $type->slug,'slug_firm'=>$firm->slug])}}">
-                                                            {{$firm->name}} ({{$firm->products_count}})</a>
+                                                        <a href="{{route('type.index',['slug_type'=> $type->slug,'slug_firm'=>$firm->slug])}}" style="margin-left: 0px">
+                                                            {{$firm->name}} </a>
+                                                        <div>({{$firm->products_count}})</div>
                                                     </div>
                                                 </li>
                                             @endforeach
@@ -131,7 +126,7 @@
                                         <div class="ec-sb-title">
                                             <h3 class="ec-sidebar-title">{{$attribute->name}}</h3>
                                         </div>
-                                        <div class="ec-sb-block-content">
+                                        <div class="ec-sb-block-content ec-sidebar-dropdown">
                                             <ul>
                                                 @foreach($attribute->attributeOptions as $attributeOption)
                                                     <li style="display: flex;    justify-content: space-between;">

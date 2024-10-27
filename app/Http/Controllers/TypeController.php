@@ -22,7 +22,7 @@ class TypeController extends Controller
                 ->withCount(['products' => function (Builder $query) use ($type) {
                     $query->where('type_id', '=', $type->id);
                 }])
-               // ->with()
+                // ->with()
                 ->withMin('products', 'price_metr')
                 ->withMax('products', 'price_metr')
                 ->firstOrFail();
@@ -30,7 +30,7 @@ class TypeController extends Controller
             if (!$selectFirm->products_count) {
                 abort(404);
             }
-           // dump($selectFirm);
+            // dump($selectFirm);
 
             if ($slug_collection) {
                 // проверка на наличие коллекции  с товаром в данном типе и фирме
@@ -95,8 +95,20 @@ class TypeController extends Controller
 
         $breadcrumbs = [
             ['link' => route('home'), 'name' => "Главная"],
-            ['name' => $type->name]
         ];
+        if ($slug_firm) {
+            $breadcrumbs[] = ['link' => route('type.index', $type->slug), 'name' => $type->name];
+            if ($slug_collection){
+                // если есть коллекция
+                $breadcrumbs[] = ['link' => route('type.index', [$type->slug,$selectFirm->slug]), 'name' => $selectFirm->name];
+                $breadcrumbs[] = [ 'name' => $selectCollection->name];
+            } else{
+                $breadcrumbs[] = [ 'name' => $selectFirm->name];
+            }
+        } else {
+            $breadcrumbs[] = [ 'name' => $type->name];
+        }
+
 
         $selectFirm = $selectFirm ?? null;
         $selectCollection = $selectCollection ?? null;
