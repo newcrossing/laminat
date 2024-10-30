@@ -19,7 +19,7 @@
             <div class="container">
                 <div class="row">
                     @foreach($firms as $firm)
-                        <div class="col-lg-4 col-md-4 col-sm-6">
+                        <div class="col-lg-3 col-md-4 col-sm-6">
                             <div class="ec-vendor-card">
                                 <div class="ec-vendor-card-img mt-3 mb-5 ml-3 mr-3 pt-2 pr-4 pl-4" style="text-align: center; height: 90px">
                                     @if($img =  $firm->foto)
@@ -43,7 +43,7 @@
             }])
 ->get() as $type)
                                             <div class="text-center text-bold ">
-                                                <a href="sd">
+                                                <a href="{{route('type.index',[$type->slug,$firm->slug])}}">
                                                     <span style="text-decoration: underline">{{$type->name}}</span> ({{ $type->products_public_count}})
                                                 </a>
                                             </div>
