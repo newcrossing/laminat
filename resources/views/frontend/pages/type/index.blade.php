@@ -46,7 +46,8 @@
 
                 <!-- Sidebar Area Start -->
                 <div class="ec-shop-leftside col-lg-3 order-lg-first col-md-12 order-md-last">
-                    <form>
+                    <form method="get" id="">
+                        <input type="hidden" name="onsubmit" value="1">
                         <div id="shop_sidebar">
                             <div class="ec-sidebar-heading">
                                 <h1>{{$type->name}} ({{$type->products_public_count}})</h1>
@@ -87,18 +88,25 @@
                                     </div>
                                     <div class="ec-sb-block-content es-price-slider">
                                         <div class="ec-price-filter">
-                                            <div id="ec-sliderPrice" class="filter__slider-price" data-min="0" data-max="23000" data-step="10"></div>
+                                            <div id="ec-sliderPrice" class="filter__slider-price"
+                                                 data-minr="{{$productsNoFilter->min('price_metr')-100}}"
+                                                 data-maxr="{{$productsNoFilter->max('price_metr')+100}}"
+                                                 data-min="{{$products->min('price_metr')-100}}"
+                                                 data-max="{{$products->max('price_metr')+100}}"
+                                                 data-step="100">
+                                            </div>
                                             <div class="ec-price-input">
                                                 <label class="filter__label">
-                                                    от <input type="text" class="filter__input ml-1 mr-1">
+                                                    от <input type="text" name="price_min" class="filter__input ml-1 mr-1" >
                                                 </label>
 
                                                 <label class="filter__label">
-                                                    до <input type="text" class="filter__input ml-1 mr-1"> руб.
+                                                    до <input type="text" name="price_max" class="filter__input ml-1 mr-1"> руб.
                                                 </label>
                                             </div>
                                         </div>
                                     </div>
+                                    <button type="submit" class="btn" style="width: 100%; display: none" id="button_find">найти</button>
                                 </div>
                                 <div class="ec-sidebar-block">
                                     <div class="ec-sb-title">
@@ -131,8 +139,8 @@
                                                 @foreach($attribute->attributeOptions as $attributeOption)
                                                     <li style="display: flex;    justify-content: space-between;">
                                                         <div class="ec-sidebar-block-item">
-                                                            <input type="checkbox" name="options[]" value="{{$attributeOption->id}}"
-                                                                    @checked(in_array($attributeOption->id,request()->get('options')??[] )) />
+                                                            <input type="checkbox" name="options[{{$attribute->id}}][]" value="{{$attributeOption->id}}" onchange="this.form.submit()"
+                                                                    @checked(in_array($attributeOption->id,(request()->get('options'))[$attribute->id]??[] )) />
                                                             <a href="#" style="text-transform: none;">{{$attributeOption->value}} </a>
                                                             <span class="checked"></span>
                                                         </div>
@@ -147,32 +155,32 @@
                                 @endforeach
 
                                 <!-- Sidebar Color item -->
-                                <div class="ec-sidebar-block ec-sidebar-block-clr">
-                                    <div class="ec-sb-title">
-                                        <h3 class="ec-sidebar-title">Color</h3>
-                                    </div>
-                                    <div class="ec-sb-block-content">
-                                        <ul>
-                                            <li>
-                                                <div class="ec-sidebar-block-item"><span
-                                                            style="background-color:#c4d6f9;"></span></div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-block-item"><span
-                                                            style="background-color:#ff748b;"></span></div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-block-item"><span
-                                                            style="background-color:#000000;"></span></div>
-                                            </li>
-                                            <li class="active">
-                                                <div class="ec-sidebar-block-item"><span
-                                                            style="background-color:#2bff4a;"></span></div>
-                                            </li>
+{{--                                <div class="ec-sidebar-block ec-sidebar-block-clr">--}}
+{{--                                    <div class="ec-sb-title">--}}
+{{--                                        <h3 class="ec-sidebar-title">Color</h3>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="ec-sb-block-content">--}}
+{{--                                        <ul>--}}
+{{--                                            <li>--}}
+{{--                                                <div class="ec-sidebar-block-item"><span--}}
+{{--                                                            style="background-color:#c4d6f9;"></span></div>--}}
+{{--                                            </li>--}}
+{{--                                            <li>--}}
+{{--                                                <div class="ec-sidebar-block-item"><span--}}
+{{--                                                            style="background-color:#ff748b;"></span></div>--}}
+{{--                                            </li>--}}
+{{--                                            <li>--}}
+{{--                                                <div class="ec-sidebar-block-item"><span--}}
+{{--                                                            style="background-color:#000000;"></span></div>--}}
+{{--                                            </li>--}}
+{{--                                            <li class="active">--}}
+{{--                                                <div class="ec-sidebar-block-item"><span--}}
+{{--                                                            style="background-color:#2bff4a;"></span></div>--}}
+{{--                                            </li>--}}
 
-                                        </ul>
-                                    </div>
-                                </div>
+{{--                                        </ul>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
 
                             </div>
                             <button type="submit" value="asd" class="btn btn-primary">Найти</button>

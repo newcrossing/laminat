@@ -339,7 +339,7 @@
                                                         <div style="font-weight: normal; text-transform: none;cursor: default;">
                                                             {{$attributeOption->attribute->name}}
                                                             <span>
-                                                                <a href="as" style="font-weight: normal; text-transform: none ">{{$attributeOption->value}}</a>
+                                                                <a href="" style="font-weight: normal; text-transform: none ">{{$attributeOption->value}}</a>
                                                             </span>
                                                         </div>
                                                     </div>

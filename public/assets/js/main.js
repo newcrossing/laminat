@@ -1313,15 +1313,18 @@ function ecCheckCookie() {
     /*----------------------------- Slider Price -------------------------------- */
     const slider = document.getElementById('ec-sliderPrice');
     if (slider) {
-        const rangeMin = parseInt(slider.dataset.min);
-        const rangeMax = parseInt(slider.dataset.max);
+        const rangeMin = parseInt(slider.dataset.minr);
+        const startMin = parseInt(slider.dataset.min);
+        const rangeMax = parseInt(slider.dataset.maxr);
+        const startMax = parseInt(slider.dataset.max);
         const step = parseInt(slider.dataset.step);
         const filterInputs = document.querySelectorAll('input.filter__input');
 
         noUiSlider.create(slider, {
-            start: [rangeMin, rangeMax],
-            connect: true,
+            start: [startMin, startMax],
+            connect: false,
             step: step,
+            margin: 200,
             range: {
                 'min': rangeMin,
                 'max': rangeMax
@@ -1337,6 +1340,12 @@ function ecCheckCookie() {
         // bind inputs with noUiSlider 
         slider.noUiSlider.on('update', (values, handle) => {
             filterInputs[handle].value = values[handle];
+
+        });
+
+        slider.noUiSlider.on('set', (values, handle) => {
+            $("#button_find").show()
+
         });
 
         filterInputs.forEach((input, indexInput) => {
