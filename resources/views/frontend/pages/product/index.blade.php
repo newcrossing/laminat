@@ -142,6 +142,54 @@
                                             </div>
                                         </div>
 
+                                        <div class="ec-tab-wrapper ec-tab-wrapper-3">
+                                            <div class="ec-single-pro-tab-wrapper">
+                                                <div class="ec-single-pro-tab-nav">
+                                                    <ul class="nav nav-tabs">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link active" data-bs-toggle="tab" data-bs-target="#ec-spt-nav-details-3" role="tablist">Оплата</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#ec-spt-nav-info-3" role="tablist">Доставка</a>
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+                                                <div class="tab-content  ec-single-pro-tab-content">
+                                                    <div id="ec-spt-nav-details-3" class="tab-pane fade active show">
+                                                        <div class="ec-single-pro-tab-desc">
+                                                            <div style="font-weight: 400;">   <i class="fa fa-rub   fa-3x fa-pull-left fa-border" aria-hidden="true"></i>Пол России предоставляет ряд возможных форм оплаты для Вашего удобства.</div>
+                                                            <p>
+                                                               <br>
+
+                                                                - Наличными<br>
+                                                                - По QR-коду<br>
+                                                                - Банковской картой<br>
+                                                            </p><hr>
+                                                            <div class="small" style=""> Оплата по факту получения заказа на объекте/
+                                                                Если нужно доставить товары из наличия на складе, по Москве и Московской области, общей стоимостью до 500 тысяч рублей, то мы готовы привезти их без предоплаты</div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="ec-spt-nav-info-3" class="tab-pane fade">
+                                                        <div class="ec-single-pro-tab-moreinfo">
+
+                                                            <p>   <i class="fa fa-truck   fa-3x fa-pull-left fa-border" aria-hidden="true"></i> оставка Москва и Московская область
+
+                                                                Доставка в пределах МКАД – 2500 руб.
+
+                                                                Доставка за МКАД – до 60 км: 2500 руб. + 50 руб./км.
+
+                                                                Доставка за МКАД – от 60 до 300 км: согласовывается со службой логистики индивидуально
+
+                                                                Самовывоз со склада – 2500 руб.</p>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
