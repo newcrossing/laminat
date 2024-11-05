@@ -31,6 +31,7 @@ class ProductController extends Controller
             ['link' => $product->type->slug.'/'.$product->collection->firm->slug.'/'.$product->collection->slug, 'name' => $product->collection->name],
             ['name' => $product->name]
         ];
-        return view('frontend.pages.product.index', compact('product', 'breadcrumbs'));
+     //   return view('frontend.pages.product.index', compact('product', 'breadcrumbs'));
+        return view('front.pages.product.show', compact('product', 'breadcrumbs'));
     }
 }

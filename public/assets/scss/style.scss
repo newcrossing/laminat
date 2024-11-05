@@ -1,127 +1,105 @@
-@charset "UTF-8";
+@charset 'UTF-8';
 
-/*-----------------------------------------------------------------------------------
+/**
+ * 1. Config
+ * 2. Mixins
+ * 3. Plugins
+ * 4. Base
+ * 5. Components
+ * 6. Header
+ * 7. Footer
+ * 8. Pages
+ */
 
-    Item Name: Ekka - Ecommerce HTML Template.
-    Author: ashishmaraviya
-    Version: 3.3
-    Copyright 2022-2023
-	Author URI: https://themeforest.net/user/ashishmaraviya
+/* 1. Config */
+@import 'config/variables';
 
------------------------------------------------------------------------------------*/
+/* 2. Mixins */
+@import 'mixins/breakpoint';
+@import 'mixins/core';
+@import 'mixins/buttons';
+@import 'mixins/direction';
 
-/*---------------------------------------------------------------------------------
-    Included CSS INDEX
------------------------------------------------------------------------------------
+/* 3. Base */
+@import 'base/base';
+@import 'base/layout';
+@import 'base/grid';
+@import 'base/spacing';
+@import 'base/type';
+@import 'base/helper';
 
-01. Typography
-02. Components
-    - Helper
-    - Common
-    - Popup Model
-    - Breadcrumb
-03. Layout 
-    - Header Section
-    - Mainslider Section
-    - Product Tab Section
-    - Banner Section
-    - Category Section
-    - Specials Section
-    - Services Section
-    - Offer Section
-    - New Product Section
-    - Testimonial Section
-    - Brand Section
-    - Instagram Section
-    - Footer Section
-    - Quickview Section
-    - Category Section
-    - Category Sidebar
-04. Pages
-    - Shop Page
-    - Login Page
-    - Register Page
-    - About us Page
-    - Term Page
-    - Contact us Page
-    - Faq Page
-    - Single Product Page
-    - Blog Page
-    - Cart Page
-    - Compare Page
-    - Track Order Page
-    - Checkout Page    
-    - Elements Tabs Page
-    - Elements Categories Page
-    - Elements Buttons Page
-    - Elements Products Page
-    - Elements Title Page
-    - Elements Coming-Soon Page
-    - Elements Blog Page
-    - Elements Typography Page
-    - Vendor Page
-    - User Page
-    - Offer Page
-    - Thank you Page
+/* 4. Plugins */
+@import 'components/slider';
+@import 'components/nouislider';
 
------------------------------------------------------------------------------------*/
-
-// Typography ( Import Typography )
-@import "base/_typography";
-
-// Utilities ( Import Utilities )
-@import "utilities/_variables";
-@import "utilities/_mixins";
-
-// Components ( Import Required Components )
-@import "components/_helper";
-@import "components/_common";
-@import "components/_popup-model";
-@import "components/_breadcrumb";
-
-// Layout ( Import Required Layout )
-@import "layout/_header";
-@import "layout/_product-tab";
-@import "layout/_services";
-@import "layout/_new-product";
-@import "layout/_testimonial";
-@import "layout/_instagram";
-@import "layout/_footer";
-@import "layout/_quickview";
-@import "layout/_category";
-
-// Pages ( Import CSS for Pages )
-@import "pages/_shop-page";
-@import "pages/_login-page";
-@import "pages/_register-page";
-@import "pages/_aboutus-page";
-@import "pages/_term-page";
-@import "pages/_contactus-page";
-@import "pages/_faq-page";
-@import "pages/_single-pro-page";
-@import "pages/_blog-page";
-@import "pages/_cart-page";
-@import "pages/_compare-page";
-@import "pages/_track-order-page";
-@import "pages/_checkout-page";
-@import "pages/_elements-tabs";
-@import "pages/_elemets-categories";
-@import "pages/_elements-buttons";
-@import "pages/_elements-products";
-@import "pages/_elements-title";
-@import "pages/_coming-soon";
-@import "pages/_elements-blog";
-@import "pages/_elements-typography";
-@import "pages/_vendor-pages";
-@import "pages/_user-pages";
-@import "pages/_hot-offer";
-@import "pages/_404-error-page";
-@import "pages/_under-maintainace";
-@import "pages/_wishlist";
-@import "pages/_thank-you";
-@import "pages/_payment-fail";
+/* 5. Component */
+@import 'components/accordion';
+@import 'components/alert';
+@import 'components/animation';
+@import 'components/banner';
+@import 'components/breadcrumb';
+@import 'components/blog';
+@import 'components/buttons';
+@import 'components/calendar';
+@import 'components/categories';
+@import 'components/comments';
+@import 'components/cta';
+@import 'components/element';
+@import 'components/font-icons';
+@import 'components/forms';
+@import 'components/icons';
+@import 'components/icon-boxes';
+@import 'components/instagram';
+@import 'components/magnific-popup';
+@import 'components/minipopup';
+@import 'components/overlay';
+@import 'components/page-header';
+@import 'components/pagination';
+@import 'components/popup';
+@import 'components/products';
+@import 'components/product-single';
+@import 'components/progress-bar';
+@import 'components/sidebar';
+@import 'components/social-icons';
+@import 'components/tab';
+@import 'components/testimonial';
+@import 'components/timeline';
+@import 'components/titles';
+@import 'components/tooltip';
+@import 'components/widget';
+@import 'components/vendor';
+@import 'components/code-popup';
 
 
+/* 6. Header */
+@import 'base/header/header';
+@import 'base/header/dropdown';
+@import 'base/header/menu';
+
+/* 7. Footer */
+@import 'base/footer/footer';
 
 
-
+/* 8. Pages */
+@import 'pages/about-us';
+@import 'pages/accordion';
+@import 'pages/blog';
+@import 'pages/become-vendor';
+@import 'pages/buttons';
+@import 'pages/categories';
+@import 'pages/cart';
+@import 'pages/checkout';
+@import 'pages/contact-us';
+@import 'pages/coming-soon';
+@import 'pages/compare';
+@import 'pages/error-404';
+@import 'pages/faq';
+@import 'pages/icons';
+@import 'pages/instagrams';
+@import 'pages/my-account';
+@import 'pages/order';
+@import 'pages/products';
+@import 'pages/product-single';
+@import 'pages/shop';
+@import 'pages/wishlist';
+@import 'pages/vendor';
