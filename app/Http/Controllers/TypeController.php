@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Type;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class TypeController extends Controller
 {
@@ -164,8 +165,7 @@ class TypeController extends Controller
 
         $selectFirm = $selectFirm ?? null;
         $selectCollection = $selectCollection ?? null;
-
-        return view('frontend.pages.type.index', compact(
+        return view('front.pages.type.index', compact(
                 'products',
                 'productsNoFilter',
                 'type',

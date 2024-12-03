@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\Backend\AttributeController;
 use App\Http\Controllers\Backend\AttributeOptionController;
 use App\Http\Controllers\Backend\CollectionController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\Backend\PhotoController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\TypeController;
 use App\Http\Controllers\ManufactureController;
+use App\Http\Controllers\WishlistController;
 use App\Models\Firm;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -46,10 +48,15 @@ Route::get('/{slug}', [\App\Http\Controllers\ProductController::class, 'show'])-
 Route::get('/manufactures/', [ManufactureController::class, 'list'])->name('manufacture.list');
 Route::get('/manufacture-{slug}', [ManufactureController::class, 'show'])->where('slug', '[A-Za-z0-9-]+')->name('manufacture.show');
 
+Route::get('/wishlist/', [WishlistController::class, 'index'])->name('wishlist');
+Route::get('/sale/', [WishlistController::class, 'index'])->name('sale');
+
 Route::get('/info/{s}', [\App\Http\Controllers\InfoController::class, 'show'])->where('s', '[a-z-]+')->name('info');
 Route::post('/info/contact', [\App\Http\Controllers\InfoController::class, 'send_mail'])->name('info.send_mail');
 
 Route::get('/backend/user', [UserController::class, 'index'])->name('backend.user');
+
+Route::post('/ajax/wishlist', [AjaxController::class, 'wishlist'])->name('ajax.wishlist');
 
 
 Route::controller(LoginRegisterController::class)->group(function () {

@@ -22,11 +22,11 @@ class InfoController extends Controller
         switch($s)
         {
             case 'contact':
-                $view = 'frontend.pages.info.contact';
+                $view = 'front.pages.info.contact';
                 break;
 
             default:
-                $view = 'frontend.pages.info.index';
+                $view = 'front.pages.info.index';
                 break;
 
         }

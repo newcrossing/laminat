@@ -16,8 +16,8 @@ class Product extends Model
     use SoftDeletes;
     use HasFotos;
 
-    const COUNT_OF_PAGINATION = 15;
-    protected $perPage = 15;
+    const COUNT_OF_PAGINATION = 5;
+    protected $perPage = 5;
 
     protected $fillable = [
         'name',
@@ -58,12 +58,12 @@ class Product extends Model
      * выводит действующую цену. Если есть скидка то это будет действующая
      * @return int
      */
-    public function actualPriceMetr(): int
+    public function actualPriceMetr()
     {
         return (!empty($this->price_metr_sale)) ? $this->price_metr_sale : $this->price_metr;
     }
 
-    public function actualPriceUpak(): int
+    public function actualPriceUpak()
     {
         return (!empty($this->price_upak_sale)) ? $this->price_upak_sale : $this->price_upak;
     }

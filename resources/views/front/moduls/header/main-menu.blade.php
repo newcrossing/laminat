@@ -21,7 +21,7 @@
             </ul>
         </li>
         <li>
-            <a href="{{route('home')}}">Контакты</a>
+            <a href="{{route('info','contact')}}">Контакты</a>
         </li>
 
     </ul>

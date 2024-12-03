@@ -4,7 +4,7 @@
         <i class="w-icon-cart">
             <span class="cart-count">2</span>
         </i>
-        <span class="cart-label">Корзина</span>
+        <span class="cart-label">Корзина </span>
     </a>
     <div class="dropdown-box">
         <div class="cart-header">
@@ -15,7 +15,7 @@
         <div class="products">
             <div class="product product-cart">
                 <div class="product-detail">
-                    <a href="product-default.html" class="product-name">Beige knitted
+                    <a href="" class="product-name">Beige knitted
                         elas<br>tic
                         runner shoes</a>
                     <div class="price-box">
@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <figure class="product-media">
-                    <a href="product-default.html">
+                    <a href="">
                         <img src="/assets/images/cart/product-1.jpg" alt="product" height="84"
                              width="94"/>
                     </a>
@@ -36,7 +36,7 @@
 
             <div class="product product-cart">
                 <div class="product-detail">
-                    <a href="product-default.html" class="product-name">Blue utility
+                    <a href="" class="product-name">Blue utility
                         pina<br>fore
                         denim dress</a>
                     <div class="price-box">
@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <figure class="product-media">
-                    <a href="product-default.html">
+                    <a href="">
                         <img src="/assets/images/cart/product-2.jpg" alt="product" width="84"
                              height="94"/>
                     </a>
@@ -62,8 +62,8 @@
         </div>
 
         <div class="cart-action">
-            <a href="cart.html" class="btn btn-dark btn-outline btn-rounded">Смотреть корзину</a>
-            <a href="checkout.html" class="btn btn-primary  btn-rounded">Оформить</a>
+            <a href="" class="btn btn-dark btn-outline btn-rounded">Смотреть корзину</a>
+            <a href="" class="btn btn-primary  btn-rounded">Оформить</a>
         </div>
     </div>
     <!-- End of Dropdown Box -->

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Bkwld\Croppa\Facades\Croppa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class ProductController extends Controller
 {
@@ -31,6 +32,7 @@ class ProductController extends Controller
             ['link' => $product->type->slug.'/'.$product->collection->firm->slug.'/'.$product->collection->slug, 'name' => $product->collection->name],
             ['name' => $product->name]
         ];
+        dump(Cookie::get('wishlist'));
      //   return view('frontend.pages.product.index', compact('product', 'breadcrumbs'));
         return view('front.pages.product.show', compact('product', 'breadcrumbs'));
     }

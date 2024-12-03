@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Firm;
 use App\Models\Type;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Cookie;
 
 class ManufactureController extends Controller
 {
@@ -21,7 +22,8 @@ class ManufactureController extends Controller
             }])
             ->public()
             ->get();
-        return view('frontend.pages.manufacture.index', compact('firms', 'breadcrumbs'));
+       
+        return view('front.pages.manufacture.list', compact('firms', 'breadcrumbs'));
     }
 
     public function show($slug)
@@ -44,6 +46,6 @@ class ManufactureController extends Controller
             ['name' => $firm->name]
         ];
 
-        return view('frontend.pages.manufacture.show', compact('firm', 'types', 'breadcrumbs'));
+        return view('front.pages.manufacture.show', compact('firm', 'types', 'breadcrumbs'));
     }
 }

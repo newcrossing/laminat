@@ -1,27 +1,27 @@
 <div class="sticky-footer sticky-content fix-bottom">
-    <a href="demo1.html" class="sticky-link active">
+    <a href="/" class="sticky-link active">
         <i class="w-icon-home"></i>
-        <p>Home</p>
+        <p>Главная</p>
     </a>
-    <a href="shop-banner-sidebar.html" class="sticky-link">
+    <a href="" class="sticky-link">
         <i class="w-icon-category"></i>
-        <p>Shop</p>
+        <p>Магазин</p>
     </a>
-    <a href="my-account.html" class="sticky-link">
-        <i class="w-icon-account"></i>
-        <p>Account</p>
+    <a href="" class="sticky-link">
+        <i class="w-icon-heart"></i>
+        <p>Избранное</p>
     </a>
     <div class="cart-dropdown dir-up">
-        <a href="cart.html" class="sticky-link">
+        <a href="" class="sticky-link">
             <i class="w-icon-cart"></i>
-            <p>Cart</p>
+            <p>Корзина</p>
         </a>
         <div class="dropdown-box">
             <div class="products">
                 <div class="product product-cart">
                     <div class="product-detail">
                         <h3 class="product-name">
-                            <a href="product-default.html">Beige knitted elas<br>tic
+                            <a href="">Beige knitted elas<br>tic
                                 runner shoes</a>
                         </h3>
                         <div class="price-box">
@@ -42,7 +42,7 @@
                 <div class="product product-cart">
                     <div class="product-detail">
                         <h3 class="product-name">
-                            <a href="product.html">Blue utility pina<br>fore
+                            <a href="">Blue utility pina<br>fore
                                 denim dress</a>
                         </h3>
                         <div class="price-box">
@@ -67,8 +67,8 @@
             </div>
 
             <div class="cart-action">
-                <a href="cart.html" class="btn btn-dark btn-outline btn-rounded">View Cart</a>
-                <a href="checkout.html" class="btn btn-primary  btn-rounded">Checkout</a>
+                <a href="" class="btn btn-dark btn-outline btn-rounded">View Cart</a>
+                <a href="" class="btn btn-primary  btn-rounded">Checkout</a>
             </div>
         </div>
         <!-- End of Dropdown Box -->
@@ -77,7 +77,7 @@
     <div class="header-search hs-toggle dir-up">
         <a href="#" class="search-toggle sticky-link">
             <i class="w-icon-search"></i>
-            <p>Search</p>
+            <p>Поиск</p>
         </a>
         <form action="#" class="input-wrapper">
             <input type="text" class="form-control" name="search" autocomplete="off" placeholder="Search"

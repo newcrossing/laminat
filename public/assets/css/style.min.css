@@ -6738,107 +6738,107 @@ blockquote {
   margin-bottom: 2rem;
 }
 
-.sale-banner::before {
-  content: "";
-  position: absolute;
-  z-index: 2;
-  left: 1px;
-  right: 1px;
-  top: 1px;
-  bottom: 1px;
-  border: 5px dashed #fff;
-  pointer-events: none;
-  -webkit-clip-path: inset(4px 4px 4px 4px);
-          clip-path: inset(4px 4px 4px 4px);
-}
-.sale-banner .banner-content {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-.sale-banner .banner-subtitle {
-  position: relative;
-  margin-right: 2rem;
-  padding: 2.6rem 7px 2.6rem 3.5rem;
-  font-size: 4em;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  background: #444;
-  line-height: 1.2;
-  z-index: 1;
-  white-space: nowrap;
-}
-.sale-banner .banner-subtitle span {
-  font-size: 0.45em;
-  font-weight: 400;
-}
-.sale-banner .banner-subtitle::before, .sale-banner .banner-subtitle::after {
-  content: "";
-  position: absolute;
-  right: -24px;
-  top: -25px;
-  bottom: -20px;
-  border-right: 50px solid #454545;
-  -webkit-transform: rotate(26deg);
-          transform: rotate(26deg);
-  z-index: -1;
-}
-.sale-banner .banner-subtitle::after {
-  right: -35px;
-  border-right-width: 5px;
-}
-.sale-banner .content-right {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 calc(100% - 25.7rem);
-          flex: 0 0 calc(100% - 25.7rem);
-  max-width: calc(100% - 25.7rem);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding: 2.8rem 3.6rem 2.8rem 0;
-  background-color: #eee;
-}
-.sale-banner .banner-title {
-  overflow: hidden;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  font-size: 3.4em;
-  font-style: italic;
-}
-.sale-banner .banner-title span {
-  white-space: nowrap;
-  -webkit-animation: slideX 60s infinite linear 1s;
-          animation: slideX 60s infinite linear 1s;
-  display: inline-block;
-}
-.sale-banner .btn {
-  padding-left: 1.9em;
-  padding-right: 1.9em;
-  background-color: #444;
-  border-color: #444;
-}
-.sale-banner .btn i {
-  margin-left: 0.3rem;
-  font-size: 1.5rem;
-}
+/*.sale-banner::before {*/
+/*  content: "";*/
+/*  position: absolute;*/
+/*  z-index: 2;*/
+/*  left: 1px;*/
+/*  right: 1px;*/
+/*  top: 1px;*/
+/*  bottom: 1px;*/
+/*  border: 5px dashed #fff;*/
+/*  pointer-events: none;*/
+/*  -webkit-clip-path: inset(4px 4px 4px 4px);*/
+/*          clip-path: inset(4px 4px 4px 4px);*/
+/*}*/
+/*.sale-banner .banner-content {*/
+/*  display: -webkit-box;*/
+/*  display: -ms-flexbox;*/
+/*  display: flex;*/
+/*  -webkit-box-align: center;*/
+/*      -ms-flex-align: center;*/
+/*          align-items: center;*/
+/*  -webkit-box-pack: justify;*/
+/*      -ms-flex-pack: justify;*/
+/*          justify-content: space-between;*/
+/*}*/
+/*.sale-banner .banner-subtitle {*/
+/*  position: relative;*/
+/*  margin-right: 2rem;*/
+/*  padding: 2.6rem 7px 2.6rem 3.5rem;*/
+/*  font-size: 4em;*/
+/*  display: -webkit-box;*/
+/*  display: -ms-flexbox;*/
+/*  display: flex;*/
+/*  -webkit-box-align: center;*/
+/*      -ms-flex-align: center;*/
+/*          align-items: center;*/
+/*  background: #444;*/
+/*  line-height: 1.2;*/
+/*  z-index: 1;*/
+/*  white-space: nowrap;*/
+/*}*/
+/*.sale-banner .banner-subtitle span {*/
+/*  font-size: 0.45em;*/
+/*  font-weight: 400;*/
+/*}*/
+/*.sale-banner .banner-subtitle::before, .sale-banner .banner-subtitle::after {*/
+/*  content: "";*/
+/*  position: absolute;*/
+/*  right: -24px;*/
+/*  top: -25px;*/
+/*  bottom: -20px;*/
+/*  border-right: 50px solid #454545;*/
+/*  -webkit-transform: rotate(26deg);*/
+/*          transform: rotate(26deg);*/
+/*  z-index: -1;*/
+/*}*/
+/*.sale-banner .banner-subtitle::after {*/
+/*  right: -35px;*/
+/*  border-right-width: 5px;*/
+/*}*/
+/*.sale-banner .content-right {*/
+/*  -webkit-box-flex: 0;*/
+/*      -ms-flex: 0 0 calc(100% - 25.7rem);*/
+/*          flex: 0 0 calc(100% - 25.7rem);*/
+/*  max-width: calc(100% - 25.7rem);*/
+/*  display: -webkit-box;*/
+/*  display: -ms-flexbox;*/
+/*  display: flex;*/
+/*  -webkit-box-align: center;*/
+/*      -ms-flex-align: center;*/
+/*          align-items: center;*/
+/*  padding: 2.8rem 3.6rem 2.8rem 0;*/
+/*  background-color: #eee;*/
+/*}*/
+/*.sale-banner .banner-title {*/
+/*  overflow: hidden;*/
+/*  -webkit-box-flex: 1;*/
+/*      -ms-flex: 1;*/
+/*          flex: 1;*/
+/*  font-size: 3.4em;*/
+/*  font-style: italic;*/
+/*}*/
+/*.sale-banner .banner-title span {*/
+/*  white-space: nowrap;*/
+/*  -webkit-animation: slideX 60s infinite linear 1s;*/
+/*          animation: slideX 60s infinite linear 1s;*/
+/*  display: inline-block;*/
+/*}*/
+/*.sale-banner .btn {*/
+/*  padding-left: 1.9em;*/
+/*  padding-right: 1.9em;*/
+/*  background-color: #444;*/
+/*  border-color: #444;*/
+/*}*/
+/*.sale-banner .btn i {*/
+/*  margin-left: 0.3rem;*/
+/*  font-size: 1.5rem;*/
+/*}*/
 
-.sale-banner-section {
-  padding-bottom: 0.7rem;
-}
+/*.sale-banner-section {*/
+/*  padding-bottom: 0.7rem;*/
+/*}*/
 
 .banner-newsletter-bg {
   display: -webkit-box;

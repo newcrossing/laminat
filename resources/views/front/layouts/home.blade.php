@@ -11,6 +11,7 @@
     <meta name="description"
           content="@yield('description','В периоды нестабильности лучше обратиться к услугам надежной компании, специализирующейся на напольных покрытиях. Мы предлагаем вам посетить наш шоурум и интернет-магазин')">
     <meta name="author" content="newcrossing">
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/assets/images/icons/favicon.png">
@@ -18,20 +19,22 @@
     @include('front.moduls.scripts.header')
 
     <!-- Default CSS -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/demo9.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/style.min.css">
 </head>
 
-<body>
+<body class="home">
 <div class="page-wrapper">
     <!-- Start of Header -->
     <header class="header header-border">
         @include('front.moduls.header.header-top')
         <!-- End of Header Top -->
         @include('front.moduls.header.header-middle')
+
     </header>
     <!-- End of Header -->
-
     <x-front.menu.type/>
+
 
     <!-- Start of Main -->
     @yield('content')
@@ -119,8 +122,8 @@
 @include('front.moduls.scripts.footer')
 
 <!-- Main JS File -->
-{{--<script src="/assets/js/main.min.js"></script>--}}
 <script src="/assets/js/main.js"></script>
+{{--<script src="/assets/js/main.min.js"></script>--}}
 </body>
 
 </html>

@@ -49,7 +49,7 @@
         <div class="product-button">
             <div class="bought-price font-weight-bolder text-primary ls-50">$1,874.00</div>
             <div class="bought-count">For 3 items</div>
-            <a href="cart.html" class="btn btn-dark btn-rounded">Add All To Cart</a>
+            <a href="" class="btn btn-dark btn-rounded">Add All To Cart</a>
         </div>
     </div>
 </div>

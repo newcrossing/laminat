@@ -1,6 +1,7 @@
-<nav class="breadcrumb-nav container">
+<nav class="breadcrumb-nav mb-1">
+    <div class="container">
     @isset($breadcrumbs)
-        <ul class="breadcrumb bb-no">
+        <ul class="breadcrumb ">
             @foreach ($breadcrumbs as $breadcrumb)
                 @if(isset($breadcrumb['link']))
                     <li >
@@ -12,6 +13,7 @@
             @endforeach
         </ul>
     @endisset
+    </div>
 
 {{--    <ul class="product-nav list-style-none">--}}
 {{--        <li class="product-nav-prev">--}}
