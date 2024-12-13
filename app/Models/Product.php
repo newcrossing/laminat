@@ -98,6 +98,16 @@ class Product extends Model
         $query->where('public', true);
     }
 
+    /**
+     * Считает цену товара итоговую учитывая его количество.
+     * @param $count количество
+     * @return float|int
+     */
+    public function getPriceByCount($count = 1)
+    {
+        return $this->price_upak * $count;
+    }
+
     public function getFullName()
     {
         return "{$this->firm->name} {$this->collection->name} {$this->name}";
@@ -134,6 +144,11 @@ class Product extends Model
             'collection_id', # local key on this -- properties
             'firm_id' # local key on intermediary -- categories
         );
+    }
+
+    public function carts()
+    {
+        return $this->belongsToMany(Cart::class)->withPivot('count');
     }
 
 

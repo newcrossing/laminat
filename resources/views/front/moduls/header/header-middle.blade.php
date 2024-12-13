@@ -43,7 +43,8 @@
                     <span class="cart-label">Избранное</span>
                 </a>
             </div>
-            @include('front.moduls.cart.header-top')
+
+            <x-front.cart/>
 
         </div>
     </div>

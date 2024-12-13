@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Cart;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
@@ -30,9 +31,12 @@ class AppServiceProvider extends ServiceProvider
         $verticalMenuJson = file_get_contents(base_path('resources/admin/data/menus/vertical-menu.json'));
         $verticalMenuData = json_decode($verticalMenuJson);
 
+
         // share all menuData to all the views
         \View::share('menuData', [$verticalMenuData]);
         \View::share('Carbone', $Carbone);
+
+        //\View::share('cartCount', $cart->products->count());
 
         Relation::enforceMorphMap([
             'product' => 'App\Models\Product',

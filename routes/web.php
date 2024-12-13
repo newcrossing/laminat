@@ -1,29 +1,22 @@
 <?php
 
 use App\Http\Controllers\AjaxController;
+use App\Http\Controllers\Auth\LoginRegisterController;
 use App\Http\Controllers\Backend\AttributeController;
 use App\Http\Controllers\Backend\AttributeOptionController;
 use App\Http\Controllers\Backend\CollectionController;
 use App\Http\Controllers\Backend\FirmController;
+use App\Http\Controllers\Backend\HomeController;
 use App\Http\Controllers\Backend\InfoController;
 use App\Http\Controllers\Backend\PhotoController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\TypeController;
-use App\Http\Controllers\ManufactureController;
-use App\Http\Controllers\WishlistController;
-use App\Models\Firm;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\Backend\HomeController;
-use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\UserController;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\ImageManager;
-use Spatie\Permission\Models\Role;
-use \App\Http\Controllers\Auth\LoginRegisterController;
+use App\Http\Controllers\ManufactureController;
+use App\Http\Controllers\SaleController;
+use App\Http\Controllers\WishlistController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,7 +42,7 @@ Route::get('/manufactures/', [ManufactureController::class, 'list'])->name('manu
 Route::get('/manufacture-{slug}', [ManufactureController::class, 'show'])->where('slug', '[A-Za-z0-9-]+')->name('manufacture.show');
 
 Route::get('/wishlist/', [WishlistController::class, 'index'])->name('wishlist');
-Route::get('/sale/', [WishlistController::class, 'index'])->name('sale');
+Route::get('/sale/', [SaleController::class, 'index'])->name('sale');
 
 Route::get('/info/{s}', [\App\Http\Controllers\InfoController::class, 'show'])->where('s', '[a-z-]+')->name('info');
 Route::post('/info/contact', [\App\Http\Controllers\InfoController::class, 'send_mail'])->name('info.send_mail');
@@ -57,6 +50,7 @@ Route::post('/info/contact', [\App\Http\Controllers\InfoController::class, 'send
 Route::get('/backend/user', [UserController::class, 'index'])->name('backend.user');
 
 Route::post('/ajax/wishlist', [AjaxController::class, 'wishlist'])->name('ajax.wishlist');
+Route::post('/ajax/cart', [AjaxController::class, 'cart'])->name('ajax.cart');
 
 
 Route::controller(LoginRegisterController::class)->group(function () {

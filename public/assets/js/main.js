@@ -2211,23 +2211,36 @@ window.Wolmart = {};
                 $product = $this.closest('.product, .product-popup');
 
             if ($this.hasClass('disabled')) {
-                alert('Please select some product options before adding this product to your cart.');
+                alert('Невозможно добавить в корзину');
                 return;
             }
 
+            let id = $(this).data('id');
+            let count = $('#count_up').val();
+
+            addCart('add', id, count);
+            // if (countWishlist > 0) {
+            //     $('#wishlist_count').show()
+            // } else {
+            //     $('#wishlist_count').hide()
+            // }
+
+
             $this.toggleClass('added').addClass('load-more-overlay loading');
+            // addCart('add',)
 
             setTimeout(function () {
                 $this.removeClass('load-more-overlay loading');
 
                 Wolmart.Minipopup.open({
                     productClass: ' product-cart',
+                    //name: $product.find('.product-title').text(),
                     name: $product.find('.product-name, .product-title').text(),
                     nameLink: $product.find('.product-name > a, .product-title > a').attr('href'),
                     imageSrc: $product.find('.product-media img, .product-image:first-child img').attr('src'),
                     imageLink: $product.find('.product-name > a').attr('href'),
-                    message: '<p>has been added to cart:</p>',
-                    actionTemplate: '<a href="cart.html" class="btn btn-rounded btn-sm">Смотреть Cart</a><a href="checkout.html" class="btn btn-dark btn-rounded btn-sm">Checkout</a>'
+                    message: '<p>Добавлен в корзину:</p>',
+                    actionTemplate: '<a href="/cart" class="btn btn-rounded btn-sm">Корзина</a><a href="/checkout" class="btn btn-dark btn-rounded btn-sm">Оформить</a>'
                 });
             }, 500);
         });
@@ -2235,7 +2248,6 @@ window.Wolmart = {};
 
     var initWishlistAction = function () {
         Wolmart.$body.on('click', '.product:not(.product-single) .btn-wishlist', function (e) {
-
             e.preventDefault();
             var $this = $(this);
             $this.toggleClass('added').addClass('load-more-overlay loading');
@@ -2255,7 +2267,36 @@ window.Wolmart = {};
                 $this.toggleClass('w-icon-heart').toggleClass('w-icon-heart-full');
             }, 500);
         });
+
+
     }
+    var initWishlistAction2 = function () {
+
+        Wolmart.$body.on('click', '.btn-wishlist-2', function (e) {
+            e.preventDefault();
+            var $this = $(this);
+            $this.addClass('load-more-overlay loading');
+
+            let idWishlist = $(this).data('idwishlist');
+            let countWishlist = parseInt(setWishlist('delete', idWishlist))
+
+            $('#wishlist_count').text(countWishlist)
+            if (countWishlist > 0) {
+                $('#wishlist_count').show()
+            } else {
+                $('#wishlist_count').hide()
+            }
+
+            setTimeout(function () {
+                $this.removeClass('load-more-overlay loading');
+
+                $('#tr-' + idWishlist).remove()
+                // $this.toggleClass('w-icon-heart').toggleClass('w-icon-heart-full');
+            }, 500);
+
+        });
+    }
+
 
     var initCompare = function () {
         var products = [],
@@ -2442,6 +2483,7 @@ window.Wolmart = {};
             initSelectMenu();
             initProductCartAction();
             initWishlistAction();
+            initWishlistAction2();
             initProductQuickview();
             initCompare();
 
@@ -2795,7 +2837,7 @@ window.Wolmart = {};
     }
 
     var wishlistAction = function (e) {
-       // alert(444);
+        // alert(444);
         var $this = $(this);
         if ($this.hasClass('added')) {
             return;
@@ -2815,10 +2857,10 @@ window.Wolmart = {};
         setTimeout(function () {
             $this
                 .removeClass('load-more-overlay loading')
-               // .toggleClass('w-icon-heart').toggleClass('w-icon-heart-full')
+                // .toggleClass('w-icon-heart').toggleClass('w-icon-heart-full')
                 .toggleClass('btn-primary btn-outline').toggleClass('btn-success')
-               // .addClass('added')
-                // .attr('href', 'wishlist.html');
+            // .addClass('added')
+            // .attr('href', 'wishlist.html');
         }, 500);
     }
 
@@ -3143,8 +3185,8 @@ window.Wolmart = {};
         } else {
             productName = $this.closest('.product-single').find('.product-title').text();
             var alertHtml = '<div class="alert alert-success alert-cart-product mb-2">\
-                            <a href="cart.html" class="btn btn-success btn-rounded">View Cart</a>\
-                            <p class="mb-0 ls-normal">“' + productName + '” has been added to your cart.</p>\
+                            <a href="/cart" class="btn btn-success btn-rounded">Корзина</a>\
+                            <p class="mb-0 ls-normal">“' + productName + '” добавлен в корзину.</p>\
                             <a href="#" class="btn btn-link btn-close" aria-label="button">\<i class="close-icon"></i>\</a>\
                             </div>'
             $this.closest('.product-single').before(alertHtml);
@@ -3163,12 +3205,12 @@ window.Wolmart = {};
             oldPrice = $product.find('.old-price').text(),
             stickyProductDetailsHtml = '<div class="product product-list-sm mr-auto">\
                                         <figure class="product-media">\
-                                        <img src="' + src + '" alt="Product" width="85" height="85" />\
+                                        <img src="' + src + '"  width="85" height="85" />\
                                         </figure>\
                                         <div class="product-details pt-0 pl-2 pr-2">\
                                         <h4 class="product-name font-weight-normal mb-1">' + name + '</h4>\
                                         <div class="product-price mb-0">\
-                                        <ins class="new-price">' + newPrice + '</ins><del class="old-price">' + oldPrice + '</del></div>\
+                                        <ins class="new-price" id="price_summ_buttom">' + newPrice + '</ins><del class="old-price">' + oldPrice + '</del></div>\
                                         </div></div>';
 
         $this.find('.product-qty-form').before(stickyProductDetailsHtml);
@@ -3674,11 +3716,33 @@ function setWishlist(set, id) {
             id: id,
         },
         success: function (response) {
-            console.log(response);
             result = response
         },
         error: function (jqXHR, exception) {
-            return false
+            result = false
+        }
+    });
+    return result
+}
+
+function addCart(type, id, count) {
+    let _token = $('meta[name="csrf-token"]').attr('content')
+    var result = "";
+    $.ajax({
+        url: "/ajax/cart",
+        async: false,
+        type: "POST",
+        data: {
+            type: type,
+            count: count,
+            id: id,
+        },
+        success: function (response) {
+            console.log(response)
+            result = response
+        },
+        error: function (jqXHR, exception) {
+            result = false
         }
     });
     return result

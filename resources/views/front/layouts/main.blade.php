@@ -117,10 +117,13 @@
 <!-- End of Quick view -->
 
 @include('front.moduls.scripts.footer')
+@yield('vendor-scripts')
 
 <!-- Main JS File -->
 {{--<script src="/assets/js/main.min.js"></script>--}}
 <script src="/assets/js/main.js"></script>
+
+@yield('page-scripts')
 </body>
 
 </html>
