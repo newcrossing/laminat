@@ -2,25 +2,24 @@
     <div class="cart-overlay"></div>
     <a href="#" class="cart-toggle label-down link">
         <i class="w-icon-cart">
-            <span class="cart-count">{{count($products)}}</span>
+            <span class="cart-count" id="cart_count">{{count($products)}}</span>
         </i>
         <span class="cart-label">Корзина </span>
     </a>
-    <div class="dropdown-box">
+    <div class="dropdown-box" style="height: 100vh;overflow-y: scroll;">
         <div class="cart-header">
-            <span>Корзина покупок</span>
+            <span>Корзина</span>
             <a href="#" class="btn-close">Закрыть<i class="w-icon-long-arrow-right"></i></a>
         </div>
 
-        <div class="products">
+        <div class="products" style="max-height: none">
             @forelse($products as $product)
                 @php
                     /** @var \App\Models\Product  $product */
-
                 @endphp
                 <div class="product product-cart">
-                    <div class="product-detail">
-                        <a href="{{route('prod.show',$product->slug)}}" class="product-name">{{$product->getFullName()}}</a>
+                    <div class="product-detail mr-1">
+                        <a href="{{route('prod.show',$product->slug)}}" class="product-name font-weight-normal">{{$product->getFullName()}}</a>
                         <div class="price-box">
                             <span class="product-quantity">{{$product->pivot->count}}</span>
                             <span class="product-price">{{ Number::format($product->price_upak,locale: 'ru')}} руб.</span>
@@ -55,8 +54,8 @@
         </div>
 
         <div class="cart-action">
-            <a href="" class="btn btn-dark btn-outline btn-rounded">В корзину</a>
-            <a href="" class="btn btn-primary  btn-rounded">Оформить</a>
+            <a href="/cart" class="btn btn-dark btn-outline btn-rounded">В корзину</a>
+            <a href="#" class="btn btn-primary  btn-rounded">Оформить</a>
         </div>
     </div>
     <!-- End of Dropdown Box -->

@@ -11,6 +11,9 @@
     @php
         /** @var \App\Models\Product  $product */
     $arrCookie = explode(",", Cookie::get('wishlist'));
+    $arrCart = session('cart');
+   // $arrCart = array(5, 9, 10);
+
     @endphp
 
     <div class="{{$col_lg}} col-6 mb-4">
@@ -38,7 +41,7 @@
 
 
                 <div class="product-action-vertical" style="opacity: 100; visibility: visible">
-                    <a href="#"  class="btn-product-icon btn-wishlist
+                    <a href="#" class="btn-product-icon btn-wishlist
                      @if(in_array($product->id, $arrCookie)) w-icon-heart-full @else w-icon-heart @endif "
                        title="@if(in_array($product->id, $arrCookie)) В избранном @else В избранное @endif" data-idwishlist="{{$product->id}}"></a>
                 </div>
@@ -63,8 +66,19 @@
                             <del class="old-price">{{Number::format($product->price_metr_sale,locale: 'ru')}} <sub>руб.</sub></del>
                         @endif
                     </div>
+
+
                     <div class="product-action">
-                        <a href="#" class="btn-cart btn-product btn btn-icon-right btn-link btn-underline">В корзину</a>
+                        @if(in_array($product->id, $arrCart))
+                            <a data-id="{{$product->id}}" href="#" class="btn-cart btn-product btn btn-icon-right btn-link btn-underline disabled" style="color: #36bd00">
+                                <i class=" w-icon-check"></i> В корзине</a>
+                        @else
+
+
+                            <a data-id="{{$product->id}}" href="#" class="btn-cart btn-product btn btn-icon-right btn-link btn-underline"> В корзину</a>
+
+                        @endif
+
                     </div>
                 </div>
             </div>

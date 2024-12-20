@@ -1,0 +1,1 @@
+<x-front.cart.total-price />

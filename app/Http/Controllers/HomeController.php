@@ -54,6 +54,7 @@ class HomeController extends Controller
        // $cookie = cookie('name', 'value', 1000);
 
         //return response('Hello World')->cookie($cookie);
+       // dump( session('cart') );
 
         return view('front.pages.home.index', compact('types', 'firms'));
     }

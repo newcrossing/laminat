@@ -28,17 +28,72 @@ class AjaxController extends Controller
 
     public function cart(Request $request)
     {
-        $id = $request->id;
+        $id = (int) $request->id;
         $count = $request->count;
         $type = $request->type;
 
-        $cart = Cart::firstOrCreate(['session' => session()->getId()]);
+        switch ($type) {
+            case 'clear':
+                // очищаю корзину
+                $cart = Cart::getCart();
+                $cart->products()->detach();
+
+                // очищаю сессию
+                session()->forget(keys: 'cart');
+
+                Log::info('Корзина: очищена');
+                return response(['result' => 'ok']);
+
+            case 'delete':
+                // удаляю из корзины
+                $cart = Cart::getCart();
+                $cart->products()->detach($id);
+
+                session()->forget(keys: 'cart');
+                session()->put(
+                    key: 'cart',
+                    value: $cart->products->pluck('id')->toArray(),
+                );
+
+                Log::info('Корзина: удален товар', [$id]);
+                return response(['result' => 'ok', 'count' => $cart->products->count()]);
+            case 'change':
+                $cart = Cart::getCart();
+
+                $cart->products()->detach($id);
+                $cart->products()->attach($id, ['count' => $count]);
+
+                session()->forget(keys: 'cart');
+                session()->put(
+                    key: 'cart',
+                    value: $cart->products->pluck('id')->toArray(),
+                );
+
+                return  view('front.pages.cart.moduls.total-price' );
+
+        }
+
+
+        $cart = Cart::getCart();
 
         $cart->products()->detach($id);
         $cart->products()->attach($id, ['count' => $count]);
 
-        Log::info('Доавление в корзину', [$cart, $id]);
+        session()->forget(keys: 'cart');
+        session()->put(
+            key: 'cart',
+            value: $cart->products->pluck('id')->toArray(),
+        );
 
-        return response(['result' => 'ok', 'count' => $cart->products->count()]);
+        Log::info('Корзина: добавление', [$cart, $id]);
+
+        $data = [
+            "result" => "ok",
+            "count" => $cart->products->count(),
+        ];
+        return response()->json($data, 200);
+
+
+      //  return response($cart->products->count());
     }
 }

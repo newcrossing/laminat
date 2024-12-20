@@ -13,9 +13,11 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\TypeController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ManufactureController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\WishlistController;
+use App\Models\Cart;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,6 +44,7 @@ Route::get('/manufactures/', [ManufactureController::class, 'list'])->name('manu
 Route::get('/manufacture-{slug}', [ManufactureController::class, 'show'])->where('slug', '[A-Za-z0-9-]+')->name('manufacture.show');
 
 Route::get('/wishlist/', [WishlistController::class, 'index'])->name('wishlist');
+Route::get('/cart/', [CartController::class, 'index'])->name('cart');
 Route::get('/sale/', [SaleController::class, 'index'])->name('sale');
 
 Route::get('/info/{s}', [\App\Http\Controllers\InfoController::class, 'show'])->where('s', '[a-z-]+')->name('info');

@@ -2211,19 +2211,22 @@ window.Wolmart = {};
                 $product = $this.closest('.product, .product-popup');
 
             if ($this.hasClass('disabled')) {
-                alert('Невозможно добавить в корзину');
+                alert('Товар уже в корзине');
                 return;
             }
 
             let id = $(this).data('id');
-            let count = $('#count_up').val();
+            let count = ($('#count_up').val()) ? $('#count_up').val() : 1;
 
-            addCart('add', id, count);
-            // if (countWishlist > 0) {
-            //     $('#wishlist_count').show()
-            // } else {
-            //     $('#wishlist_count').hide()
-            // }
+            const response = addCart('add', id, count);
+
+            if (response.count > 0) {
+                $('#cart_count').show()
+                $('#cart_count').text(response.count)
+            } else {
+                $('#cart_count').hide()
+                $('#cart_count').text(0)
+            }
 
 
             $this.toggleClass('added').addClass('load-more-overlay loading');
@@ -2576,10 +2579,13 @@ window.Wolmart = {};
     QuantityInput.prototype.init = function ($el) {
         var self = this;
 
-        self.$minus = false;
-        self.$plus = false;
-        self.$value = false;
-        self.value = false;
+        // добавил я
+        QuantityInput.value = ($el.val()) ? $el.val() : 1;
+
+        self.$minus = true;
+        self.$plus = true;
+        self.$value = true;
+        self.value = true;
 
         // Bind Events
         self.startIncrease = self.startIncrease.bind(self);
@@ -2589,6 +2595,7 @@ window.Wolmart = {};
         // Variables
         self.min = parseInt($el.attr('min'));
         self.max = parseInt($el.attr('max'));
+        self.count = parseInt($el.attr('count'));
 
         self.min || ($el.attr('min', self.min = QuantityInput.min));
         self.max || ($el.attr('max', self.max = QuantityInput.max));
@@ -3732,13 +3739,15 @@ function addCart(type, id, count) {
         url: "/ajax/cart",
         async: false,
         type: "POST",
+
         data: {
             type: type,
             count: count,
             id: id,
         },
         success: function (response) {
-            console.log(response)
+            //console.log(response)
+
             result = response
         },
         error: function (jqXHR, exception) {

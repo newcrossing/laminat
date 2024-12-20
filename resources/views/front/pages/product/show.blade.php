@@ -1,6 +1,6 @@
 @extends('front.layouts.main')
 
-@section('title','Изменение объявления')
+@section('title',$product->getFullName())
 
 @section('vendor-styles')
 @endsection
@@ -186,18 +186,26 @@
                                     </div>
                                     <hr class="product-divider">
 
+
                                     <div class="fix-bottom product-sticky-content sticky-content">
                                         <div class="product-form container" style="align-items: flex-start">
                                             <div class="product-qty-form">
                                                 <div class="input-group">
-                                                    <input class="quantity form-control" type="number" min="1" id="count_up" max="10000" onchange="calculateSummPrice(false)">
+                                                    <input class="quantity form-control" type="number" min="1" id="count_up" max="10000"  onchange="calculateSummPrice(false)">
                                                     <button class="quantity-plus w-icon-plus" onclick="calculateSummPrice(false)"></button>
                                                     <button class="quantity-minus w-icon-minus" onclick="calculateSummPrice(false)"></button>
                                                 </div>
                                             </div>
-                                            <button class="btn  btn-primary btn-cart mr-1" data-id="{{$product->id}}">
-                                                <i class="w-icon-cart"></i> <span>В корзину </span>
-                                            </button>
+                                            @if(in_array($product->id, session()->get(key: 'cart')?:[]))
+                                                <button class="btn  btn-success btn-cart mr-1" data-id="{{$product->id}}" disabled>
+                                                    <i class=" w-icon-check"></i><span>В корзине</span>
+                                                </button>
+                                            @else
+                                                <button class="btn  btn-primary btn-cart mr-1" data-id="{{$product->id}}">
+                                                    <i class="w-icon-cart"></i> <span> В корзину</span>
+                                                </button>
+                                            @endif
+
                                             @php
                                                 $arrCookie = explode(",", Cookie::get('wishlist'));
                                             @endphp
@@ -337,8 +345,6 @@
 
             $('#price_summ').text((price_upak * count_up).toLocaleString('ru'));
             $('#price_summ_buttom').text((price_upak * count_up).toLocaleString('ru'));
-
         }
     </script>
-
 @endsection

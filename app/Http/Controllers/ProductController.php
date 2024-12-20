@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 
-use http\Client\Request;
-use Illuminate\Support\Facades\Crypt;
-
 class ProductController extends Controller
 {
     public function list()
@@ -46,7 +43,7 @@ class ProductController extends Controller
         //   return response(1)->withCookie(cookie()->forever('cart2', $numbers->toJson()));
         // dd($numbers->toArray());
         //$cart  = Cart::firstOrCreate(['session' => session()->getId()]);
-        //dump($cart->products->count());
+       // dump(session()->get(key: 'cart', default: 1));
 
 
         //   return view('frontend.pages.product.index', compact('product', 'breadcrumbs'));
