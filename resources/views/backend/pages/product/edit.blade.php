@@ -35,6 +35,9 @@
                             <i class='bx bx-x-circle'></i> Удалить
                         </button>
                     </div>
+                    <a class="btn btn-outline-secondary  mr-1" href="{{route('backend.product.copy', $product->id)}}">
+                        <i class='bx bx-copy'></i> Дублировать
+                    </a>
                     <a class="btn btn-primary mr-1" href="{{route('backend.product.index')}}">
                         <i class='bx bx-arrow-back'></i> Отменить
                     </a>

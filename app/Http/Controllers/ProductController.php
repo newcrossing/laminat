@@ -19,7 +19,7 @@ class ProductController extends Controller
 
     public function show($slug)
     {
-        $product = Product::where('slug', $slug)->firstOrFail();
+        $product = Product::where('slug', $slug)->public()->firstOrFail();
 
 
         $breadcrumbs = [
