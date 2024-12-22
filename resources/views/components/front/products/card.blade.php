@@ -69,7 +69,7 @@
 
 
                     <div class="product-action">
-                        @if(in_array($product->id, $arrCart))
+                        @if(in_array($product->id, $arrCart?:[]))
                             <a data-id="{{$product->id}}" href="#" class="btn-cart btn-product btn btn-icon-right btn-link btn-underline disabled" style="color: #36bd00">
                                 <i class=" w-icon-check"></i> В корзине</a>
                         @else
