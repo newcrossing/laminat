@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\TypeController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ManufactureController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\WishlistController;
 use App\Models\Cart;
@@ -45,6 +46,7 @@ Route::get('/manufacture-{slug}', [ManufactureController::class, 'show'])->where
 
 Route::get('/wishlist/', [WishlistController::class, 'index'])->name('wishlist');
 Route::get('/cart/', [CartController::class, 'index'])->name('cart');
+Route::get('/order/', [OrderController::class, 'index'])->name('order');
 Route::get('/sale/', [SaleController::class, 'index'])->name('sale');
 
 Route::get('/info/{s}', [\App\Http\Controllers\InfoController::class, 'show'])->where('s', '[a-z-]+')->name('info');

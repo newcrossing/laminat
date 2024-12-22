@@ -16,7 +16,7 @@
 
         <hr class="divider">
         @if(count($products))
-            <a href="#" class="btn btn-block btn-primary btn-icon-right btn-rounded  btn-checkout">
+            <a href="{{route('order')}}" class="btn btn-block btn-primary btn-icon-right btn-rounded  btn-checkout">
                 К оформлению заказа <i class="w-icon-long-arrow-right"></i>
             </a>
         @endif

@@ -17,7 +17,7 @@
             <div class="container">
                 <ul class="breadcrumb shop-breadcrumb bb-no">
                     <li class="active text-uppercase"><a href="{{route('cart')}}">Корзина</a></li>
-                    <li class="text-uppercase"><a href="">Выбор способа оплаты и доставки</a></li>
+                    <li class="text-uppercase"><a href="{{route('order')}}">Выбор способа оплаты и доставки</a></li>
                 </ul>
             </div>
         </nav>
