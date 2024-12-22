@@ -41,31 +41,43 @@ class Product extends Model
     ];
 
     protected $casts = [
-        'public' => 'boolean'
+        'public' => 'boolean',
+        //'price_metr' => 'decimal:8,2',
     ];
 
+    // Checks if variable is not set, null, (bool)false, (int)0, (float)0.00, (string)"", (string)"0", (string)"0.00", (array)[], or array with nil nodes
+    public static function nil($var)
+    {
+        return (empty($var) || (is_numeric($var) && (float)$var == 0));
+    }
+
+    /**
+     * Проверяет актуальность цены. Если нет скидки цены, то цена актуальна, вернет true
+     * @return bool
+     */
     public function isPriceMetr(): bool
     {
-        return (!empty($this->price_metr_sale)) ? false : true;
+        return ($this->nil($this->price_metr_sale)) ? true : false;
+        // return (!empty($this->price_metr_sale) && $this->price_metr_sale != 0.00) ? false : true;
     }
 
     public function isPriceUpak(): bool
     {
-        return (!empty($this->price_upak_sale)) ? false : true;
+        return (!$this->nil($this->price_upak_sale)) ? false : true;
     }
 
     /**
-     * выводит действующую цену. Если есть скидка то это будет действующая
-     * @return int
+     * Возвращает действующую цену. Если есть скидка, то действующая будет цена со скидкой
+     * @return float
      */
     public function actualPriceMetr()
     {
-        return (!empty($this->price_metr_sale)) ? $this->price_metr_sale : $this->price_metr;
+        return ($this->nil($this->price_metr_sale)) ? $this->price_metr : $this->price_metr_sale;
     }
 
     public function actualPriceUpak()
     {
-        return (!empty($this->price_upak_sale)) ? $this->price_upak_sale : $this->price_upak;
+        return (!$this->nil($this->price_upak_sale)) ? $this->price_upak_sale : $this->price_upak;
     }
 
     public function priceMetr()
@@ -80,17 +92,17 @@ class Product extends Model
 
 
     /**
-     * Возвращает струю цену при условии что есть скидка. Иначе null
+     * Возвращает струю цену при условии, что есть скидка. Иначе null
      * @return mixed
      */
     public function oldPriceMetr(): mixed
     {
-        return (!empty($this->price_metr_sale)) ? $this->price_metr : null;
+        return (!$this->nil($this->price_metr_sale)) ? $this->price_metr : null;
     }
 
     public function oldPriceUpak(): mixed
     {
-        return (!empty($this->price_upak_sale)) ? $this->price_upak : null;
+        return (!$this->nil($this->price_upak_sale)) ? $this->price_upak : null;
     }
 
     public function scopePublic(Builder $query): void

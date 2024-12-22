@@ -278,7 +278,7 @@
                                                 <label class="form-label">Цена за м<sup>2</sup></label>
                                                 <div class="input-group">
                                                     <input type="text" class="form-control @if($product->isPriceMetr()) border-success @endif" name="price_metr"
-                                                           value="{{old('price_metr',$product->actualPriceMetr())}}" placeholder="руб." autocomplete="off">
+                                                           value="{{old('price_metr',$product->actualPriceMetr())}}"  autocomplete="off">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">руб.</span>
                                                     </div>
@@ -289,7 +289,7 @@
                                                 <label class="form-label">Скидка </label>
                                                 <div class="input-group">
                                                     <input type="text" class="form-control @if(!$product->isPriceMetr()) border-success @endif" name="price_metr_sale"
-                                                           value="{{old('price_metr_sale',$product->oldPriceMetr())}}" placeholder="руб." autocomplete="off">
+                                                           value="{{old('price_metr_sale',$product->oldPriceMetr())}}" autocomplete="off">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">руб.</span>
                                                     </div>
@@ -304,7 +304,7 @@
                                                 <label class="form-label">Цена за упаковку</label>
                                                 <div class="input-group">
                                                     <input type="text" class="form-control @if($product->isPriceUpak()) border-success @endif" name="price_upak"
-                                                           value="{{old('price_upak',$product->actualPriceUpak())}}" placeholder="руб." autocomplete="off">
+                                                           value="{{old('price_upak',$product->actualPriceUpak())}}"  autocomplete="off">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">руб.</span>
                                                     </div>
@@ -315,7 +315,7 @@
                                                 <label class="form-label">Скидка </label>
                                                 <div class="input-group">
                                                     <input type="text" class="form-control @if(!$product->isPriceUpak()) border-success @endif " name="price_upak_sale"
-                                                           value="{{old('price_upak_sale',$product->oldPriceUpak())}}" placeholder="руб." autocomplete="off">
+                                                           value="{{old('price_upak_sale',$product->oldPriceUpak())}}"  autocomplete="off">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">руб.</span>
                                                     </div>
