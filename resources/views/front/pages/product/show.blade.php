@@ -178,7 +178,7 @@
                                         <div class="col">
                                             <div class="font-size-md">Ваша цена</div>
                                             <div class="product-price">
-                                                <ins class="new-price" id="price_summ">{{ Number::format($product->price_metr,locale: 'ru')}}</ins>
+                                                <ins class="new-price" id="price_summ">{{ Number::format($product->price_upak,locale: 'ru')}}</ins>
                                                 <span class="font-size-md"> руб. </span>
                                             </div>
 
@@ -283,7 +283,7 @@
                                     <div class="widget widget-collapsible widget-time">
                                         <h3 class="widget-title"><span>Параметры</span>
                                             <span class="toggle-btn"></span></h3>
-                                        <ul class="widget-body font-size-normal" style="display: block;">
+                                        <ul class="widget-body font-size-sm" style="display: block;">
                                             <li class="pt-0 pb-2">
                                                 <span>Тип</span>
                                                 <a href="{{ route('type.index',$product->type->slug)  }}">
@@ -305,7 +305,7 @@
                                             @foreach($product->attributeOptions as $attributeOption)
                                                 <li class="pt-0 pb-2">
                                                     <span> {{$attributeOption->attribute->name}}</span>
-                                                    <a href="">{{$attributeOption->value}}</a>
+                                                    <span class="font-weight-normal">{{$attributeOption->value}}</span>
                                                 </li>
                                             @endforeach
 
