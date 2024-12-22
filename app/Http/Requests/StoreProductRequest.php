@@ -65,10 +65,10 @@ class StoreProductRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         // убираю запятые из цен
-        $this->price_metr =  str_replace(',', '.', $this->price_metr);
-        $this->price_metr_sale =  str_replace(',', '.', $this->price_metr_sale);
-        $this->price_upak =  str_replace(',', '.', $this->price_upak);
-        $this->price_upak_sale =  str_replace(',', '.', $this->price_upak_sale);
+        $this->price_metr =  str_replace([',', ' '], ['.', ''], $this->price_metr);
+        $this->price_metr_sale =  str_replace([',', ' '], ['.', ''], $this->price_metr_sale);
+        $this->price_upak =  str_replace([',', ' '], ['.', ''], $this->price_upak);
+        $this->price_upak_sale =  str_replace([',', ' '], ['.', ''], $this->price_upak_sale);
 
         // Переставляю значения цен. Если есть скидка – то это значение записывается в текущую цену
         if (empty($this->price_metr_sale)) {
