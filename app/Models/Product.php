@@ -16,8 +16,8 @@ class Product extends Model
     use SoftDeletes;
     use HasFotos;
 
-    const COUNT_OF_PAGINATION = 5;
-    protected $perPage = 5;
+    const COUNT_OF_PAGINATION = 12;
+    protected $perPage = 12;
 
     protected $fillable = [
         'name',
