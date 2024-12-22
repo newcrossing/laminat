@@ -18,7 +18,7 @@
     @include('front.moduls.scripts.header')
 
     <!-- Default CSS -->
-    <link rel="stylesheet" type="text/css" href="/assets/css/style.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
 </head>
 
 <body>

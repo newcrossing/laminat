@@ -254,7 +254,8 @@
                                 <h2 class="title title-link">Описание</h2>
                             </div>
                             <div class="pt-4 pb-1" id="product-tab-description">
-                                <div class="font-size-normal lh-1">{!!   $product->text  !!}
+                                <div class="font-size-normal lh-1 child-p" style="    text-align: justify;">
+                                    {!!   $product->text  !!}
                                 </div>
                             </div>
                         </section>
