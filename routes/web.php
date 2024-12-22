@@ -74,6 +74,7 @@ Route::middleware(['role:admin'])->prefix('backend')->group(
         Route::get('home', [HomeController::class, 'index'])->name('backend.home');
 
         Route::resource('product', ProductController::class)->names('backend.product');
+        Route::get('product/copy/{id}', [ProductController::class, 'copy'])->name('backend.product.copy');
         Route::resource('firm', FirmController::class)->names('backend.firm');
         Route::resource('collection', CollectionController::class)->names('backend.collection');
         Route::resource('type', TypeController::class)->names('backend.type');

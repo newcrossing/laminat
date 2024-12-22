@@ -47,8 +47,7 @@
                     <th>Название</th>
                     <th>Тип продукции</th>
                     <th>Цена за м.</th>
-
-
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -62,8 +61,11 @@
                         <td class="">
                             <i class="bx bxs-circle {{($product->public)?'success':'danger'}}  font-small-1 mr-50"></i>
                             <a class="readable-mark-icon"
-                               href="{{route('backend.product.edit',$product->id)}}">{{ Str::limit($product->name, 40)  }}</a><br>
+                               href="{{route('backend.product.edit',$product->id)}}">{{ Str::limit($product->name, 40)  }}
+                            </a>
+                            <br>
                             <div class="small"> {{ Str::limit($product->slug , 40)  }}</div>
+
                         </td>
                         <td class="">
                             {{$product->type->name}}
@@ -77,6 +79,11 @@
                                     <sub>руб.</sub>
                                 </div>
                             @endif
+                        </td>
+                        <td class="text-bold-600">
+                            <a href="{{route('backend.product.copy',$product->id)}}" class="invoice-action-edit cursor-pointer" title="Сделать дубликат">
+                                <i class="bx bx-copy"></i>
+                            </a>
                         </td>
                     </tr>
                 @endforeach

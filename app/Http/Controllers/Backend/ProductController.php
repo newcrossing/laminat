@@ -6,12 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
 use App\Models\Collection;
 use App\Models\Product;
-
 use App\Models\Type;
-use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -130,5 +129,22 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function copy($id)
+    {
+        $product = Product::find($id);
+        $product->load('attributeOptions');
+        $newProduct = $product->replicate()->fill([
+            'name' => ' Копия ' . $product->name,
+            'slug' => $product->slug . '-copy'.random_int(1,100) ,
+            'public' => false,
+        ]);;
+        $newProduct->save();
+
+        $newProduct->attributeOptions()->attach($product->attributeOptions);
+
+        return redirect()->route('backend.product.edit', $newProduct->id)->with('success', "Создан дубликат");
+
     }
 }
