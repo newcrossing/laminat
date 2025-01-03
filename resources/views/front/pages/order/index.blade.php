@@ -1,9 +1,8 @@
 @extends('front.layouts.main')
 
-@section('title','Корзина')
+@section('title','Оформление заказа')
 
 @section('vendor-styles')
-
 @endsection
 
 
@@ -128,26 +127,34 @@
                                     <table class="order-table">
                                         <hr>
                                         <tbody>
-                                        <tr class="bb-no">
-                                            <td class="product-name">Palm Print Jacket <i class="fas fa-times"></i>
-                                                <span class="product-quantity">1</span>
-                                            </td>
-                                            <td class="product-total">$40.00</td>
-                                        </tr>
+                                        @foreach($products as $product)
+                                            @php
+                                                /** @var \App\Models\Product  $product */
+                                            @endphp
+                                            <tr class="bb-no">
+                                                <td class="product-name">{{$product->getFullName()}} <i class="fas fa-times"></i>
+                                                    <span class="product-quantity">{{$product->pivot->count}}</span>
+                                                </td>
+                                                <td class="product-total">{{ Number::format($product->price_upak * $product->pivot->count,locale: 'ru')}} руб.</td>
+                                            </tr>
+                                        @endforeach
+
 
                                         <tr class="cart-subtotal bb-no">
                                             <td>
                                                 <b>Стоимость</b>
                                             </td>
                                             <td>
-                                                <b>$100.00</b>
+                                                <b>{{ Number::format($priceTotal,locale: 'ru')}} руб.</b>
                                             </td>
                                         </tr>
+
                                         </tbody>
                                         <tfoot>
+
                                         <tr class="shipping-methods">
                                             <td colspan="2" class="text-left">
-                                                <h4 class="title title-simple bb-no mb-1 pb-0 pt-3">Shipping
+                                                <h4 class="title title-simple bb-no mb-1 pb-0 pt-3">Доставка
                                                 </h4>
                                                 <ul id="shipping-method" class="mb-4">
                                                     <li>
@@ -182,10 +189,10 @@
                                         </tr>
                                         <tr class="order-total">
                                             <th>
-                                                <b>Total</b>
+                                                <b>Стоимость заказа</b>
                                             </th>
                                             <td>
-                                                <b>$100.00</b>
+                                                <b>{{ Number::format($priceTotal,locale: 'ru')}} руб.</b>
                                             </td>
                                         </tr>
                                         </tfoot>
@@ -193,7 +200,7 @@
 
 
                                     <div class="form-group place-order pt-6">
-                                        <button type="submit" class="btn btn-dark btn-block btn-rounded">Place Order</button>
+                                        <button type="submit" class="btn btn-dark btn-block btn-rounded">Разместить заказ</button>
                                     </div>
                                 </div>
                             </div>
