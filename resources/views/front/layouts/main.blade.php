@@ -14,7 +14,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon -->
     <link rel="icon" href="/assets/images/icons/favicon.svg" type="image/svg+xml">
-
 {{--    <link rel="icon" type="image/" href="/assets/images/icons/favicon.svg">--}}
 
     @include('front.moduls.scripts.header')
