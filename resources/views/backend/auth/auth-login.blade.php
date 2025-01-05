@@ -88,7 +88,7 @@
                     <!-- right section image -->
                     <div class="col-md-6 d-md-block d-none text-center align-self-center p-3">
                         <div class="card-content">
-                            <img class="img-fluid" src="{{asset('/b/app-assets/images/pages/login.png')}}">
+                            <img class="img-fluid" src="{{asset('/b/app-assets/images/pages/logo_big.svg')}}" style="width: 500px">
                         </div>
                     </div>
                 </div>

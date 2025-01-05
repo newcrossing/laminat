@@ -6,7 +6,7 @@
                 <div class="col-lg-4 col-sm-6">
                     <div class="widget widget-about">
                         <a href="/" class="logo-footer">
-                            <img src="/assets/images/logo_footer.png" alt="logo-footer" width="144" height="45"/>
+                            <img src="/assets/images/logo.svg" />
                         </a>
                         <div class="widget-body">
                             <p class="widget-about-title">Остались вопросы?</p>
@@ -57,9 +57,8 @@
 
         <div class="footer-bottom">
             <div class="footer-left">
-                <p class="copyright">Copyright © 2024 ПолРоссии</p>
+                <p class="copyright">© Интернет-магазин polrossii.ru 2025.</p>
             </div>
-
         </div>
     </div>
 </footer>

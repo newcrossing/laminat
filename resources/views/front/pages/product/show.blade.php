@@ -157,7 +157,7 @@
                                             <h4 class=""><i class="w-icon-orders"></i> Калькулятор</h4>
                                             <div class="row">
                                                 <div class="col-6">
-                                                    <div class="">Площадь помещения</div>
+                                                    <div class="">Площадь </div>
                                                     <input type="number" class="form-control form-control-md text-dark" id="square_room" onchange="calculateSummPrice()"/>
                                                     <p class="font-size-md text-light mb-0">Количество квадратных метров</p>
                                                 </div>
