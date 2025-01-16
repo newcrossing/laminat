@@ -54,8 +54,8 @@
         </div>
 
         <div class="cart-action">
-            <a href="/cart" class="btn btn-dark btn-outline btn-rounded">В корзину</a>
-            <a href="#" class="btn btn-primary  btn-rounded">Оформить</a>
+            <a href="{{route('cart')}}" class="btn btn-dark btn-outline btn-rounded">В корзину</a>
+            <a href="{{route('order')}}" class="btn btn-primary  btn-rounded">Оформить</a>
         </div>
     </div>
     <!-- End of Dropdown Box -->

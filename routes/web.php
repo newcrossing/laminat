@@ -47,6 +47,7 @@ Route::get('/manufacture-{slug}', [ManufactureController::class, 'show'])->where
 Route::get('/wishlist/', [WishlistController::class, 'index'])->name('wishlist');
 Route::get('/cart/', [CartController::class, 'index'])->name('cart');
 Route::get('/order/', [OrderController::class, 'index'])->name('order');
+Route::post('/order/', [OrderController::class, 'create'])->name('order.create');
 Route::get('/sale/', [SaleController::class, 'index'])->name('sale');
 
 Route::get('/info/{s}', [\App\Http\Controllers\InfoController::class, 'show'])->where('s', '[a-z-]+')->name('info');

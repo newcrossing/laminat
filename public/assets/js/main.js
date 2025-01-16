@@ -2242,8 +2242,8 @@ window.Wolmart = {};
                     nameLink: $product.find('.product-name > a, .product-title > a').attr('href'),
                     imageSrc: $product.find('.product-media img, .product-image:first-child img').attr('src'),
                     imageLink: $product.find('.product-name > a').attr('href'),
-                    message: '<p>Добавлен в корзину:</p>',
-                    actionTemplate: '<a href="/cart" class="btn btn-rounded btn-sm">Корзина</a><a href="/checkout" class="btn btn-dark btn-rounded btn-sm">Оформить</a>'
+                    message: '<p>Добавлен в корзину</p>',
+                    actionTemplate: '<a href="/cart" class="btn btn-rounded btn-sm">Корзина</a><a href="/order" class="btn btn-dark btn-rounded btn-sm">Оформить</a>'
                 });
             }, 500);
         });

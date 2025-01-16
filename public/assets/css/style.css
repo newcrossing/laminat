@@ -3030,6 +3030,9 @@ blockquote {
 .text-dark {
   color: #333 !important;
 }
+.text-danger {
+    color: #ec1010 !important;
+}
 
 .text-default {
   color: #666 !important;
