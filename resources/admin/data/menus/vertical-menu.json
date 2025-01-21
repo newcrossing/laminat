@@ -19,6 +19,12 @@
       "icon": "bxs-right-top-arrow-circle"
     },
     {
+      "url": "backend/order",
+      "name": "Заказы",
+      "i18n": "Invoice",
+      "icon": "bx-basket"
+    },
+    {
       "navheader": "Пользователи"
     },
     {

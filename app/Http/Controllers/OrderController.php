@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\OrderDeliveryEnum;
+use App\Enums\OrderStatusEnum;
 use App\Http\Requests\StoreOrderRequest;
 use App\Models\Cart;
 use App\Models\Order;
@@ -16,7 +16,6 @@ class OrderController extends Controller
 
         // Общий вес заказа
         $packingWeight = 0;
-
 
 
         $cart = Cart::getCart();
@@ -44,8 +43,8 @@ class OrderController extends Controller
         $cart = Cart::getCart();
         $products = $cart->products;
 
-        if (!count($products)){
-            return redirect()->route('cart' );
+        if (!count($products)) {
+            return redirect()->route('cart');
         }
 
 
@@ -56,11 +55,11 @@ class OrderController extends Controller
         }
 
         $order->fill($validated);
-        $order->status = "Принят";
+        $order->status = OrderStatusEnum::NEW_1;
         $order->price_total = $priceTotal;
 
         $order->save();
-        $order->order_number = "{$order->created_at->format('Ym')}{$order->id}";
+        $order->order_number = "{$order->created_at->format('Y-m')}{$order->id}";
         $order->price_delivery = $order->delivery_type->label()['price'];
         $order->save();
 
@@ -69,12 +68,11 @@ class OrderController extends Controller
             $order->products()->attach($product->id, ['count' => $product->pivot->count, 'price' => $product->price_upak]);
         }
 
-
         // очищаю корзину
         $cart->products()->detach();
         session()->forget(keys: 'cart');
 
-        Log::info("Размещен заказ");
+        Log::info("Размещен заказ {$order->order_number}");
 
         return view('front.pages.order.complite', compact('order'));
     }

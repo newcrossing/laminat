@@ -83,6 +83,7 @@ Route::middleware(['role:admin'])->prefix('backend')->group(
         Route::resource('attribute-option', AttributeOptionController::class)->names('backend.attribute-option');
         Route::resource('info', InfoController::class)->names('backend.info');
         Route::resource('slider', SliderController::class)->names('backend.slider');
+        Route::resource('order', \App\Http\Controllers\Backend\OrderController::class)->names('backend.order');
 
         Route::post('/upload/photo', [PhotoController::class, 'upload'])->name('backend.photo.upload');
         Route::post('/upload/delete/{id}', [PhotoController::class, 'delete'])->name('backend.photo.delete');

@@ -16,10 +16,74 @@
 
     <section id="dashboard-ecommerce">
         <div class="row">
+            @if(count($orders))
+                <div class=" col-12 dashboard-latest-update" >
+                    <div class="card" style="border: 2px solid #9a183d;">
+                        <div class="card-header d-flex justify-content-between align-items-center pb-50">
+                            <h4 class="card-title">Заказы <small> (новые)</small></h4>
+                        </div>
+                        <hr>
+                        <div class="card-content">
+                            <div class="card-body p-0 pb-0 ps">
+                                <ul class="list-group list-group-flush">
+                                    @foreach($orders as  $order)
+                                        <li class="list-group-item list-group-item-action border-0 d-flex align-items-center justify-content-between">
+                                            <div class="list-left d-flex">
+                                                <div class="list-icon mr-1">
+                                                    <div class="avatar bg-rgba-primary m-0">
+                                                        <span class="badge {{$order->status->color()}}">{{$order->status->name()}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="list-content mr-2">
+                                                    <a class="text-bold-600" href="{{route('backend.order.edit',$order->id)}}">
+                                                        {{ $order->order_number }}
+                                                    </a>
+                                                </div>
+                                                <div class="list-content mr-2">
+                                                    @foreach($order->products as $product)
+                                                        @php
+                                                            /** @var \App\Models\Product  $product */
+                                                        @endphp
+                                                        <div class="small text-muted">{{$product->getFullName()}} x {{$product->pivot->count}}</div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <small> Добавлен</small>
+                                                <div class="font-size-small text-primary">
+                                                    {{$order->created_at->diffForHumans()}}
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <small> Сумма заказа</small>
+                                                <div class="font-size-xl text-success text-bold-700">
+                                                    {{ Number::format($order->price_total,locale: 'ru')}} руб.
+                                                </div>
+                                            </div>
+                                        </li>
+                                    @endforeach
+
+                                </ul>
+
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="card-header d-flex justify-content-between align-items-center pb-50 pt-0">
+                            <div class="">Всего новых: {{count($orders)}} </div>
+                            <div class="dropdown">
+                                <a class="btn btn-sm btn-outline-info " href="{{route('backend.order.index')}}">
+                                    Посмотреть все
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
             <div class="col-xl-6 col-md-6 col-12 dashboard-latest-update">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center pb-50">
-                        <h4 class="card-title">Продукция <small>  (последние 5)</small> </h4>
+                        <h4 class="card-title">Продукция <small> (последние 5)</small></h4>
                         <div class="dropdown">
                             <a class="btn btn-sm btn-success btn-outline-info" href="{{route('backend.product.create')}}">
                                 Добавить
@@ -73,7 +137,7 @@
             <div class="col-xl-6 col-md-6 col-12 dashboard-latest-update">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center pb-50">
-                        <h4 class="card-title">Производители <small>  (последние 5)</small></h4>
+                        <h4 class="card-title">Производители <small> (последние 5)</small></h4>
                         <div class="dropdown">
                             <a class="btn btn-sm btn-success btn-outline-info" href="{{route('backend.firm.create')}}">
                                 Добавить

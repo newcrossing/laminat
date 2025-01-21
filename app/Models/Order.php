@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\OrderDeliveryEnum;
+use App\Enums\OrderStatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,7 +21,8 @@ class Order extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'delivery_type' => OrderDeliveryEnum::class
+        'delivery_type' => OrderDeliveryEnum::class,
+        'status' => OrderStatusEnum::class,
     ];
 
     public function products()
