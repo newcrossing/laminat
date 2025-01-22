@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ContactMail;
+use App\Mail\Contact;
 use App\Models\Info;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class InfoController extends Controller
@@ -43,7 +45,8 @@ class InfoController extends Controller
         ]);
         // dd($validated);
 
-        Mail::to('newcrossing@gmail.com')->send(new ContactMail($validated));
+        Mail::to('newcrossing@gmail.com')->send(new Contact($validated));
+        Log::info("Сообщение отправлено ");
 
 
         return redirect()->route('info', 'contact')->with('success', 'Сообщение отправлено. Спасибо за обращение.');
