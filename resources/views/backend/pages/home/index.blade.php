@@ -14,8 +14,39 @@
 @endsection
 @section('content')
 
+
     <section id="dashboard-ecommerce">
         <div class="row">
+
+                <div class=" col-12 dashboard-latest-update" >
+                    <div class="card" style="border: 2px solid #9a183d;">
+                        <div class="card-header d-flex justify-content-between align-items-center pb-50">
+                            <h4 class="card-title">Заказы <small> (новые)</small></h4>
+                        </div>
+                        <hr>
+                        <div class="card-content">
+                            <div class="card-body p-0 pb-0 ps">
+                                <ul class="list-group list-group-flush">
+                                    <livewire:test-component />
+
+                                </ul>
+
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="card-header d-flex justify-content-between align-items-center pb-50 pt-0">
+                            <div class="">Всего новых: {{count($orders)}} </div>
+                            <div class="dropdown">
+                                <a class="btn btn-sm btn-outline-info " href="{{route('backend.order.index')}}">
+                                    Посмотреть все
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
             @if(count($orders))
                 <div class=" col-12 dashboard-latest-update" >
                     <div class="card" style="border: 2px solid #9a183d;">

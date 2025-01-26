@@ -91,5 +91,8 @@ fixed static" data-open="click" data-menu="vertical-menu-modern" data-col="2-col
 <!-- END: Footer-->
 
 @include('backend.panels.scripts')
+
+
+
 </body>
 <!-- END: Body-->
