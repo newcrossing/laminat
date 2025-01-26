@@ -149,12 +149,26 @@ class TypeController extends Controller
         $breadcrumbs = [
             ['link' => route('home'), 'name' => "Главная"],
         ];
+        $meta['title']="{$type->name} - цены, каталог | Приобрести ламинат в интернет-магазине «Пол России»";
+        $meta['description']="В интернет-магазине «Пол России» вы можете приобрести качественный {$type->name} по выгодным ценам. 
+        У нас самый большой выбор напольных покрытий. Приезжайте!";
+
         if ($slug_firm) {
             $breadcrumbs[] = ['link' => route('type.index', $type->slug), 'name' => $type->name];
+
+            $meta['title']="{$type->name} {$selectFirm->name} | Купить в интернет-магазине";
+            $meta['description']="{$type->name} {$selectFirm->name} — каталог с фотографиями и ценами.
+В интернет-магазине «Пол России» вы можете выбрать и купить {$type->name} {$selectFirm->name}. У нас самый большой выбор  напольных покрытий. Приезжайте!";
+
             if ($slug_collection) {
                 // если есть коллекция
                 $breadcrumbs[] = ['link' => route('type.index', [$type->slug, $selectFirm->slug]), 'name' => $selectFirm->name];
                 $breadcrumbs[] = ['name' => $selectCollection->name];
+
+                $meta['title']="{$type->name} {$selectFirm->name} {$selectCollection->name} | Купить в интернет-магазине";
+                $meta['description']="{$type->name} {$selectFirm->name} {$selectCollection->name}— каталог с фотографиями и ценами.
+В интернет-магазине «Пол России» вы можете выбрать и купить {$type->name} {$selectFirm->name} {$selectCollection->name}. У нас самый большой выбор  напольных покрытий. Приезжайте!";
+
             } else {
                 $breadcrumbs[] = ['name' => $selectFirm->name];
             }
@@ -173,6 +187,7 @@ class TypeController extends Controller
                 'attributes',
                 'selectFirm',
                 'selectCollection',
+                'meta',
                 'breadcrumbs')
         );
     }

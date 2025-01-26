@@ -1,6 +1,7 @@
 @extends('front.layouts.main')
 
-@section('title',$product->getFullName())
+@section('title',"{$product->getFullName()} | {$product->type->name} {$product->firm->name}"  )
+@section('description',"{$product->getFullName()} купить по выгодной цене. Интернет магазин напольных покрытий, приезжайте!")
 
 @section('vendor-styles')
 @endsection

@@ -1,8 +1,8 @@
 @extends('front.layouts.main')
 
-@section('title','Произволители напольных покрытий - "Пол России"')
-@section('keywords','Произволители каталог фирм ламинта паркет напольных покрытий ')
-@section('description','Пол России - производители напольных покрытий. Большой ассортимент, расширенная гарантия на товар!')
+@section('title',$meta['title'])
+
+@section('description',$meta['description'])
 
 @section('vendor-styles')
 @endsection
