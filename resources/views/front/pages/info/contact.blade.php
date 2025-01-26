@@ -28,9 +28,9 @@
         <div class="page-content contact-us">
             <div class="container">
                 @if (session('success'))
-                    <div class="alert alert-icon alert-success alert-bg alert-inline show-code-action">
+                    <div class="alert alert-icon alert-success alert-bg alert-inline show-code-action mb-3">
                         <h4 class="alert-title">
-                            <i class="fas fa-check"></i>Выполнено</h4>  {{ session('success') }}
+                            <i class="fas fa-check"></i>Выполнено</h4> {{ session('success') }}
                     </div>
                 @endif
                 <section class="content-title-section mb-10">
@@ -133,7 +133,7 @@
                                 </div>
                                 <div class="mt-4">
                                     <script type="text/javascript" charset="utf-8" async
-                                              src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ac8ce9ebdbd70ef829bb5100e960f23dfe0ed7b16eee3178975605564e2b1b573&amp;width=640&amp;height=500&amp;lang=ru_RU&amp;scroll=true"></script>
+                                            src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ac8ce9ebdbd70ef829bb5100e960f23dfe0ed7b16eee3178975605564e2b1b573&amp;width=640&amp;height=500&amp;lang=ru_RU&amp;scroll=true"></script>
                                 </div>
 
 
@@ -142,22 +142,19 @@
                         </div>
                         <div class="col-lg-6 mb-8">
                             <h4 class="title mb-3">Сообщение директору</h4>
-                            <form class="form contact-us-form"  action="" method="post">
+                            <form class="form contact-us-form" action="" method="post">
                                 @csrf
                                 <div class="form-group">
                                     <label for="username">Имя *</label>
-                                    <input type="text" id="username" name="name"
-                                           class="form-control"  placeholder="" required>
+                                    <input type="text" id="username" name="name" class="form-control" placeholder="" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="email_1">Телефон *</label>
-                                    <input type="text" id="email_1" name="tel" placeholder="" required
-                                           class="form-control">
+                                    <input type="text" id="email_1" name="tel" placeholder="" required class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label for="email_1">Email</label>
-                                    <input type="email" id="email" name="email" placeholder=""
-                                           class="form-control">
+                                    <input type="email" id="email" name="email" placeholder="" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label for="message">Комментарий / Вопрос </label>
@@ -173,7 +170,6 @@
             </div>
 
             <!-- Google Maps - Go to the bottom of the page to change settings and map location. -->
-
 
 
             <!-- End Map Section -->
