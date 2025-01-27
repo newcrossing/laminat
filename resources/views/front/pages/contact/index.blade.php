@@ -28,12 +28,24 @@
         <!-- Start of PageContent -->
         <div class="page-content contact-us">
             <div class="container">
+
                 @if (session('success'))
                     <div class="alert alert-icon alert-success alert-bg alert-inline show-code-action mb-3">
-                        <h4 class="alert-title">
-                            <i class="fas fa-check"></i>Выполнено</h4> {{ session('success') }}
+                        <h4 class="alert-title"><i class="fas fa-check"></i>Выполнено.</h4> {{ session('success') }}
                     </div>
                 @endif
+
+                @if ($errors->any())
+                    <div class="alert alert-error alert-bg alert-block alert-inline mb-4 ">
+                        <h4 class="alert-title"><i class="w-icon-exclamation-triangle"></i>Ошибка!</h4> Некоторые поля некорректно заполнены.
+                        <ul class="mt-0">
+                            @foreach ($errors->all() as $error)
+                                <li><span>{{ $error }}</span></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <section class="content-title-section mb-10">
                     <h3 class="title title-center mb-3">
                         Контактная информация
@@ -136,26 +148,25 @@
                                     <script type="text/javascript" charset="utf-8" async
                                             src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ac8ce9ebdbd70ef829bb5100e960f23dfe0ed7b16eee3178975605564e2b1b573&amp;width=640&amp;height=500&amp;lang=ru_RU&amp;scroll=true"></script>
                                 </div>
-
-
                             </div>
 
                         </div>
+
                         <div class="col-lg-6 mb-8">
                             <h4 class="title mb-3">Сообщение директору</h4>
                             <form class="form contact-us-form" action="" method="post">
                                 @csrf
                                 <div class="form-group">
                                     <label for="username">Имя *</label>
-                                    <input type="text" id="username" name="name" class="form-control" placeholder="" required>
+                                    <input type="text" id="username" name="name" class="form-control" placeholder="Ваше имя" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="email_1">Телефон *</label>
-                                    <input type="text" id="email_1" name="tel" placeholder="" required class="form-control">
+                                    <input type="text" id="email_1" name="tel" placeholder="Номер телефона" class="form-control" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="email_1">Email</label>
-                                    <input type="email" id="email" name="email" placeholder="" class="form-control">
+                                    <label for="email_1">E-mail</label>
+                                    <input type="email" id="email" name="email" placeholder="Адрес электронной почты" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label for="message">Комментарий / Вопрос </label>
@@ -169,15 +180,10 @@
                 </section>
                 <!-- End of Contact Section -->
             </div>
-
-            <!-- Google Maps - Go to the bottom of the page to change settings and map location. -->
-
-
             <!-- End Map Section -->
         </div>
         <!-- End of PageContent -->
     </main>
-
 @endsection
 
 @section('page-scripts')

@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\TypeController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ManufactureController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SaleController;
@@ -51,7 +52,9 @@ Route::post('/order/', [OrderController::class, 'create'])->name('order.create')
 Route::get('/sale/', [SaleController::class, 'index'])->name('sale');
 
 Route::get('/info/{s}', [\App\Http\Controllers\InfoController::class, 'show'])->where('s', '[a-z-]+')->name('info');
-Route::post('/info/contact', [\App\Http\Controllers\InfoController::class, 'send_mail'])->name('info.send_mail');
+
+Route::get('/contact/', [ContactController::class, 'index'])->name('contact.index');
+Route::post('/contact/', [ContactController::class, 'send_mail'])->name('contact.send_mail');
 
 Route::get('/backend/user', [UserController::class, 'index'])->name('backend.user');
 

@@ -35,22 +35,7 @@ class InfoController extends Controller
         return view($view, compact('info', 'breadcrumbs'));
     }
 
-    public function send_mail(Request $request)
-    {
-        $validated = $request->validate([
-            'name' => 'required|max:255',
-            'tel' => 'required|max:20',
-            'email' => 'nullable',
-            'comment' => 'nullable',
-        ]);
-        // dd($validated);
 
-        Mail::to('newcrossing@gmail.com')->send(new Contact($validated));
-        Log::info("Сообщение отправлено ");
-
-
-        return redirect()->route('info', 'contact')->with('success', 'Сообщение отправлено. Спасибо за обращение.');
-    }
 
 
 }

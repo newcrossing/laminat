@@ -21,7 +21,7 @@
             </ul>
         </li>
         <li>
-            <a href="{{route('info','contact')}}">Контакты</a>
+            <a href="{{route('contact.index')}}">Контакты</a>
         </li>
 
     </ul>

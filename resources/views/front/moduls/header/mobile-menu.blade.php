@@ -42,7 +42,7 @@
                             <li><a href="#">Доставка</a></li>
                         </ul>
                     </li>
-                    <li><a href="">Контакты</a></li>
+                    <li><a href="{{route('contact.index')}}">Контакты</a></li>
                 </ul>
             </div>
             <div class="tab-pane" id="categories">

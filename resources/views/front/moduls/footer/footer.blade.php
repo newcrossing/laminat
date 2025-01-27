@@ -25,7 +25,7 @@
                         <h3 class="widget-title">Компания</h3>
                         <ul class="widget-body">
                             <li><a href="">О нас</a></li>
-                            <li><a href="#">Контакты</a></li>
+                            <li><a href="{{route('contact.index')}}">Контакты</a></li>
                             <li><a href="#">Поставщикам</a></li>
                             <li><a href="">Партнерам</a></li>
                         </ul>
