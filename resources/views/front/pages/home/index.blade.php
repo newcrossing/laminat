@@ -16,7 +16,7 @@
         <!-- End of Intro-section -->
 
         <div class="container">
-            <div class="swiper-container swiper-theme icon-box-wrapper appear-animate br-sm mb-10 appear-animate"
+            <div class="swiper-container swiper-theme icon-box-wrapper appear-animate br-sm mb-5 appear-animate"
                  data-swiper-options="{
                     'loop': true,
                     'slidesPerView': 1,
@@ -79,6 +79,27 @@
                 </div>
             </div>
             <!-- End of Iocn Box Wrapper -->
+
+            <div class="row category-banner-wrapper appear-animate pt-0 pb-1 ">
+                <div class="col-md-2 mb-4">
+                    <div class="banner banner-fixed br-xs">
+                        <figure>
+                            <img src="/assets/images/pages/promo.jpg" alt="Category Banner"  style="background-color: #ecedec;"/>
+                        </figure>
+
+                    </div>
+                </div>
+                <div class="col-md-10 mb-4" >
+                    <p style="text-align: justify;">
+                    В интернет-магазине «Пол России» вы можете приобрести SPC ламинат и другие напольные покрытия по выгодным ценам.
+                    SPC ламинат — представляет собой инновационный материал для напольных покрытий, который завоевал популярность благодаря своим уникальным характеристикам и преимуществам.
+                    В нашем каталоге представлен широкий выбор SPC ламинат различных видов.
+
+                    Кроме SPC ламината, в нашем магазине и салоне в Щелкове вы можете найти большой выбор паркета, массивной и инженерной доски от ведущих мировых производителей.
+                    Мы предлагаем услуги по подбору, доставке и укладке.
+                    </p>
+                </div>
+            </div>
 
 
             <h2 class="title title-underline mb-4 appear-animate">Производители</h2>
