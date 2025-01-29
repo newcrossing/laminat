@@ -9767,7 +9767,7 @@ THE SOFTWARE.
     function tokenCComment(stream, state) {
         var maybeEnd = false, ch;
         while ((ch = stream.next()) != null) {
-            if (maybeEnd && ch == "../index.html") {
+            if (maybeEnd && ch == "/") {
                 state.tokenize = null;
                 break;
             }
@@ -9809,7 +9809,7 @@ THE SOFTWARE.
         allowNested: true,
         tokenHooks: {
             "/": function (stream, state) {
-                if (stream.eat("../index.html")) {
+                if (stream.eat("/")) {
                     stream.skipToEnd();
                     return ["comment", "comment"];
                 } else if (stream.eat("*")) {
@@ -9851,7 +9851,7 @@ THE SOFTWARE.
         allowNested: true,
         tokenHooks: {
             "/": function (stream, state) {
-                if (stream.eat("../index.html")) {
+                if (stream.eat("/i")) {
                     stream.skipToEnd();
                     return ["comment", "comment"];
                 } else if (stream.eat("*")) {
@@ -10007,7 +10007,7 @@ THE SOFTWARE.
                     state.tokenize = inBlock("meta", "?>");
                     return "meta";
                 } else {
-                    type = stream.eat("../index.html") ? "closeTag" : "openTag";
+                    type = stream.eat("/") ? "closeTag" : "openTag";
                     state.tokenize = inTag;
                     return "tag bracket";
                 }

@@ -2317,7 +2317,7 @@ window.Wolmart = {};
                             <li></li><li></li><li></li><li></li>\
                         </ul>\
                         <a href="#" class="btn btn-clean">Clean All</a>\
-                        <a href="compare.html" class="btn btn-dark btn-rounded">Start Compare !</a>\
+                        <a href="#" class="btn btn-dark btn-rounded">Start Compare !</a>\
                     </div>\
                 </div>\
                 <div class="compare-popup-overlay">\
@@ -2344,7 +2344,7 @@ window.Wolmart = {};
             setTimeout(function () {
                 $this.removeClass('load-more-overlay loading');
                 $this.toggleClass('w-icon-compare').toggleClass('w-icon-check-solid');
-                $this.attr('href', 'compare.html');
+                $this.attr('href', '#');
 
                 $compare.addClass('show');
             }, 500);
@@ -2359,7 +2359,7 @@ window.Wolmart = {};
 
             $('.compare-popup li').each(function (i) {
                 if (products[i]) {
-                    this.innerHTML = '<a href="product-default.html"><figure><img src="' + products[i] + '"/></figure></a>\
+                    this.innerHTML = '<a href="#"><figure><img src="' + products[i] + '"/></figure></a>\
                                         <a href="#" class="btn btn-remove"><i class="w-icon-times-solid"></i></a>';
                 }
             });
@@ -2517,7 +2517,7 @@ window.Wolmart = {};
                 , top;
             var url = $($obj).data('url');
             if (!url) {
-                url = 'assets/ajax/products.html';
+                url = '#';
             }
             var loadProducts = function (e) {
                 if (window.pageYOffset > top + $wrapper.outerHeight() - window.innerHeight - 150 && 'loading' != $wrapper.data('load-state')) {

@@ -11,7 +11,7 @@
                                     <a href="{{route('prod.show',$product->slug)}}">
                                         <div class="ec-pro-image-outer">
                                             <div class="ec-pro-image">
-                                                    <span href="/product-left-sidebar.html" class="image">
+                                                    <span href="#" class="image">
 
                                                         @if($product->fotos()->count())
                                                             @foreach($product->fotos as $foto)

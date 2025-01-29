@@ -16,8 +16,8 @@
                         <div class="ec-fs-pro-inner">
                             <div class="ec-fs-pro-image-outer col-lg-6 col-md-6 col-sm-6">
                                 <div class="ec-fs-pro-image">
-                                    <a href="product-left-sidebar.html" class="image"><img class="main-image"
-                                                                                           src="assets/images/product-image/1_1.jpg" alt="Product"/></a>
+                                    <a href="#" class="image"><img class="main-image"
+                                                                                           src="/assets/images/product-image/1_1.jpg" alt="Product"/></a>
                                     <a href="#" class="quickview" data-link-action="quickview" title="Quick view"
                                        data-bs-toggle="modal" data-bs-target="#ec_quickview_modal"><img
                                                 src="assets/images/icons/quickview.svg" class="svg_img pro_svg"

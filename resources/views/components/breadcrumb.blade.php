@@ -10,7 +10,7 @@
                     <div class="col-md-6 col-sm-12">
                         <!-- ec-breadcrumb-list start -->
                         <ul class="ec-breadcrumb-list">
-                            <li class="ec-breadcrumb-item"><a href="index.html"></a></li>
+                            <li class="ec-breadcrumb-item"><a href="#"></a></li>
                             <li class="ec-breadcrumb-item active">Products</li>
                         </ul>
                         <!-- ec-breadcrumb-list end -->
