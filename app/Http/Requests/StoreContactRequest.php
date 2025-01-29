@@ -24,9 +24,10 @@ class StoreContactRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'tel' => 'required|max:20',
+            'phone' => 'required|max:20',
             'email' => 'nullable',
             'comment' => 'nullable',
+            'captcha' => 'required|captcha'
         ];
     }
 
@@ -35,6 +36,7 @@ class StoreContactRequest extends FormRequest
         return [
             'required' => 'Поле :attribute является обязательным.',
             'max' => 'Размер поля :attribute не должен превышать :max символов',
+            'captcha' => 'Неверно ввели поле :attribute',
         ];
     }
 
@@ -42,9 +44,10 @@ class StoreContactRequest extends FormRequest
     {
         return [
             'name' => 'Имя',
-            'tel' => 'Телефон',
+            'phone' => 'Телефон',
             'email' => 'E-mail',
             'comment' => 'Комментарий',
+            'captcha' => 'Капча',
         ];
     }
 }

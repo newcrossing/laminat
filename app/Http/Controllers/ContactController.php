@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreContactRequest;
 use App\Mail\Contact;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
@@ -22,10 +21,12 @@ class ContactController extends Controller
 
     public function send_mail(StoreContactRequest $request)
     {
+        // todo если нет комментария то шаблон отправки выдает ошибку так как нет такого ключа в массиве
+
         $validated = $request->validated();
 
         Mail::to('newcrossing@gmail.com')->send(new Contact($validated));
-        Log::info("Сообщение отправлено ");
+        Log::info("Сообщение отправлено", $validated);
 
         return redirect()->route('contact.index')->with('success', 'Сообщение отправлено. Спасибо за обращение.');
     }

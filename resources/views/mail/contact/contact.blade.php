@@ -4,12 +4,14 @@
 Сообщение получено через форму "Контакты"
 
 __Имя:__ {{$validated['name']}}<br>
-__Телефон:__ {{$validated['tel']}}<br>
+__Телефон:__ {{$validated['phone']}}<br>
 __E-mail:__ {{$validated['email']}}<br>
 
 <x-mail::panel>
 __Сообщение:__<br>
-{{$validated['comment']}}
+    @if($validated['comment'])
+        {{$validated['comment']}}
+    @endif
 </x-mail::panel>
 
 

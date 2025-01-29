@@ -158,21 +158,35 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="username">Имя *</label>
-                                    <input type="text" id="username" name="name" class="form-control" placeholder="Ваше имя" required>
+                                    <input type="text" name="name" class="form-control" placeholder="Ваше имя" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="email_1">Телефон *</label>
-                                    <input type="text" id="email_1" name="tel" placeholder="Номер телефона" class="form-control" required>
+                                    <input type="text" name="phone" placeholder="Номер телефона" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="email_1">E-mail</label>
-                                    <input type="email" id="email" name="email" placeholder="Адрес электронной почты" class="form-control">
+                                    <input type="email" name="email" placeholder="Адрес электронной почты" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label for="message">Комментарий / Вопрос </label>
-                                    <textarea id="message" name="comment" cols="30" rows="5"
-                                              class="form-control" placeholder="Оставьте свой комментарий или вопрос" required></textarea>
+                                    <textarea name="comment" cols="30" rows="5" class="form-control" placeholder="Оставьте свой комментарий или вопрос" required></textarea>
                                 </div>
+
+
+                                <div class="form-group">
+                                    <label for="message">Капча </label>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <input id="captcha" type="text" class="form-control" placeholder="Введите капчу" name="captcha" required>
+                                        </div>
+                                        <div class="col-8">
+                                            <span>{!! captcha_img() !!}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                                 <button type="submit" class="btn btn-dark btn-rounded">Отправить</button>
                             </form>
                         </div>
