@@ -163,5 +163,11 @@ class Product extends Model
         return $this->belongsToMany(Cart::class)->withPivot('count');
     }
 
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class)->withPivot('count', 'price');
+    }
+
+
 
 }

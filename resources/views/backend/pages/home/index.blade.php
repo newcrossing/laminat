@@ -14,14 +14,66 @@
 @endsection
 @section('content')
 
-
     <section id="dashboard-ecommerce">
         <div class="row">
+            <!-- Latest Update Starts -->
+            <div class="col-xl-6 col-md-6 col-12 dashboard-latest-update">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center pb-50">
+                        <h4 class="card-title" style="text-transform: none;">Популярные товары в заказах</h4>
 
+                    </div>
+                    <hr>
+                    <div class="card-content">
+                        <div class="card-body p-0 pb-1">
+                            <ul class="list-group list-group-flush">
+                                @foreach($topOrderProducts as $topProduct)
+                                    <li class="list-group-item list-group-item-action border-0 d-flex align-items-center justify-content-between">
+                                        <div class="list-left d-flex">
 
+                                            <div class="list-content">
+                                                <span class="list-title font-small-3">{{$topProduct->getFullName()}}</span>
+                                                {{--                                                <small class="text-muted d-block">1.2k New Products</small>--}}
+                                            </div>
+                                        </div>
+                                        <span class="text-primary text-bold-700">{{$topProduct->orders_count}}</span>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-md-6 col-12 dashboard-latest-update">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center pb-50">
+                        <h4 class="card-title" style="text-transform: none;">Популярные товары в корзине</h4>
+                    </div>
+                    <hr>
+                    <div class="card-content">
+                        <div class="card-body p-0 pb-1">
+                            <ul class="list-group list-group-flush">
+                                @foreach($topCartProducts as $topProduct)
+                                    <li class="list-group-item list-group-item-action border-0 d-flex align-items-center justify-content-between">
+                                        <div class="list-left d-flex">
+
+                                            <div class="list-content">
+                                                <span class="list-title font-small-3">{{$topProduct->getFullName()}}</span>
+                                                {{--                                                <small class="text-muted d-block">1.2k New Products</small>--}}
+                                            </div>
+                                        </div>
+                                        <span class="text-primary text-bold-700">{{$topProduct->carts_count}}</span>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Earning Swiper Starts -->
 
             @if(count($orders))
-                <div class=" col-12 dashboard-latest-update" >
+                <div class=" col-12 dashboard-latest-update">
                     <div class="card" style="border: 2px solid #9a183d;">
                         <div class="card-header d-flex justify-content-between align-items-center pb-50">
                             <h4 class="card-title">Заказы <small> (новые)</small></h4>

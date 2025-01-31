@@ -158,22 +158,21 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="username">Имя *</label>
-                                    <input type="text" name="name" class="form-control" placeholder="Ваше имя" required>
+                                    <input type="text" name="name" value="{{old('name')}}" class="form-control" placeholder="Ваше имя" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="email_1">Телефон *</label>
-                                    <input type="text" name="phone" placeholder="Номер телефона" class="form-control" required>
+                                    <input type="text" name="phone" value="{{old('phone')}}" placeholder="Номер телефона" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="email_1">E-mail</label>
-                                    <input type="email" name="email" placeholder="Адрес электронной почты" class="form-control">
+                                    <input type="email" name="email" value="{{old('email')}}" placeholder="Адрес электронной почты" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label for="message">Комментарий / Вопрос </label>
-                                    <textarea name="comment" cols="30" rows="5" class="form-control" placeholder="Оставьте свой комментарий или вопрос" required></textarea>
+                                    <textarea name="comment" cols="30" rows="5" class="form-control" placeholder="Оставьте свой комментарий или вопрос"
+                                              required>{{old('comment')}}</textarea>
                                 </div>
-
-
                                 <div class="form-group">
                                     <label for="message">Капча </label>
                                     <div class="row">
@@ -185,8 +184,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
                                 <button type="submit" class="btn btn-dark btn-rounded">Отправить</button>
                             </form>
                         </div>

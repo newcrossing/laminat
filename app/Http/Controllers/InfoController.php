@@ -13,26 +13,14 @@ class InfoController extends Controller
 {
     public function show($s)
     {
-        $info = Info::where('slug', $s)->firstOrFail();
+        $info = Info::where('slug', $s)->where('public',1)->firstOrFail();
 
         $breadcrumbs = [
             ['link' => route('home'), 'name' => "Главная"],
             ['name' => $info->name]
         ];
-        $view = '';
 
-        switch($s)
-        {
-            case 'contact':
-                $view = 'front.pages.info.contact';
-                break;
-
-            default:
-                $view = 'front.pages.info.index';
-                break;
-
-        }
-        return view($view, compact('info', 'breadcrumbs'));
+        return view('front.pages.info.index', compact('info', 'breadcrumbs'));
     }
 
 

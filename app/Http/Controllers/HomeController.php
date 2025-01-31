@@ -30,6 +30,7 @@ class HomeController extends Controller
             ->withCount(['collections', 'products' => function (\Illuminate\Database\Eloquent\Builder $query) {
                 $query->where('products.public', '=', 1);
             }])
+            ->with('foto')
             ->public()
             ->get();
 

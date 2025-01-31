@@ -1,42 +1,57 @@
-@extends('frontend.layouts.main')
+@extends('front.layouts.main')
 
-@section('title','Изменение объявления')
+@section('title',$info->name)
 
 @section('vendor-styles')
-
 @endsection
-
 
 @section('page-styles')
 @endsection
 
 @section('content')
-    <!-- Start Terms & Condition page -->
-    <section class="ec-page-content section-space-p terms_condition_page ">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <div class="section-title">
-                        <h2 class="ec-bg-title">{{$info->name}}</h2>
-                        <h2 class="ec-title">{{$info->name}}</h2>
+    <main class="main">
+        <!-- Start of Page Header -->
+        <div class="page-header">
+            <div class="container">
+                <h1 class="page-title mb-0">{{$info->name}}</h1>
+            </div>
+        </div>
+        <!-- End of Page Header -->
 
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="ec-common-wrapper">
-                        <div class="col-sm-12 ec-cms-block">
-                            <div class="ec-cms-block-inner">
-                                {!!$info->text!!}
+        <!-- Start of Breadcrumb -->
+        <x-front.main.breadcrumb :breadcrumbs="$breadcrumbs"/>
+        <!-- End of Breadcrumb -->
+
+        <!-- Start of PageContent -->
+        <div class="page-content mb-8">
+            <div class="container">
+                <div class=" ">
+                    <div class="main-content ">
+                        <div class="post post-grid post-single">
+                            <figure class="post-media br-sm">
+
+                            </figure>
+                            <div class="post-details">
+                               {!! $info->text !!}
                             </div>
                         </div>
 
+
+
+
+
+
+
+
+
                     </div>
+                    <!-- End of Main Content -->
+
                 </div>
             </div>
         </div>
-    </section>
-    <!-- End Terms & Condition page -->
-
+        <!-- End of PageContent -->
+    </main>
 @endsection
 
 @section('page-scripts')
