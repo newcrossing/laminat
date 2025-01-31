@@ -16,15 +16,26 @@
 
     <section id="dashboard-ecommerce">
         <div class="row">
+
             <!-- Latest Update Starts -->
             <div class="col-xl-6 col-md-6 col-12 dashboard-latest-update">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center pb-50">
                         <h4 class="card-title" style="text-transform: none;">Популярные товары в заказах</h4>
-
+                        <a class="heading-elements-toggle">
+                            <i class="bx bx-dots-vertical font-medium-3"></i>
+                        </a>
+                        <div class="heading-elements">
+                            <ul class="list-inline mb-0">
+                                <li>
+                                    <a data-action="collapse">
+                                        <i class="bx bx-chevron-down"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <hr>
-                    <div class="card-content">
+                    <div class="card-content collapse">
                         <div class="card-body p-0 pb-1">
                             <ul class="list-group list-group-flush">
                                 @foreach($topOrderProducts as $topProduct)
@@ -48,9 +59,20 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center pb-50">
                         <h4 class="card-title" style="text-transform: none;">Популярные товары в корзине</h4>
+                        <a class="heading-elements-toggle">
+                            <i class="bx bx-dots-vertical font-medium-3"></i>
+                        </a>
+                        <div class="heading-elements">
+                            <ul class="list-inline mb-0">
+                                <li>
+                                    <a data-action="collapse">
+                                        <i class="bx bx-chevron-down"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <hr>
-                    <div class="card-content">
+                    <div class="card-content collapse">
                         <div class="card-body p-0 pb-1">
                             <ul class="list-group list-group-flush">
                                 @foreach($topCartProducts as $topProduct)
