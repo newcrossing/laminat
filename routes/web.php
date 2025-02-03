@@ -54,7 +54,7 @@ Route::get('/sale/', [SaleController::class, 'index'])->name('sale');
 Route::get('/info/{s}', [\App\Http\Controllers\InfoController::class, 'show'])->where('s', '[a-z-]+')->name('info');
 
 Route::get('/uslugi/', [ContactController::class, 'uslugi'])->name('uslugi.index');
-Route::post('/uslugi/', [ContactController::class, 'uslugi_send'])->name('uslugi.index');
+Route::post('/uslugi/', [ContactController::class, 'uslugi_send'])->name('uslugi.send_mail');
 
 Route::get('/contact/', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/contact/', [ContactController::class, 'send_mail'])->name('contact.send_mail');
