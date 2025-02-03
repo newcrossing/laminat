@@ -1,6 +1,8 @@
 @extends('front.layouts.main')
 
-@section('title',$info->name)
+@section('title',$info->name?:$info->seo_title)
+@section('description',$info->seo_description)
+@section('keywords',$info->seo_keywords)
 
 @section('vendor-styles')
 @endsection
@@ -29,12 +31,11 @@
                     <div class="main-content ">
                         <div class=" post-grid post-single">
                             <div class="post-details">
-                               {!! $info->text !!}
+                                {!! $info->text !!}
                             </div>
                         </div>
                     </div>
                     <!-- End of Main Content -->
-
                 </div>
             </div>
         </div>
