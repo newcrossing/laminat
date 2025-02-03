@@ -4,7 +4,7 @@
             <a href="{{route('home')}}">Главная</a>
         </li>
         <li>
-            <a href="{{route('home')}}">Услуги</a>
+            <a href="{{route('uslugi.index')}}">Услуги</a>
         </li>
         <li>
             <a href="#">Сотрудничество</a>

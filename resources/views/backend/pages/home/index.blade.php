@@ -21,7 +21,7 @@
             <div class="col-xl-6 col-md-6 col-12 dashboard-latest-update">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center pb-50">
-                        <h4 class="card-title" style="text-transform: none;">Популярные товары в заказах</h4>
+                        <h4 class="card-title" style="text-transform: none;">Популярное в заказах</h4>
                         <a class="heading-elements-toggle">
                             <i class="bx bx-dots-vertical font-medium-3"></i>
                         </a>
@@ -41,7 +41,6 @@
                                 @foreach($topOrderProducts as $topProduct)
                                     <li class="list-group-item list-group-item-action border-0 d-flex align-items-center justify-content-between">
                                         <div class="list-left d-flex">
-
                                             <div class="list-content">
                                                 <span class="list-title font-small-3">{{$topProduct->getFullName()}}</span>
                                                 {{--                                                <small class="text-muted d-block">1.2k New Products</small>--}}
@@ -58,7 +57,7 @@
             <div class="col-xl-6 col-md-6 col-12 dashboard-latest-update">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center pb-50">
-                        <h4 class="card-title" style="text-transform: none;">Популярные товары в корзине</h4>
+                        <h4 class="card-title" style="text-transform: none;">Популярное в корзине</h4>
                         <a class="heading-elements-toggle">
                             <i class="bx bx-dots-vertical font-medium-3"></i>
                         </a>

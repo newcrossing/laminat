@@ -27,7 +27,7 @@
             <div class="tab-pane active" id="main-menu">
                 <ul class="mobile-menu">
                     <li><a href="/">Главная</a></li>
-                    <li><a href="/">Услуги</a></li>
+                    <li><a href="{{route('uslugi.index')}}">Услуги</a></li>
                     <li>
                         <a href="">Сотрудничество</a>
                         <ul>
