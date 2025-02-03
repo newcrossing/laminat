@@ -13,7 +13,7 @@
         <!-- Start of Page Header -->
         <div class="page-header">
             <div class="container">
-                <h1 class="page-title mb-0">{{$info->name}}</h1>
+                <h1 class="page-title mb-0 text-normal">{{$info->name}}</h1>
             </div>
         </div>
         <!-- End of Page Header -->
@@ -27,23 +27,11 @@
             <div class="container">
                 <div class=" ">
                     <div class="main-content ">
-                        <div class="post post-grid post-single">
-                            <figure class="post-media br-sm">
-
-                            </figure>
+                        <div class=" post-grid post-single">
                             <div class="post-details">
                                {!! $info->text !!}
                             </div>
                         </div>
-
-
-
-
-
-
-
-
-
                     </div>
                     <!-- End of Main Content -->
 
