@@ -2,4 +2,6 @@ User-agent: *
 Disallow: /cart
 Disallow: /order
 Disallow: /wishlist
+Disallow: /backend
+Disallow: /captcha/*
 
