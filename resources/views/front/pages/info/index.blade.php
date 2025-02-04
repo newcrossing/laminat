@@ -1,6 +1,6 @@
 @extends('front.layouts.main')
 
-@section('title',$info->name?:$info->seo_title)
+@section('title',$info->seo_title?:$info->name)
 @section('description',$info->seo_description)
 @section('keywords',$info->seo_keywords)
 

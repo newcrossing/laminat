@@ -1,6 +1,6 @@
 @extends('backend.layouts.contentLayoutMaster')
 {{-- page title --}}
-@section('title','Статьи')
+@section('title','Пользователи')
 {{-- vendor style --}}
 @section('vendor-styles')
     <link rel="stylesheet" type="text/css" href="{{asset('/b/app-assets/vendors/css/tables/datatable/datatables.min.css')}}">
@@ -40,29 +40,28 @@
                                     <thead>
                                     <tr>
                                         <th></th>
-
                                         <th>ID</th>
-                                        <th>Email</th>
-                                        <th>Имя</th>
-                                        <th>Дата регистрации</th>
+                                        <th>Логин</th>
+                                        <th>E-mail</th>
+                                        <th>Роли</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-
                                     @foreach ($users as $user)
                                         <tr class="">
                                             <td></td>
-
                                             <td>{{$user->id }}</td>
                                             <td>
-                                                <i class="bx bxs-circle {{($user->email_verified_at)?'success':'danger'}}  font-small-1 mr-50"></i>
-                                                {{--                                                <a href="{{route('user.edit',$user->id)}}">{{$user->email}}</a>--}}
+                                                <a href="{{route('backend.user.edit',$user->id)}}">{{$user->login }}</a>
+                                                <div class="font-small-2">{{$user->name }}</div>
                                             </td>
                                             <td>
-                                                {{$user->name }}
+                                                {{$user->email}}
                                             </td>
                                             <td>
-                                                <small>{{$user->created_at->format('d.m.Y')}}</small>
+                                                @foreach($user->roles as $role)
+                                                    <div class="badge badge-info">{{$role->name}}</div>
+                                                @endforeach
                                             </td>
                                         </tr>
                                     @endforeach

@@ -53,6 +53,9 @@ class User extends Authenticatable
     ];
 
 
+
+
+
     public function scopeAdminUsers(Builder $query): void
     {
         $query->role('admin');

@@ -14,178 +14,120 @@
 @endsection
 
 @section('content')
+    <section class="invoice-edit-wrapper">
 
-    <!-- account setting page start -->
-    <section id="page-account-settings">
-        @if(session('success'))
-            <div class="alert bg-rgba-success alert-dismissible mb-2" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-                <div class="d-flex align-items-center">
-                    <i class="bx bx-like"></i>
-                    <span>  {{session('success')}}  </span>
+
+        <form action="{{ (isset($user->id))? route('backend.user.update',$user->id):route('backend.user.store')}}" method="POST">
+            @csrf
+            @if(isset($user->id))
+                @method('PUT')
+            @endif
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-1">
+                <div class="d-flex flex-column justify-content-center">
+                    <h4 class="mb-1 mt-3">{{($user->login)?:"Новый "}}</h4>
+                    {{--                    <p class="text-muted">{{($product->article)?"Артикул: ".$product->article:""}}</p>--}}
+                </div>
+                <div class="d-flex align-content-center flex-wrap gap-2">
+                    <div class="px-0 mr-1">
+                        <button type="button"  value="delete" class="btn btn-outline-danger ">
+                            <i class='bx bx-x-circle'></i> Удалить
+                        </button>
+                    </div>
+                    <a class="btn btn-primary mr-1" href="{{route('backend.user.index')}}">
+                        <i class='bx bx-arrow-back'></i> Отменить
+                    </a>
+                    <button type="submit" class="btn btn-success ">
+                        <i class='bx bx-save'></i> Сохранить
+                    </button>
                 </div>
             </div>
-        @endif
-        @if ($errors->any())
-            <div class="alert bg-rgba-danger alert-dismissible mb-2" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-                <div class="d-flex align-items-center">
-                    <i class="bx bx-error"></i>
-                    <span>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </span>
-                </div>
-            </div>
-        @endif
-        <div class="row">
-            <div class="col-12">
-                <div class="row">
-                    <!-- left menu section -->
-                    <!-- right content section -->
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="card-body">
-                                    <div class="tab-content">
-                                        <div role="tabpanel" class="tab-pane active" id="account-vertical-general"
-                                             aria-labelledby="account-pill-general" aria-expanded="true">
-                                            <form
-                                                action="{{ (isset($user->id))? route('user.update',$user->id):route('user.store')  }}"
-                                                method="POST" enctype="multipart/form-data">
-                                                @csrf
-                                                @if(isset($user->id))
-                                                    @method('PUT')
-                                                @endif
-                                                <div class="media">
-
-                                                    <a href="javascript: void(0);">
-                                                        <img
-                                                            src="{{ Storage::url('/avatars/300/'.(!empty($user->foto)?$user->foto:'000.png')) }}"
-                                                            class="rounded mr-75" alt="profile image" height="100">
-                                                    </a>
-                                                    <div class="media-body mt-25 ml-1">
-                                                        <div
-                                                            class="col-12 px-0 d-flex flex-sm-row flex-column justify-content-start">
-                                                            <h2 class="{{(!$user->email_verified_at)?'text-danger':'text-success'}}">{{$user->email}}</h2>
-                                                        </div>
-                                                        <h3 class="text-muted">{{$user->name}}</h3>
-                                                    </div>
-                                                </div>
-                                                <hr>
-
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <div class="form-group">
-                                                            <div class="controls">
-                                                                <label>Email</label>
-                                                                <input type="text" class="form-control"
-                                                                       value="{{old('email',$user->email)}}" disabled>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <div class="form-group">
-                                                            <div class="controls">
-                                                                <label>Пароль</label>
-                                                                <input type="text" class="form-control"
-                                                                       disabled>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <div class="form-group">
-                                                            <div class="controls">
-                                                                <label>Имя</label>
-                                                                <input type="text" class="form-control" name="name"
-                                                                       value="{{old('name',$user->name)}}">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <div class="form-group">
-                                                            <div class="controls">
-                                                                <label>Город</label>
-                                                                <input type="text" class="form-control" name="city"
-                                                                       value="{{old('city',$user->city)}}">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-
-                                                    <h6 class="m-1">Уведомления</h6>
-                                                    <div class="col-12 mb-1">
-                                                        <div class="custom-control custom-switch custom-control-inline">
-                                                            <input type="checkbox" name="notify_doc"
-                                                                   class="custom-control-input"
-                                                                   id="accountSwitchTel" {{ $user->notify_doc  ? 'checked' : '' }}>
-                                                            <label class="custom-control-label mr-1"
-                                                                   for="accountSwitchTel"></label>
-                                                            <span
-                                                                class="switch-label w-100">Уведомление о новых документах</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 mb-1">
-                                                        <div class="custom-control custom-switch custom-control-inline">
-                                                            <input type="checkbox" name="notify_vst"
-                                                                   class="custom-control-input"
-                                                                   id="accountSwitchEmail" {{ $user->notify_vst  ? 'checked' : '' }} >
-                                                            <label class="custom-control-label mr-1"
-                                                                   for="accountSwitchEmail"></label>
-                                                            <span class="switch-label w-100">Уведомление о вступающих в силу </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 mb-1">
-                                                        <div class="custom-control custom-switch custom-control-inline">
-                                                            <input type="checkbox" name="notify_edit"
-                                                                   class="custom-control-input"
-                                                                   id="accountSwitchwhatsup" {{ $user->notify_edit  ? 'checked' : '' }} >
-                                                            <label class="custom-control-label mr-1"
-                                                                   for="accountSwitchwhatsup"></label>
-                                                            <span
-                                                                class="switch-label w-100">Уведомление о изменении документа</span>
-                                                        </div>
-                                                    </div>
-
-
-                                                    <div
-                                                        class="col-12 d-flex flex-sm-row flex-column justify-content-end">
-                                                        <button type="submit" name="redirect" value="apply"
-                                                                class="btn btn-primary glow mr-sm-1 mb-1">
-                                                            Сохранить
-                                                        </button>
-
-
-                                                        <button type="submit" name="redirect" value="delete"
-                                                                class="btn btn-danger glow mr-sm-1 mb-1">
-                                                            Удалить
-                                                        </button>
-
-                                                        <button type="submit" name="redirect" value="cancel"
-                                                                class="btn btn-light glow mr-sm-1 mb-1">
-                                                            Отменить
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
+            <div class="row">
+                <!-- invoice view page -->
+                <div class="col-xl-9 col-md-8 col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-tile mb-0">Информация </h5>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-body pb-0 mx-25">
+                                <!-- logo and title -->
+                                <div class="row mb-1">
+                                    <div class="col-sm-6 col-6 order-2 order-sm-1 mb-1">
+                                        <label>Логин </label>
+                                        <input type="text" name="login" class="form-control @error('login') is-invalid  @enderror" value="{{old('login',$user->login)}}"
+                                               placeholder="Логин" autofocus required disabled>
+                                        @error('login')
+                                        <div class="invalid-feedback">{{$message}}</div>
+                                        @enderror
                                     </div>
+
+                                    <div class="col-sm-6 col-6 order-2 order-sm-1 mb-1">
+                                        <label>Имя </label>
+                                        <input type="text" name="name" class="form-control @error('name') is-invalid  @enderror" value="{{old('name',$user->name)}}"
+                                               placeholder="Имя"  required>
+                                        @error('name')
+                                        <div class="invalid-feedback">{{$message}}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="col-sm-6 col-6 order-2 order-sm-1 mb-1">
+                                        <label>E-mail  </label>
+                                        <input type="text" name="email" class="form-control @error('email') is-invalid  @enderror" value="{{old('email',$user->email)}}"
+                                               placeholder="email"  >
+                                        @error('name')
+                                        <div class="invalid-feedback">{{$message}}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="col-sm-6 col-6 order-2 order-sm-1 mb-1">
+                                        <label>Новый пароль  </label>
+                                        <input type="text" name="password" class="form-control @error('password') is-invalid  @enderror" value=""
+                                               placeholder="Пароль"  >
+                                        @error('password')
+                                        <div class="invalid-feedback">{{$message}}</div>
+                                        @enderror
+                                    </div>
+
                                 </div>
+
+
+
+
                             </div>
                         </div>
                     </div>
+
+
                 </div>
+                <!-- invoice action  -->
+                <div class="col-xl-3 col-md-4 col-12">
+                    <div class="card invoice-action-wrapper shadow-none border">
+                        <div class="card-header ">
+                            <h5 class="card-tile mb-0">Роли</h5>
+                        </div>
+                        <hr class="mt-0">
+                        <div class="card-body pb-0 pt-0">
+
+                            <div class=" py-50">
+                                @foreach($user->roles as $role)
+                                    <div class="badge badge-info">{{$role->name}}</div>
+                                @endforeach
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
-        </div>
+        </form>
     </section>
-    <!-- account setting page ends -->
+
+
+
+
+
 
 @endsection
 
