@@ -188,9 +188,9 @@
                                             </div>
                                         </div>
                                         <div>
-                                            <small> Добавлено</small>
+                                            <small> Добавлен</small>
                                             <div class="font-size-small text-primary">
-                                                {{$product->created_at->format('H:m d.m.Y')}}
+                                                {{$product->created_at->diffForHumans()}}
                                             </div>
                                         </div>
 
@@ -245,9 +245,9 @@
                                             </div>
                                         </div>
                                         <div>
-                                            <small> Добавлено</small>
+                                            <small> Добавлен</small>
                                             <div class="font-size-small text-primary">
-                                                {{$firm->created_at->format('H:m d.m.Y')}}
+                                                {{$firm->created_at->diffForHumans()}}
                                             </div>
                                         </div>
 
