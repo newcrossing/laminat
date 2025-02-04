@@ -1,11 +1,10 @@
 @extends('front.layouts.main')
 
 @section('title','Корзина')
+@section('description','Корзина «Пол России» Интернет магазин напольных покрытий. Ждем вас у нас!')
 
 @section('vendor-styles')
-
 @endsection
-
 
 @section('page-styles')
 @endsection

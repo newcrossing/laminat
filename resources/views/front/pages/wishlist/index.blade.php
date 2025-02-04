@@ -1,11 +1,10 @@
 @extends('front.layouts.main')
 
 @section('title','Избранное')
+@section('description','Избранное в интернет-магазине Пол России.')
 
 @section('vendor-styles')
-
 @endsection
-
 
 @section('page-styles')
 @endsection

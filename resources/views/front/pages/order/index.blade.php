@@ -1,10 +1,10 @@
 @extends('front.layouts.main')
 
 @section('title','Оформление заказа')
+@section('description','Оформление заказа в интернет-магазине Пол России.')
 
 @section('vendor-styles')
 @endsection
-
 
 @section('page-styles')
 @endsection

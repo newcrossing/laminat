@@ -7,11 +7,12 @@
 
     <title>@yield('title',' Интернет-магазин наполных покрытий Пол России. Купить в Москве и Московской области') </title>
 
-    <meta name="keywords" content="@yield('keywords','Ламинат купить цена каталог интернет-магазин москва напольные покрытия дом квартир')"/>
+    <meta name="keywords" content="@yield('keywords')"/>
     <meta name="description"
           content="@yield('description','В периоды нестабильности лучше обратиться к услугам надежной компании, специализирующейся на напольных покрытиях. Мы предлагаем вам посетить наш шоурум и интернет-магазин')">
     <meta name="author" content="newcrossing">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="canonical" href="{{ url()->current() }}">
     <!-- Favicon -->
     <link rel="icon" href="/assets/images/icons/favicon.svg" type="image/svg+xml">
 {{--    <link rel="icon" type="image/" href="/assets/images/icons/favicon.svg">--}}
