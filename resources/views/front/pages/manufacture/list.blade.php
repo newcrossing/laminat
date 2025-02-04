@@ -17,7 +17,6 @@
             <div class="container">
                 <h1 class="page-title">Производители</h1>
                 <h4 class="page-subtitle text-normal">напольных покрытий</h4>
-
             </div>
         </div>
         <!-- End of Page Header -->
@@ -31,7 +30,7 @@
 {{--                    <h2 class="title title-center mb-5">Производители</h2>--}}
                     <div class="row">
                         @foreach($firms as $firm)
-                            <div class="col-3">
+                            <div class="col-12 col-md-4 col-sm-6 col-lg-4 mb-3">
                                 <div class="vendor-widget-banner">
                                     <figure class="ml-5 mr-5 mt-2" style="height: 100px">
                                         <a href="{{route('manufacture.show',$firm->slug)}}">
@@ -42,12 +41,10 @@
                                     </figure>
 
                                     <div class="vendor-details mt-3">
-
                                         <div class="vendor-personal">
                                             <h4 class="vendor-name">
                                                 <a href="{{route('manufacture.show',$firm->slug)}}">{{$firm->name}}</a>
                                             </h4>
-
                                             <span class="vendor-product-count">Товаров: {{$firm->products_count}} </span>
                                             <a href="{{route('manufacture.show',$firm->slug)}}" class="visit-vendor-btn mb-0">Вся продукция </a>
                                         </div>
@@ -71,7 +68,6 @@
 
 
                                                 @endforeach
-
                                             </ul>
                                         </div>
                                     </div>
@@ -79,14 +75,8 @@
                             </div>
                         @endforeach
                     </div>
-
-
                 </section>
-
-
             </div>
-
-
             <!-- End of Container -->
         </div>
         <!-- End of Page Content -->

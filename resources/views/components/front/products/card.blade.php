@@ -1,12 +1,13 @@
 {{--Карточка товара--}}
 @php
-    if (empty($col)){
-        $col_lg ='col-md-2';
-    }
-    else {
-        $col_lg ='col-md-'.$col;
+    if (!empty($noCol)){
+        // если указано не использовать grid
+        $col_lg = "";
+    } else {
+        $col_lg = (empty($col))?'col-md-2  col-6':"col-md-{$col} col-6";
     }
 @endphp
+
 @foreach($products as $product)
     @php
         /** @var \App\Models\Product  $product */
@@ -16,7 +17,7 @@
 
     @endphp
 
-    <div class="{{$col_lg}} col-6 mb-4">
+    <div class="{{$col_lg}} mb-4">
         <div class="product product-simple text-center">
             <figure class="product-media">
                 <a href="{{route('prod.show',$product->slug)}}">
@@ -73,7 +74,6 @@
                             <a data-id="{{$product->id}}" href="#" class="btn-cart btn-product btn btn-icon-right btn-link btn-underline disabled" style="color: #36bd00">
                                 <i class=" w-icon-check"></i> В корзине</a>
                         @else
-
 
                             <a data-id="{{$product->id}}" href="#" class="btn-cart btn-product btn btn-icon-right btn-link btn-underline"> В корзину</a>
 
