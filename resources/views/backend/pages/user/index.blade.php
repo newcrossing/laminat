@@ -60,7 +60,7 @@
                                             </td>
                                             <td>
                                                 @foreach($user->roles as $role)
-                                                    <div class="badge badge-info">{{$role->name}}</div>
+                                                    <div class="badge badge-glow badge-info">{{$role->name}}</div>
                                                 @endforeach
                                             </td>
                                         </tr>

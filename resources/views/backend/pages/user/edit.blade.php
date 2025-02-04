@@ -29,7 +29,7 @@
                 </div>
                 <div class="d-flex align-content-center flex-wrap gap-2">
                     <div class="px-0 mr-1">
-                        <button type="button"  value="delete" class="btn btn-outline-danger ">
+                        <button type="button" value="delete" class="btn btn-outline-danger ">
                             <i class='bx bx-x-circle'></i> Удалить
                         </button>
                     </div>
@@ -64,35 +64,29 @@
                                     <div class="col-sm-6 col-6 order-2 order-sm-1 mb-1">
                                         <label>Имя </label>
                                         <input type="text" name="name" class="form-control @error('name') is-invalid  @enderror" value="{{old('name',$user->name)}}"
-                                               placeholder="Имя"  required>
+                                               placeholder="Имя" required>
                                         @error('name')
                                         <div class="invalid-feedback">{{$message}}</div>
                                         @enderror
                                     </div>
 
                                     <div class="col-sm-6 col-6 order-2 order-sm-1 mb-1">
-                                        <label>E-mail  </label>
+                                        <label>E-mail </label>
                                         <input type="text" name="email" class="form-control @error('email') is-invalid  @enderror" value="{{old('email',$user->email)}}"
-                                               placeholder="email"  >
+                                               placeholder="email">
                                         @error('name')
                                         <div class="invalid-feedback">{{$message}}</div>
                                         @enderror
                                     </div>
 
                                     <div class="col-sm-6 col-6 order-2 order-sm-1 mb-1">
-                                        <label>Новый пароль  </label>
-                                        <input type="text" name="password" class="form-control @error('password') is-invalid  @enderror" value=""
-                                               placeholder="Пароль"  >
+                                        <label>Новый пароль </label>
+                                        <input type="text" name="password" class="form-control @error('password') is-invalid  @enderror" value="">
                                         @error('password')
                                         <div class="invalid-feedback">{{$message}}</div>
                                         @enderror
                                     </div>
-
                                 </div>
-
-
-
-
                             </div>
                         </div>
                     </div>
@@ -110,7 +104,7 @@
 
                             <div class=" py-50">
                                 @foreach($user->roles as $role)
-                                    <div class="badge badge-info">{{$role->name}}</div>
+                                    <div class="badge badge-glow badge-info">{{$role->name}}</div>
                                 @endforeach
                             </div>
 
@@ -123,11 +117,6 @@
             </div>
         </form>
     </section>
-
-
-
-
-
 
 @endsection
 
