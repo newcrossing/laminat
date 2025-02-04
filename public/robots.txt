@@ -1,2 +1,7 @@
 User-agent: *
-Disallow:
+Disallow: /cart
+Disallow: /order
+Disallow: /wishlist
+Disallow: /backend
+Disallow: /captcha/*
+
