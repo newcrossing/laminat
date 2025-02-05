@@ -1,4 +1,6 @@
 User-agent: *
+Allow: /
+sitemap: https://polrossii.ru/sitemap.xml
 Disallow: /cart
 Disallow: /order
 Disallow: /wishlist

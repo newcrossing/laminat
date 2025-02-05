@@ -18,8 +18,8 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ManufactureController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SaleController;
+use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\WishlistController;
-use App\Models\Cart;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,11 +33,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/', function () {
-//    return view('frontend.pages.product.index');
-//})->name('home');;
 
-Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');;
+Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/sitemap.xml', [SitemapController::class, 'generate'])->name('sitemap.generate');
+
+
 Route::get('/category', [\App\Http\Controllers\ProductController::class, 'list'])->name('home233');;
 Route::get('/{slug}', [\App\Http\Controllers\ProductController::class, 'show'])->where('slug', 'p-[A-Za-z0-9-]+')->name('prod.show');
 
