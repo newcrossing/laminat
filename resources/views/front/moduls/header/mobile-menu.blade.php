@@ -31,8 +31,8 @@
                     <li>
                         <a href="">Сотрудничество</a>
                         <ul>
-                            <li><a href="/info/postavshhikam/">Поставщикам</a></li>
-                            <li><a href="#">Партнерам</a></li>
+                            <li><a href="/info/postavshhikam">Поставщикам</a></li>
+                            <li><a href="/info/partneram">Партнерам</a></li>
                         </ul>
                     </li>
                     <li>

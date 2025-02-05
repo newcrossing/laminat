@@ -26,8 +26,8 @@
                         <ul class="widget-body">
                             <li><a href="">О нас</a></li>
                             <li><a href="{{route('contact.index')}}">Контакты</a></li>
-                            <li><a href="/info/postavshhikam/">Поставщикам</a></li>
-                            <li><a href="">Партнерам</a></li>
+                            <li><a href="/info/postavshhikam">Поставщикам</a></li>
+                            <li><a href="/info/partneram">Партнерам</a></li>
                         </ul>
                     </div>
                 </div>
@@ -37,8 +37,6 @@
                         <ul class="widget-body">
                             <li><a href="#">Замер</a></li>
                             <li><a href="">Укладка</a></li>
-
-
                         </ul>
                     </div>
                 </div>
