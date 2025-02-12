@@ -19,6 +19,8 @@ class Firm extends Model
     use HasFiles;
     use HasFotos;
 
+    //protected $with = ['foto'];
+
     protected $fillable = [
         'name',
         'text',

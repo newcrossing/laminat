@@ -136,7 +136,7 @@ class ProductController extends Controller
         $product = Product::find($id);
         $product->load('attributeOptions');
         $newProduct = $product->replicate()->fill([
-            'name' => ' Копия ' . $product->name,
+            'name' => 'Копия ' . $product->name,
             'slug' => $product->slug . '-copy'.random_int(1,100) ,
             'public' => false,
         ]);;

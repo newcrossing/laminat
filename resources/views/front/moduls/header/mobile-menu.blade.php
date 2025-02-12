@@ -56,7 +56,7 @@
                         <a href="{{route('manufacture.list')}}"> Производители </a>
                     </li>
                     <li>
-                        <a href=""> Скидки </a>
+                        <a href="{{route('sale')}}"> Скидки </a>
                     </li>
                 </ul>
             </div>

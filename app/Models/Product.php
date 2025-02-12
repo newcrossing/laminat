@@ -19,6 +19,13 @@ class Product extends Model
     const COUNT_OF_PAGINATION = 12;
     protected $perPage = 12;
 
+    protected $with = ['fotos'];
+
+//    protected $dispatchesEvents = [
+//        'updated' => UserSaving::class,
+//        'saved' => UserSaved::class,
+//    ];
+
     protected $fillable = [
         'name',
         'text',
@@ -167,7 +174,6 @@ class Product extends Model
     {
         return $this->belongsToMany(Order::class)->withPivot('count', 'price');
     }
-
 
 
 }

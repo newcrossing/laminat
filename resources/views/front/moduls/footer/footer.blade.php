@@ -1,12 +1,11 @@
-<footer class="footer appear-animate" data-animation-options="{            'name': 'fadeIn'        }">
-
+<footer class="footer appear-animate" data-animation-options="{'name': 'fadeIn'}">
     <div class="container">
         <div class="footer-top">
             <div class="row">
                 <div class="col-lg-4 col-sm-6">
                     <div class="widget widget-about">
                         <a href="/" class="logo-footer">
-                            <img src="/assets/images/logo.svg" />
+                            <img src="/assets/images/logo.svg"/>
                         </a>
                         <div class="widget-body">
                             <p class="widget-about-title">Остались вопросы?</p>
@@ -16,7 +15,6 @@
                                 {{config('contact.adress')}}
                             </p>
                             <p class="widget-about-desc"></p>
-
                         </div>
                     </div>
                 </div>
@@ -46,16 +44,18 @@
                         <ul class="widget-body">
                             <li><a href="#">Оплата</a></li>
                             <li><a href="">Доставка</a></li>
-
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="footer-bottom">
-            <div class="footer-left">
-                <p class="copyright">© Интернет-магазин polrossii.ru 2025.</p>
+            <div class="">
+                <div class="mb-3"> © Интернет-магазин polrossii.ru 2025.</div>
+                <div>Данный интернет-сайт носит исключительно информационный характер и ни при каких условиях не является публичной офертой, определяемой
+                    положениями Статьи 437 Гражданского кодекса Российской Федерации.
+                </div>
+                <div>При использовании материалов указание источника "Пол России" и гиперссылка на https://polrossii.ru/ обязательны.</div>
             </div>
         </div>
     </div>

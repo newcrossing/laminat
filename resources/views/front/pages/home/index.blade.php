@@ -11,7 +11,7 @@
 
 @section('content')
     <main class="main">
-        <x-front.sliders.home-main :sliders="\App\Models\Slider::where('public',true)->get()"/>
+        <x-front.sliders.home-main :sliders="\App\Models\Slider::with('fotos')->where('public',true)->get()"/>
 
         <!-- End of Intro-section -->
 

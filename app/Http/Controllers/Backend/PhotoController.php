@@ -3,23 +3,13 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreProductRequest;
 use App\Models\Foto;
-use App\Models\Product;
-use Barryvdh\Debugbar\Facades\Debugbar;
-
-use CKSource\CKFinder\Filesystem\File\File;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Intervention\Image\ImageManager;
-use Intervention\Image\Drivers\Imagick\Driver;
-
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
-use Intervention\Image\Laravel\Facades\Image;
-use Symfony\Component\Console\Input\Input;
-use Symfony\Component\HttpFoundation\Response;
 
 class PhotoController extends Controller
 {
@@ -72,8 +62,6 @@ class PhotoController extends Controller
 
             $product = $model->find($request->id);
             $product->fotos()->save($foto);
-            Log::info("Сохранено изображение " . $foto->full_name_file, [$product]);
-
         }
 
         return response()->json('success', 200);

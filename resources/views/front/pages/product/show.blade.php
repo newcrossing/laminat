@@ -110,10 +110,10 @@
                                     <div class="product-form product-variation-form product-size-swatch">
                                         <div class="flex-wrap d-flex align-items-center product-variations">
                                             <span class="size mr-1 font-weight-bold">В наличии</span>
-                                            <span class="size mr-1   font-weight-bold">Имеется в шоуруме</span>
+                                            <span class="size mr-1 font-weight-bold">Имеется в шоуруме</span>
                                         </div>
                                     </div>
-
+                                    {{--todo сделать нормально--}}
                                     <hr class="product-divider">
 
                                     <div class="row">
@@ -158,7 +158,7 @@
                                             <h4 class=""><i class="w-icon-orders"></i> Калькулятор</h4>
                                             <div class="row">
                                                 <div class="col-6">
-                                                    <div class="">Площадь </div>
+                                                    <div class="">Площадь</div>
                                                     <input type="number" class="form-control form-control-md text-dark" id="square_room" onchange="calculateSummPrice()"/>
                                                     <p class="font-size-md text-light mb-0">Количество квадратных метров</p>
                                                 </div>
@@ -192,7 +192,7 @@
                                         <div class="product-form container" style="align-items: flex-start">
                                             <div class="product-qty-form">
                                                 <div class="input-group">
-                                                    <input class="quantity form-control" type="number" min="1" id="count_up" max="10000"  onchange="calculateSummPrice(false)">
+                                                    <input class="quantity form-control" type="number" min="1" id="count_up" max="10000" onchange="calculateSummPrice(false)">
                                                     <button class="quantity-plus w-icon-plus" onclick="calculateSummPrice(false)"></button>
                                                     <button class="quantity-minus w-icon-minus" onclick="calculateSummPrice(false)"></button>
                                                 </div>

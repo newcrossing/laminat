@@ -47,7 +47,7 @@ class HomeController extends Controller
 
         //  dump($request->cookie('wishlist'));
         // dump($request->header('cookie'));
-        $data = request()->header('header_name'); // array list of headers
+        //$data = request()->header('header_name'); // array list of headers
         // $data['field_name'];
         // Cookie::queue('rrr', '30', 20);
        //dump(Cookie::get('wishlist'));

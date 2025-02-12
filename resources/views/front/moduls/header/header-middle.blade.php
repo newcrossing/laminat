@@ -61,7 +61,7 @@
             </div>
             <div class="header-right">
                 {{--                <a href="#" class="d-xl-show"><i class="w-icon-map-marker mr-1"></i>Track Order</a>--}}
-                <a href="#"><i class="w-icon-sale"></i>Ежедневные скидки</a>
+                <a href="{{route('sale')}}"><i class="w-icon-sale"></i>Ежедневные скидки</a>
             </div>
         </div>
     </div>
