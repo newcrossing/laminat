@@ -8,7 +8,7 @@
     <main class="main">
         <!-- Start of Page Header -->
         <div class="page-header">
-            <div class="container">
+            <div class="container">э
                 <h1 class="page-title">Скидки</h1>
                 <h4 class="page-subtitle text-normal">на напольные покрытия</h4>
             </div>
@@ -58,7 +58,6 @@
                         <h4 class="alert-title">Упс!</h4> На данный момент товары по скидке отсутствуют.
                     </div>
                 @endforelse
-
                 <!-- End of Element Section -->
             </div>
         </div>

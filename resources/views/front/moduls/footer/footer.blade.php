@@ -42,8 +42,8 @@
                     <div class="widget">
                         <h4 class="widget-title">Службы</h4>
                         <ul class="widget-body">
-                            <li><a href="#">Оплата</a></li>
-                            <li><a href="">Доставка</a></li>
+                            <li><a href="/info/oplata">Оплата</a></li>
+                            <li><a href="/info/dostavka">Доставка</a></li>
                         </ul>
                     </div>
                 </div>

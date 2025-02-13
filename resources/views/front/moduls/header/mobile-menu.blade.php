@@ -38,8 +38,8 @@
                     <li>
                         <a href="">Оплата и доставка</a>
                         <ul>
-                            <li><a href="#">Оплата</a></li>
-                            <li><a href="#">Доставка</a></li>
+                            <li><a href="/info/oplata">Оплата</a></li>
+                            <li><a href="/info/dostavka">Доставка</a></li>
                         </ul>
                     </li>
                     <li><a href="{{route('contact.index')}}">Контакты</a></li>

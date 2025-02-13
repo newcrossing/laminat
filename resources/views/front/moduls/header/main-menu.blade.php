@@ -16,8 +16,8 @@
         <li>
             <a href="#" style="text-transform: none">Оплата и доставка</a>
             <ul>
-                <li><a href="#">Оплата</a></li>
-                <li><a href="#">доставка</a></li>
+                <li><a href="/info/oplata">Оплата</a></li>
+                <li><a href="/info/dostavka">Доставка</a></li>
             </ul>
         </li>
         <li>
