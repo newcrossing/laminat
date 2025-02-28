@@ -92,7 +92,7 @@ fixed static" data-open="click" data-menu="vertical-menu-modern" data-col="2-col
 
 @include('backend.panels.scripts')
 
-
+@livewireScripts
 
 </body>
 <!-- END: Body-->

@@ -365,6 +365,9 @@
                                 </div>
                             </div>
 
+                            <livewire:test-component></livewire:test-component>
+                            <livewire:test2></livewire:test2>
+
                         </div>
                     </div>
                     <!-- Revenue Growth Chart Starts -->

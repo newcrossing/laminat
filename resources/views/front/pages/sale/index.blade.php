@@ -8,7 +8,7 @@
     <main class="main">
         <!-- Start of Page Header -->
         <div class="page-header">
-            <div class="container">э
+            <div class="container">
                 <h1 class="page-title">Скидки</h1>
                 <h4 class="page-subtitle text-normal">на напольные покрытия</h4>
             </div>

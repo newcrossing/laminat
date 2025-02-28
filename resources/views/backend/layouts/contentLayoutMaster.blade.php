@@ -17,6 +17,7 @@
 
     {{-- Include core + vendor Styles --}}
     @include('backend.panels.styles')
+    @livewireStyles
 </head>
 <!-- END: Head-->
 

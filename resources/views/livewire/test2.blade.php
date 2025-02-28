@@ -10,7 +10,7 @@
                         Опубликовано
                     </a>
                 @else
-                    <a class="btn btn-danger" wire:click="toggleLike" >
+                    <a class="btn btn-danger" wire:click="toggleLike" wire:confirm="Are you sure you want to delete this post?">
                         нет
                     </a>
                 @endif

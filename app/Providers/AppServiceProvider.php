@@ -6,6 +6,7 @@ use App\Models\Cart;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Support\Number;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -25,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
        // Model::shouldBeStrict();
+        Number::useLocale('ru');
 
         setlocale(LC_ALL, 'ru_RU.UTF-8');
 

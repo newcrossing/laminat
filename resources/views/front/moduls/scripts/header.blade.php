@@ -26,3 +26,12 @@
 <link rel="stylesheet" type="text/css" href="/assets/vendor/photoswipe/default-skin/default-skin.min.css">
 <!-- Swiper's CSS -->
 <link rel="stylesheet" href="/assets/vendor/swiper/swiper-bundle.min.css">
+
+<link rel="stylesheet" href="/assets/css/font-awesome.min.css">
+
+
+
+
+
+
+@yield('vendor-styles')

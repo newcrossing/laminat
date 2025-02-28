@@ -5,9 +5,12 @@
 @section('description',$meta['description'])
 
 @section('vendor-styles')
+    <!--Plugin CSS file with desired skin-->
+
 @endsection
 
 @section('page-styles')
+    <link rel="stylesheet" href="{{asset('/assets/css/ion.rangeSlider.css')}}"/>
 @endsection
 
 @section('content')
@@ -35,13 +38,11 @@
                                 <!-- Start of Sticky Sidebar -->
                                 <div class="sticky-sidebar">
                                     <div class="title-link-wrapper">
-                                        <h2 class="title title-link">{{$type->name}} ({{$type->products_public_count}})
-                                        </h2>
-
+                                        <h2 class="title title-link">{{$type->name}} ({{$type->products_public_count}}) </h2>
                                     </div>
                                     <div class="filter-actions">
-                                        <label>Фильтр :</label>
-                                        <a href="#" class="btn btn-dark btn-link filter-clean text-normal">Сбросить все</a>
+                                        <label>Фильтр:</label>
+                                        <a href="{{route('type.index',[ $type->slug])}}" class="btn btn-dark btn-link font-size-sm font-weight-normal text-normal">Сбросить все</a>
                                     </div>
 
                                     <div class="alert alert-success  alert-block alert-inline show-code-action">
@@ -55,13 +56,28 @@
                                             @if(!empty($selectCollection))
                                                 <li>{{$selectCollection->name}}</li>
                                             @endif
+                                            @if($selectAttributes)
+                                                @foreach($selectAttributes as $selectAttribute)
+                                                    <li>{{$selectAttribute->name}}</li>
+                                                    @foreach($selectAttribute->attributeOptions as $attributeOption)
+                                                        <div class="font-weight-normal font-size-sm ml-2"><i class="w-icon-plus"></i> {{$attributeOption->value}}</div>
+                                                    @endforeach
+                                                @endforeach
+                                            @endif
+                                            @if((!empty($prices['from']) && $prices['from'] != $prices['min']) || (!empty($prices['to']) && $prices['to'] != $prices['max']))
+                                                <li>Цена</li>
+                                                <div class="font-weight-normal font-size-sm ml-2">
+                                                    <i class="w-icon-plus"></i> от {{Number::format($prices['from']) }} до {{Number::format($prices['to']) }} руб.
+                                                </div>
+                                            @endif
+
                                         </ul>
                                     </div>
 
 
                                     <!-- Start of Collapsible widget -->
                                     <div class="widget widget-collapsible">
-                                        <h3 class="widget-title"><span>Производители</span></h3>
+                                        <h3 class="widget-title" style="border-bottom: 2px solid #336699;"><span>Производители</span></h3>
                                         <ul class="widget-body filter-items search-ul">
                                             @foreach($firms as $firm)
                                                 <li class="d-flex justify-content-between align-items-center">
@@ -76,14 +92,24 @@
 
                                     <!-- Start of Collapsible Widget -->
                                     <div class="widget widget-collapsible">
-                                        <h3 class="widget-title"><span>Цена</span></h3>
+                                        <h3 class="widget-title mb-2" style="border-bottom: 2px solid #336699;"><span>Цена</span></h3>
+
                                         <div class="widget-body">
+                                            <input type="text" class="js-range-slider" name="my_range" value=""
+                                                   data-type="double"
+                                                   data-min="{{$prices['min']}}"
+                                                   data-max="{{$prices['max']}}"
+                                                   data-step="100"
+                                                   data-from="{{$prices['from'] ?:$prices['min']}}"
+                                                   data-to="{{$prices['to']?:$prices['max']}}"
+                                                   data-grid="true"
+                                            />
 
                                             <div class="price-range">
-                                                <input type="text" name="price_min" class="min_price text-center" placeholder="от" value="{{$products->min('price_metr')}}">
+                                                <input type="text" id="price_input_from" name="price_min" class="text-center " value="">
                                                 <span class="delimiter">-</span>
-                                                <input type="text" name="price_max" class="max_price text-center" placeholder="до" value="{{$products->max('price_metr')}}">
-                                                <input type="submit" class="btn btn-primary " value="Искать" style="color: white;">
+                                                <input type="text" id="price_input_to" name="price_max" class="text-center" value="">
+                                                <input type="submit" class="btn btn-primary " value="Искать" style="color: white;width: 100%;">
                                             </div>
                                         </div>
                                     </div>
@@ -92,7 +118,7 @@
                                     @foreach($attributes as $attribute)
                                         <!-- Start of Collapsible Widget -->
                                         <div class="widget widget-collapsible">
-                                            <h3 class="widget-title" style="border-bottom: 2px solid #336699;"><span>{{$attribute->name}}</span></h3>
+                                            <h3 class="widget-title text-normal" style="border-bottom: 2px solid #336699;"><span>{{$attribute->name}}</span></h3>
                                             <ul class="widget-body filter-items item-check mt-1">
                                                 @foreach($attribute->attributeOptions as $attributeOption)
                                                     <li class="mb-1 d-flex justify-content-between align-items-center pl-3 ">
@@ -100,13 +126,11 @@
                                                             <input type="checkbox" name="options[{{$attribute->id}}][]" value="{{$attributeOption->id}}"
                                                                    class="custom-control-input" onchange="this.form.submit()" id="label-{{$attributeOption->id}}"
                                                                     @checked(in_array($attributeOption->id,(request()->get('options'))[$attribute->id]??[] ))>
-                                                            <label for="label-{{$attributeOption->id}}" class="custom-control-label color-dark">
+                                                            <label for="label-{{$attributeOption->id}}" class="custom-control-label color-dark" style="display: block">
                                                                 {{$attributeOption->value}}
                                                             </label>
                                                         </div>
-                                                        <span>
-                                                        ({{$attributeOption->products_count}})
-                                                    </span>
+                                                        <span class="text-default">({{$attributeOption->products_count}})</span>
                                                     </li>
                                                 @endforeach
                                             </ul>
@@ -153,4 +177,76 @@
         </div>
     </main>
     <!-- End of Main -->
+@endsection
+
+@section('page-scripts')
+    <script src="{{asset('/assets/js/ion.rangeSlider.js')}}"></script>
+    <script>
+        var $range = $(".js-range-slider");
+        var $inputFrom = $("#price_input_from");
+        var $inputTo = $("#price_input_to");
+        var instance;
+        var min = 0;
+        var max = 1000;
+        var from = 0;
+        var to = 0;
+        $(".js-range-slider").ionRangeSlider({
+            skin: "square",
+            type: "double",
+            min: min,
+            max: max,
+            from: 200,
+            to: 800,
+            postfix: " ₽",
+            // grid_num: 5,
+            grid_snap: false,
+            onStart: updateInputs,
+            onChange: updateInputs,
+            onFinish: updateInputs
+        });
+        instance = $range.data("ionRangeSlider");
+
+        function updateInputs(data) {
+            from = data.from;
+            to = data.to;
+
+            $inputFrom.prop("value", from);
+            $inputTo.prop("value", to);
+        }
+
+        $inputFrom.on("change", function () {
+            var val = $(this).prop("value");
+
+            // validate
+            if (val < min) {
+                val = min;
+            } else if (val > to) {
+                val = to;
+            }
+
+            instance.update({
+                from: val
+            });
+
+            $(this).prop("value", val);
+
+        });
+
+        $inputTo.on("change", function () {
+            var val = $(this).prop("value");
+
+            // validate
+            if (val < from) {
+                val = from;
+            } else if (val > max) {
+                val = max;
+            }
+
+            instance.update({
+                to: val
+            });
+
+            $(this).prop("value", val);
+        });
+    </script>
 @endsection
