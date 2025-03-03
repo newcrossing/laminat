@@ -22,6 +22,7 @@
     <!-- Default CSS -->
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
     @yield('page-styles')
+    @livewireStyles
 </head>
 
 <body>
@@ -125,10 +126,12 @@
 <!-- Main JS File -->
 {{--<script src="/assets/js/main.min.js"></script>--}}
 <script src="/assets/js/main.js"></script>
-
+@livewireScripts
 @yield('page-scripts')
 
 @include('moduls.metrika')
+
+
 
 
 </body>

@@ -18,6 +18,7 @@ class TypeController extends Controller
     {
         $type = Type::where('slug', $slug_type)->withCount('productsPublic')->firstOrFail();
         $selectFirm = null;
+        $selectFirmId = null;
         $selectCollection = null;
 
         if ($slug_firm) {
@@ -30,7 +31,7 @@ class TypeController extends Controller
                 ->withMin('products', 'price_metr')
                 ->withMax('products', 'price_metr')
                 ->firstOrFail();
-
+            $selectFirmId  = $selectFirm->id;
             if (!$selectFirm->products_count) {
                 abort(404);
             }
@@ -104,17 +105,17 @@ class TypeController extends Controller
         $productsQueryForPrice = clone $productsQuery;
 
         // Получение списка товаров с фильтром по цене
-        $products = $productsQuery
-            ->when($request->price_min && $request->price_max, function ($q) use ($request) {
-                return $q->whereBetween('price_metr', [$request->price_min, $request->price_max]);
-            })
-            ->paginate()->withQueryString();
+//        $products = $productsQuery
+//            ->when($request->price_min && $request->price_max, function ($q) use ($request) {
+//                return $q->whereBetween('price_metr', [$request->price_min, $request->price_max]);
+//            })
+//            ->paginate()->withQueryString();
 
         // Получение списка товаров без фильтра по цене
         $price = $productsQueryForPrice->selectRaw('MIN(price_metr) as min, MAX(price_metr) as max')->first();
 
-        debug("Цены без фильтров цены: min={$price->min}, max={$price->max}");
-        debug("Цены из запроса request: min={$request->price_min}, max={$request->price_max}");
+       // debug("Цены без фильтров цены: min={$price->min}, max={$price->max}");
+        //debug("Цены из запроса request: min={$request->price_min}, max={$request->price_max}");
 
         // расчет отображения цен
         $prices['min'] = (int)floor($price->min / 100) * 100;
@@ -123,7 +124,7 @@ class TypeController extends Controller
         $prices['from'] = ($request->price_min < $price->min) ? $prices['min'] : (int)$request->price_min;
         $prices['to'] = ($request->price_max > $price->max) ? $prices['max'] : (int)$request->price_max;
 
-        debug($prices);
+        //debug($prices);
         // dump(old('price_max'));
 
         //dump($products->max('price_metr'));
@@ -224,11 +225,12 @@ class TypeController extends Controller
         $selectFirm = $selectFirm ?? null;
         $selectCollection = $selectCollection ?? null;
         return view('front.pages.type.index', compact(
-                'products',
+//                'products',
                 'productsNoFilter',
                 'type',
                 'firms',
                 'price',
+                'selectFirmId',
                 'prices',
                 'selectAttributes',
                 'attributes',

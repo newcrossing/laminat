@@ -351,22 +351,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-3 col-12 dashboard-users-danger">
-                                <div class="card text-center">
-                                    <div class="card-content">
-                                        <div class="card-body py-1">
-                                            <div class="badge-circle badge-circle-lg badge-circle-light-success mx-auto mb-50">
-                                                <i class="bx bx-pulse font-medium-5"></i>
-                                            </div>
-                                            <a class="line-ellipsis" href="/telescope">Telescope</a>
-                                            <h3 class="mb-0">Telescope</h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <livewire:test-component></livewire:test-component>
-                            <livewire:test2></livewire:test2>
+
 
                         </div>
                     </div>
