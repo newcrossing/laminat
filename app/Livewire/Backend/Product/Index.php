@@ -40,7 +40,7 @@ class Index extends Component
                 return $q->orderByDesc('price_metr');
             })
             ->when(empty($this->sortingPrice) , function ($q) {
-                return $q->orderByDesc('id');
+                return $q->orderByDesc('updated_at');
             })
             ->when($this->sortingPublic == 'yes', function ($q) {
                 return $q->where('public', true);
