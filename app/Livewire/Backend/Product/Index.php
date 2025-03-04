@@ -22,7 +22,6 @@ class Index extends Component
         $public = $product->public;
         $product->public = !$public;
         $product->save();
-
     }
 
 
@@ -34,7 +33,6 @@ class Index extends Component
     public function render()
     {
         $query = Product::
-
             when( $this->sortingPrice == 'min', function ($q) {
                 return $q->orderBy('price_metr');
             })
@@ -59,7 +57,6 @@ class Index extends Component
             ->when($this->searchText, function ($q) {
                 $q->where('name', 'like', "%{$this->searchText}%");
             })
-
             ->with(['type', 'collection'])
         ;
         $queryCount = clone $query;

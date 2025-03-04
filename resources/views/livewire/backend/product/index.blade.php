@@ -96,7 +96,7 @@
                         <tr wire:key="{{$product->id}}">
                             <td class="text-bold-400">
                                 <a class="readable-mark-icon" href="{{route('backend.product.edit',$product->id)}}"> {{ Str::limit($product->name, 40)  }} </a>
-                                <div class="small"> {{ Str::limit($product->slug , 40)  }}</div>
+                                <div class="small">{{$product->id}} {{ Str::limit($product->slug , 40)  }}</div>
                             </td>
                             <td>
                                 {{$product->type->name}}
@@ -120,6 +120,7 @@
                                 @else
                                     <i wire:click="tooglePublic({{$product->id}})" wire:confirm="Опубликовать?" class="bx bx-x text-danger  font-large-1 cursor-pointer"></i>
                                 @endif
+                                <div class="font-small-1"> {{$product->created_at->diffForHumans()}}</div>
                             </td>
                             <td>
                                 <div class="dropdown">
