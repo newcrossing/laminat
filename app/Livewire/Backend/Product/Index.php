@@ -33,12 +33,16 @@ class Index extends Component
 
     public function render()
     {
-        $query = Product::with(['type', 'collection'])
-            ->when(empty($this->sortingPrice) || $this->sortingPrice == 'min', function ($q) {
+        $query = Product::
+
+            when( $this->sortingPrice == 'min', function ($q) {
                 return $q->orderBy('price_metr');
             })
             ->when($this->sortingPrice == 'max', function ($q) {
                 return $q->orderByDesc('price_metr');
+            })
+            ->when(empty($this->sortingPrice) , function ($q) {
+                return $q->orderByDesc('id');
             })
             ->when($this->sortingPublic == 'yes', function ($q) {
                 return $q->where('public', true);
@@ -54,7 +58,10 @@ class Index extends Component
             })
             ->when($this->searchText, function ($q) {
                 $q->where('name', 'like', "%{$this->searchText}%");
-            });
+            })
+
+            ->with(['type', 'collection'])
+        ;
         $queryCount = clone $query;
         // количество найденых товаров без лимита
         $this->allCount = $queryCount->count();

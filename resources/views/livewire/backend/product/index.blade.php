@@ -95,7 +95,7 @@
                     @foreach ($products as $product)
                         <tr wire:key="{{$product->id}}">
                             <td class="text-bold-400">
-                                <a class="readable-mark-icon" href="{{route('backend.product.edit',$product->id)}}">{{ Str::limit($product->name, 40)  }} </a>
+                                <a class="readable-mark-icon" href="{{route('backend.product.edit',$product->id)}}"> {{ Str::limit($product->name, 40)  }} </a>
                                 <div class="small"> {{ Str::limit($product->slug , 40)  }}</div>
                             </td>
                             <td>
