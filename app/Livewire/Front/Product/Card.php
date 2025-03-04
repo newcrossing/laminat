@@ -8,7 +8,7 @@ use Livewire\Component;
 class Card extends Component
 {
     public $products;
-    public $count = 6;
+    public $count = Product::COUNT_OF_PAGINATION;
     public $allCount;
     public $sorting = null;
     public $firmId = null;
@@ -22,7 +22,16 @@ class Card extends Component
         'update-sorting' => 'updateSorting',
         'update-attributes' => 'updateAttributes',
         'update-price' => 'updatePrice',
+        'delete-filter' => 'deleteFilter',
+        'clear-all' => 'clearAll',
     ];
+
+    public function clearAll()
+    {
+        $this->firmId = null;
+        $this->collectionId = null;
+        $this->selectAttributeId = [];
+    }
 
     public function updatePrice($from, $to)
     {
@@ -30,9 +39,21 @@ class Card extends Component
         $this->priceTo = $to;
     }
 
+    public function deleteFilter($target)
+    {
+        if ($target == 'firm') {
+            $this->firmId = '';
+            $this->collectionId = '';
+        }
+        if ($target == 'collection') {
+            $this->collectionId = '';
+        }
+
+    }
+
     public function loadMore()
     {
-        $this->count = $this->count + 6;
+        $this->count = $this->count + Product::COUNT_OF_PAGINATION;
     }
 
     public function updateAttributes($a)
@@ -53,7 +74,7 @@ class Card extends Component
             ->withWhereHas('type', fn($query) => $query->where('id', '=', $this->typeId))
             ->with('collection.firm')
             ->public()
-            ->when($this->priceFrom && $this->priceTo, function ($q)  {
+            ->when($this->priceFrom && $this->priceTo, function ($q) {
                 return $q->whereBetween('price_metr', [$this->priceFrom, $this->priceTo]);
             })
             ->when($this->sorting == null || $this->sorting == 'price-min', function ($q) {

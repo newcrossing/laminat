@@ -17,80 +17,21 @@
 
 @section('content')
     <!-- invoice list -->
-    <section class="invoice-list-wrapper">
-        @if(session('success'))
-            <div class="alert bg-rgba-success alert-dismissible mb-2" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-                <div class="d-flex align-items-center">
-                    <i class="bx bx-like"></i>
-                    <span>  {{session('success')}}  </span>
-                </div>
+    @if(session('success'))
+        <div class="alert bg-rgba-success alert-dismissible mb-2" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            <div class="d-flex align-items-center">
+                <i class="bx bx-like"></i>
+                <span>  {{session('success')}}  </span>
             </div>
-        @endif
-        <!-- create invoice button-->
-        <div class="invoice-create-btn mb-1">
-            <a href="{{route('backend.product.create')}}" class="btn btn-primary glow invoice-create" role="button"
-               aria-pressed="true">
-                Создать</a>
         </div>
-        <!-- Options and filter dropdown button-->
-        <div class="table-responsive">
-            <table class="table invoice-data-table dt-responsive nowrap" style="width:100%">
-                <thead>
-                <tr>
-                    <th></th>
-                    <th>
-                        <span class="align-middle">ID #</span>
-                    </th>
-                    <th>Название</th>
-                    <th>Тип продукции</th>
-                    <th>Цена за м.</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
+    @endif
+    <livewire:backend.product />
 
-                @foreach ($products as $product)
-                    <tr>
-                        <td></td>
-                        <td>
-                            {{ $product->id }}
-                        </td>
-                        <td class="">
-                            <i class="bx bxs-circle {{($product->public)?'success':'danger'}}  font-small-1 mr-50"></i>
-                            <a class="readable-mark-icon"
-                               href="{{route('backend.product.edit',$product->id)}}">{{ Str::limit($product->name, 40)  }}
-                            </a>
-                            <br>
-                            <div class="small"> {{ Str::limit($product->slug , 40)  }}</div>
 
-                        </td>
-                        <td class="">
-                            {{$product->type->name}}
-                            <div class="small text-muted">{{$product->collection->firm->name}}, {{$product->collection->name}} </div>
-                        </td>
-                        <td class="text-bold-600">
-                            <div class="text-success"> {{ Number::format($product->actualPriceMetr(),locale: 'ru')}} <sub>руб.</sub></div>
-                            @if($product->oldPriceMetr())
-                                <div>
-                                    <del> {{ Number::format($product->oldPriceMetr(),locale: 'ru')}}</del>
-                                    <sub>руб.</sub>
-                                </div>
-                            @endif
-                        </td>
-                        <td class="text-bold-600">
-                            <a href="{{route('backend.product.copy',$product->id)}}" class="invoice-action-edit cursor-pointer" title="Сделать дубликат">
-                                <i class="bx bx-copy"></i>
-                            </a>
-                        </td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-        </div>
-    </section>
+
 @endsection
 
 {{-- vendor scripts --}}

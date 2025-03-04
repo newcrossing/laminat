@@ -16,8 +16,8 @@ class Product extends Model
     use SoftDeletes;
     use HasFotos;
 
-    const COUNT_OF_PAGINATION = 12;
-    protected $perPage = 12;
+    const COUNT_OF_PAGINATION = 24;
+    protected $perPage = 24;
 
     protected $with = ['fotos'];
 

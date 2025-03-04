@@ -17,10 +17,9 @@
             <div class="toolbox-item toolbox-sort select-box">
 
                 <select name="count" class="form-control" wire:model.change="count">
-                    <option value="1" selected="selected"> 15</option>
-                    <option value="2">30</option>
-                    <option value="3">45</option>
-                    <option value="4">60</option>
+                    <option value="24" selected="selected"> 24</option>
+                    <option value="48">48</option>
+                    <option value="72">72</option>
                 </select>
             </div>
         </div>

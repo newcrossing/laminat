@@ -7,25 +7,27 @@
     </div>
     <div class="filter-actions">
         <label>Фильтр:</label>
-        <a href="{{route('type.index',[ $type->slug])}}" class="btn btn-dark btn-link font-size-sm font-weight-normal text-normal">Сбросить все</a>
+        <a  wire:click="clearAll" class="btn btn-dark btn-link font-size-sm font-weight-normal text-normal">Сбросить все</a>
     </div>
 
-    <div class="alert alert-success  alert-block alert-inline show-code-action">
+    <div class="alert alert-success  alert-block alert-inline show-code-action pr-2">
         <h4 class="alert-title">
             <i class=" w-icon-reviews"></i>Вы выбрали</h4>
         <ul class="font-weight-bold">
-            <li>{{$type->name}}</li>
+            <li>{{$type->name}}     </li>
             @if(!empty($selectFirm))
-                <li>{{$selectFirm->name}}</li>
+                <li                 >
+                    <div>{{$selectFirm->name}} <i class="w-icon-times-solid" wire:click="removeFilter('firm')"  style="cursor: pointer"></i></div>
+                </li>
             @endif
             @if(!empty($selectCollection))
-                <li>{{$selectCollection->name}}</li>
+                <li>{{$selectCollection->name}} <i class="w-icon-times-solid" wire:click="removeFilter('collection')"  style="cursor: pointer"></i></li>
             @endif
             @if($selectAttributes)
                 @foreach($selectAttributes as $selectAttribute)
                     <li>{{$selectAttribute->name}}</li>
                     @foreach($selectAttribute->attributeOptions as $attributeOption)
-                        <div class="font-weight-normal font-size-sm ml-2"><i class="w-icon-plus"></i> {{$attributeOption->value}}</div>
+                        <div class="font-weight-normal font-size-sm ml-0"><i class="w-icon-plus"></i> {{$attributeOption->value}}  <i class="w-icon-times-solid" wire:click="removeAttr" style="cursor: pointer"></i></div>
                     @endforeach
                 @endforeach
             @endif
@@ -39,7 +41,7 @@
         <ul class="widget-body filter-items search-ul">
             @foreach($firms as $firm)
                 <li class="d-flex justify-content-between align-items-center">
-                    <a href="{{route('type.index',[ $type->slug,$firm->slug])}}">{{$firm->name}}</a>
+                    <a href="{{route('type.index',[ $type->slug,$firm->slug])}}" class="font-weight-bold pb-1">{{$firm->name}}</a>
                     <span>({{$firm->products_count}})</span>
                 </li>
             @endforeach
@@ -83,7 +85,7 @@
                             <input type="checkbox" wire:model.boolean="selectAttributesId.{{$attribute->id}}.{{$attributeOption->id}}" wire:click="changeAttributes"
                                    value="{{$attributeOption->id}}" id="label{{$attributeOption->id}}"
                                    class="custom-control-input">
-                            <label for="label{{$attributeOption->id}}" class="custom-control-label color-dark" style="display: block">
+                            <label for="label{{$attributeOption->id}}" class="custom-control-label color-dark" style="display: block; cursor: pointer">
                                 {{$attributeOption->value}}
                             </label>
                         </div>

@@ -3,21 +3,27 @@
 namespace App\Livewire\Front\Type;
 
 use App\Models\Attribute;
+use App\Models\Collection;
 use App\Models\Firm;
 use App\Models\Product;
 use App\Models\Type;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
+use Livewire\Features\SupportAttributes\AttributeCollection;
 
 class Filter extends Component
 {
-    public $typeId, $firmId = null, $prices;
+    public $typeId;
+    public $firmId = null;
+    public $collectionId = null;
+    public $prices;
     public $selectAttributesId = [];
     public $arryay = [];
     public $priceMin;
     public $priceMax;
     public $priceFrom;
     public $priceTo;
+
 
     protected $listeners = [
         'update-price' => 'updatePrice',
@@ -28,7 +34,37 @@ class Filter extends Component
     {
         $this->priceFrom = $from;
         $this->priceTo = $to;
+
     }
+
+    public function clearAll()
+    {
+        $this->firmId = null;
+        $this->collectionId = null;
+        $this->selectAttributesId = [];
+        $this->arryay = [];
+        $this->dispatch('clear-all');
+    }
+
+    public function removeFilter($target)
+    {
+        if ($target == 'firm') {
+            $this->firmId = '';
+            $this->collectionId = '';
+            $this->dispatch('delete-filter', target: 'firm');
+        }
+        if ($target == 'collection') {
+            $this->collectionId = '';
+            $this->dispatch('delete-filter', target: 'collection');
+        }
+
+    }
+
+    public function removeAttr()
+    {
+        $this->arryay = [];
+    }
+
 
     public function changeAttributes()
     {
@@ -52,7 +88,6 @@ class Filter extends Component
 
     public function mount()
     {
-
         $this->priceMin = $this->prices['min'];
         $this->priceMax = $this->prices['max'];
         $this->priceFrom = $this->prices['min'];
@@ -70,6 +105,12 @@ class Filter extends Component
             $selectFirm = [];
         }
 
+        if ($this->collectionId) {
+            $selectCollection = Collection::findOrFail($this->collectionId);
+        } else {
+            $selectCollection = [];
+        }
+
 
         // производители в выбранном типе
         $firms = Firm::whereHas('products', fn($query) => $query->where('type_id', '=', $this->typeId))
@@ -78,6 +119,7 @@ class Filter extends Component
             }])
             ->orderBy('name')
             ->get();
+
 
         // аттрибуты в выбранном
         $attributes = Attribute::whereHas('attributeOptions.products.type', fn($query) => $query->where('id', '=', $type->id))
@@ -88,10 +130,14 @@ class Filter extends Component
             ->with(['attributeOptions' => function ($query) use ($type) {
                 $query->whereHas('products.type', function ($query) use ($type) {
                     $query->where('id', '=', $type->id);
+                    debug($this->firmId);
                 })
                     ->when($this->firmId, function ($q) {
                         // если указана фирма
                         $q->whereHas('products.firm', fn($query) => $query->where('firms.id', '=', $this->firmId));
+                    })
+                    ->when($this->collectionId, function ($q) {
+                        $q->whereHas('products.firm.collections', fn($query) => $query->where('collections.id', '=', $this->collectionId));
                     })
                     ->withCount(['products' => function (Builder $query) use ($type) {
                         $query
@@ -99,21 +145,25 @@ class Filter extends Component
                             ->when($this->firmId, function ($q) {
                                 $q->whereHas('firm', fn($query) => $query->where('firms.id', '=', $this->firmId));
                             })
-                            ->when($this->priceFrom && $this->priceTo, function ($q)  {
+                            ->when($this->collectionId, function ($q) {
+                                $q->whereHas('firm.collections', fn($query) => $query->where('collections.id', '=', $this->collectionId));
+                            })
+                            ->when($this->priceFrom && $this->priceTo, function ($q) {
                                 return $q->whereBetween('price_metr', [$this->priceFrom, $this->priceTo]);
                             })
                             ->when(count($this->arryay), function ($q) {
                                 foreach ($this->arryay as $key => $value) {
-                                    $q = $q->whereHas('attributeOptions.attribute', fn($query) => $query->where('id', $key));
-                                    // $q = $q->whereHas('attributeOptions', fn($query) => $query->whereIn('id', $value));
-                                }
+                                    //  $q = $q->whereHas('attributeOptions.attribute', fn($query) => $query->where('id', $key));
+                                    $q = $q->whereHas('attributeOptions.attribute', fn($query) => $query->whereIn('id', [$key]));
 
-                                debug($q);
+                                    //$q = $q->whereHas('attributeOptions', fn($query) => $query->whereNotIn('id', $value));
+                                }
+                                // $q = $q->whereHas('attributeOptions', fn($query) => $query->whereIn('id', $value));
+                                //debug($q);
                                 return $q;
                             });
                     }]);
             }])
-            // если выбран производитель
             ->get();
 
         // массив выбранных опций атрибутов
@@ -133,6 +183,7 @@ class Filter extends Component
             'attributes',
             'selectAttributes',
             'selectFirm',
+            'selectCollection',
         ));
     }
 }

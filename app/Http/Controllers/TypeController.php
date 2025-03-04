@@ -20,6 +20,7 @@ class TypeController extends Controller
         $selectFirm = null;
         $selectFirmId = null;
         $selectCollection = null;
+        $selectCollectionId = null;
 
         if ($slug_firm) {
             // проверка на наличие фирмы с товаром в данном типе
@@ -32,6 +33,7 @@ class TypeController extends Controller
                 ->withMax('products', 'price_metr')
                 ->firstOrFail();
             $selectFirmId  = $selectFirm->id;
+
             if (!$selectFirm->products_count) {
                 abort(404);
             }
@@ -47,6 +49,8 @@ class TypeController extends Controller
                     ->withMin('products', 'price_metr')
                     ->withMax('products', 'price_metr')
                     ->firstOrFail();
+
+                $selectCollectionId  = $selectCollection->id;
 
                 if (!$selectCollection->products_count) {
                     abort(404);
@@ -231,6 +235,7 @@ class TypeController extends Controller
                 'firms',
                 'price',
                 'selectFirmId',
+                'selectCollectionId',
                 'prices',
                 'selectAttributes',
                 'attributes',

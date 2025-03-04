@@ -49,6 +49,7 @@ class AppServiceProvider extends ServiceProvider
             'slider' => 'App\Models\Slider',
             'user' => 'App\Models\User',
             'collection' => 'App\Models\Collection',
+          //  'attribute' => 'App\Models\Attribute',
         ]);
     }
 }
