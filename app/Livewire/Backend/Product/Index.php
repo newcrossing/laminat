@@ -21,6 +21,15 @@ class Index extends Component
         $product = Product::findOrFail($id);
         $public = $product->public;
         $product->public = !$public;
+        $product->timestamps = false;
+        $product->save();
+    }
+
+    public function toogleHave($id){
+        $product = Product::findOrFail($id);
+        $have_sklad = $product->have_sklad;
+        $product->have_sklad = !$have_sklad;
+        $product->timestamps = false;
         $product->save();
     }
 

@@ -96,7 +96,7 @@
                         <tr wire:key="{{$product->id}}">
                             <td class="text-bold-400">
                                 <a class="readable-mark-icon" href="{{route('backend.product.edit',$product->id)}}"> {{ Str::limit($product->name, 40)  }} </a>
-{{--                                <div class="small">{{$product->id}} {{ Str::limit($product->slug , 40)  }}</div>--}}
+                                {{--                                <div class="small">{{$product->id}} {{ Str::limit($product->slug , 40)  }}</div>--}}
                                 <div class="font-small-1">
                                     <i class="bx bx-pencil font-small-1"></i> {{$product->updated_at->diffForHumans()}},
                                     <i class="bx bx-plus font-small-1"></i> {{$product->created_at->diffForHumans()}}
@@ -110,22 +110,41 @@
                                 {{$product->collection->firm->name}}, {{$product->collection->name}}
                             </td>
                             <td class="text-bold-600">
-                                <div class="text-success"> {{ Number::format($product->actualPriceMetr(),locale: 'ru')}} <sub>руб.</sub></div>
+                                <div class="text-success"> {{ Number::format($product->actualPriceMetr(),locale: 'ru')}}</div>
                                 @if($product->oldPriceMetr())
                                     <div>
                                         <del> {{ Number::format($product->oldPriceMetr(),locale: 'ru')}}</del>
-                                        <sub>руб.</sub>
                                     </div>
                                 @endif
                             </td>
                             <td class=" ">
                                 @if($product->public)
-                                    <i wire:click="tooglePublic({{$product->id}})" wire:confirm="Снять с публикации?"
-                                       class="bx bx-check text-success  font-large-1 cursor-pointer"></i>
+                                    <div wire:click="tooglePublic({{$product->id}})" wire:confirm="Снять с публикации?"
+                                         class="badge badge-success badge-icon mr-0 mb-1 cursor-pointer"
+                                         data-toggle="tooltip" data-placement="top" title="" data-original-title="Опубликован на сайте">
+                                        <i class="bx bxs-show"></i>
+                                    </div>
                                 @else
-                                    <i wire:click="tooglePublic({{$product->id}})" wire:confirm="Опубликовать?" class="bx bx-x text-danger  font-large-1 cursor-pointer"></i>
+                                    <div class="badge badge-danger badge-icon mr-0 mb-1 cursor-pointer"
+                                         data-toggle="tooltip" data-placement="top" title="" data-original-title="Снят с публикации"
+                                         wire:click="tooglePublic({{$product->id}})" wire:confirm="Опубликовать?">
+                                        <i class="bx bxs-hide"></i>
+                                    </div>
                                 @endif
 
+                                @if($product->have_sklad)
+                                    <div class="badge badge-success badge-icon mr-1 mb-1 cursor-pointer"
+                                         data-toggle="tooltip" data-placement="top" title="" data-original-title="Имеется в наличии"
+                                         wire:click="toogleHave({{$product->id}})" wire:confirm="Установить нет в наличии?">
+                                        <i class="bx bx-check"></i>
+                                    </div>
+                                @else
+                                    <div class="badge badge-danger badge-icon mr-1 mb-1 cursor-pointer"
+                                         data-toggle="tooltip" data-placement="top" title="" data-original-title="Нет в наличии"
+                                         wire:click="toogleHave({{$product->id}})" wire:confirm="Установить в наличии?">
+                                        <i class="bx bx-x"></i>
+                                    </div>
+                                @endif
                             </td>
                             <td>
                                 <div class="dropdown">
@@ -144,7 +163,9 @@
                     </tbody>
                 </table>
                 @if($allCount-$count > 0)
-                    <button type="button" wire:click="loadMore" class="btn mb-1 btn-outline-primary btn-lg btn-block">Загрузить еще ({{$allCount-$count}})</button>
+                    <div class="ml-3 mr-3">
+                        <button type="button" wire:click="loadMore" class="btn mb-1 btn-outline-primary btn-lg btn-block">Загрузить еще ({{$allCount-$count}})</button>
+                    </div>
                 @endif
                 <!-- table ends -->
             </div>
