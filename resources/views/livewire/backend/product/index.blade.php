@@ -110,12 +110,18 @@
                                 {{$product->collection->firm->name}}, {{$product->collection->name}}
                             </td>
                             <td class="text-bold-600">
-                                <div class="text-success"> {{ Number::format($product->actualPriceMetr(),locale: 'ru')}}</div>
-                                @if($product->oldPriceMetr())
-                                    <div>
-                                        <del> {{ Number::format($product->oldPriceMetr(),locale: 'ru')}}</del>
-                                    </div>
-                                @endif
+                                <div>
+                                   <span class="text-success mr-1">{{ Number::format($product->price_metr)}}</span>
+                                    @if(($product->price_metr_sale > 0 ))
+                                        <del> {{ Number::format($product->price_metr_sale,)}}</del>
+                                    @endif
+                                </div>
+                                <div>
+                                    <span class="text-success mr-1">{{ Number::format($product->price_upak)}}</span>
+                                    @if(($product->price_upak_sale > 0 ))
+                                        <del> {{ Number::format($product->price_upak_sale)}}</del>
+                                    @endif
+                                </div>
                             </td>
                             <td class=" ">
                                 @if($product->public)
