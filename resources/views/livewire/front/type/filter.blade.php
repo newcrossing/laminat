@@ -76,11 +76,11 @@
     <!-- End of Collapsible Widget -->
     @foreach($attributes as $attribute)
         <!-- Start of Collapsible Widget -->
-        <div class="widget widget-collapsible">
+        <div wire:key="{{$attribute->id}}" class="widget widget-collapsible">
             <h3 class="widget-title text-normal" style="border-bottom: 2px solid #336699;"><span>{{$attribute->name}} </span></h3>
             <ul class="widget-body filter-items item-check mt-1">
                 @foreach($attribute->attributeOptions as $attributeOption)
-                    <li class="mb-1 d-flex justify-content-between align-items-center pl-3 ">
+                    <li wire:key="{{$attributeOption->id}}" class="mb-1 d-flex justify-content-between align-items-center pl-3 ">
                         <div class="custom-radio">
                             <input type="checkbox" wire:model.boolean="selectAttributesId.{{$attribute->id}}.{{$attributeOption->id}}" wire:click="changeAttributes"
                                    value="{{$attributeOption->id}}" id="label{{$attributeOption->id}}"
