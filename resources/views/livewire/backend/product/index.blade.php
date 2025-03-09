@@ -111,7 +111,7 @@
                             </td>
                             <td class="text-bold-600">
                                 <div>
-                                   <span class="text-success mr-1">{{ Number::format($product->price_metr)}}</span>
+                                    <span class="text-success mr-1">{{ Number::format($product->price_metr)}}</span>
                                     @if(($product->price_metr_sale > 0 ))
                                         <del> {{ Number::format($product->price_metr_sale,)}}</del>
                                     @endif
@@ -139,16 +139,30 @@
                                 @endif
 
                                 @if($product->have_sklad)
-                                    <div class="badge badge-success badge-icon mr-1 mb-1 cursor-pointer"
+                                    <div class="badge badge-success badge-icon  mb-1 cursor-pointer"
                                          data-toggle="tooltip" data-placement="top" title="" data-original-title="Имеется в наличии"
                                          wire:click="toogleHave({{$product->id}})" wire:confirm="Установить нет в наличии?">
                                         <i class="bx bx-check"></i>
                                     </div>
                                 @else
-                                    <div class="badge badge-danger badge-icon mr-1 mb-1 cursor-pointer"
+                                    <div class="badge badge-danger badge-icon  mb-1 cursor-pointer"
                                          data-toggle="tooltip" data-placement="top" title="" data-original-title="Нет в наличии"
                                          wire:click="toogleHave({{$product->id}})" wire:confirm="Установить в наличии?">
                                         <i class="bx bx-x"></i>
+                                    </div>
+                                @endif
+
+                                @if($product->have_room)
+                                    <div class="badge badge-success badge-icon mr-1 mb-1 cursor-pointer"
+                                         data-toggle="tooltip" data-placement="top" title="" data-original-title="Имеется в шоуруме"
+                                         wire:click="toogleRoom({{$product->id}})">
+                                        <i class="bx bx-buildings"></i>
+                                    </div>
+                                @else
+                                    <div class="badge badge-warning badge-icon mr-1 mb-1 cursor-pointer"
+                                         data-toggle="tooltip" data-placement="top" title="" data-original-title="Нет в шоуруме"
+                                         wire:click="toogleRoom({{$product->id}})">
+                                        <i class="bx bx-buildings"></i>
                                     </div>
                                 @endif
                             </td>

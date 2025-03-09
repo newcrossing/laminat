@@ -33,6 +33,13 @@ class Index extends Component
         $product->save();
     }
 
+    public function toogleRoom($id){
+        $product = Product::findOrFail($id);
+        $have_room = $product->have_room;
+        $product->have_room = !$have_room;
+        $product->timestamps = false;
+        $product->save();
+    }
 
     public function loadMore()
     {
