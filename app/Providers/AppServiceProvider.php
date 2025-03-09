@@ -6,8 +6,10 @@ use App\Models\Cart;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Number;
 use Illuminate\Support\ServiceProvider;
+use Opcodes\LogViewer\Facades\LogViewer;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -41,7 +43,9 @@ class AppServiceProvider extends ServiceProvider
         \View::share('menuData', [$verticalMenuData]);
         \View::share('Carbone', $Carbone);
 
-        //\View::share('cartCount', $cart->products->count());
+        LogViewer::auth(function () {
+            return Auth::check();
+        });
 
         Relation::enforceMorphMap([
             'product' => 'App\Models\Product',
