@@ -64,3 +64,8 @@
         <!-- End of Page Content -->
     </main>
 @endsection
+@section('page-scripts')
+    <script>
+
+    </script>
+@endsection

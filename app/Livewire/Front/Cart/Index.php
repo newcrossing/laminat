@@ -57,6 +57,8 @@ class Index extends Component
 
             Log::info('Корзина: очищена');
         }
+       // $this->dispatch('alert',message: 'Товар удален из корзины',header:'Успешно');
+        $this->js("Toasty.showToast('Успешно','Товар удален из корзины', '<i class=\"fas fa-exclamation-circle\"></i>', 3000)");
 
         $this->render();
     }

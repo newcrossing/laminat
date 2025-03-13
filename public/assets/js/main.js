@@ -1197,16 +1197,15 @@ window.Wolmart = {};
         });
 
         // Login popup
-        Wolmart.$body
-            .on('click', '.sign-in', function (e) {
-                e.preventDefault();
+        Wolmart.$body.on('click', '.sign-in', function (e) {
+            e.preventDefault();
 
-                Wolmart.popup({
-                    items: {
-                        src: $(e.currentTarget).attr('href')
-                    }
-                }, 'login')
-            })
+            Wolmart.popup({
+                items: {
+                    src: $(e.currentTarget).attr('href')
+                }
+            }, 'login')
+        })
 
             .on('click', '.register', function (e) {
                 e.preventDefault();
