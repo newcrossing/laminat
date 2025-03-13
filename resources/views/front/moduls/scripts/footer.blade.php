@@ -10,8 +10,8 @@
 <script src="/assets/vendor/photoswipe/photoswipe.js"></script>
 <script src="/assets/vendor/photoswipe/photoswipe-ui-default.js"></script>
 
+<script src="/assets/js/toastr.min.js"></script>
 
-<script src="/assets/js/toasty.js"></script>
 <!-- Swiper JS -->
 <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
 <script>

@@ -38,28 +38,33 @@ class Index extends Component
     public function delete($id = null)
     {
         if ($id) {
-            // удаляю из корзины
-            $this->cart->products()->detach($id);
-
-            session()->forget(keys: 'cart');
-            session()->put(
-                key: 'cart',
-                value: $this->cart->products->pluck('id')->toArray(),
-            );
-
-            Log::info('Корзина: удален товар', [$id]);
+            // удаляю из корзины один товар
+            try {
+                $this->cart->products()->detach($id);
+                session()->forget(keys: 'cart');
+                session()->put(
+                    key: 'cart',
+                    value: $this->cart->products->pluck('id')->toArray(),
+                );
+                Log::info('Корзина: удален товар', [$id]);
+                $this->js("toastr.success('Товар удален из корзины')");
+            } catch (Exception  $e) {
+                Log::error('Корзина: ошибка удаления из корзины', [$e]);
+                $this->js("toastr.error('Ошибка удаления')");
+            }
         } else {
-
-            $this->cart->products()->detach();
-
-            // очищаю сессию
-            session()->forget(keys: 'cart');
-
-            Log::info('Корзина: очищена');
+            // очищаю корзину
+            try {
+                $this->cart->products()->detach();
+                // очищаю сессию
+                session()->forget(keys: 'cart');
+                Log::info('Корзина: очищена');
+                $this->js("toastr.success('Корзина очищена')");
+            }catch (Exception  $e) {
+                Log::error('Корзина: ошибка очищения корзины', [$e]);
+                $this->js("toastr.error('Ошибка очищения корзины')");
+            }
         }
-       // $this->dispatch('alert',message: 'Товар удален из корзины',header:'Успешно');
-        $this->js("Toasty.showToast('Успешно','Товар удален из корзины', '<i class=\"fas fa-exclamation-circle\"></i>', 3000)");
-
         $this->render();
     }
 

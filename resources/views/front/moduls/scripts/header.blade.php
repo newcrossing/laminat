@@ -29,6 +29,6 @@
 
 <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
 
-<link rel="stylesheet" href="/assets/css/toasty.css">
+<link rel="stylesheet" href="/assets/css/toastr.css">
 
 @yield('vendor-styles')
