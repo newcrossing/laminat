@@ -93,6 +93,7 @@ Route::middleware(['role:admin'])->prefix('backend')->group(
         Route::resource('user', App\Http\Controllers\Backend\UserController::class)->names('backend.user');;
         Route::post('/upload/photo', [PhotoController::class, 'upload'])->name('backend.photo.upload');
         Route::post('/upload/delete/{id}', [PhotoController::class, 'delete'])->name('backend.photo.delete');
+        Route::post('/upload/sorting', [PhotoController::class, 'sorting'])->name('backend.photo.sorting');
 
     }
 );

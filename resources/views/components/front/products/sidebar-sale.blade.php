@@ -12,7 +12,6 @@
                             @else
                                 <img class="prod-img" src="{{ Croppa::url( \App\Models\Foto::getUrlForCroppaNull(),300,300,['quadrant']) }}"/>
                             @endif
-                            {{--                        <img src="assets/images/shop/1.jpg" alt="Product" width="100" height="106">--}}
                         </a>
                     </figure>
                     <div class="product-details">

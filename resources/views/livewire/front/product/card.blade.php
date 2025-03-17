@@ -7,18 +7,15 @@
                 /** @var \App\Models\Product  $product */
             $arrCookie = explode(",", Cookie::get('wishlist'));
             $arrCart = session('cart');
-           // $arrCart = array(5, 9, 10);
-
             @endphp
 
             <div class=" mb-4">
                 <div class="product product-simple text-center">
                     <figure class="product-media">
                         <a href="{{route('prod.show',$product->slug)}}">
-                            @if($product->fotos()->count())
-                                @foreach($product->fotos as $foto)
+                            @if(count ($product->fotos))
+                                @foreach($product->fotos()->orderBy('order')->limit(2)->get() as $foto)
                                     <img src="{{ Croppa::url($foto->getUrlForCroppa(),400,500,['quadrant']) }}" alt="{{$product->getFullName()}}">
-                                    @break
                                 @endforeach
                             @else
                                 <img src="{{ Croppa::url( \App\Models\Foto::getUrlForCroppaNull(),400,500,['quadrant']) }}">
@@ -48,10 +45,10 @@
                         <div class="product-cat">
                             <a href="{{route('type.index',$product->type->slug)}}">{{$product->type->name}}</a>
                         </div>
-                        <h4 class="product-name font-weight-normal" style="    white-space: normal;"><a
-                                    href="{{route('prod.show',$product->slug)}}"> {{$product->collection->firm->name}}   {{$product->collection->name}} {{$product->name}}</a></h4>
+                        <h4 class="product-name font-weight-normal" style="    white-space: normal;">
+                            <a href="{{route('prod.show',$product->slug)}}"> {{$product->collection->firm->name}} {{$product->collection->name}} {{$product->name}}</a>
+                        </h4>
                         <div class="product-pa-wrapper">
-
                             <div class="product-price">
                                 <div class="ratings-container">
                                     <span class="rating-reviews font-weight-normal text-normal">за 1 м<sup>2</sup></span>
@@ -62,28 +59,24 @@
                                 @endif
                             </div>
 
-
                             <div class="product-action">
                                 @if(in_array($product->id, $arrCart?:[]))
                                     <a data-id="{{$product->id}}" href="#" class="btn-cart btn-product btn btn-icon-right btn-link btn-underline disabled" style="color: #36bd00">
                                         <i class=" w-icon-check"></i> В корзине</a>
                                 @else
-
                                     <a data-id="{{$product->id}}" href="#" class="btn-cart btn-product btn btn-icon-right btn-link btn-underline"> В корзину</a>
-
                                 @endif
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         @endforeach
-
     </div>
     @if($allCount-$count > 0)
         <div class="btn-wrap show-code-action ml-0">
-            <button wire:click="loadMore" class="btn btn-block btn-rounded    btn-primary btn-outline">  Загрузить еще ({{$allCount-$count}}) <i class=" w-icon-angle-down"></i></button>
+            <button wire:click="loadMore" class="btn btn-block btn-rounded    btn-primary btn-outline"> Загрузить еще ({{$allCount-$count}}) <i class=" w-icon-angle-down"></i>
+            </button>
         </div>
     @endif
 </div>

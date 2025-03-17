@@ -8,6 +8,7 @@ use App\Models\Firm;
 use App\Models\Product;
 use App\Models\Type;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
 use Livewire\Features\SupportAttributes\AttributeCollection;
 
@@ -97,10 +98,15 @@ class Filter extends Component
 
     function render()
     {
-        $type = Type::withCount('productsPublic')->findOrFail($this->typeId);
+        $type = Cache::remember('type-id-'.$this->typeId, now()->addHour(2), function ()  {
+            return  Type::withCount('productsPublic')->findOrFail($this->typeId);
+        });
+
 
         if ($this->firmId) {
-            $selectFirm = Firm::findOrFail($this->firmId);
+            $selectFirm = Cache::remember('firm-id-'.$this->firmId, now()->addHour(2), function ()  {
+                return  Firm::findOrFail($this->firmId);
+            });
         } else {
             $selectFirm = [];
         }
@@ -113,12 +119,16 @@ class Filter extends Component
 
 
         // производители в выбранном типе
-        $firms = Firm::whereHas('products', fn($query) => $query->where('type_id', '=', $this->typeId))
-            ->withCount(['products' => function (Builder $query) use ($type) {
-                $query->whereHas('type', fn($query) => $query->where('id', '=', $this->typeId));
-            }])
-            ->orderBy('name')
-            ->get();
+        $firms = Cache::remember('firms-type-id-'.$this->typeId, now()->addHour(2), function () use ($type) {
+            return  Firm::whereHas('products', fn($query) => $query->where('type_id', '=', $this->typeId))
+                ->withCount(['products' => function (Builder $query) use ($type) {
+                    $query->whereHas('type', fn($query) => $query->where('id', '=', $this->typeId));
+                }])
+                ->orderBy('name')
+                ->get();
+        });
+
+
 
 
         // аттрибуты в выбранном

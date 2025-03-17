@@ -19,8 +19,7 @@ class ProductController extends Controller
 
     public function show($slug)
     {
-        $product = Product::where('slug', $slug)->public()->firstOrFail();
-
+        $product = Product::with(['firm','type','collection'])->where('slug', $slug)->public()->firstOrFail();
 
         $breadcrumbs = [
             ['link' => route('home'), 'name' => "Главная"],
@@ -30,23 +29,6 @@ class ProductController extends Controller
             ['name' => $product->name]
         ];
 
-
-        $co = collect([['id' => 1, 'count' => 2]]);
-        //$co->push(['id'=>2,'count'=>3]);
-        // dump($co->where('id',2));
-        // $t = $co->toJson();
-
-        //$dataCollection = collect(json_decode($t, true));
-        // dd(($dataCollection));
-        //dd(collect([['id' => 1, 'count' => 2]])->toJson());
-        // dd(array(Cookie::get('cart')));
-        //   return response(1)->withCookie(cookie()->forever('cart2', $numbers->toJson()));
-        // dd($numbers->toArray());
-        //$cart  = Cart::firstOrCreate(['session' => session()->getId()]);
-       // dump(session()->get(key: 'cart', default: 1));
-
-
-        //   return view('frontend.pages.product.index', compact('product', 'breadcrumbs'));
         return view('front.pages.product.show', compact('product', 'breadcrumbs'));
     }
 }

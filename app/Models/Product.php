@@ -49,6 +49,7 @@ class Product extends Model
 
     protected $casts = [
         'public' => 'boolean',
+        'have_sklad' => 'boolean',
         //'price_metr' => 'decimal:8,2',
     ];
 

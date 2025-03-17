@@ -10,13 +10,18 @@ use App\Models\Type;
 use http\Message;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Cookie;
 
 class TypeController extends Controller
 {
     public function index(Request $request, $slug_type, $slug_firm = null, $slug_collection = null,)
     {
-        $type = Type::where('slug', $slug_type)->withCount('productsPublic')->firstOrFail();
+        $type = Cache::remember('type-slug-'.$slug_type, now()->addHour(2), function () use ($slug_type) {
+            return Type::where('slug', $slug_type)->withCount('productsPublic')->firstOrFail();
+        });
+
+
         $selectFirm = null;
         $selectFirmId = null;
         $selectCollection = null;

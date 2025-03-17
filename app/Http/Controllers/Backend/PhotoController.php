@@ -15,10 +15,7 @@ class PhotoController extends Controller
 {
     public function upload(Request $request)
     {
-        // create new manager instance with desired driver
-//        $image = ImageManager::imagick()->read($request['file']);
-//        $image->toJpeg()->save('public/test.jpg');
-//        $image->toJpeg()->save('public/test.jpg');
+
         $files = $request->images;
 //dd($request->toArray());
         $class = Relation::getMorphedModel($request['model']);
@@ -73,7 +70,6 @@ class PhotoController extends Controller
     {
         $img = Foto::find($imgId);
 
-
         // check image in database
         if (!$img) {
             return response()->json(['error' => 'Нет в базе']);
@@ -87,7 +83,17 @@ class PhotoController extends Controller
         Log::info("Удалил " . $imgId);
 
         return true;
+    }
 
-
+    public function sorting(Request $request)
+    {
+        foreach ($request->params as $k => $v) {
+            $foto = Foto::find($v['key']);
+            if ($foto->order != $k) {
+                $foto->order = $k;
+                $foto->save();
+            }
+        }
+        return true;
     }
 }

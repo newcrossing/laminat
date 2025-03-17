@@ -283,7 +283,7 @@
                                                 <label class="form-label">Цена за м<sup>2</sup></label>
                                                 <div class="input-group">
                                                     <input type="text" class="form-control @if($product->isPriceMetr()) border-success @endif" name="price_metr"
-                                                           value="{{old('price_metr',$product->actualPriceMetr())}}"  autocomplete="off">
+                                                           value="{{old('price_metr',$product->actualPriceMetr())}}" autocomplete="off">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">руб.</span>
                                                     </div>
@@ -309,7 +309,7 @@
                                                 <label class="form-label">Цена за упаковку</label>
                                                 <div class="input-group">
                                                     <input type="text" class="form-control @if($product->isPriceUpak()) border-success @endif" name="price_upak"
-                                                           value="{{old('price_upak',$product->actualPriceUpak())}}"  autocomplete="off">
+                                                           value="{{old('price_upak',$product->actualPriceUpak())}}" autocomplete="off">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">руб.</span>
                                                     </div>
@@ -320,7 +320,7 @@
                                                 <label class="form-label">Скидка </label>
                                                 <div class="input-group">
                                                     <input type="text" class="form-control @if(!$product->isPriceUpak()) border-success @endif " name="price_upak_sale"
-                                                           value="{{old('price_upak_sale',$product->oldPriceUpak())}}"  autocomplete="off">
+                                                           value="{{old('price_upak_sale',$product->oldPriceUpak())}}" autocomplete="off">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">руб.</span>
                                                     </div>
@@ -428,15 +428,15 @@
     <script>
         $('#file-up').fileinput({
             initialPreview: [
-                @foreach($product->fotos as $img)
+                @foreach($product->fotos()->orderBy('order')->get() as $img)
                     "{{  Croppa::url($img->getUrlForCroppa(),800)}}",
                 @endforeach
             ],
             initialPreviewAsData: true,
             initialPreviewConfig: [
-                    @foreach($product->fotos  as $img)
+                    @foreach($product->fotos()->orderBy('order')->get()  as $img)
                 {
-                    size: "{{$img->getSize()}}", width: "120px", url: "{{route('backend.photo.delete',[$img->id , '_token' => csrf_token()])}}"
+                    size: "{{$img->getSize()}}", width: "120px",key: {{$img->id}}, url: "{{route('backend.photo.delete',[$img->id , '_token' => csrf_token()])}}"
                 },
                 @endforeach
             ],
@@ -453,14 +453,36 @@
             showCancel: false,
             showRemove: false,
             showUpload: true,
-
-
             allowedFileExtensions: ['jpg', 'png', 'gif']
         });
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
+        });
+
+        $('#file-up').on('filesorted', function(event, params) {
+            //console.log('File sorted ',params ,params.oldIndex, params.newIndex, params.stack);
+            $.ajax({
+                url: "{!! route('backend.photo.sorting') !!}",
+                async: false,
+                type: "POST",
+                data: {
+                    model: 'product',
+                    id: {{$product->id}},
+                    params: params.stack,
+                },
+                success: function (response) {
+                   // console.log(response)
+
+                    // setTimeout(function () {
+                    //     //$($this).removeClass('load-more-overlay loading');
+                    // }, 500);
+                },
+                error: function (jqXHR, exception) {
+                    result = false
+                }
+            });
         });
 
     </script>

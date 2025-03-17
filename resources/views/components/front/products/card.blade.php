@@ -13,18 +13,15 @@
         /** @var \App\Models\Product  $product */
     $arrCookie = explode(",", Cookie::get('wishlist'));
     $arrCart = session('cart');
-   // $arrCart = array(5, 9, 10);
-
     @endphp
 
     <div class="{{$col_lg}} mb-4">
         <div class="product product-simple text-center">
             <figure class="product-media">
                 <a href="{{route('prod.show',$product->slug)}}">
-                    @if($product->fotos()->count())
-                        @foreach($product->fotos as $foto)
+                    @if(count ($product->fotos))
+                        @foreach($product->fotos()->orderBy('order')->limit(2)->get() as $foto)
                             <img src="{{ Croppa::url($foto->getUrlForCroppa(),400,500,['quadrant']) }}" alt="{{$product->getFullName()}}">
-                            @break
                         @endforeach
                     @else
                         <img src="{{ Croppa::url( \App\Models\Foto::getUrlForCroppaNull(),400,500,['quadrant']) }}">
@@ -39,7 +36,6 @@
                         <label class="product-label label-new">В шоуруме</label>
                     @endif
                 </div>
-
 
                 <div class="product-action-vertical" style="opacity: 100; visibility: visible">
                     <a href="#" class="btn-product-icon btn-wishlist
@@ -68,15 +64,12 @@
                         @endif
                     </div>
 
-
                     <div class="product-action">
                         @if(in_array($product->id, $arrCart?:[]))
                             <a data-id="{{$product->id}}" href="#" class="btn-cart btn-product btn btn-icon-right btn-link btn-underline disabled" style="color: #36bd00">
                                 <i class=" w-icon-check"></i> В корзине</a>
                         @else
-
                             <a data-id="{{$product->id}}" href="#" class="btn-cart btn-product btn btn-icon-right btn-link btn-underline"> В корзину</a>
-
                         @endif
 
                     </div>

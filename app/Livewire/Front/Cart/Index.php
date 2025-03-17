@@ -35,7 +35,7 @@ class Index extends Component
         $this->render();
     }
 
-    public function delete($id = null)
+    public function delete(int|null $id = null): void
     {
         if ($id) {
             // удаляю из корзины один товар
@@ -60,7 +60,7 @@ class Index extends Component
                 session()->forget(keys: 'cart');
                 Log::info('Корзина: очищена');
                 $this->js("toastr.success('Корзина очищена')");
-            }catch (Exception  $e) {
+            } catch (Exception  $e) {
                 Log::error('Корзина: ошибка очищения корзины', [$e]);
                 $this->js("toastr.error('Ошибка очищения корзины')");
             }
@@ -70,13 +70,6 @@ class Index extends Component
 
     public function mount()
     {
-//        $cart = Cart::getCart();
-//        $this->products = $cart->products;
-//
-//        foreach ($this->products as $product) {
-//            $this->priceTotal += $product->getPriceByCount($product->pivot->count);
-//            $this->packingWeight += $product->packing_weight * $product->pivot->count;
-//        }
 
     }
 

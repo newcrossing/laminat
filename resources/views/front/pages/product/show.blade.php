@@ -11,6 +11,9 @@
 @endsection
 
 @section('content')
+    @php
+        /** @var \App\Models\Product  $product */
+    @endphp
     <main class="main mb-10 pb-1">
 
         <!-- Start of Breadcrumb -->
@@ -32,8 +35,8 @@
                                             }
                                         }">
                                         <div class="swiper-wrapper row cols-1 gutter-no">
-                                            @if($product->fotos()->count())
-                                                @foreach($product->fotos as $foto)
+                                            @if(count( $product->fotos))
+                                                @foreach($product->fotos()->orderBy('order')->get() as $foto)
                                                     <div class="swiper-slide">
                                                         <figure class="product-image">
                                                             <img src="{{ Croppa::url($foto->getUrlForCroppa(),800,900,['quadrant']) }}"
@@ -51,7 +54,6 @@
                                                     </figure>
                                                 </div>
                                             @endif
-
                                         </div>
                                         <button class="swiper-button-next"></button>
                                         <button class="swiper-button-prev"></button>
@@ -64,8 +66,8 @@
                                             }
                                         }">
                                         <div class="product-thumbs swiper-wrapper row cols-4 gutter-sm">
-                                            @if($product->fotos()->count())
-                                                @foreach($product->fotos as $foto)
+                                            @if(count($product->fotos))
+                                                @foreach($product->fotos()->orderBy('order')->get() as $foto)
                                                     <div class="product-thumb swiper-slide">
                                                         <img src="{{ Croppa::url($foto->getUrlForCroppa(),100,100,['quadrant']) }}">
                                                     </div>
@@ -87,7 +89,7 @@
                                     <div class="product-bm-wrapper">
                                         @if( $foto = $product->firm->fotos)
                                             <figure class="brand">
-                                                <img src="{{ Croppa::url($foto[0]->getUrlForCroppa(),100) }}" width="102" height="48"/>
+                                                <img src="{{ Croppa::url($foto[0]->getUrlForCroppa(),150) }}" width="150"/>
                                             </figure>
                                         @endif
                                         <div class="product-meta">
@@ -102,15 +104,25 @@
                                     </div>
 
                                     <hr class="product-divider">
-
-
+                                    @if(!$product->have_sklad)
+                                        <div class="alert alert-icon alert-warning alert-bg alert-inline show-code-action mb-1">
+                                            <h4 class="alert-title"><i class="w-icon-exclamation-triangle"></i>Внимание! </h4>
+                                            В данный момент данного товара нет в наличии
+                                        </div>
+                                    @endif
                                     <div class="product-short-desc">
                                         {{ $product->description }}
                                     </div>
+
                                     <div class="product-form product-variation-form product-size-swatch">
                                         <div class="flex-wrap d-flex align-items-center product-variations">
-                                            <span class="size mr-1 font-weight-bold">В наличии</span>
-                                            <span class="size mr-1 font-weight-bold">Имеется в шоуруме</span>
+                                            @if($product->have_sklad)
+                                                <span class="size mr-1 font-weight-bold">В наличии</span>
+                                            @endif
+                                            @if($product->have_room)
+                                                <span class="size mr-1 font-weight-bold">Имеется в шоуруме</span>
+                                            @endif
+
                                         </div>
                                     </div>
                                     {{--todo сделать нормально--}}
@@ -153,7 +165,6 @@
                                     </div>
                                     <hr class="product-divider">
                                     @if($product->square)
-
                                         <div class="alert alert-primary  alert-button alert-block show-code-action mb-3" style="border: 2px solid">
                                             <h4 class=""><i class="w-icon-orders"></i> Калькулятор</h4>
                                             <div class="row">
@@ -182,14 +193,14 @@
                                                 <ins class="new-price" id="price_summ">{{ Number::format($product->price_upak,locale: 'ru')}}</ins>
                                                 <span class="font-size-md"> руб. </span>
                                             </div>
-
                                         </div>
                                     </div>
-                                    <hr class="product-divider">
 
+                                    <hr class="product-divider">
 
                                     <div class="fix-bottom product-sticky-content sticky-content">
                                         <div class="product-form container" style="align-items: flex-start">
+
                                             <div class="product-qty-form">
                                                 <div class="input-group">
                                                     <input class="quantity form-control" type="number" min="1" id="count_up" max="10000" onchange="calculateSummPrice(false)">
@@ -202,7 +213,7 @@
                                                     <i class=" w-icon-check"></i><span>В корзине</span>
                                                 </button>
                                             @else
-                                                <button class="btn  btn-primary btn-cart mr-1" data-id="{{$product->id}}">
+                                                <button class="btn  btn-primary btn-cart mr-1" data-id="{{$product->id}}" @disabled(!$product->have_sklad)>
                                                     <i class="w-icon-cart"></i> <span> В корзину</span>
                                                 </button>
                                             @endif
@@ -264,11 +275,9 @@
                         <section class="mb-7">
                             <h2 class="title title-center mb-5">Аналоги </h2>
                             <div class="row gutter-xs show-code-action">
-                                <x-front.products.card :products="\App\Models\Product::limit(8)->get()" :col="3"/>
+                                <x-front.products.card :products="\App\Models\Product::limit(8)->public()->get()" :col="3"/>
                             </div>
                         </section>
-
-
                     </div>
                     <!-- End of Main Content -->
 
@@ -279,8 +288,6 @@
                         <div class="sidebar-content">
                             <div class="pin-wrapper" style="height: 1742.59px;">
                                 <div class="sticky-sidebar" style="border-bottom: 0px none rgb(102, 102, 102); width: 279.986px;">
-
-
                                     <div class="widget widget-collapsible widget-time">
                                         <h3 class="widget-title"><span>Параметры</span>
                                             <span class="toggle-btn"></span></h3>
