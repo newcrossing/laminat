@@ -61,7 +61,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="@error('phone') text-danger font-weight-bold @enderror">Телефон *</label>
-                                <input type="text" class="form-control form-control-md mb-0 text-dark" name="tel" pattern="^8[0-9]{10}$">
+                                <input type="text" class="form-control form-control-md mb-0 text-dark" name="tel" pattern="^[0-9]{10}$">
                                 <p class="font-size-sm mb-1">Номер телефона в формате 8ХХХХХХХХХХ</p>
                             </div>
                             <div class="form-group">

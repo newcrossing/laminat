@@ -13,7 +13,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::with('products')->get();
+        $orders = Order::with('products')->latest()->get();
 
         $breadcrumbs = [
             ['link' => route('backend.home'), 'name' => "Главная"],

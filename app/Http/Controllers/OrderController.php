@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Enums\OrderStatusEnum;
 use App\Http\Requests\StoreOrderRequest;
+use App\Mail\Contact;
+use App\Mail\OrderShipped;
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\User;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -16,7 +20,6 @@ class OrderController extends Controller
 
         // Общий вес заказа
         $packingWeight = 0;
-
 
         $cart = Cart::getCart();
         $products = $cart->products;
@@ -47,11 +50,19 @@ class OrderController extends Controller
             return redirect()->route('cart');
         }
 
+        // массив в письмо
+        $array = array();
+        $arrayOrder = [];
 
         // сумма заказа
         foreach ($products as $product) {
             $priceTotal += $product->getPriceByCount($product->pivot->count);
             $packingWeight += $product->packing_weight * $product->pivot->count;
+
+            $array[] = array(
+                'name' => $product->getFullName(),
+                'count' => $product->pivot->count,
+                'summa' => $product->getPriceByCount($product->pivot->count));
         }
 
         $order->fill($validated);
@@ -63,6 +74,10 @@ class OrderController extends Controller
         $order->price_delivery = $order->delivery_type->label()['price'];
         $order->save();
 
+        $arrayOrder['numder'] = $order->order_number;
+        $arrayOrder['price_delivery'] = $order->price_delivery;
+        $arrayOrder['price_total'] = $order->price_total;
+
         // Добавляю продукты в заказ
         foreach ($products as $product) {
             $order->products()->attach($product->id, ['count' => $product->pivot->count, 'price' => $product->price_upak]);
@@ -71,6 +86,8 @@ class OrderController extends Controller
         // очищаю корзину
         $cart->products()->detach();
         session()->forget(keys: 'cart');
+
+        Mail::to(User::adminUsers()->get())->send(new OrderShipped($validated, $array, $arrayOrder));
 
         Log::info("Размещен заказ {$order->order_number}");
 

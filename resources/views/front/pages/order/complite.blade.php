@@ -47,11 +47,11 @@
                     </li>
                     <li>
                         <label>Статус</label>
-                        <strong>{{$order->status}}</strong>
+                        <strong>{{$order->status->name()}}</strong>
                     </li>
                     <li>
                         <label>Дата</label>
-                        <strong>{{$order->created_at->format('d-m-Y')}}</strong>
+                        <strong>{{$order->created_at->format('d.m.Y')}}</strong>
                     </li>
                     <li>
                         <label>Всего </label>

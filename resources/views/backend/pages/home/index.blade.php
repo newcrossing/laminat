@@ -353,10 +353,33 @@
                             </div>
 
 
-
                         </div>
                     </div>
                     <!-- Revenue Growth Chart Starts -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="basic-button-icons">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Функции</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <livewire:backend.home.cashe />
+                                    <!-- Buttons with Icon -->
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

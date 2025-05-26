@@ -11,6 +11,8 @@ class Order extends Model
 {
     use HasFactory;
 
+    const COUNT_OF_PAGINATION = 24;
+
     public const  DELIVERY = [
         'moscow' => 2500,
         'moscow_oblast_vostok' => 2000,

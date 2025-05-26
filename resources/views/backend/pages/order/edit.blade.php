@@ -68,7 +68,7 @@
                                             <span>{{$order->email}}</span>
                                         </div>
                                         <div class="mb-1">
-                                            <span>{{$order->comment}}</span>
+                                            Комментарий: <span>{{$order->comment}}</span>
                                         </div>
                                     </div>
                                     <div class="col-6 mt-1">
@@ -98,6 +98,7 @@
                                         <th scope="col">Товар</th>
                                         <th scope="col" class="text-right">Количество</th>
                                         <th scope="col" class="text-right">Цена</th>
+                                        <th scope="col" class="text-right">Сумма</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -106,9 +107,14 @@
                                             /** @var \App\Models\Product  $product */
                                         @endphp
                                         <tr>
-                                            <td><a href="{{route('prod.show',$product->slug)}}" target="_blank">{{$product->getFullName()}}</a></td>
-                                            <td class="text-right">{{$product->pivot->count}}</td>
-                                            <td class="text-primary text-right font-weight-bold">{{$product->pivot->price}}</td>
+                                            <td>
+                                                <a href="{{route('prod.show',$product->slug)}}" target="_blank">{{$product->getFullName()}}</a>
+                                            </td>
+                                            <td class="text-center">{{$product->pivot->count}}</td>
+                                            <td class="text-primary text-right ">{{Number::format($product->pivot->price)}}</td>
+                                            <td class="text-primary text-right font-weight-bold">
+                                                {{Number::format($product->getPriceByCount($product->pivot->count))}}
+                                            </td>
                                         </tr>
                                     @endforeach
 
