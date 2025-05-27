@@ -104,6 +104,12 @@
       "icon": "bxs-book-content"
     },
     {
+      "url": "backend/banner",
+      "name": "Баннеры",
+      "i18n": "Invoice",
+      "icon": "bxs-book-content"
+    },
+    {
       "navheader": "Прочее"
     },
     {

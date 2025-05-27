@@ -3,10 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Str;
-use Illuminate\Validation\Rule;
 
-class StoreSliderRequest extends FormRequest
+class StoreBannerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -16,15 +14,21 @@ class StoreSliderRequest extends FormRequest
         return true;
     }
 
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     */
     public function rules(): array
     {
         return [
             'name' => 'required|max:255|min:3',
-            'text' => 'nullable|string',
             'public' => 'boolean',
-            'h1' => 'nullable',
-            'h2' => 'nullable',
-            'link' => 'nullable',
+            'block' => 'nullable',
+            'target_url' => 'nullable',
+            'target_url_self' => 'nullable',
+            'url' => 'url',
+
         ];
     }
 
@@ -39,8 +43,8 @@ class StoreSliderRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'type' => 'home-main',
             'public' => $this->public ? true : false,
+            'target_url_self' => $this->target_url_self ? true : false,
         ]);
     }
 }

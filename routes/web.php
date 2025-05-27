@@ -4,6 +4,7 @@ use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\Auth\LoginRegisterController;
 use App\Http\Controllers\Backend\AttributeController;
 use App\Http\Controllers\Backend\AttributeOptionController;
+use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Backend\CollectionController;
 use App\Http\Controllers\Backend\FirmController;
 use App\Http\Controllers\Backend\HomeController;
@@ -89,6 +90,7 @@ Route::middleware(['role:admin'])->prefix('backend')->group(
         Route::resource('attribute-option', AttributeOptionController::class)->names('backend.attribute-option');
         Route::resource('info', InfoController::class)->names('backend.info');
         Route::resource('slider', SliderController::class)->names('backend.slider');
+        Route::resource('banner', BannerController::class)->names('backend.banner');
         Route::resource('order', \App\Http\Controllers\Backend\OrderController::class)->names('backend.order');
         Route::resource('user', App\Http\Controllers\Backend\UserController::class)->names('backend.user');;
         Route::post('/upload/photo', [PhotoController::class, 'upload'])->name('backend.photo.upload');

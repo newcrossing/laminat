@@ -51,6 +51,7 @@ class AppServiceProvider extends ServiceProvider
             'product' => 'App\Models\Product',
             'firm' => 'App\Models\Firm',
             'slider' => 'App\Models\Slider',
+            'banner' => 'App\Models\Banner',
             'user' => 'App\Models\User',
             'collection' => 'App\Models\Collection',
           //  'attribute' => 'App\Models\Attribute',
