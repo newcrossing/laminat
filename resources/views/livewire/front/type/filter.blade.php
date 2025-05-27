@@ -82,9 +82,13 @@
                 @foreach($attribute->attributeOptions as $attributeOption)
                     <li wire:key="{{$attributeOption->id}}" class="mb-1 d-flex justify-content-between align-items-center pl-3 ">
                         <div class="custom-radio">
-                            <input type="checkbox" wire:model.boolean="selectAttributesId.{{$attribute->id}}.{{$attributeOption->id}}" wire:click="changeAttributes"
-                                   value="{{$attributeOption->id}}" id="label{{$attributeOption->id}}"
-                                   class="custom-control-input">
+                            <input type="checkbox"
+                                   wire:model.boolean="selectAttributesId.{{$attribute->id}}.{{$attributeOption->id}}"
+                                   wire:click="changeAttributes"
+                                   value="{{$attributeOption->id}}"
+                                   id="label{{$attributeOption->id}}"
+                                   class="custom-control-input"
+                            >
                             <label for="label{{$attributeOption->id}}" class="custom-control-label color-dark" style="display: block; cursor: pointer">
                                 {{$attributeOption->value}}
                             </label>

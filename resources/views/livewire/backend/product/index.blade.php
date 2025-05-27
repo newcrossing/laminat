@@ -61,7 +61,7 @@
                         </th>
                         <th>
                             <select class="custom-select" wire:model.change="sortingFirmId">
-                                <option selected="">Все</option>
+                                <option selected="" value="">Все</option>
                                 @foreach($firms as $firm)
                                     <option value="{{$firm->id}}">{{$firm->name}}</option>
                                 @endforeach
@@ -123,16 +123,18 @@
                                     @endif
                                 </div>
                             </td>
-                            <td class=" ">
+                            <td  >
                                 @if($product->public)
                                     <div wire:click="tooglePublic({{$product->id}})" wire:confirm="Снять с публикации?"
                                          class="badge badge-success badge-icon mr-0 mb-1 cursor-pointer"
-                                         data-toggle="tooltip" data-placement="top" title="" data-original-title="Опубликован на сайте">
+                                         data-toggle="tooltip" data-placement="top" title="Опубликован на сайте"
+                                         data-original-title="Опубликован на сайте" >
                                         <i class="bx bxs-show"></i>
                                     </div>
                                 @else
                                     <div class="badge badge-danger badge-icon mr-0 mb-1 cursor-pointer"
-                                         data-toggle="tooltip" data-placement="top" title="" data-original-title="Снят с публикации"
+                                         data-toggle="tooltip" data-placement="top" title="Снят с публикации"
+                                         data-original-title="Снят с публикации"
                                          wire:click="tooglePublic({{$product->id}})" wire:confirm="Опубликовать?">
                                         <i class="bx bxs-hide"></i>
                                     </div>
@@ -140,13 +142,15 @@
 
                                 @if($product->have_sklad)
                                     <div class="badge badge-success badge-icon  mb-1 cursor-pointer"
-                                         data-toggle="tooltip" data-placement="top" title="" data-original-title="Имеется в наличии"
+                                         data-toggle="tooltip" data-placement="top" title="Имеется в наличии"
+                                         data-original-title="Имеется в наличии"
                                          wire:click="toogleHave({{$product->id}})" wire:confirm="Установить нет в наличии?">
                                         <i class="bx bx-check"></i>
                                     </div>
                                 @else
                                     <div class="badge badge-danger badge-icon  mb-1 cursor-pointer"
-                                         data-toggle="tooltip" data-placement="top" title="" data-original-title="Нет в наличии"
+                                         data-toggle="tooltip" data-placement="top" title="Нет в наличии"
+                                         data-original-title="Нет в наличии"
                                          wire:click="toogleHave({{$product->id}})" wire:confirm="Установить в наличии?">
                                         <i class="bx bx-x"></i>
                                     </div>
@@ -154,13 +158,15 @@
 
                                 @if($product->have_room)
                                     <div class="badge badge-success badge-icon mr-1 mb-1 cursor-pointer"
-                                         data-toggle="tooltip" data-placement="top" title="" data-original-title="Имеется в шоуруме"
+                                         data-toggle="tooltip" data-placement="top" title="Имеется в шоуруме"
+                                         data-original-title="Имеется в шоуруме"
                                          wire:click="toogleRoom({{$product->id}})">
                                         <i class="bx bx-buildings"></i>
                                     </div>
                                 @else
                                     <div class="badge badge-warning badge-icon mr-1 mb-1 cursor-pointer"
-                                         data-toggle="tooltip" data-placement="top" title="" data-original-title="Нет в шоуруме"
+                                         data-toggle="tooltip" data-placement="top" title="Нет в шоуруме"
+                                         data-original-title="Нет в шоуруме"
                                          wire:click="toogleRoom({{$product->id}})">
                                         <i class="bx bx-buildings"></i>
                                     </div>
@@ -182,6 +188,7 @@
 
                     </tbody>
                 </table>
+
                 @if($allCount-$count > 0)
                     <div class="ml-3 mr-3">
                         <button type="button" wire:click="loadMore" class="btn mb-1 btn-outline-primary btn-lg btn-block">Загрузить еще ({{$allCount-$count}})</button>

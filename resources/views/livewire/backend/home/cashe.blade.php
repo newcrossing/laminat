@@ -1,9 +1,8 @@
 <div>
     @if($clear===null)
-        <button type="button" class="btn btn-outline-primary mr-1 mb-1" wire:click="clearAll" wire:confirm="Снять с публикации?">
+        <button type="button" class="btn btn-outline-primary mr-1 mb-1" wire:click="clearAll" wire:confirm="Уверены?">
             <i class="bx bx-memory-card"></i><span class="align-middle ml-25">Очистить кеш</span>
         </button>
-
     @endif
     @if($clear===true)
         <button type="button" class="btn btn-success glow mr-1 mb-1"><i class="bx bx-check"></i>
