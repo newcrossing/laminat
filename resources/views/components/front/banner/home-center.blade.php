@@ -8,7 +8,6 @@
                             'breakpoints': {'576': {'slidesPerView': 2},'992': {'slidesPerView': 2}}
                         }">
             <div class="swiper-wrapper " id="swiper-wrapper-e5ccb74f4f1e10f4d" aria-live="polite" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
-                {{$urlCurrent}}
                 @foreach($banners as $banner)
                     <div class="swiper-slide category-wrap swiper-slide-active" role="group" aria-label="1 / 3" style="width: 400px; margin-right: 20px;">
                         <div class="category category-absolute category-default overlay-zoom">
