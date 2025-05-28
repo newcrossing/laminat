@@ -26,4 +26,13 @@ trait HasFotos
     {
         return $this->morphOne(Foto::class, 'fotoable')->oldest();
     }
+
+    /**
+     * Получает первую запись фотографий
+     * @return MorphOne
+     */
+    public function fotoOne()
+    {
+        return $this->morphOne(Foto::class, 'fotoable')->oldest()->first();
+    }
 }

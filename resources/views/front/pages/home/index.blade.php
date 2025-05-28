@@ -20,23 +20,12 @@
                  data-swiper-options="{
                     'loop': true,
                     'slidesPerView': 1,
-                    'autoplay': {
-                        'delay': 4000,
-                        'disableOnInteraction': false
-                    },
+                    'autoplay': {'delay': 4000,'disableOnInteraction': false},
                     'breakpoints': {
-                        '576': {
-                            'slidesPerView': 2
-                        },
-                        '768': {
-                            'slidesPerView': 3
-                        },
-                        '992': {
-                            'slidesPerView': 3
-                        },
-                        '1200': {
-                            'slidesPerView': 4
-                        }
+                        '576': {'slidesPerView': 2},
+                        '768': {'slidesPerView': 3},
+                        '992': {'slidesPerView': 3},
+                        '1200': {'slidesPerView': 4}
                     }
                 }">
                 <div class="swiper-wrapper row cols-md-4 cols-sm-3 cols-1">
@@ -174,6 +163,11 @@
                 <div class="swiper-pagination"></div>
             </div>
             <!-- End of Swiper Container -->
+
+            <x-front.banner.home-center block="main-center" url-current="{{request()->path()}}" />
+
+
+
 
             <x-front.home.top-type :types="$types"/>
 

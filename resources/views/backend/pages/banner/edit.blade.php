@@ -109,10 +109,11 @@
                             <h6>Расположение</h6>
                             <fieldset class="form-group">
                                 <select class="form-control" name="block">
-                                    <option value="main-center" @selected(@$banner->block== 'main-center')>На главной в центре</option>
-                                    <option value="main-left" @selected(@$banner->block== 'main-left')>На главной слева</option>
-                                    <option value="main-right" @selected(@$banner->block== 'main-right')>На главной справа</option>
-                                    <option value="type" @selected(@$banner->block== 'type')>В типе продукции</option>
+                                    @foreach(\App\Enums\BannerBlockEnum::cases() as $case)
+                                        <option value="{{$case->value}}" @if((string) $case->value==@$banner->block->value) selected @endif>
+                                            {{$case->name()}}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </fieldset>
                         </div>
@@ -138,7 +139,9 @@
                     <div class="card">
 
                         <div class="card-content" style="margin: 20px">
-                            <p class="text-warning">Грузим сюда одно изображение</p>
+                            <p class="text-warning mb-0">Размеры баннеров:</p>
+                            <p class="text-warning mb-0">для типов продукции 300х150</p>
+                            <p class="text-warning mb-0">На главную в центр 640x200</p>
                             <form enctype="multipart/form-data" method="post">
                                 @csrf
                                 <div class="file-loading">

@@ -22,7 +22,7 @@
                     <a class="readable-mark-icon" href="{{route('backend.banner.edit',$banner)}}">{{ Str::limit($banner->name, 40)  }}</a>
                 </td>
                 <td>
-                    {{ $banner->block }}
+                    {{ $banner->block->name() }}
                 </td>
                 <td>
                     {{ $banner->url }}
