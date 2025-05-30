@@ -28,7 +28,9 @@
 
             <livewire:front.wishlists.top/>
 
-            <x-front.cart/>
+            <livewire:front.cart.top/>
+
+{{--            <x-front.cart/>--}}
 
         </div>
     </div>

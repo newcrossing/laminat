@@ -25,12 +25,6 @@ class Index extends Component
         }
         $this->cart->products()->updateExistingPivot($id, ['count' => $count]);
 
-        session()->forget(keys: 'cart');
-        session()->put(
-            key: 'cart',
-            value: $this->cart->products->pluck('id')->toArray(),
-        );
-
         Log::info('Корзина: удален товар', [$id]);
         $this->render();
     }
@@ -41,13 +35,11 @@ class Index extends Component
             // удаляю из корзины один товар
             try {
                 $this->cart->products()->detach($id);
-                session()->forget(keys: 'cart');
-                session()->put(
-                    key: 'cart',
-                    value: $this->cart->products->pluck('id')->toArray(),
-                );
+                // посылаю сигнал на обновление
+                $this->dispatch('cart-update');
                 Log::info('Корзина: удален товар', [$id]);
                 $this->js("toastr.success('Товар удален из корзины')");
+
             } catch (Exception  $e) {
                 Log::error('Корзина: ошибка удаления из корзины', [$e]);
                 $this->js("toastr.error('Ошибка удаления')");
@@ -56,8 +48,7 @@ class Index extends Component
             // очищаю корзину
             try {
                 $this->cart->products()->detach();
-                // очищаю сессию
-                session()->forget(keys: 'cart');
+                $this->dispatch('cart-update');
                 Log::info('Корзина: очищена');
                 $this->js("toastr.success('Корзина очищена')");
             } catch (Exception  $e) {

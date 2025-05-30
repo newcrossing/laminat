@@ -17,17 +17,22 @@
                         @php
                             /** @var \App\Models\Product  $product */
                         @endphp
-                        <tr wire:key="{{$product->id}}" id="cart-product-{{$product->id}}">
+                        <tr wire:key="{{$product->id}}">
                             <td class="product-thumbnail">
                                 <div class="p-relative">
                                     <a href="{{route('prod.show',$product->slug)}}">
                                         <figure>
-                                            @if($img =  $product->foto)
+                                            @if($img = $product->foto)
                                                 <img src="{{  Croppa::url($img->getUrlForCroppa(),300)}}" width="300" height="338"/>
                                             @endif
                                         </figure>
                                     </a>
-                                    <button class="btn btn-close " wire:click="delete({{$product->id}})"><i class="fas fa-times"></i></button>
+                                    <button class="btn btn-close"
+                                            wire:click="delete({{$product->id}})"
+                                            wire:target="delete({{ $product->id }})"
+                                            wire:loading.class="load-more-overlay loading">
+                                        <i class="fas fa-times"></i>
+                                    </button>
                                 </div>
                             </td>
                             <td class="product-name font-weight-normal">
@@ -36,8 +41,8 @@
                                 </a>
                             </td>
                             <td class="product-price text-center">
-                                <span class="amount" id="price-{{$product->id}}" data-price="{{$product->price_upak}}">
-                                    {{ Number::format($product->price_upak,locale: 'ru')}}
+                                <span class="amount">
+                                    {{ Number::format($product->price_upak)}}
                                 </span>
                                 <sub class="font-weight-normal">руб.</sub>
                             </td>
@@ -51,7 +56,7 @@
                                 </div>
                             </td>
                             <td class="product-subtotal text-center">
-                                <span class="amount" id="price-summ-{{$product->id}}">{{ Number::format($product->price_upak * $product->pivot->count,locale: 'ru')}}</span>
+                                <span class="amount" >{{ Number::format($product->price_upak * $product->pivot->count)}}</span>
                                 <sub class="font-weight-normal">руб.</sub>
                             </td>
                         </tr>

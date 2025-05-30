@@ -208,7 +208,7 @@
                                                     <button class="quantity-minus w-icon-minus" onclick="calculateSummPrice(false)"></button>
                                                 </div>
                                             </div>
-                                            @if(in_array($product->id, session()->get(key: 'cart')?:[]))
+                                            @if($product->isCart())
                                                 <button class="btn  btn-success btn-cart mr-1" data-id="{{$product->id}}" disabled>
                                                     <i class=" w-icon-check"></i><span>В корзине</span>
                                                 </button>
@@ -218,8 +218,7 @@
                                                 </button>
                                             @endif
 
-                                            <button class="btn   @if($product->isWishlist()) btn-success  @else btn-primary btn-outline @endif
-                                            btn-rounded btn-wishlist   " data-idwishlist="{{$product->id}}" href="#" @if($product->isWishlist()) disabled @endif>
+                                            <button class="btn btn-rounded btn-wishlist  @if($product->isWishlist()) btn-success  @else btn-primary btn-outline @endif" data-idwishlist="{{$product->id}}" href="#" @if($product->isWishlist()) disabled @endif>
                                                 <i class="w-icon-heart "></i>&nbsp;
                                             </button>
                                         </div>

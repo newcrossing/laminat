@@ -20,7 +20,7 @@ class Product extends Model
     const COUNT_OF_PAGINATION = 24;
     protected $perPage = 24;
 
-    protected $with = ['fotos', 'wishlist'];
+    protected $with = ['fotos', 'wishlist', 'cart'];
 
 //    protected $dispatchesEvents = [
 //        'updated' => UserSaving::class,
@@ -143,6 +143,11 @@ class Product extends Model
         return (count($this->wishlist)) ? true : false;
     }
 
+    public function isCart(): bool
+    {
+        return (count($this->cart)) ? true : false;
+    }
+
 
     public function collection(): BelongsTo
     {
@@ -181,6 +186,15 @@ class Product extends Model
         return $this->belongsToMany(Cart::class)->withPivot('count');
     }
 
+    public function cart()
+    {
+        if (Auth::id()) {
+            return $this->belongsToMany(Cart::class)->where('user_id', Auth::id());
+        } else {
+            return $this->belongsToMany(Cart::class)->where('session', session()->getId());
+        }
+    }
+
     public function wishlists()
     {
         return $this->belongsToMany(Wishlist::class, 'wishlist_product')->withPivot('count');
@@ -188,7 +202,6 @@ class Product extends Model
 
     public function wishlist()
     {
-
         if (Auth::id()) {
             return $this->belongsToMany(Wishlist::class, 'wishlist_product')->where('user_id', Auth::id());
         } else {

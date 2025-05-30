@@ -2217,19 +2217,13 @@ window.Wolmart = {};
             let id = $(this).data('id');
             let count = ($('#count_up').val()) ? $('#count_up').val() : 1;
 
-            const response = addCart('add', id, count);
 
-            if (response.count > 0) {
-                $('#cart_count').show()
-                $('#cart_count').text(response.count)
-            } else {
-                $('#cart_count').hide()
-                $('#cart_count').text(0)
-            }
+
+            Livewire.dispatch('cart-add', {productID: id, count: count})
 
 
             $this.toggleClass('added').addClass('load-more-overlay loading');
-            // addCart('add',)
+
 
             setTimeout(function () {
                 $this.removeClass('load-more-overlay loading');

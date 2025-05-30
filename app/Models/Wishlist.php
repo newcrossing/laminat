@@ -42,8 +42,7 @@ class Wishlist extends Model
      * Возвращает количество товаров в избранном
      * @return int
      */
-    public
-    static function getWishlistProductsCount(): int
+    public static function getWishlistProductsCount(): int
     {
         if (Auth::id()) {
             $w = Wishlist::where('user_id', self::getUserID())->first();
@@ -55,12 +54,10 @@ class Wishlist extends Model
         } else {
             return 0;
         }
-
     }
 
 
-    public
-    function products()
+    public function products()
     {
         return $this->belongsToMany(Product::class, 'wishlist_product')->withPivot('count');
     }
