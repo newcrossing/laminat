@@ -32,7 +32,6 @@ class Top extends Component
 
     public function render()
     {
-
         $count = Wishlist::getWishlistProductsCount();
 
         return view('livewire.front.wishlists.top', compact('count'));

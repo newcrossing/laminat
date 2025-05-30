@@ -22,7 +22,6 @@ class Top extends Component
     public function cartUpdate()
     {
         $this->render();
-
     }
 
     public function cartAdd(int $productID, int $count = 1)
@@ -32,7 +31,7 @@ class Top extends Component
         $this->cart->products()->detach($productID);
         $this->cart->products()->attach($productID, ['count' => $count]);
 
-        Log::info('Избранное: товар добавлен в избранное', ['ID=' => $productID, 'Количество=' => $count]);
+        Log::info('Корзина: товар добавлен', ['ID=' => $productID, 'Количество=' => $count]);
         $this->js("toastr.success('Товар добавлен в корзину')");
     }
 
@@ -53,7 +52,6 @@ class Top extends Component
         } else {
             $this->products = [];
         }
-
 
         return view('livewire.front.cart.top');
     }

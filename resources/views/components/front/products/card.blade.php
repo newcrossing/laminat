@@ -11,8 +11,6 @@
 @foreach($products as $product)
     @php
         /** @var \App\Models\Product  $product */
-    $arrCookie = explode(",", Cookie::get('wishlist'));
-    $arrCart = session('cart');
     @endphp
 
     <div class="{{$col_lg}} mb-4">
@@ -20,7 +18,7 @@
             <figure class="product-media">
                 <a href="{{route('prod.show',$product->slug)}}">
                     @if(count ($product->fotos))
-                        @foreach($product->fotos()->orderBy('order')->limit(2)->get() as $foto)
+                        @foreach($product->fotos->slice(0, 2) as $foto)
                             <img src="{{ Croppa::url($foto->getUrlForCroppa(),400,500,['quadrant']) }}" alt="{{$product->getFullName()}}">
                         @endforeach
                     @else
@@ -37,18 +35,12 @@
                     @endif
                 </div>
 
-{{--                <div class="product-action-vertical" style="opacity: 100; visibility: visible">--}}
-{{--                    <a href="#" class="btn-product-icon btn-wishlist--}}
-{{--                     @if(in_array($product->id, $arrCookie)) w-icon-heart-full @else w-icon-heart @endif "--}}
-{{--                       title="@if(in_array($product->id, $arrCookie)) В избранном @else В избранное @endif" data-idwishlist="{{$product->id}}"></a>--}}
-{{--                </div> --}}
                 <div class="product-action-vertical" style="opacity: 100; visibility: visible">
                     <a href="#" class="btn-product-icon btn-wishlist
                      @if($product->isWishlist()) w-icon-heart-full @else w-icon-heart @endif "
                        title="@if($product->isWishlist()) В избранном @else В избранное @endif" data-idwishlist="{{$product->id}}"></a>
                 </div>
                 <div class="product-action">
-
                 </div>
             </figure>
             <div class="product-details">
@@ -63,23 +55,17 @@
                         <div class="ratings-container">
                             <span class="rating-reviews font-weight-normal text-normal">за 1 м<sup>2</sup></span>
                         </div>
-                        <ins class="new-price">{{ Number::format($product->price_metr,locale: 'ru')}} <sub>руб.</sub></ins>
+                        <ins class="new-price">{{ Number::format($product->price_metr)}} <sub>руб.</sub></ins>
                         @if($product->oldPriceMetr())
-                            <del class="old-price">{{Number::format($product->price_metr_sale,locale: 'ru')}} <sub>руб.</sub></del>
+                            <del class="old-price">{{Number::format($product->price_metr_sale)}} <sub>руб.</sub></del>
                         @endif
                     </div>
 
                     <div class="product-action">
-{{--                        @if(in_array($product->id, $arrCart?:[]))--}}
-                        {{--                            <a data-id="{{$product->id}}" href="#" class="btn-cart btn-product btn btn-icon-right btn-link btn-underline disabled" style="color: #36bd00">--}}
-                        {{--                                <i class=" w-icon-check"></i> В корзине</a>--}}
-                        {{--                        @else--}}
-                        {{--                            <a data-id="{{$product->id}}" href="#" class="btn-cart btn-product btn btn-icon-right btn-link btn-underline"> В корзину</a>--}}
-                        {{--                        @endif--}}
-
                             @if($product->isCart())
                                 <a data-id="{{$product->id}}" href="#" class="btn-cart btn-product btn btn-icon-right btn-link btn-underline disabled" style="color: #36bd00">
-                                    <i class=" w-icon-check"></i> В корзине</a>
+                                    <i class=" w-icon-check"></i> В корзине
+                                </a>
                             @else
                                 <a data-id="{{$product->id}}" href="#" class="btn-cart btn-product btn btn-icon-right btn-link btn-underline"> В корзину</a>
                             @endif

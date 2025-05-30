@@ -11,8 +11,8 @@
 
 @section('content')
     <main class="main">
-{{--        <x-front.sliders.home-main :sliders="\App\Models\Slider::with('fotos')->where('public',true)->get()"/>--}}
-        <x-front.sliders.home-main2 />
+        {{--        <x-front.sliders.home-main :sliders="\App\Models\Slider::with('fotos')->where('public',true)->get()"/>--}}
+        <x-front.sliders.home-main2/>
 
         <!-- End of Intro-section -->
 
@@ -74,19 +74,21 @@
                 <div class="col-md-2 mb-4">
                     <div class="banner banner-fixed br-xs">
                         <figure>
-                            <img src="/assets/images/pages/promo.jpg" alt="Category Banner"  style="background-color: #ecedec;"/>
+                            <img src="/assets/images/pages/promo.jpg" alt="Category Banner" style="background-color: #ecedec;"/>
                         </figure>
 
                     </div>
                 </div>
-                <div class="col-md-10 mb-4" >
+                <div class="col-md-10 mb-4">
                     <p style="text-align: justify;">
-                    В интернет-магазине «Пол России» вы можете приобрести SPC ламинат и другие напольные покрытия по выгодным ценам.
-                    SPC ламинат — представляет собой инновационный материал для напольных покрытий, который завоевал популярность благодаря своим уникальным характеристикам и преимуществам.
-                    В нашем каталоге представлен широкий выбор SPC ламинат различных видов.
+                        В интернет-магазине «Пол России» вы можете приобрести SPC ламинат и другие напольные покрытия по выгодным ценам.
+                        SPC ламинат — представляет собой инновационный материал для напольных покрытий, который завоевал популярность благодаря своим уникальным характеристикам и
+                        преимуществам.
+                        В нашем каталоге представлен широкий выбор SPC ламинат различных видов.
 
-                    Кроме SPC ламината, в нашем магазине и салоне в Щелкове вы можете найти большой выбор паркета, массивной и инженерной доски от ведущих мировых производителей.
-                    Мы предлагаем услуги по подбору, доставке и укладке.
+                        Кроме SPC ламината, в нашем магазине и салоне в Щелкове вы можете найти большой выбор паркета, массивной и инженерной доски от ведущих мировых
+                        производителей.
+                        Мы предлагаем услуги по подбору, доставке и укладке.
                     </p>
                 </div>
             </div>
@@ -165,10 +167,7 @@
             </div>
             <!-- End of Swiper Container -->
 
-            <x-front.banner.home-center block="main-center" url-current="{{request()->path()}}" />
-
-
-
+            <x-front.banner.home-center block="main-center" url-current="{{request()->path()}}"/>
 
             <x-front.home.top-type :types="$types"/>
 
@@ -201,14 +200,13 @@
 
             <div class="title-link-wrapper appear-animate">
                 <h2 class="title">Топ товаров по скидке</h2>
-                <a href="" class="font-weight-bold ls-25 text-normal">
+                <a href="{{route('sale')}}" class="font-weight-bold ls-25 text-normal">
                     Смотреть все <i class="w-icon-long-arrow-right"></i>
                 </a>
             </div>
             <!-- End of Title Link Wrapper -->
             <div class="row cols-lg-4 cols-md-3 cols-xs-2 cols-1 appear-animate">
                 <x-front.products.card :products="\App\Models\Product::inRandomOrder()->where('price_metr_sale', '<>', '')->limit(6)->get()"/>
-                <!-- End of Product Wrap -->
             </div>
             <!-- End of Product Widget -->
 
@@ -217,23 +215,13 @@
                     'loop': true,
                     'spaceBetween': 20,
                     'slidesPerView': 2,
-                    'autoplay': {
-                        'delay': 4000,
-                        'disableOnInteraction': false
+                    'autoplay': {'delay': 4000,'disableOnInteraction': false
                     },
                     'breakpoints': {
-                        '576': {
-                            'slidesPerView': 3
-                        },
-                        '768': {
-                            'slidesPerView': 4
-                        },
-                        '992': {
-                            'slidesPerView': 6
-                        },
-                        '1200': {
-                            'slidesPerView': 8
-                        }
+                        '576': {'slidesPerView': 3},
+                        '768': {'slidesPerView': 4},
+                        '992': {'slidesPerView': 6},
+                        '1200': {'slidesPerView': 8}
                     }
                 }">
                 <div class="swiper-wrapper row cols-xl-8 cols-lg-6 cols-md-4 cols-sm-3 cols-2">
@@ -241,8 +229,7 @@
                         @if($img = $firm->fotos()->first())
                             <div class="swiper-slide">
                                 <figure>
-                                    <img src="{{ Croppa::url($img->getUrlForCroppa(),null,100,['quadrant']) }}"
-                                         width="290" height="100"/>
+                                    <img src="{{ Croppa::url($img->getUrlForCroppa(),null,100,['quadrant']) }}" width="290" height="100"/>
                                 </figure>
                             </div>
                         @endif

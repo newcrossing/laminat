@@ -20,7 +20,7 @@ class Product extends Model
     const COUNT_OF_PAGINATION = 24;
     protected $perPage = 24;
 
-    protected $with = ['fotos', 'wishlist', 'cart'];
+    protected $with = ['fotos', 'wishlist', 'cart', 'type','collection','firm'];
 
 //    protected $dispatchesEvents = [
 //        'updated' => UserSaving::class,

@@ -13,7 +13,7 @@
                     <figure class="product-media">
                         <a href="{{route('prod.show',$product->slug)}}">
                             @if(count ($product->fotos))
-                                @foreach($product->fotos()->orderBy('order')->limit(2)->get() as $foto)
+                                @foreach($product->fotos->slice(0,2) as $foto)
                                     <img src="{{ Croppa::url($foto->getUrlForCroppa(),400,500,['quadrant']) }}" alt="{{$product->getFullName()}}">
                                 @endforeach
                             @else
