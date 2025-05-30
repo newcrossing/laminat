@@ -2580,12 +2580,12 @@ window.Wolmart = {};
                 e.preventDefault();
                 self.startDecrease();
             })
-            .on('touchstart', function (e) {
-                if (e.cancelable) {
-                    e.preventDefault();
-                }
-                self.startDecrease();
-            })
+            // .on('touchstart', function (e) {
+            //     if (e.cancelable) {
+            //         e.preventDefault();
+            //     }
+            //     self.startDecrease();
+            // })
             .on('mouseup', self.stop);
 
         self.$plus = $el.parent().find('.quantity-plus')
@@ -2593,12 +2593,12 @@ window.Wolmart = {};
                 e.preventDefault();
                 self.startIncrease();
             })
-            .on('touchstart', function (e) {
-                if (e.cancelable) {
-                    e.preventDefault();
-                }
-                self.startIncrease();
-            })
+            // .on('touchstart', function (e) {
+            //     if (e.cancelable) {
+            //         e.preventDefault();
+            //     }
+            //     self.startIncrease();
+            // })
             .on('mouseup', self.stop);
 
         Wolmart.$body.on('mouseup', self.stop)
@@ -3680,48 +3680,6 @@ window.Wolmart = {};
     }
 })(jQuery);
 
-function setWishlist(set, id) {
-    let _token = $('meta[name="csrf-token"]').attr('content')
-    var result = "";
-    $.ajax({
-        url: "/ajax/wishlist",
-        async: false,
-        type: "POST",
-        data: {
-            set: set,
-            id: id,
-        },
-        success: function (response) {
-            result = response
-        },
-        error: function (jqXHR, exception) {
-            result = false
-        }
-    });
-    return result
-}
 
-function addCart(type, id, count) {
-    let _token = $('meta[name="csrf-token"]').attr('content')
-    var result = "";
-    $.ajax({
-        url: "/ajax/cart",
-        async: false,
-        type: "POST",
 
-        data: {
-            type: type,
-            count: count,
-            id: id,
-        },
-        success: function (response) {
-            //console.log(response)
 
-            result = response
-        },
-        error: function (jqXHR, exception) {
-            result = false
-        }
-    });
-    return result
-}
