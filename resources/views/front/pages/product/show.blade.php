@@ -218,11 +218,8 @@
                                                 </button>
                                             @endif
 
-                                            @php
-                                                $arrCookie = explode(",", Cookie::get('wishlist'));
-                                            @endphp
-                                            <button class="btn   @if(in_array($product->id, $arrCookie)) btn-success  @else btn-primary btn-outline @endif
-                                            btn-rounded btn-wishlist   " data-idwishlist="{{$product->id}}" href="#">
+                                            <button class="btn   @if($product->isWishlist()) btn-success  @else btn-primary btn-outline @endif
+                                            btn-rounded btn-wishlist   " data-idwishlist="{{$product->id}}" href="#" @if($product->isWishlist()) disabled @endif>
                                                 <i class="w-icon-heart "></i>&nbsp;
                                             </button>
                                         </div>

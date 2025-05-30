@@ -2250,19 +2250,15 @@ window.Wolmart = {};
 
     var initWishlistAction = function () {
         Wolmart.$body.on('click', '.product:not(.product-single) .btn-wishlist', function (e) {
+            // ЗДЕСЬ ОТРАБАТЫВЕТСЯ ИЗБРАННОЙ В ОБЩЕМ СПИСКЕ
+
             e.preventDefault();
             var $this = $(this);
             $this.toggleClass('added').addClass('load-more-overlay loading');
 
             let idWishlist = $(this).data('idwishlist');
-            let countWishlist = parseInt(setWishlist('add', idWishlist))
 
-            $('#wishlist_count').text(countWishlist)
-            if (countWishlist > 0) {
-                $('#wishlist_count').show()
-            } else {
-                $('#wishlist_count').hide()
-            }
+            Livewire.dispatch('wishlist-add', {productID: idWishlist})
 
             setTimeout(function () {
                 $this.removeClass('load-more-overlay loading');
@@ -2275,26 +2271,9 @@ window.Wolmart = {};
     var initWishlistAction2 = function () {
 
         Wolmart.$body.on('click', '.btn-wishlist-2', function (e) {
+            // КНОПКА УДАЛИТЬ ИЗ УЗБРАННОГО В СПИСКЕ
+
             e.preventDefault();
-            var $this = $(this);
-            $this.addClass('load-more-overlay loading');
-
-            let idWishlist = $(this).data('idwishlist');
-            let countWishlist = parseInt(setWishlist('delete', idWishlist))
-
-            $('#wishlist_count').text(countWishlist)
-            if (countWishlist > 0) {
-                $('#wishlist_count').show()
-            } else {
-                $('#wishlist_count').hide()
-            }
-
-            setTimeout(function () {
-                $this.removeClass('load-more-overlay loading');
-
-                $('#tr-' + idWishlist).remove()
-                // $this.toggleClass('w-icon-heart').toggleClass('w-icon-heart-full');
-            }, 500);
 
         });
     }
@@ -2843,7 +2822,9 @@ window.Wolmart = {};
     }
 
     var wishlistAction = function (e) {
-        // alert(444);
+
+        // ЭТО НАЖАТА НЕПОСРЕДСТВЕННО В ПРОДУКТЕ
+
         var $this = $(this);
         if ($this.hasClass('added')) {
             return;
@@ -2852,13 +2833,8 @@ window.Wolmart = {};
         $this.addClass('load-more-overlay loading');
 
         let idWishlist = $(this).data('idwishlist');
-        let countWishlist = parseInt(setWishlist('add', idWishlist))
-        $('#wishlist_count').text(countWishlist)
-        if (countWishlist > 0) {
-            $('#wishlist_count').show()
-        } else {
-            $('#wishlist_count').hide()
-        }
+
+        Livewire.dispatch('wishlist-add', {productID: idWishlist})
 
         setTimeout(function () {
             $this

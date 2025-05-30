@@ -24,25 +24,9 @@
                     <a href="tel:{{config('contact.phone_min')}}" class="phone-number font-weight-bolder ls-50">{{config('contact.phone')}}</a>
                 </div>
             </div>
-            {{--            <a class="wishlist label-down link d-xs-show " href="">--}}
-            {{--                <i class="w-icon-heart">--}}
-            {{--                    <span class="cart-count">2</span>--}}
-            {{--                </i>--}}
-            {{--                <span class="wishlist-label d-lg-show">Понравилось</span>--}}
-            {{--            </a>--}}
-            @php
-                /** @var \App\Models\Product  $product */
-            $arrCookie = array_filter(explode(",", Cookie::get('wishlist')));
-            @endphp
-            <div class="dropdown cart-dropdown  d-xs-show mr-3 mr-lg-2">
-                <div class="cart-overlay"></div>
-                <a href="{{route('wishlist')}}" class="cart-toggle label-down link">
-                    <i class="w-icon-heart">
-                        <span class="cart-count @if(!count($arrCookie)) d-none @endif" id="wishlist_count">{{count($arrCookie)}}</span>
-                    </i>
-                    <span class="cart-label">Избранное</span>
-                </a>
-            </div>
+
+
+            <livewire:front.wishlists.top/>
 
             <x-front.cart/>
 

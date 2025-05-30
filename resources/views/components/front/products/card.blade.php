@@ -37,10 +37,15 @@
                     @endif
                 </div>
 
+{{--                <div class="product-action-vertical" style="opacity: 100; visibility: visible">--}}
+{{--                    <a href="#" class="btn-product-icon btn-wishlist--}}
+{{--                     @if(in_array($product->id, $arrCookie)) w-icon-heart-full @else w-icon-heart @endif "--}}
+{{--                       title="@if(in_array($product->id, $arrCookie)) В избранном @else В избранное @endif" data-idwishlist="{{$product->id}}"></a>--}}
+{{--                </div> --}}
                 <div class="product-action-vertical" style="opacity: 100; visibility: visible">
                     <a href="#" class="btn-product-icon btn-wishlist
-                     @if(in_array($product->id, $arrCookie)) w-icon-heart-full @else w-icon-heart @endif "
-                       title="@if(in_array($product->id, $arrCookie)) В избранном @else В избранное @endif" data-idwishlist="{{$product->id}}"></a>
+                     @if($product->isWishlist()) w-icon-heart-full @else w-icon-heart @endif "
+                       title="@if($product->isWishlist()) В избранном @else В избранное @endif" data-idwishlist="{{$product->id}}"></a>
                 </div>
                 <div class="product-action">
 

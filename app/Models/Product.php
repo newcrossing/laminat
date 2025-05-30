@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class Product extends Model
 {
@@ -19,7 +20,7 @@ class Product extends Model
     const COUNT_OF_PAGINATION = 24;
     protected $perPage = 24;
 
-    protected $with = ['fotos'];
+    protected $with = ['fotos', 'wishlist'];
 
 //    protected $dispatchesEvents = [
 //        'updated' => UserSaving::class,
@@ -133,6 +134,15 @@ class Product extends Model
         return "{$this->firm->name} {$this->collection->name} {$this->name}";
     }
 
+    /**
+     * Проверяет есть ли данный товар в избранном у конкретного пользователя
+     * @return bool
+     */
+    public function isWishlist(): bool
+    {
+        return (count($this->wishlist)) ? true : false;
+    }
+
 
     public function collection(): BelongsTo
     {
@@ -170,6 +180,22 @@ class Product extends Model
     {
         return $this->belongsToMany(Cart::class)->withPivot('count');
     }
+
+    public function wishlists()
+    {
+        return $this->belongsToMany(Wishlist::class, 'wishlist_product')->withPivot('count');
+    }
+
+    public function wishlist()
+    {
+
+        if (Auth::id()) {
+            return $this->belongsToMany(Wishlist::class, 'wishlist_product')->where('user_id', Auth::id());
+        } else {
+            return $this->belongsToMany(Wishlist::class, 'wishlist_product')->where('session', session()->getId());
+        }
+    }
+
 
     public function orders()
     {

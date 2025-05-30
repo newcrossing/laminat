@@ -11,7 +11,8 @@
 
 @section('content')
     <main class="main">
-        <x-front.sliders.home-main :sliders="\App\Models\Slider::with('fotos')->where('public',true)->get()"/>
+{{--        <x-front.sliders.home-main :sliders="\App\Models\Slider::with('fotos')->where('public',true)->get()"/>--}}
+        <x-front.sliders.home-main2 />
 
         <!-- End of Intro-section -->
 
@@ -241,7 +242,7 @@
                             <div class="swiper-slide">
                                 <figure>
                                     <img src="{{ Croppa::url($img->getUrlForCroppa(),null,100,['quadrant']) }}"
-                                         alt="Brand" width="290" height="100"/>
+                                         width="290" height="100"/>
                                 </figure>
                             </div>
                         @endif

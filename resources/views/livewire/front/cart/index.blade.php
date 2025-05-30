@@ -27,7 +27,7 @@
                                             @endif
                                         </figure>
                                     </a>
-                                    <button class="btn btn-close " wire:click="delete({{$product->id}})" ><i class="fas fa-times"></i></button>
+                                    <button class="btn btn-close " wire:click="delete({{$product->id}})"><i class="fas fa-times"></i></button>
                                 </div>
                             </td>
                             <td class="product-name font-weight-normal">
@@ -36,9 +36,9 @@
                                 </a>
                             </td>
                             <td class="product-price text-center">
-                                        <span class="amount" id="price-{{$product->id}}" data-price="{{$product->price_upak}}">
-                                            {{ Number::format($product->price_upak,locale: 'ru')}}
-                                        </span>
+                                <span class="amount" id="price-{{$product->id}}" data-price="{{$product->price_upak}}">
+                                    {{ Number::format($product->price_upak,locale: 'ru')}}
+                                </span>
                                 <sub class="font-weight-normal">руб.</sub>
                             </td>
                             <td class="product-quantity text-center">
