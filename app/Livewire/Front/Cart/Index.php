@@ -10,6 +10,7 @@ class Index extends Component
 {
     public $products;
     public $priceTotal;
+    public $countCart;
     public $packingWeight;
     public $cart;
 
@@ -69,12 +70,18 @@ class Index extends Component
         $this->priceTotal = 0;
         $this->packingWeight = 0;
 
-        $this->cart = Cart::getCart();
-        $this->products = $this->cart->products;
+        $this->countCart = Cart::getCartProductsCount();
 
-        foreach ($this->products as $product) {
-            $this->priceTotal += $product->getPriceByCount($product->pivot->count);
-            $this->packingWeight += $product->packing_weight * $product->pivot->count;
+        if ($this->countCart) {
+            $this->cart = Cart::getCart();
+            $this->products = $this->cart->products;
+            foreach ($this->products as $product) {
+                /** @var \App\Models\Product $product */
+
+                $this->priceTotal += $product->getPriceByCount($product->pivot->count);
+            }
+        } else {
+            $this->products = [];
         }
         return view('livewire.front.cart.index');
     }
