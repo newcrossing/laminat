@@ -2217,13 +2217,9 @@ window.Wolmart = {};
             let id = $(this).data('id');
             let count = ($('#count_up').val()) ? $('#count_up').val() : 1;
 
-
-
             Livewire.dispatch('cart-add', {productID: id, count: count})
 
-
             $this.toggleClass('added').addClass('load-more-overlay loading');
-
 
             setTimeout(function () {
                 $this.removeClass('load-more-overlay loading');
