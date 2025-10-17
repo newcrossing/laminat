@@ -21,6 +21,7 @@ class OrderController extends Controller
         // Общий вес заказа
         $packingWeight = 0;
 
+
         $cart = Cart::getCart();
         $products = $cart->products;
 
