@@ -20,7 +20,7 @@ class PhotoController extends Controller
         $files = $request->images;
 //dd($request->toArray());
         $class = Relation::getMorphedModel($request['model']);
-        //Log::info(" " . $class);
+        //Log::info(getimagesize($file););
         $model = new $class;
 
         foreach ($files as $file) {
@@ -28,6 +28,7 @@ class PhotoController extends Controller
                 'filename' => Str::uuid(),
                 'extension' => $file->extension(),
             ]);
+            Log::info(getimagesize($file));
 
 
 //            $image = ImageManager::imagick()->read($file);
@@ -61,6 +62,7 @@ class PhotoController extends Controller
                 $image = ImageManager::imagick()->read($file);
                 $image->scale(width: 1500)->save(Storage::disk('product')->path('/1500/') . $foto->full_name_file);
             } catch (Exception $e) {
+                return response()->json('error', 501);
                 Log::error("PHP перехватил исключение:" . $e->getMessage());
             }
 
