@@ -83,7 +83,6 @@ Route::middleware(['role:admin'])->prefix('backend')->group(
 
         Route::resource('product', ProductController::class)->names('backend.product');
         Route::get('product/copy/{id}', [ProductController::class, 'copy'])->name('backend.product.copy');
-        Route::get('phpinfo', [ProductController::class, 'copy'])->name('backend.product.copy');
         Route::get('phpinfo', function () {
             print phpinfo();
         });
