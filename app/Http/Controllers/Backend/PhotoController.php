@@ -63,7 +63,7 @@ class PhotoController extends Controller
                 $image->scale(width: 1500)->save(Storage::disk('product')->path('/1500/') . $foto->full_name_file);
             } catch (Exception $e) {
                 Log::error("PHP перехватил исключение:" . $e->getMessage());
-                return response()->json('Ошибка обработки файла', 501);
+                return response()->json('Error decode file', 501);
             }
 
 
