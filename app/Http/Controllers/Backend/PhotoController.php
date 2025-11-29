@@ -28,7 +28,7 @@ class PhotoController extends Controller
                 'filename' => Str::uuid(),
                 'extension' => $file->extension(),
             ]);
-            Log::info(getimagesize($file));
+            //Log::info(getimagesize($file));
 
 
 //            $image = ImageManager::imagick()->read($file);
@@ -62,8 +62,8 @@ class PhotoController extends Controller
                 $image = ImageManager::imagick()->read($file);
                 $image->scale(width: 1500)->save(Storage::disk('product')->path('/1500/') . $foto->full_name_file);
             } catch (Exception $e) {
-                return response()->json('error', 501);
                 Log::error("PHP перехватил исключение:" . $e->getMessage());
+                return response()->json('Ошибка обработки файла', 501);
             }
 
 
