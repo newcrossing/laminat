@@ -59,6 +59,7 @@ class PhotoController extends Controller
 //            $image->scale(width: 800)->save(Storage::disk('product')->path('/800/') . $foto->full_name_file);
 
             try {
+                ini_set('memory_limit', '1000M');
                 $image = ImageManager::imagick()->read($file);
                 $image->scale(width: 1500)->save(Storage::disk('product')->path('/1500/') . $foto->full_name_file);
             } catch (Exception $e) {
