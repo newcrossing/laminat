@@ -19,12 +19,15 @@
 
 @section('content')
     <section class="page-user-profile">
-        <form action="{{ (isset($product->id))? route('backend.product.update',$product->id):route('backend.product.store')  }}" method="POST">
+        <form
+            action="{{ (isset($product->id))? route('backend.product.update',$product->id):route('backend.product.store')  }}"
+            method="POST">
             @csrf
             @if(isset($product->id))
                 @method('PUT')
             @endif
-            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-1">
+            <div
+                class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-1">
                 <div class="d-flex flex-column justify-content-center">
                     <h4 class="mb-1 mt-3">{{($product->name)?:"Новый продукт"}}</h4>
                     <p class="text-muted">{{($product->article)?"Артикул: ".$product->article:""}}</p>
@@ -36,7 +39,8 @@
                         </button>
                     </div>
                     @isset($product->id)
-                        <a class="btn btn-outline-secondary  mr-1" href="{{route('backend.product.copy', $product->id)}}">
+                        <a class="btn btn-outline-secondary  mr-1"
+                           href="{{route('backend.product.copy', $product->id)}}">
                             <i class='bx bx-copy'></i> Дублировать
                         </a>
                     @endisset
@@ -56,14 +60,19 @@
 
                             <!-- user profile nav tabs start -->
                             <div class="card-body px-0 ml-3">
-                                <ul class="nav user-profile-nav justify-content-center justify-content-md-start nav-tabs border-bottom-0 mb-0" role="tablist">
+                                <ul class="nav user-profile-nav justify-content-center justify-content-md-start nav-tabs border-bottom-0 mb-0"
+                                    role="tablist">
                                     <li class="nav-item pb-0">
-                                        <a class=" nav-link d-flex px-1 active" id="feed-tab" data-toggle="tab" href="#feed" aria-controls="feed" role="tab" aria-selected="true"><i
-                                                    class="bx bx-home"></i><span class="d-none d-md-block">Основное</span></a>
+                                        <a class=" nav-link d-flex px-1 active" id="feed-tab" data-toggle="tab"
+                                           href="#feed" aria-controls="feed" role="tab" aria-selected="true"><i
+                                                class="bx bx-home"></i><span
+                                                class="d-none d-md-block">Основное</span></a>
                                     </li>
                                     <li class="nav-item pb-0">
-                                        <a class="nav-link d-flex px-1" id="activity-tab" data-toggle="tab" href="#activity" aria-controls="activity" role="tab"
-                                           aria-selected="false"><i class="bx bx-user"></i><span class="d-none d-md-block">Параметры</span></a>
+                                        <a class="nav-link d-flex px-1" id="activity-tab" data-toggle="tab"
+                                           href="#activity" aria-controls="activity" role="tab"
+                                           aria-selected="false"><i class="bx bx-user"></i><span
+                                                class="d-none d-md-block">Параметры</span></a>
                                     </li>
 
                                 </ul>
@@ -94,7 +103,8 @@
                                                         <div class="row mb-1">
                                                             <div class="col-sm-12 col-12 order-2 order-sm-1">
                                                                 <label>Название </label>
-                                                                <input type="text" name="name" class="form-control @error('name') is-invalid  @enderror"
+                                                                <input type="text" name="name"
+                                                                       class="form-control @error('name') is-invalid  @enderror"
                                                                        value="{{old('name',$product->name)}}"
                                                                        placeholder="Название" autofocus required>
                                                                 @error('name')
@@ -108,25 +118,32 @@
                                                         <div class="row mb-1">
                                                             <div class="col">
                                                                 <label class="form-label">Артикул</label>
-                                                                <input type="text" class="form-control" name="article" value="{{old('article',$product->article)}}">
+                                                                <input type="text" class="form-control" name="article"
+                                                                       value="{{old('article',$product->article)}}">
                                                             </div>
                                                             <div class="col">
                                                                 <label class="form-label">Ссылка
                                                                     @if($product->slug)
-                                                                        <small><a href="{{route('prod.show',$product->slug)}}" target="_blank">посмотреть на сайте</a></small>
+                                                                        <small><a
+                                                                                href="{{route('prod.show',$product->slug)}}"
+                                                                                target="_blank">посмотреть на сайте</a></small>
                                                                     @endif
                                                                 </label>
-                                                                <input type="text" class="form-control" name="slug" value="{{old('slug',$product->slug)}}">
+                                                                <input type="text" class="form-control" name="slug"
+                                                                       value="{{old('slug',$product->slug)}}">
                                                             </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-6">
                                                                 <fieldset class="form-group">
                                                                     <label class="form-label">Тип продукции</label>
-                                                                    <select class="custom-select @error('type_id') is-invalid  @enderror" name="type_id">
+                                                                    <select
+                                                                        class="custom-select @error('type_id') is-invalid  @enderror"
+                                                                        name="type_id">
                                                                         <option>Не выбрано</option>
                                                                         @foreach(App\Models\Type::all() as $type)
-                                                                            <option value="{{$type->id}}" @selected(@$product->type->id== $type->id)>{{$type->name}}</option>
+                                                                            <option
+                                                                                value="{{$type->id}}" @selected(@$product->type->id== $type->id)>{{$type->name}}</option>
                                                                         @endforeach
                                                                     </select>
                                                                     @error('type_id')
@@ -137,12 +154,15 @@
                                                             <div class="col-6">
                                                                 <fieldset class="form-group">
                                                                     <label class="form-label">Фирма и коллекция</label>
-                                                                    <select class="custom-select @error('collection_id') is-invalid  @enderror" name="collection_id">
+                                                                    <select
+                                                                        class="custom-select @error('collection_id') is-invalid  @enderror"
+                                                                        name="collection_id">
                                                                         <option>Не выбрано</option>
                                                                         @foreach(App\Models\Firm::with('collections')->get() as $firm)
                                                                             <optgroup label="{{$firm->name}}">
                                                                                 @foreach($firm->collections as $collection)
-                                                                                    <option value="{{$collection->id}}" @selected(@$product->collection->id == $collection->id)>{{$collection->name}}</option>
+                                                                                    <option
+                                                                                        value="{{$collection->id}}" @selected(@$product->collection->id == $collection->id)>{{$collection->name}}</option>
                                                                                 @endforeach
                                                                             </optgroup>
                                                                         @endforeach
@@ -157,7 +177,8 @@
                                                             <div class="col-12">
                                                                 <fieldset class="form-group">
                                                                     <label class="form-label">Короткое описание</label>
-                                                                    <textarea name="description" class="form-control" rows="8"
+                                                                    <textarea name="description" class="form-control"
+                                                                              rows="8"
                                                                               placeholder="">{{old('description',$product->description)}}</textarea>
                                                                 </fieldset>
                                                             </div>
@@ -165,7 +186,8 @@
                                                         <div class="row mb-1">
                                                             <div class="col">
                                                                 <label class="form-label">Описание</label>
-                                                                <textarea id="editor1" name="text">{{old('text',$product->text)}}</textarea>
+                                                                <textarea id="editor1"
+                                                                          name="text">{{old('text',$product->text)}}</textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -191,7 +213,8 @@
                                                 <div class="col-4">
                                                     <label class="form-label">Размеры </label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" name="param_sdt" value="{{old('param_sdt',$product->param_sdt)}}"
+                                                        <input type="text" class="form-control" name="param_sdt"
+                                                               value="{{old('param_sdt',$product->param_sdt)}}"
                                                                placeholder="ШхДхТ">
                                                         <div class="input-group-append">
                                                             <span class="input-group-text">мм.</span>
@@ -201,7 +224,8 @@
                                                 <div class="col-4 mb-1">
                                                     <label class="form-label">Площадь упаковки </label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" name="square" value="{{old('square',$product->square)}}">
+                                                        <input type="text" class="form-control" name="square"
+                                                               value="{{old('square',$product->square)}}">
                                                         <div class="input-group-append">
                                                             <span class="input-group-text">м<sup>2</sup></span>
                                                         </div>
@@ -210,7 +234,8 @@
                                                 <div class="col-4">
                                                     <label class="form-label">Объем упаковки</label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" name="packing_volume" value="{{old('packing_volume',$product->packing_volume)}}">
+                                                        <input type="text" class="form-control" name="packing_volume"
+                                                               value="{{old('packing_volume',$product->packing_volume)}}">
                                                         <div class="input-group-append">
                                                             <span class="input-group-text">м<sup>3</sup></span>
                                                         </div>
@@ -219,7 +244,8 @@
                                                 <div class="col-4">
                                                     <label class="form-label">Вес упаковки</label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" name="packing_weight" value="{{old('packing_weight',$product->packing_weight)}}">
+                                                        <input type="text" class="form-control" name="packing_weight"
+                                                               value="{{old('packing_weight',$product->packing_weight)}}">
                                                         <div class="input-group-append">
                                                             <span class="input-group-text">кг.</span>
                                                         </div>
@@ -246,8 +272,10 @@
                                                         <select class="select2 form-control" name="attributes[]">
                                                             <option></option>
                                                             @foreach($atribute->attributeOptions()->orderByRaw('CAST(value as UNSIGNED) ASC')->orderBy('value')->get() as $options)
-                                                                <option @if(in_array($options->id,$attributeOptions)) selected @endif
-                                                                value="{{$options->id}}">{{$options->value}}
+                                                                <option
+                                                                    @if(in_array($options->id,$attributeOptions)) selected
+                                                                    @endif
+                                                                    value="{{$options->id}}">{{$options->value}}
                                                                 </option>
                                                             @endforeach
                                                         </select>
@@ -282,8 +310,11 @@
                                             <div class="col-12">
                                                 <label class="form-label">Цена за м<sup>2</sup></label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control @if($product->isPriceMetr()) border-success @endif" name="price_metr"
-                                                           value="{{old('price_metr',$product->actualPriceMetr())}}" autocomplete="off">
+                                                    <input type="text"
+                                                           class="form-control @if($product->isPriceMetr()) border-success @endif"
+                                                           name="price_metr"
+                                                           value="{{old('price_metr',$product->actualPriceMetr())}}"
+                                                           autocomplete="off">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">руб.</span>
                                                     </div>
@@ -293,8 +324,11 @@
                                             <div class="col-12 mt-1">
                                                 <label class="form-label">Скидка </label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control @if(!$product->isPriceMetr()) border-success @endif" name="price_metr_sale"
-                                                           value="{{old('price_metr_sale',$product->oldPriceMetr())}}" autocomplete="off">
+                                                    <input type="text"
+                                                           class="form-control @if(!$product->isPriceMetr()) border-success @endif"
+                                                           name="price_metr_sale"
+                                                           value="{{old('price_metr_sale',$product->oldPriceMetr())}}"
+                                                           autocomplete="off">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">руб.</span>
                                                     </div>
@@ -308,8 +342,11 @@
                                             <div class="col-12">
                                                 <label class="form-label">Цена за упаковку</label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control @if($product->isPriceUpak()) border-success @endif" name="price_upak"
-                                                           value="{{old('price_upak',$product->actualPriceUpak())}}" autocomplete="off">
+                                                    <input type="text"
+                                                           class="form-control @if($product->isPriceUpak()) border-success @endif"
+                                                           name="price_upak"
+                                                           value="{{old('price_upak',$product->actualPriceUpak())}}"
+                                                           autocomplete="off">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">руб.</span>
                                                     </div>
@@ -319,8 +356,11 @@
                                             <div class="col-12 mt-1">
                                                 <label class="form-label">Скидка </label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control @if(!$product->isPriceUpak()) border-success @endif " name="price_upak_sale"
-                                                           value="{{old('price_upak_sale',$product->oldPriceUpak())}}" autocomplete="off">
+                                                    <input type="text"
+                                                           class="form-control @if(!$product->isPriceUpak()) border-success @endif "
+                                                           name="price_upak_sale"
+                                                           value="{{old('price_upak_sale',$product->oldPriceUpak())}}"
+                                                           autocomplete="off">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">руб.</span>
                                                     </div>
@@ -333,21 +373,24 @@
                                     <div class="d-flex justify-content-between py-50">
                                         <span class="invoice-terms-title">Опубликовать</span>
                                         <div class="custom-control custom-switch custom-switch-glow">
-                                            <input type="checkbox" name="public" class="custom-control-input" id="public" {{!empty($product->public)?'checked':''}}>
+                                            <input type="checkbox" name="public" class="custom-control-input"
+                                                   id="public" {{!empty($product->public)?'checked':''}}>
                                             <label class="custom-control-label" for="public"> </label>
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-between py-50">
                                         <span class="invoice-terms-title">Наличие на складе</span>
                                         <div class="custom-control custom-switch custom-switch-glow">
-                                            <input type="checkbox" name="have_sklad" class="custom-control-input" id="have_sklad" {{!empty($product->have_sklad)?'checked':''}}>
+                                            <input type="checkbox" name="have_sklad" class="custom-control-input"
+                                                   id="have_sklad" {{!empty($product->have_sklad)?'checked':''}}>
                                             <label class="custom-control-label" for="have_sklad"> </label>
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-between py-50">
                                         <span class="invoice-terms-title">Наличие на шоуруме</span>
                                         <div class="custom-control custom-switch custom-switch-glow">
-                                            <input type="checkbox" name="have_room" class="custom-control-input" id="have_room" {{!empty($product->have_room)?'checked':''}}>
+                                            <input type="checkbox" name="have_room" class="custom-control-input"
+                                                   id="have_room" {{!empty($product->have_room)?'checked':''}}>
                                             <label class="custom-control-label" for="have_room"> </label>
                                         </div>
                                     </div>
@@ -379,7 +422,8 @@
                                 @csrf
 
                                 <div class="file-loading">
-                                    <input name="images[]" id="file-up" class="file" type="file" multiple data-min-file-count="1" data-theme="fa5">
+                                    <input name="images[]" id="file-up" class="file" type="file" multiple
+                                           data-min-file-count="1" data-theme="fa5">
                                 </div>
                                 <br>
                                 <button type="submit" class="btn btn-primary">Отправить</button>
@@ -436,7 +480,10 @@
             initialPreviewConfig: [
                     @foreach($product->fotos()->orderBy('order')->get()  as $img)
                 {
-                    size: "{{$img->getSize()}}", width: "120px",key: {{$img->id}}, url: "{{route('backend.photo.delete',[$img->id , '_token' => csrf_token()])}}"
+                    size: "{{$img->getSize()}}",
+                    width: "120px",
+                    key: {{$img->id}},
+                    url: "{{route('backend.photo.delete',[$img->id , '_token' => csrf_token()])}}"
                 },
                 @endforeach
             ],
@@ -453,7 +500,7 @@
             showCancel: false,
             showRemove: false,
             showUpload: true,
-            allowedFileExtensions: ['jpg', 'png', 'gif']
+            allowedFileExtensions: ['jpg', 'jpeg', 'png', 'gif', 'bmp']
         });
         $.ajaxSetup({
             headers: {
@@ -461,7 +508,7 @@
             }
         });
 
-        $('#file-up').on('filesorted', function(event, params) {
+        $('#file-up').on('filesorted', function (event, params) {
             //console.log('File sorted ',params ,params.oldIndex, params.newIndex, params.stack);
             $.ajax({
                 url: "{!! route('backend.photo.sorting') !!}",
@@ -473,7 +520,7 @@
                     params: params.stack,
                 },
                 success: function (response) {
-                   // console.log(response)
+                    // console.log(response)
 
                     // setTimeout(function () {
                     //     //$($this).removeClass('load-more-overlay loading');
