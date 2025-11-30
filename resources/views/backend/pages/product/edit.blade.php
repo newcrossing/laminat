@@ -500,7 +500,7 @@
             showCancel: false,
             showRemove: false,
             showUpload: true,
-            allowedFileExtensions: ['jpg', 'jpeg', 'png', 'gif', 'bmp']
+            allowedFileExtensions: ['jpg', 'jpeg', 'png', 'gif' ]
         });
         $.ajaxSetup({
             headers: {

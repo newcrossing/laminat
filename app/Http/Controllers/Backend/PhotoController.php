@@ -67,14 +67,11 @@ class PhotoController extends Controller
                 return response()->json('Error decode file', 501);
             }
 
-
             $product = $model->find($request->id);
             $product->fotos()->save($foto);
         }
 
         return response()->json('success', 200);
-
-
     }
 
     public function delete($imgId)

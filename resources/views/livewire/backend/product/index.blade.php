@@ -40,7 +40,8 @@
                         {{--                            </div>--}}
                         {{--                        </div>--}}
                         <div class="col-12 text-md-left">
-                            <a href="{{route('backend.product.create')}}" class="btn btn-primary glow"><i class="bx bx-plus"></i> Добавить</a>
+                            <a href="{{route('backend.product.create')}}" class="btn btn-primary glow"><i
+                                    class="bx bx-plus"></i> Добавить</a>
                         </div>
                     </div>
                 </div>
@@ -50,7 +51,8 @@
                 <table id="table-marketing-campaigns" class="table mb-0">
                     <thead>
                     <tr>
-                        <th><input type="text" class="form-control" wire:model.live="searchText" placeholder="Поиск по названию"></th>
+                        <th><input type="text" class="form-control" wire:model.live="searchText"
+                                   placeholder="Название, фирма, коллекция"></th>
                         <th>
                             <select class="custom-select" wire:model.change="sortingTypeId">
                                 <option value="" selected="">Все</option>
@@ -95,7 +97,8 @@
                     @foreach ($products as $product)
                         <tr wire:key="{{$product->id}}">
                             <td class="text-bold-400">
-                                <a class="readable-mark-icon" href="{{route('backend.product.edit',$product->id)}}"> {{ Str::limit($product->name, 40)  }} </a>
+                                <a class="readable-mark-icon"
+                                   href="{{route('backend.product.edit',$product->id)}}"> {{ Str::limit($product->name, 40)  }} </a>
                                 {{--                                <div class="small">{{$product->id}} {{ Str::limit($product->slug , 40)  }}</div>--}}
                                 <div class="font-small-1">
                                     <i class="bx bx-pencil font-small-1"></i> {{$product->updated_at->diffForHumans()}},
@@ -123,12 +126,12 @@
                                     @endif
                                 </div>
                             </td>
-                            <td  >
+                            <td>
                                 @if($product->public)
                                     <div wire:click="tooglePublic({{$product->id}})" wire:confirm="Снять с публикации?"
                                          class="badge badge-success badge-icon mr-0 mb-1 cursor-pointer"
                                          data-toggle="tooltip" data-placement="top" title="Опубликован на сайте"
-                                         data-original-title="Опубликован на сайте" >
+                                         data-original-title="Опубликован на сайте">
                                         <i class="bx bxs-show"></i>
                                     </div>
                                 @else
@@ -144,7 +147,8 @@
                                     <div class="badge badge-success badge-icon  mb-1 cursor-pointer"
                                          data-toggle="tooltip" data-placement="top" title="Имеется в наличии"
                                          data-original-title="Имеется в наличии"
-                                         wire:click="toogleHave({{$product->id}})" wire:confirm="Установить нет в наличии?">
+                                         wire:click="toogleHave({{$product->id}})"
+                                         wire:confirm="Установить нет в наличии?">
                                         <i class="bx bx-check"></i>
                                     </div>
                                 @else
@@ -174,10 +178,13 @@
                             </td>
                             <td>
                                 <div class="dropdown">
-                                <span class="bx bx-dots-vertical-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer" data-toggle="dropdown" aria-haspopup="true"
-                                      aria-expanded="false" role="menu"></span>
+                                <span
+                                    class="bx bx-dots-vertical-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
+                                    data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false" role="menu"></span>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="{{route('backend.product.copy',$product->id)}}" title="Сделать дубликат">
+                                        <a class="dropdown-item" href="{{route('backend.product.copy',$product->id)}}"
+                                           title="Сделать дубликат">
                                             <i class="bx bx-copy mr-1"></i> Создать дубликат
                                         </a>
                                     </div>
@@ -191,7 +198,10 @@
 
                 @if($allCount-$count > 0)
                     <div class="ml-3 mr-3">
-                        <button type="button" wire:click="loadMore" class="btn mb-1 btn-outline-primary btn-lg btn-block">Загрузить еще ({{$allCount-$count}})</button>
+                        <button type="button" wire:click="loadMore"
+                                class="btn mb-1 btn-outline-primary btn-lg btn-block">Загрузить еще
+                            ({{$allCount-$count}})
+                        </button>
                     </div>
                 @endif
                 <!-- table ends -->

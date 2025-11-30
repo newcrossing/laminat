@@ -28,9 +28,8 @@
             </div>
         </div>
     @endif
+
     <livewire:backend.product />
-
-
 
 @endsection
 
@@ -42,6 +41,7 @@
     <script src="{{asset('/b/app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js')}}"></script>
     <script src="{{asset('/b/app-assets/vendors/js/tables/datatable/responsive.bootstrap.min.js')}}"></script>
 @endsection
+
 {{-- page scripts --}}
 @section('page-scripts')
     <script type="text/javascript">

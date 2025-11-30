@@ -17,7 +17,8 @@ class Index extends Component
     public $sortingFirmId = null;
     public $searchText = null;
 
-    public function tooglePublic($id){
+    public function tooglePublic($id): void
+    {
         $product = Product::findOrFail($id);
         $public = $product->public;
         $product->public = !$public;
@@ -25,7 +26,8 @@ class Index extends Component
         $product->save();
     }
 
-    public function toogleHave($id){
+    public function toogleHave($id): void
+    {
         $product = Product::findOrFail($id);
         $have_sklad = $product->have_sklad;
         $product->have_sklad = !$have_sklad;
@@ -33,7 +35,8 @@ class Index extends Component
         $product->save();
     }
 
-    public function toogleRoom($id){
+    public function toogleRoom($id): void
+    {
         $product = Product::findOrFail($id);
         $have_room = $product->have_room;
         $product->have_room = !$have_room;
@@ -48,14 +51,13 @@ class Index extends Component
 
     public function render()
     {
-        $query = Product::
-            when( $this->sortingPrice == 'min', function ($q) {
-                return $q->orderBy('price_metr');
-            })
+        $query = Product::when($this->sortingPrice == 'min', function ($q) {
+            return $q->orderBy('price_metr');
+        })
             ->when($this->sortingPrice == 'max', function ($q) {
                 return $q->orderByDesc('price_metr');
             })
-            ->when(empty($this->sortingPrice) , function ($q) {
+            ->when(empty($this->sortingPrice), function ($q) {
                 return $q->orderByDesc('updated_at');
             })
             ->when($this->sortingPublic == 'yes', function ($q) {
@@ -71,10 +73,12 @@ class Index extends Component
                 $q->whereHas('firm', fn($query) => $query->where('firms.id', '=', $this->sortingFirmId));
             })
             ->when($this->searchText, function ($q) {
-                $q->where('name', 'like', "%{$this->searchText}%");
+//                $q->where('name', 'like', "%{$this->searchText}%");
+                $q->whereHas('firm', fn($query) => $query->where('firms.name', 'like', "%{$this->searchText}%"))
+                    ->orWhereHas('collection', fn($query) => $query->where('collections.name', 'like', "%{$this->searchText}%"))
+                    ->orWhere('name', 'like', "%{$this->searchText}%");
             })
-            ->with(['type', 'collection'])
-        ;
+            ->with(['type', 'collection']);
         $queryCount = clone $query;
         // количество найденых товаров без лимита
         $this->allCount = $queryCount->count();
