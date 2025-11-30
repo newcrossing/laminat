@@ -1,4 +1,5 @@
 @extends('backend.layouts.contentLayoutMaster')
+
 {{-- page title --}}
 @section('title','Редактирование')
 {{-- vendor styles --}}

@@ -1,47 +1,13 @@
 <div>
     <section id="table-Marketing">
         <div class="card">
-
             <div class="card-content">
                 <div class="card-body pb-0">
                     <div class="row">
-                        {{--                        <div class="col-md-9 col-sm-12">--}}
-                        {{--                            <div class="d-inline-block">--}}
-                        {{--                                <!-- chart-1   -->--}}
-                        {{--                                <div class="d-flex mr-5 market-statistics-1">--}}
-                        {{--                                    <!-- chart-statistics-1 -->--}}
-                        {{--                                    <div id="table-donut-chart-1"></div>--}}
-                        {{--                                    <!-- data -->--}}
-                        {{--                                    <div class="statistics-data ml-50 my-auto">--}}
-                        {{--                                        <div class="statistics">--}}
-                        {{--                                            <span class="font-medium-2 mr-50 text-bold-600">25,756</span><span class="text-success">(+16.2%)</span>--}}
-                        {{--                                        </div>--}}
-                        {{--                                        <div class="statistics-date"><i class="bx bx-radio-circle font-small-1 text-success mr-25"></i><small class="text-muted">May 12,--}}
-                        {{--                                                12:30 am</small>--}}
-                        {{--                                        </div>--}}
-                        {{--                                    </div>--}}
-                        {{--                                </div>--}}
-                        {{--                            </div>--}}
-                        {{--                            <div class="d-inline-block">--}}
-                        {{--                                <!-- chart-2 -->--}}
-                        {{--                                <div class="d-flex mb-1 market-statistics-2">--}}
-                        {{--                                    <!-- chart statistics-2 -->--}}
-                        {{--                                    <div id="table-donut-chart-2"></div>--}}
-                        {{--                                    <!-- data-2 -->--}}
-                        {{--                                    <div class="statistics-data ml-50 my-auto">--}}
-                        {{--                                        <div class="statistics">--}}
-                        {{--                                            <span class="font-medium-2 mr-50 text-bold-600">5,352</span><span class="text-danger">(-4.9%)</span>--}}
-                        {{--                                        </div>--}}
-                        {{--                                        <div class="statistics-date"><i class="bx bx-radio-circle font-small-1 text-success mr-25"></i><small class="text-muted">May 12,--}}
-                        {{--                                                12:30 am</small>--}}
-                        {{--                                        </div>--}}
-                        {{--                                    </div>--}}
-                        {{--                                </div>--}}
-                        {{--                            </div>--}}
-                        {{--                        </div>--}}
                         <div class="col-12 text-md-left">
-                            <a href="{{route('backend.product.create')}}" class="btn btn-primary glow"><i
-                                    class="bx bx-plus"></i> Добавить</a>
+                            <a href="{{route('backend.product.create')}}" class="btn btn-primary glow">
+                                <i class="bx bx-plus"></i> Добавить
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -51,8 +17,10 @@
                 <table id="table-marketing-campaigns" class="table mb-0">
                     <thead>
                     <tr>
-                        <th><input type="text" class="form-control" wire:model.live="searchText"
-                                   placeholder="Название, фирма, коллекция"></th>
+                        <th>
+                            <input type="text" class="form-control" wire:model.live="searchText"
+                                   placeholder="Название, фирма, коллекция">
+                        </th>
                         <th>
                             <select class="custom-select" wire:model.change="sortingTypeId">
                                 <option value="" selected="">Все</option>
