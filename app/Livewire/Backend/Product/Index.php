@@ -17,6 +17,75 @@ class Index extends Component
     public $sortingFirmId = null;
     public $searchText = null;
 
+    /**
+     * @param $type string metr|metr_sale|upak|upak_sale
+     * @param $id string
+     * @param $price
+     * @return void
+     */
+    public function savePice($type, $id, $price): void
+    {
+        if (trim($price) == '') {
+            $price = 0;
+        }
+        $price = preg_replace('/[^0-9.]/', '', str_replace([',', ' '], ['.', ''], $price));
+
+        // debug($price);
+        $product = Product::findOrFail($id);
+        // не обновлять временные метки
+        $product->timestamps = false;
+
+        switch ($type) {
+            case 'metr':
+                if ($product->price_metr_sale > 0) {
+                    $product->update(['price_metr_sale' => $price]);
+                } else {
+                    $product->update(['price_metr' => $price]);
+                }
+                break;
+            case 'metr_sale':
+                if ($price == 0) {
+                    if ($product->price_metr_sale > 0) {
+                        $product->update(['price_metr' => $product->price_metr_sale]);
+                        $product->update(['price_metr_sale' => 0]);
+                    }
+                    break;
+                }
+                // меняю цену за метр скидку
+                if ($product->price_metr_sale > 0) {
+                    $product->update(['price_metr' => $price]);
+                } else {
+                    $product->update(['price_metr_sale' => $product->price_metr]);
+                    $product->update(['price_metr' => $price]);
+                }
+                break;
+            case 'upak':
+                if ($product->price_upak_sale > 0) {
+                    $product->update(['price_upak_sale' => $price]);
+                } else {
+                    $product->update(['price_upak' => $price]);
+                }
+                break;
+            case 'upak_sale':
+                if ($price == 0) {
+                    if ($product->price_upak_sale > 0) {
+                        $product->update(['price_upak' => $product->price_upak_sale]);
+                        $product->update(['price_upak_sale' => 0]);
+                    }
+                    break;
+                }
+                if ($product->price_upak_sale > 0) {
+                    $product->update(['price_upak' => $price]);
+                } else {
+                    $product->update(['price_upak_sale' => $product->price_upak]);
+                    $product->update(['price_upak' => $price]);
+                }
+                break;
+        }
+
+
+    }
+
     public function tooglePublic($id): void
     {
         $product = Product::findOrFail($id);

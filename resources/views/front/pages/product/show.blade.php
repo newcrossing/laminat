@@ -104,13 +104,15 @@
                                     </div>
 
                                     <hr class="product-divider">
+
                                     @if(!$product->have_sklad)
                                         <div class="alert alert-icon alert-warning alert-bg alert-inline show-code-action mb-1">
                                             <h4 class="alert-title"><i class="w-icon-exclamation-triangle"></i>Внимание! </h4>
                                             В данный момент данного товара нет в наличии
                                         </div>
                                     @endif
-                                    <div class="product-short-desc">
+
+                                    <div class="product-short-desc" style="text-align: justify">
                                         {{ $product->description }}
                                     </div>
 
@@ -122,9 +124,9 @@
                                             @if($product->have_room)
                                                 <span class="size mr-1 font-weight-bold">Имеется в шоуруме</span>
                                             @endif
-
                                         </div>
                                     </div>
+
                                     {{--todo сделать нормально--}}
                                     <hr class="product-divider">
 

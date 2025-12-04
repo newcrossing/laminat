@@ -37,7 +37,7 @@
                                 @endforeach
                             </select>
                         </th>
-                        <th>
+                        <th width="250">
                             <select class="custom-select" wire:model.change="sortingPrice">
                                 <option value="" selected="">По умолчанию</option>
                                 <option value="min">Сначала дешевые</option>
@@ -65,13 +65,12 @@
                     @foreach ($products as $product)
                         <tr wire:key="{{$product->id}}">
                             <td class="text-bold-400">
-                                <a class="readable-mark-icon"
-                                   href="{{route('backend.product.edit',$product->id)}}"> {{ Str::limit($product->name, 40)  }} </a>
-                                {{--                                <div class="small">{{$product->id}} {{ Str::limit($product->slug , 40)  }}</div>--}}
+                                <a class="readable-mark-icon" href="{{route('backend.product.edit',$product->id)}}">
+                                    {{ Str::limit($product->name, 40)  }}
+                                </a>
                                 <div class="font-small-1">
                                     <i class="bx bx-pencil font-small-1"></i> {{$product->updated_at->diffForHumans()}},
                                     <i class="bx bx-plus font-small-1"></i> {{$product->created_at->diffForHumans()}}
-
                                 </div>
                             </td>
                             <td>
@@ -80,19 +79,52 @@
                             <td class="">
                                 {{$product->collection->firm->name}}, {{$product->collection->name}}
                             </td>
-                            <td class="text-bold-600">
-                                <div>
-                                    <span class="text-success mr-1">{{ Number::format($product->price_metr)}}</span>
-                                    @if(($product->price_metr_sale > 0 ))
-                                        <del> {{ Number::format($product->price_metr_sale,)}}</del>
-                                    @endif
-                                </div>
-                                <div>
-                                    <span class="text-success mr-1">{{ Number::format($product->price_upak)}}</span>
-                                    @if(($product->price_upak_sale > 0 ))
-                                        <del> {{ Number::format($product->price_upak_sale)}}</del>
-                                    @endif
-                                </div>
+                            <td>
+
+
+                                <fieldset>
+                                    <div class="input-group input-group-sm">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">м<sup>2</sup></span>
+                                        </div>
+                                        <input type="text"
+                                               class="form-control @if($product->isPriceMetr()) text-success text-bold-700 @endif  "
+                                               placeholder="Базовая"
+                                               value="{{ \App\Models\Product::NUMBER_FORMAT($product->actualPriceMetr())}}"
+                                               wire:keydown.enter="savePice('metr',{{$product->id}},$event.target.value)"
+                                               wire:loading.attr="disabled"
+                                               wire:target="savePice">
+                                        <input type="text"
+                                               class="form-control @if(!$product->isPriceMetr()) text-success text-bold-700 @endif  "
+                                               placeholder="Скидка"
+                                               value="{{ \App\Models\Product::NUMBER_FORMAT($product->oldPriceMetr())}}"
+                                               wire:keydown.enter="savePice('metr_sale',{{$product->id}},$event.target.value)"
+                                               wire:loading.attr="disabled"
+                                               wire:target="savePice">
+                                    </div>
+                                </fieldset>
+
+                                <fieldset>
+                                    <div class="input-group input-group-sm mt-1">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">уп.</span>
+                                        </div>
+                                        <input type="text"
+                                               class="form-control @if($product->isPriceUpak()) text-success text-bold-700 @endif"
+                                               placeholder="Базовая"
+                                               value="{{ \App\Models\Product::NUMBER_FORMAT($product->actualPriceUpak())}}"
+                                               wire:keydown.enter="savePice('upak',{{$product->id}},$event.target.value)"
+                                               wire:loading.attr="disabled"
+                                               wire:target="savePice">
+                                        <input type="text"
+                                               class="form-control @if(!$product->isPriceUpak()) text-success text-bold-700 @endif  "
+                                               placeholder="Скидка"
+                                               value="{{ \App\Models\Product::NUMBER_FORMAT($product->oldPriceUpak())}}"
+                                               wire:keydown.enter="savePice('upak_sale',{{$product->id}},$event.target.value)"
+                                               wire:loading.attr="disabled"
+                                               wire:target="savePice">
+                                    </div>
+                                </fieldset>
                             </td>
                             <td>
                                 @if($product->public)

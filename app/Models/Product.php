@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Number;
 
 class Product extends Model
 {
@@ -20,7 +21,7 @@ class Product extends Model
     const COUNT_OF_PAGINATION = 24;
     protected $perPage = 24;
 
-    protected $with = ['fotos', 'wishlist', 'cart', 'type','collection','firm'];
+    protected $with = ['fotos', 'wishlist', 'cart', 'type', 'collection', 'firm'];
 
 //    protected $dispatchesEvents = [
 //        'updated' => UserSaving::class,
@@ -66,7 +67,7 @@ class Product extends Model
      */
     public function isPriceMetr(): bool
     {
-        return ($this->nil($this->price_metr_sale)) ? true : false;
+        return ($this->nil($this->price_metr_sale) ) ? true : false;
         // return (!empty($this->price_metr_sale) && $this->price_metr_sale != 0.00) ? false : true;
     }
 
@@ -79,7 +80,7 @@ class Product extends Model
      * Возвращает действующую цену. Если есть скидка, то действующая будет цена со скидкой
      * @return float
      */
-    public function actualPriceMetr()
+    public function actualPriceMetr(): float
     {
         return ($this->nil($this->price_metr_sale)) ? $this->price_metr : $this->price_metr_sale;
     }
@@ -99,6 +100,12 @@ class Product extends Model
         return $this->price_metr_sale;
     }
 
+
+    public static function NUMBER_FORMAT($number): string
+    {
+        if (!$number || $number == 0) return '';
+        return Number::format($number);
+    }
 
     /**
      * Возвращает струю цену при условии, что есть скидка. Иначе null
