@@ -30,7 +30,6 @@ class Index extends Component
         }
         $price = preg_replace('/[^0-9.]/', '', str_replace([',', ' '], ['.', ''], $price));
 
-        // debug($price);
         $product = Product::findOrFail($id);
         // не обновлять временные метки
         $product->timestamps = false;

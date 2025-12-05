@@ -174,6 +174,7 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
         Barryvdh\Elfinder\ElfinderServiceProvider::class,
         Bkwld\Croppa\CroppaServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
     ])->toArray(),
 
     /*
