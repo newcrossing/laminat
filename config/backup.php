@@ -286,38 +286,63 @@ return [
          *
          * No matter how you configure it the default strategy will never
          * delete the newest backup.
+         * -----------------------------------------------------------------------------------
+         * Стратегия, которая будет использоваться для очистки старых резервных копий. Стратегия по умолчанию
+         * будет сохранять все резервные копии в течение определенного количества дней. По истечении этого периода
+         * будет храниться только ежедневная резервная копия. По истечении этого периода будут храниться
+         * только еженедельные резервные копии и так далее.
+         *
+         * Независимо от того, как вы это настроите, стратегия по умолчанию никогда не будет применена
+         * удалите последнюю резервную копию.
          */
         'strategy' => \Spatie\Backup\Tasks\Cleanup\Strategies\DefaultStrategy::class,
 
         'default_strategy' => [
             /*
              * The number of days for which backups must be kept.
+             * -----------------------------------------------------------------------------------
+             * Количество дней, в течение которых должны храниться резервные копии.
              */
-            'keep_all_backups_for_days' => 5,
+            'keep_all_backups_for_days' => 3,
 
             /*
              * After the "keep_all_backups_for_days" period is over, the most recent backup
              * of that day will be kept. Older backups within the same day will be removed.
              * If you create backups only once a day, no backups will be removed yet.
+             * -----------------------------------------------------------------------------------
+             * По истечении периода "keep_all_backups_for_days" будет сохранена самая последняя
+             * резервная копия за этот день. Более старые резервные копии,
+             * созданные в течение того же дня, будут удалены.
+             Если вы создаете резервные копии только один раз в день, ни одна из них не будет удалена.
              */
-            'keep_daily_backups_for_days' => 10,
+            'keep_daily_backups_for_days' => 3,
 
             /*
              * After the "keep_daily_backups_for_days" period is over, the most recent backup
              * of that week will be kept. Older backups within the same week will be removed.
              * If you create backups only once a week, no backups will be removed yet.
+             * -----------------------------------------------------------------------------------
+             * По истечении периода "keep_daily_backups_for_days" будет сохранена самая последняя резервная копия
+             * за эту неделю. Более старые резервные копии, созданные в течение той же недели, будут удалены.
+             * Если вы создаете резервные копии только раз в неделю, ни одна из них не будет удалена.
              */
-            'keep_weekly_backups_for_weeks' => 8,
+            'keep_weekly_backups_for_weeks' => 3,
 
             /*
              * After the "keep_weekly_backups_for_weeks" period is over, the most recent backup
              * of that month will be kept. Older backups within the same month will be removed.
+             * -----------------------------------------------------------------------------------
+             * По истечении периода "keep_weekly_backups_for_weeks" будет сохранена самая последняя резервная копия
+             * за этот месяц. Более старые резервные копии за тот же месяц будут удалены.
              */
             'keep_monthly_backups_for_months' => 4,
 
             /*
              * After the "keep_monthly_backups_for_months" period is over, the most recent backup
              * of that year will be kept. Older backups within the same year will be removed.
+             * -----------------------------------------------------------------------------------
+             * По истечении периода "keep_monthly_backups_for_months" будет сохранена самая последняя резервная копия
+             * за этот год. Более старые резервные копии за тот же год будут удалены.
              */
             'keep_yearly_backups_for_years' => 2,
 
@@ -325,20 +350,30 @@ return [
              * After cleaning up the backups remove the oldest backup until
              * this amount of megabytes has been reached.
              * Set null for unlimited size.
+             * -----------------------------------------------------------------------------------
+             * После очистки резервных копий удаляйте самую старую резервную копию до тех пор, пока
+             * не будет достигнут указанный объем в мегабайтах.
+             * Установите значение null для неограниченного размера.
              */
             'delete_oldest_backups_when_using_more_megabytes_than' => 5000,
         ],
 
         /*
          * The number of attempts, in case the cleanup command encounters an exception
+         * -----------------------------------------------------------------------------------
+         * Количество попыток на случай, если команда очистки столкнется с исключительной ситуацией
          */
-        'tries' => 1,
+        'tries' => 2,
 
         /*
          * The number of seconds to wait before attempting a new cleanup if the previous try failed
          * Set to `0` for none
+         * -----------------------------------------------------------------------------------
+         * Количество секунд, в течение которых необходимо подождать, прежде чем пытаться выполнить новую очистку,
+         * если предыдущая попытка не удалась
+         * Установите значение "0" для параметра "нет"
          */
-        'retry_delay' => 0,
+        'retry_delay' => 5,
     ],
 
 ];
