@@ -17,7 +17,7 @@ return [
                 'include' => [
                     base_path('storage/app/public/files/'),
                     base_path('storage/app/public/images/'),
-                    base_path('public/storage/userfiles/'),
+                    base_path('storage/app/public/userfiles/'),
                 ],
 
                 /*
