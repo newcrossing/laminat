@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Foto;
-use Exception;
+use Bkwld\Croppa\Facades\Croppa;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -18,9 +19,9 @@ class PhotoController extends Controller
     {
 
         $files = $request->images;
-//dd($request->toArray());
+
         $class = Relation::getMorphedModel($request['model']);
-        //Log::info(getimagesize($file););
+
         $model = new $class;
 
         foreach ($files as $file) {
@@ -28,47 +29,23 @@ class PhotoController extends Controller
                 'filename' => Str::uuid(),
                 'extension' => $file->extension(),
             ]);
-            //Log::info(getimagesize($file));
 
-
-//            $image = ImageManager::imagick()->read($file);
-//            if ($image->width() > $image->height()) {
-//                $image->scale(height: 500)
-//                    ->crop(400, 500, 0, 0, position: 'center-center')
-//                    ->save(Storage::disk('product')->path('/cr_400/') . $foto->full_name_file);
-//                $image = ImageManager::imagick()->read($file);
-//                $image->scale(height: 125)
-//                    ->crop(100, 125, 0, 0, position: 'center-center')
-//                    ->save(Storage::disk('product')->path('/cr_100/') . $foto->full_name_file);
-//            } else {
-//                $image->scale(width: 400)
-//                    ->crop(400, 500, 0, 0, position: 'center-center')
-//                    ->save(Storage::disk('product')->path('/cr_400/') . $foto->full_name_file);
-//                $image = ImageManager::imagick()->read($file);
-//                $image->scale(width: 100)
-//                    ->crop(100, 125, 0, 0, position: 'center-center')
-//                    ->save(Storage::disk('product')->path('/cr_100/') . $foto->full_name_file);
-//            }
-
-
-//            $image = ImageManager::imagick()->read($file);
-//            $image->scale(width: 100)->save(Storage::disk('product')->path('/100/') . $foto->full_name_file);
-//            $image = ImageManager::imagick()->read($file);
-//            $image->scale(width: 300)->save(Storage::disk('product')->path('/300/') . $foto->full_name_file);
-//            $image = ImageManager::imagick()->read($file);
-//            $image->scale(width: 800)->save(Storage::disk('product')->path('/800/') . $foto->full_name_file);
+            DB::beginTransaction();
 
             try {
-                ini_set('memory_limit', '1000M');
+                ini_set('memory_limit', '256M');
                 $image = ImageManager::imagick()->read($file);
                 $image->scale(width: 1500)->save(Storage::disk('product')->path('/1500/') . $foto->full_name_file);
-            } catch (Exception $e) {
+
+                $product = $model->find($request->id);
+                $product->fotos()->save($foto);
+                DB::commit();
+            } catch (\Throwable $e) {
+                DB::rollBack();
                 Log::error("PHP перехватил исключение:" . $e->getMessage());
                 return response()->json('Error decode file', 501);
             }
 
-            $product = $model->find($request->id);
-            $product->fotos()->save($foto);
         }
 
         return response()->json('success', 200);
@@ -78,19 +55,24 @@ class PhotoController extends Controller
     {
         $img = Foto::find($imgId);
 
-        // check image in database
         if (!$img) {
             return response()->json(['error' => 'Нет в базе']);
         }
-        // check image in files
-//        if (!File::exists('public/' . $img->filename.'.'.$img->extension)) {
-//            return response()->json(['error' => 'Sorry, the image is not in the file folder']);
-//        }
-        //unlink('public/' . $img->filename . '.' . $img->extension);
-        $img->delete();
-        Log::info("Удалил " . $imgId);
 
-        return true;
+        if (Storage::disk('product_1500')->exists($img->full_name_file)) {
+            try {
+                Croppa::reset('/storage/thumbnails/' . $img->full_name_file);
+                Storage::disk('product_1500')->delete($img->full_name_file);
+            } catch (\Throwable $e) {
+                Log::error("PHP перехватил исключение при удалении файла картинки:", [$e->getMessage()]);
+            }
+
+        }
+
+        Log::info("Удалено фото", [$imgId, $img->full_name_file]);
+        $img->delete();
+
+        return response()->json(['success' => true]);
     }
 
     public function sorting(Request $request)

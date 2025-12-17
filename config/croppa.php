@@ -104,6 +104,8 @@ return [
     /*
      * If the source image is smaller than the requested size, allow Croppa to
      * scale up the image. This will reduce in quality loss.
+     * Если исходное изображение меньше требуемого размера, разрешите обрезку, чтобы
+     * увеличить изображение. Это уменьшит потери качества.
      *
      * @var boolean
      */
