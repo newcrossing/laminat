@@ -28,5 +28,7 @@
 
 ### Команды
 - /opt/php81/bin/php composer.phar require mews/captcha --ignore-platform-req=ext-bcmath
+- /opt/php81/bin/php composer.phar --ignore-platform-req=ext-bcmath install
+
 
 
