@@ -6,5 +6,6 @@ Disallow: /order
 Disallow: /wishlist
 Disallow: /backend
 Disallow: /captcha/*
+Disallow: /shop/*
 
 

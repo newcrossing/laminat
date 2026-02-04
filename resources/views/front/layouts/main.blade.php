@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
-    <title>@yield('title',' Интернет-магазин наполных покрытий Пол России. Купить в Москве и Московской области') </title>
+    <title>@yield('title',' Интернет-магазин напольных покрытий Пол России. Купить в Москве и Московской области') </title>
 
     <meta name="keywords" content="@yield('keywords')"/>
     <meta name="description"
