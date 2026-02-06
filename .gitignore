@@ -23,3 +23,5 @@ yarn-error.log
 /.vscode
 /.docker/
 /data/searchd.log
+/data/binlog.lock
+/data/binlog.meta
