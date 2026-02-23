@@ -22,3 +22,12 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
+
+
+<Directory /storage>
+<FilesMatch "\.php$">
+Order allow,deny
+Deny from all
+</FilesMatch>
+</Directory>
